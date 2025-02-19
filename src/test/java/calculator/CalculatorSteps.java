@@ -12,8 +12,6 @@ import java.util.List;
 
 public class CalculatorSteps {
 
-//	static final Logger log = getLogger(lookup().lookupClass());
-
 	private ArrayList<Expression> params;
 	private Operation op;
 	private Calculator c;
@@ -159,4 +157,6 @@ public class CalculatorSteps {
 	public void thenTheOperationEvaluatesToNaN() {
 		assertNull(c.eval(op));
 	}
+
+
 }

@@ -1,10 +1,10 @@
 package visitor;
 
-import calculator.Expression;
-import calculator.Notation;
+import calculator.MyNumber;
 import calculator.Operation;
 
 public interface NotationVisitor {
     String visit(Operation operation);
 
+    String visit(MyNumber myNumber);
 }

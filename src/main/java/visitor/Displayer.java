@@ -1,9 +1,9 @@
 package visitor;
 
+import calculator.Expression;
+import calculator.MyNumber;
 import calculator.Notation;
 import calculator.Operation;
-
-import java.util.stream.Stream;
 
 public class Displayer implements NotationVisitor {
 
@@ -13,26 +13,42 @@ public class Displayer implements NotationVisitor {
         this.notation = notation;
     }
 
-    public Displayer(){}
+    public Displayer(){
+        this.notation = null;
+    }
 
+    /**
+     * Function that treat leafs of the operation tree recursive calls and return the number as string.
+     * @param n the number.
+     * @return The string that represents the number.
+     */
+    @Override
+    public String visit(MyNumber n){
+        return n.toString();
+    }
+
+    /**
+     * Function that enter args of operation to expand the string to return.
+     * @param operation the operation to display
+     * @return string that display the operation following its given notation
+     */
     @Override
     public String visit(Operation operation) {
         notation = notation == null ? operation.notation : notation;
 
-        Stream<String> s = operation.args.stream().map(Object::toString);
-        return switch (notation) {
-            case INFIX -> "( " +
-                    s.reduce((s1, s2) -> s1 + " " + operation.getSymbol() + " " + s2).get() +
-                    " )";
-            case PREFIX -> operation.getSymbol() + " " +
-                    "(" +
-                    s.reduce((s1, s2) -> s1 + ", " + s2).get() +
-                    ")";
-            case POSTFIX -> "(" +
-                    s.reduce((s1, s2) -> s1 + ", " + s2).get() +
-                    ")" +
-                    " " + operation.getSymbol();
+        // same but recursively
+        String sep = ", ";
+        StringBuilder args = new StringBuilder();
+        for (Expression exp : operation.args) {
+            args.append(exp.toString(notation)).append(sep);
+        }
+        int subset = !operation.args.isEmpty() ? sep.length() : 0;
+        String formula = args.substring(0, args.toString().length() - subset);
 
+        return switch (notation) {
+            case INFIX -> "( "+ formula.replace(sep, " "+operation.getSymbol()+" ")+" )";
+            case PREFIX -> String.format("%s (%s)", operation.getSymbol(), formula);
+            case POSTFIX -> String.format("(%s) %s", formula, operation.getSymbol());
         };
     }
 }

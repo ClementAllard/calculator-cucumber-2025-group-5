@@ -6,7 +6,6 @@ import visitor.Displayer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Operation is an abstract class that represents arithmetic operations,
@@ -165,7 +164,7 @@ public abstract class Operation implements Expression
    * @return	The String that is the result of the conversion.
    */
   public final String toString(Notation n) {
-	   return accept(new Displayer(n));
+	   return new Displayer(n).visit(this);
   }
 
 	/**

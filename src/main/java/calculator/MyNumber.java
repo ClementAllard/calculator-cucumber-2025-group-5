@@ -1,5 +1,6 @@
 package calculator;
 
+import visitor.Displayer;
 import visitor.Visitor;
 
 /**
@@ -108,4 +109,14 @@ public class MyNumber implements Expression
 		return value;
   }
 
+    /**
+     * Convert the arithmetic operation into a String to allow it to be printed,
+     * using the notation n (prefix, infix or postfix) that is specified as a parameter.
+     *
+     * @param n	The notation to be used for representing the operation (prefix, infix or postfix)
+     * @return	The String that is the result of the conversion.
+     */
+    public final String toString(Notation n) {
+        return new Displayer(n).visit(this);
+    }
 }
