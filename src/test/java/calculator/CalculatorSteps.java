@@ -155,4 +155,8 @@ public class CalculatorSteps {
 		assertEquals(val, c.eval(op));
 	}
 
+	@Then("the operation evaluates to NaN")
+	public void thenTheOperationEvaluatesToNaN() {
+		assertNull(c.eval(op));
+	}
 }
