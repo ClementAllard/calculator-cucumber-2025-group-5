@@ -36,11 +36,42 @@ Feature: Integer Arithmetic Expressions
     And I provide a second number 5
     Then the operation evaluates to 1
 
+  Scenario: Dividing two integer numbers
+    Given an integer operation '/'
+    When I provide a first number 8
+    And I provide a second number 0
+    Then the operation evaluates to NaN
+
   Scenario: Printing the sum of two integer numbers
     Given the sum of two numbers 8 and 6
     Then its INFIX notation is ( 8 + 6 )
     And its PREFIX notation is + (8, 6)
     And its POSTFIX notation is (8, 6) +
+
+  Scenario: from the text give the right operator
+    Given the operation is '+'
+    Then its INFIX notation is ( 8 + 6 )
+    And its PREFIX notation is + (8, 6)
+    And its POSTFIX notation is (8, 6) +
+
+  Scenario: from the text give the right operator
+    Given the operation is '-'
+    Then its INFIX notation is ( 8 - 6 )
+    And its PREFIX notation is - (8, 6)
+    And its POSTFIX notation is (8, 6) -
+
+  Scenario: from the text give the right operator
+    Given the operation is '/'
+    Then its INFIX notation is ( 8 / 6 )
+    And its PREFIX notation is / (8, 6)
+    And its POSTFIX notation is (8, 6) /
+
+  Scenario: from the text give the right operator
+    Given the operation is '*'
+    Then its INFIX notation is ( 8 * 6 )
+    And its PREFIX notation is * (8, 6)
+    And its POSTFIX notation is (8, 6) *
+
 
   # This is an example of a scenario in which we provide a list of numbers as input.
   # (In fact, this is not entirely true, since what is given as input is a table of

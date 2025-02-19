@@ -17,7 +17,7 @@ public class Evaluator extends Visitor {
     public Evaluator() {}
 
     /** The result of the evaluation will be stored in this private variable */
-    private int computedValue;
+    private Integer computedValue;
 
     /** getter method to obtain the result of the evaluation
      *
@@ -48,7 +48,12 @@ public class Evaluator extends Visitor {
         int temp = evaluatedArgs.get(0);
         int max = evaluatedArgs.size();
         for(int counter=1; counter<max; counter++) {
-            temp = o.op(temp,evaluatedArgs.get(counter));
+            try {
+                temp = o.op(temp,evaluatedArgs.get(counter));
+            }catch (ArithmeticException e) {
+                computedValue = null;
+                return;
+            }
         }
         // store the accumulated result
         computedValue = temp;
