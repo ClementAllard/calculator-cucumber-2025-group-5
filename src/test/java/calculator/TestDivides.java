@@ -76,4 +76,16 @@ class TestDivides {
 		assertThrows(IllegalConstruction.class, () -> op = new Divides(params));
 	}
 
+	@Test
+	void zeroDivisionError() {
+		// Division by zero should throw an ArithmeticException to be handled by the Evaluator
+		params = Arrays.asList(new MyNumber(value1), new MyNumber(0));
+		try {
+			op = new Divides(params);
+			assertThrows(ArithmeticException.class, () -> op.op(value1, 0));
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
 }

@@ -35,7 +35,7 @@ public class Calculator {
         if (eval(e) != null) {
             System.out.println("is " + eval(e) + ".");
         } else {
-            System.out.println("is null.");
+            System.out.println("is NaN.");
         }
         System.out.println();
     }
