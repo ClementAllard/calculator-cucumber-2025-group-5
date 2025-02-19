@@ -42,6 +42,31 @@ Feature: Integer Arithmetic Expressions
     And its PREFIX notation is + (8, 6)
     And its POSTFIX notation is (8, 6) +
 
+  Scenario: from the text give the right operator
+    Given the operation is '+'
+    Then its INFIX notation is ( 8 + 6 )
+    And its PREFIX notation is + (8, 6)
+    And its POSTFIX notation is (8, 6) +
+
+  Scenario: from the text give the right operator
+    Given the operation is '-'
+    Then its INFIX notation is ( 8 - 6 )
+    And its PREFIX notation is - (8, 6)
+    And its POSTFIX notation is (8, 6) -
+
+  Scenario: from the text give the right operator
+    Given the operation is '/'
+    Then its INFIX notation is ( 8 / 6 )
+    And its PREFIX notation is / (8, 6)
+    And its POSTFIX notation is (8, 6) /
+
+  Scenario: from the text give the right operator
+    Given the operation is '*'
+    Then its INFIX notation is ( 8 * 6 )
+    And its PREFIX notation is * (8, 6)
+    And its POSTFIX notation is (8, 6) *
+
+
   # This is an example of a scenario in which we provide a list of numbers as input.
   # (In fact, this is not entirely true, since what is given as input is a table of
   # strings. In this case, the table is of dimension 1 * 3 (1 line and three columns).

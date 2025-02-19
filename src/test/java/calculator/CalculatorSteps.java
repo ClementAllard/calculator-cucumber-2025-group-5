@@ -107,6 +107,49 @@ public class CalculatorSteps {
 		}
 	}
 
+	@Given("the operation is {string}")
+	public void the_operation_is(String string) {
+		int value1 = 8;
+		int value2 = 6;
+		params = new ArrayList<>();
+		params.add(new MyNumber(value1));
+		params.add(new MyNumber(value2));
+		try {
+			//construct another type of operation depending on the input value
+			//of the parameterised test
+			switch (string) {
+				case "+"	->	op = new Plus(params);
+				case "-"	->	op = new Minus(params);
+				case "*"	->	op = new Times(params);
+				case "/"	->	op = new Divides(params);
+				default		->	fail();
+			}
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+		testNotations(string, value1, value2, op);
+	}
+
+	/* This is an auxilary method to avoid code duplication.
+	 */
+	void testNotation(String s,Operation o,Notation n) {
+		assertEquals(s, o.toString(n));
+		o.notation = n;
+		assertEquals(s, o.toString());
+	}
+
+	/* This is an auxilary method to avoid code duplication.
+	 */
+	void testNotations(String symbol,int value1,int value2,Operation op) {
+		//prefix notation:
+		testNotation(symbol +" (" + value1 + ", " + value2 + ")", op, Notation.PREFIX);
+		//infix notation:
+		testNotation("( " + value1 + " " + symbol + " " + value2 + " )", op, Notation.INFIX);
+		//postfix notation:
+		testNotation("(" + value1 + ", " + value2 + ") " + symbol, op, Notation.POSTFIX);
+	}
+
+
 	@Then("the operation evaluates to {int}")
 	public void thenTheOperationEvaluatesTo(int val) {
 		assertEquals(val, c.eval(op));
