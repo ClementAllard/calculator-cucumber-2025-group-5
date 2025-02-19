@@ -1,6 +1,8 @@
 package calculator;
 
 import visitor.Visitor;
+import visitor.NotationVisitor;
+import visitor.Displayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +106,10 @@ public abstract class Operation implements Expression
   	v.visit(this);
   }
 
+	public String accept(NotationVisitor v) {
+		return v.visit(this);
+	}
+
 	/**
 	 * Count the depth of an arithmetic expression recursively,
 	 * using Java 8 functional programming capabilities (streams, maps, etc...)
@@ -148,7 +154,7 @@ public abstract class Operation implements Expression
    */
   @Override
   public final String toString() {
-  	return toString(notation);
+  	return accept(new Displayer());
   }
 
   /**
@@ -159,20 +165,7 @@ public abstract class Operation implements Expression
    * @return	The String that is the result of the conversion.
    */
   public final String toString(Notation n) {
-	   Stream<String> s = args.stream().map(Object::toString);
-	   return switch (n) {
-		   case INFIX -> "( " +
-				   s.reduce((s1, s2) -> s1 + " " + symbol + " " + s2).get() +
-				   " )";
-		   case PREFIX -> symbol + " " +
-				   "(" +
-				   s.reduce((s1, s2) -> s1 + ", " + s2).get() +
-				   ")";
-		   case POSTFIX -> "(" +
-				   s.reduce((s1, s2) -> s1 + ", " + s2).get() +
-				   ")" +
-				   " " + symbol;
-	   };
+	   return accept(new Displayer(n));
   }
 
 	/**
@@ -207,6 +200,10 @@ public abstract class Operation implements Expression
 		result = prime * result + symbol.hashCode();
 		result = prime * result + args.hashCode();
 		return result;
+	}
+
+	public String getSymbol() {
+		return symbol;
 	}
 
 }

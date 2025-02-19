@@ -2,6 +2,9 @@ package visitor;
 
 import calculator.MyNumber;
 import calculator.Operation;
+import calculator.Notation;
+
+import java.util.stream.Stream;
 
 /**
  * Visitor design pattern
