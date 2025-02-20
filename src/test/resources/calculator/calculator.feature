@@ -72,6 +72,11 @@ Feature: Integer Arithmetic Expressions
     And its PREFIX notation is * (8, 6)
     And its POSTFIX notation is (8, 6) *
 
+  Scenario: from the given notation, the right string even for big expressions
+    Given a big expression
+    Then its INFIX notation is ( ( 3 + 4 + 5 ) / ( 5 - 3 ) / ( 3 * 3 ) )
+    And its PREFIX notation is / (+ (3, 4, 5), - (5, 3), * (3, 3))
+    And its POSTFIX notation is ((3, 4, 5) +, (5, 3) -, (3, 3) *) /
 
   # This is an example of a scenario in which we provide a list of numbers as input.
   # (In fact, this is not entirely true, since what is given as input is a table of

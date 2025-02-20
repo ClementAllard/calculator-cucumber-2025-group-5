@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CalculatorSteps {
@@ -53,7 +54,7 @@ public class CalculatorSteps {
 		params = new ArrayList<>();
 		// Since we only use one line of input, we use get(0) to take the first line of the list,
 		// which is a list of strings, that we will manually convert to integers:
-		numbers.get(0).forEach(n -> params.add(new MyNumber(Integer.parseInt(n))));
+		numbers.getFirst().forEach(n -> params.add(new MyNumber(Integer.parseInt(n))));
 	    params.forEach(n -> System.out.println("value ="+ n));
 		op = null;
 	}
@@ -156,6 +157,26 @@ public class CalculatorSteps {
 	@Then("the operation evaluates to NaN")
 	public void thenTheOperationEvaluatesToNaN() {
 		assertNull(c.eval(op));
+	}
+
+	@Given("a big expression")
+	public void theExpressionIs() throws IllegalConstruction {
+		List<Expression> plusExpressionArray = new ArrayList<>();
+		Collections.addAll(plusExpressionArray, new MyNumber(3), new MyNumber(4), new MyNumber(5));
+		final Expression plus = new Plus(plusExpressionArray);
+
+		List<Expression> minusExpressionArray = new ArrayList<>();
+		Collections.addAll(minusExpressionArray, new MyNumber(5), new MyNumber(3));
+		final Expression minus = new Minus(minusExpressionArray);
+
+		List<Expression> timesExpressionArray = new ArrayList<>();
+		Collections.addAll(timesExpressionArray, new MyNumber(3), new MyNumber(3));
+		final Expression times = new Times(timesExpressionArray);
+
+		ArrayList<Expression> divideExpressionArray = new ArrayList<>();
+		Collections.addAll(divideExpressionArray, plus, minus, times);
+		params = divideExpressionArray;
+		op = new Divides(divideExpressionArray);
 	}
 
 
