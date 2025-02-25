@@ -1,0 +1,74 @@
+name: Release Reporting
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  check-previous-workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Build & Test Workflow Status
+        uses: octokit/request-action@v2.x
+        id: check_build
+        with:
+          route: GET /repos/{owner}/{repo}/actions/workflows/maven.yml/runs
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check Code Quality Workflow Status
+        uses: octokit/request-action@v2.x
+        id: check_quality
+        with:
+          route: GET /repos/{owner}/{repo}/actions/workflows/coverage-quality-analysis.yml/runs
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fail if Previous Workflows Failed
+        run: |
+          if [[ "${{ steps.check_build.outputs.conclusion }}" != "success" || "${{ steps.check_quality.outputs.conclusion }}" != "success" ]]; then
+            echo "Previous workflows failed. Aborting release report generation."
+            exit 1
+          fi
+
+  generate-and-attach-reports:
+    needs: check-previous-workflows
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 23
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '23'
+          cache: 'maven'
+
+      - name: Generate JavaDoc
+        run: mvn javadoc:javadoc
+
+      - name: Package Reports
+        run: |
+          mkdir reports
+          cp -r target/site/jacoco reports/code-coverage
+          cp -r target/site/apidocs reports/javadoc
+          cp -r target/surefire-reports reports/test-results
+          cp -r target/sonar reports/quality-analysis
+          tar -czf reports.tar.gz reports
+
+      - name: Upload Reports as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-reports
+          path: reports.tar.gz
+
+      - name: Attach Reports to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: reports.tar.gz
