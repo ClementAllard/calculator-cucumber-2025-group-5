@@ -4,9 +4,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [master, automate-quality-analysis]
+    branches: [master]
   pull_request:
-    branches: [master, automate-quality-analysis]
+    branches: [master]
 
 permissions:
   contents: read
