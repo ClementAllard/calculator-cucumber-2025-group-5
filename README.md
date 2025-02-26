@@ -3,8 +3,8 @@
 Code quality: ![Maven Build](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/actions/workflows/maven.yml/badge.svg)
 ![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ClementAllard_calculator-cucumber-2025-group-5&metric=alert_status)
 
-Test coverage:![Coverage Badge](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/master/.github/badges/jacoco.svg)
-![Branch Coverage Badge](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/master/.github/badges/branches.svg)
+Test coverage:![Coverage Badge](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/.github/badges/jacoco.svg)
+![Branch Coverage Badge](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/.github/badges/branches.svg)
 
 
 
