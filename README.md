@@ -1,6 +1,7 @@
 [![](https://img.shields.io/github/v/release/ClementAllard/calculator-cucumber-2025-group-5?label=Latest%20Release)](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/releases/latest)
 
 Code quality: ![Maven Build](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/actions/workflows/maven.yml/badge.svg)
+![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ClementAllard_calculator-cucumber-2025-group-5&metric=alert_status)
 
 Test coverage: ![Coverage](.github/badges/jacoco.svg)
 ![Branches](.github/badges/branches.svg)
