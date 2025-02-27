@@ -12,8 +12,7 @@ Test coverage:![Coverage Badge](https://github.com/ClementAllard/calculator-cucu
 
 ## About
 
-This repository contains Java code for computing arithmetic expressions. It is deliberately incomplete as it serves to be the basis of all kinds of extensions, such as a more sophisticated Calculator application. The code was written to be used for educational purposes at the University of Mons, Belgium in the context of the software evolution course.
-
+This repository is a fork of the [original project](https://github.com/tommens/calculator-cucumber) designed for computing arithmetic expressions. As Group 5, we are asked to extend its functionality as part of the Software Evolution course at the University of Mons, Belgium.
 
 ### Unit testing and BDD
 
@@ -47,6 +46,7 @@ The BDD scenarios are specified as .feature files in the src\test\resources dire
 *  [Cucumber](https://cucumber.io/docs/cucumber/) - a tool for Behaviour-Driven Development
 *  [JaCoCo](https://www.jacoco.org) - a code coverage library for Java
 *  [JavaDoc](https://docs.oracle.com/en/java/javase/21/javadoc/javadoc.html) - a code documentation tool for Java
+*  [SonarCloud](https://sonarcloud.io) - a cloud-based code analysis tool designed to detect coding issues in 30+ languages, frameworks, and IaC platforms.
 
 ## Versions
 
@@ -54,11 +54,12 @@ We use [SemVer](http://semver.org/) for semantic versioning. For the versions av
 
 ## Contributors
 
-* Tom Mens
-* Gauvain Devillez @GauvainD
+* Clément Allard
+* Amanzio Di Nicolo
+* Odan Lafrance
+* Simon Michel
 
 ## Licence
-
 
 [This code is available under the GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/) (GPLv3)
 

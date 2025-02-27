@@ -45,7 +45,7 @@ public class Evaluator extends Visitor {
             evaluatedArgs.add(computedValue);
         }
         //second loop to accumulate all the evaluated subresults
-        int temp = evaluatedArgs.get(0);
+        int temp = evaluatedArgs.getFirst();
         int max = evaluatedArgs.size();
         for(int counter=1; counter<max; counter++) {
             try {

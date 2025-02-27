@@ -33,7 +33,7 @@ class TestMinus {
 	void testConstructor2() {
 		// A Times expression should not be the same as a Minus expression
 		try {
-			assertNotSame(op, new Times(new ArrayList<>()));
+			assertNotSame(new Times(new ArrayList<>()), op);
 		} catch (IllegalConstruction e) {
 			fail();
 		}
@@ -53,7 +53,7 @@ class TestMinus {
 	@SuppressWarnings("ConstantConditions")
 	@Test
 	void testNull() {
-		assertDoesNotThrow(() -> op==null); // Direct way to to test if the null case is handled.
+		assertDoesNotThrow(() -> op==null); // Direct way to test if the null case is handled.
 	}
 
 	@Test

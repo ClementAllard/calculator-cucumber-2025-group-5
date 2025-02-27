@@ -53,7 +53,7 @@ public class CalculatorSteps {
 		params = new ArrayList<>();
 		// Since we only use one line of input, we use get(0) to take the first line of the list,
 		// which is a list of strings, that we will manually convert to integers:
-		numbers.get(0).forEach(n -> params.add(new MyNumber(Integer.parseInt(n))));
+		numbers.getFirst().forEach(n -> params.add(new MyNumber(Integer.parseInt(n))));
 	    params.forEach(n -> System.out.println("value ="+ n));
 		op = null;
 	}
@@ -128,7 +128,7 @@ public class CalculatorSteps {
 		testNotations(string, value1, value2, op);
 	}
 
-	/* This is an auxilary method to avoid code duplication.
+	/* This is an auxiliary method to avoid code duplication.
 	 */
 	void testNotation(String s,Operation o,Notation n) {
 		assertEquals(s, o.toString(n));
@@ -136,7 +136,7 @@ public class CalculatorSteps {
 		assertEquals(s, o.toString());
 	}
 
-	/* This is an auxilary method to avoid code duplication.
+	/* This is an auxiliary method to avoid code duplication.
 	 */
 	void testNotations(String symbol,int value1,int value2,Operation op) {
 		//prefix notation:

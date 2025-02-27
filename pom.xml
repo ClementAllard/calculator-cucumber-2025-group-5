@@ -32,7 +32,7 @@
              on the javac command line. This is a change in behavior from the existing default
              of looking to run annotation processing by searching the class path for processors
              without any explicit annotation processing related options needing to be present.
-             In order to be enable this in Mavan, we need to turn on full compilation processing: -->
+             In order to be enable this in Maven, we need to turn on full compilation processing: -->
         <maven.compiler.proc>full</maven.compiler.proc>
         <maven.surefire.version>3.5.2</maven.surefire.version>
         <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
