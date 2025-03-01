@@ -1,0 +1,67 @@
+name: Reporting
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    permissions:
+      checks: write
+      contents: write
+      actions: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '23'
+
+      - id: mvn
+        name: Build with Maven (including running all tests)
+        run: mvn -B package --file pom.xml
+
+      - id: testreport
+        name: Publish Test Report
+        if: ${{ always() }}
+        uses: scacap/action-surefire-report@a2911bd1a4412ec18dde2d93b1758b3e56d2a880 # v1.8.0
+
+      - id: uploadreport
+        name: Upload Test Reports as Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports
+          retention-days: 7
+
+      - name: Generate JavaDoc
+        run: mvn javadoc:javadoc
+
+      - name: Run Code Coverage
+        run: mvn test jacoco:report
+
+      - name: Run Quality Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn sonar:sonar -Dsonar.projectKey=ClementAllard_calculator-cucumber-2025-group-5 -Dsonar.organization=calculator-cucumber-group-5
+
+      - name: Package Report
+        run: |
+          mkdir -p reports/quality
+          cp -r target/surefire-reports reports/surefire-reports
+          cp -r target/site/apidocs reports/javadoc
+          cp -r target/site/jacoco reports/coverage
+          cp -r target/sonar reports/quality
+          zip -r report.zip reports
+
+      - name: Attach Report to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: report.zip
