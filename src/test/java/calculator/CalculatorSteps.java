@@ -8,6 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CalculatorSteps {
@@ -158,5 +159,24 @@ public class CalculatorSteps {
 		assertNull(c.eval(op));
 	}
 
+	@Given("a big expression")
+	public void theExpressionIs() throws IllegalConstruction {
+		List<Expression> plusExpressionArray = new ArrayList<>();
+		Collections.addAll(plusExpressionArray, new MyNumber(3), new MyNumber(4), new MyNumber(5));
+		final Expression plus = new Plus(plusExpressionArray);
+
+		List<Expression> minusExpressionArray = new ArrayList<>();
+		Collections.addAll(minusExpressionArray, new MyNumber(5), new MyNumber(3));
+		final Expression minus = new Minus(minusExpressionArray);
+
+		List<Expression> timesExpressionArray = new ArrayList<>();
+		Collections.addAll(timesExpressionArray, new MyNumber(3), new MyNumber(3));
+		final Expression times = new Times(timesExpressionArray);
+
+		ArrayList<Expression> divideExpressionArray = new ArrayList<>();
+		Collections.addAll(divideExpressionArray, plus, minus, times);
+		params = divideExpressionArray;
+		op = new Divides(divideExpressionArray);
+	}
 
 }
