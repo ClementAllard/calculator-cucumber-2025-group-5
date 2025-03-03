@@ -1,6 +1,11 @@
-package calculator;
+package calculator.expression;
 
 //Import Junit5 libraries for unit testing:
+import calculator.IllegalConstruction;
+import calculator.expression.operator.Divides;
+import calculator.expression.operator.Minus;
+import calculator.expression.operator.Plus;
+import calculator.expression.operator.Times;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -38,7 +43,6 @@ class TestCounting {
     @ValueSource(strings = {"*", "+", "/", "-"})
     void testOperationCounting(String symbol) {
         List<Expression> params = Arrays.asList(new MyNumber(value1),new MyNumber(value2));
-        //Operation op = null;
         try {
             //construct another type of operation depending on the input value
             //of the parameterised test
@@ -49,7 +53,7 @@ class TestCounting {
                 case "/"	->	e = new Divides(params);
                 default		->	fail();
             }
-        } catch (IllegalConstruction e) {
+        } catch (IllegalConstruction _) {
             fail();
         }
         //test whether a binary operation has depth 1

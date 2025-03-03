@@ -1,9 +1,9 @@
 package visitor;
 
-import calculator.Expression;
-import calculator.MyNumber;
-import calculator.Notation;
-import calculator.Operation;
+import calculator.expression.Expression;
+import calculator.expression.MyNumber;
+import calculator.expression.Notation;
+import calculator.expression.operator.Operation;
 
 public class Displayer implements NotationVisitor {
 
@@ -34,15 +34,15 @@ public class Displayer implements NotationVisitor {
      */
     @Override
     public String visit(Operation operation) {
-        notation = notation == null ? operation.notation : notation;
+        notation = notation == null ? operation.getNotation() : notation;
 
         // same but recursively
         String sep = ", ";
         StringBuilder args = new StringBuilder();
-        for (Expression exp : operation.args) {
+        for (Expression exp : operation.getArgs()) {
             args.append(exp.toString(notation)).append(sep);
         }
-        int subset = !operation.args.isEmpty() ? sep.length() : 0;
+        int subset = !operation.getArgs().isEmpty() ? sep.length() : 0;
         String formula = args.substring(0, args.toString().length() - subset);
 
         return switch (notation) {

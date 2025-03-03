@@ -1,4 +1,4 @@
-package calculator;
+package calculator.expression;
 
 /**
  * Enumeration of the 3 ways to represent an arithmetic expression as a String:

@@ -1,7 +1,9 @@
-package calculator;
+package calculator.expression;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import calculator.IllegalConstruction;
+import calculator.expression.operator.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -13,9 +15,9 @@ class TestNotation {
 
     /* This is an auxiliary method to avoid code duplication.
      */
-	void testNotation(String s,Operation o,Notation n) {
+	void testNotation(String s, Operation o, Notation n) {
 		assertEquals(s, o.toString(n));
-		o.notation = n;
+		o.setNotation(n);
 		assertEquals(s, o.toString());
 	}
 

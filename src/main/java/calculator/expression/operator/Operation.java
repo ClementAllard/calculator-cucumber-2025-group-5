@@ -1,5 +1,9 @@
-package calculator;
+package calculator.expression.operator;
 
+import calculator.expression.Expression;
+import calculator.IllegalConstruction;
+import calculator.expression.MyNumber;
+import calculator.expression.Notation;
 import visitor.Visitor;
 import visitor.NotationVisitor;
 import visitor.Displayer;
@@ -19,7 +23,7 @@ public abstract class Operation implements Expression
 	/**
 	 * The list of expressions passed as an argument to the arithmetic operation
 	 */
-	public List<Expression> args;
+	protected List<Expression> args;
 
   /**
    * The character used to represent the arithmetic operation (e.g. "+", "*")
@@ -35,13 +39,13 @@ public abstract class Operation implements Expression
    * The notation used to render operations as strings.
    * By default, the infix notation will be used.
    */
-  public Notation notation = Notation.INFIX;
+  protected Notation notation = Notation.INFIX;
 
   /** It is not allowed to construct an operation with a null list of expressions.
    * Note that it is allowed to have an EMPTY list of arguments.
    *
    * @param elist	The list of expressions passed as argument to the arithmetic operation
-   * @throws IllegalConstruction	Exception thrown if a null list of expressions is passed as argument
+   * @throws IllegalConstruction    Exception thrown if a null list of expressions is passed as argument
    */
   protected /*constructor*/ Operation(List<Expression> elist)
 		  throws IllegalConstruction
@@ -76,6 +80,9 @@ public abstract class Operation implements Expression
   	return args;
   }
 
+  	public Notation getNotation() {return notation;}
+
+	public void setNotation(Notation n) { this.notation = n;}
 	/**
 	 * Abstract method representing the actual binary arithmetic operation to compute
 	 * @param l	 first argument of the binary operation
