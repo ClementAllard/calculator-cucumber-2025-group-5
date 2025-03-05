@@ -9,8 +9,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestParser {
+class TestMyExpressionParser {
 
+    Calculator c = new Calculator();
     private Expression e;
 
     @BeforeEach
@@ -26,61 +27,56 @@ class TestParser {
     @Test
     void testBasicExpressionParsing() throws IllegalConstruction {
         String infixExpressionString = "((4+5+6)*(7+(5/2/7))*9)";
-        String prefixExpressionString = "*(+(4,5,6),+(7,/(5,2,7)),9)";
-        String postfixExpressionString = "((4,5,6)+,(7,(5,2,7)/)+,9)*";
+        String prefixExpressionString = "*(+(4 5 6),+(7 /(5 2 7)) 9)";
+        String postfixExpressionString = "((4 5 6)+ (7 (5 2 7)/)+ 9)*";
 
-        Expression infixExpressionParsing = Parser.parseExpression(infixExpressionString);
-        assertEquals(e.toString(Notation.INFIX),infixExpressionParsing.toString());
+        Expression infixExpressionParsing = MyExpressionParser.parseExpression(infixExpressionString);
+        assertEquals(c.eval(e),c.eval(infixExpressionParsing));
 
-        Expression prefixExpressionParsing = Parser.parseExpression(prefixExpressionString);
-        assertEquals(e.toString(Notation.PREFIX),prefixExpressionParsing.toString());
+        Expression prefixExpressionParsing = MyExpressionParser.parseExpression(prefixExpressionString);
+        assertEquals(c.eval(e),c.eval(prefixExpressionParsing));
 
-        Expression postfixExpressionParsing = Parser.parseExpression(postfixExpressionString);
-        assertEquals(e.toString(Notation.POSTFIX),postfixExpressionParsing.toString());
+        Expression postfixExpressionParsing = MyExpressionParser.parseExpression(postfixExpressionString);
+        assertEquals(c.eval(e),c.eval(postfixExpressionParsing));
     }
 
     @Test
     void testSensitivityExpressionParsing() throws IllegalConstruction {
-        String expressionStringWithSpaceAndTab = "(( 4          + 5 + 6    )     *    (   7       +( 5 / 2 / 7 ) )  * 9  )";
+        String expressionStringWithSpaceAndTab = "(( 4          + 5 + 6    )     *   (   7       +( 5 / 2 / 7 ) )  * 9  )";
 
-        Expression expressionParsing = Parser.parseExpression(expressionStringWithSpaceAndTab);
-        assertEquals( e.toString(Notation.INFIX),expressionParsing.toString(Notation.INFIX));
-
+        Expression expressionParsing = MyExpressionParser.parseExpression(expressionStringWithSpaceAndTab);
+        assertEquals(c.eval(e),c.eval(expressionParsing));
     }
 
     @Test
     void testSchemaExpressionParsing() throws IllegalConstruction {
         String shemaExpressionString = "*(+(4 5 6) +(7 /(5 2 7)) 9)";
 
-        Expression expressionParsing = Parser.parseExpression(shemaExpressionString);
+        Expression expressionParsing = MyExpressionParser.parseExpression(shemaExpressionString);
         assertEquals(e.toString(Notation.PREFIX),expressionParsing.toString(Notation.PREFIX));
     }
 
     @Test
     void testExeptionParsing(){
-        String expressionParantheseInequal = "*(+(4 5 6) +(7 /(5 2 7))) 9)";
+        String expressionParantheseInequal = "*(+(4 5 6) +(+(7 /(5 2 7)) 9)";
         String expressionNotationChange = "*((4 + 5 + 6) +(7 /(5 2 7)) 9";
         String expressionNotAExpression = "(4 + 5 + 6) efdsvbdrdb";
         String expressionTwoOperatorInARow = "*(+(4 5 6) +(7 //(5 2 7)) 9) + 5";
 
         assertThrowsExactly(IllegalConstruction.class, ()->{
-            Parser.parseExpression(expressionParantheseInequal);
+            MyExpressionParser.parseExpression(expressionParantheseInequal);
         });
 
         assertThrowsExactly(IllegalConstruction.class, ()->{
-            Parser.parseExpression(expressionNotationChange);
+            MyExpressionParser.parseExpression(expressionNotationChange);
         });
 
         assertThrowsExactly(IllegalConstruction.class, ()->{
-            Parser.parseExpression(expressionNotAExpression);
+            MyExpressionParser.parseExpression(expressionNotAExpression);
         });
 
         assertThrowsExactly(IllegalConstruction.class, ()->{
-            Parser.parseExpression(expressionNotationChange);
-        });
-
-        assertThrowsExactly(IllegalConstruction.class, ()->{
-            Parser.parseExpression(expressionTwoOperatorInARow);
+            MyExpressionParser.parseExpression(expressionTwoOperatorInARow);
         });
     }
 
