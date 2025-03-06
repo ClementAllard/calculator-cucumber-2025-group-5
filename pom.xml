@@ -130,6 +130,7 @@
                 <configuration>
                     <excludes>
                         <exclude>calculator/Main.class</exclude>
+                        <exclude>**/helper/antlr4/**</exclude>
                     </excludes>
                 </configuration>
             </plugin>
