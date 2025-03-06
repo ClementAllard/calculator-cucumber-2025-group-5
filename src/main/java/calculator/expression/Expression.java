@@ -1,12 +1,13 @@
-package calculator;
+package calculator.expression;
 
+import calculator.expression.operator.Operation;
 import visitor.Visitor;
 
 /**
  * Expression is an abstract class that represents arithmetic expressions.
  * It has two concrete subclasses Operation and MyNumber.
  *
- * @see Operation
+ * @see calculator.expression.operator.Operation
  * @see MyNumber
  */
 public interface Expression {

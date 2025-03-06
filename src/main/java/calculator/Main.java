@@ -1,7 +1,12 @@
 package calculator;
 
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.*;
+import calculator.expression.Expression;
+import calculator.expression.operator.Divides;
+import calculator.expression.operator.Minus;
+import calculator.expression.operator.Plus;
+import calculator.expression.operator.Times;
+import calculator.expression.MyNumber;
+import calculator.expression.Notation;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +41,7 @@ public class Main {
 
 	    List<Expression> params = new ArrayList<>();
 	    Collections.addAll(params, new MyNumber(3), new MyNumber(4), new MyNumber(5));
-	    e = new Plus(params,Notation.PREFIX);
+	    e = new Plus(params, Notation.PREFIX);
 		c.printExpressionDetails(e);
 		c.eval(e);
 	

@@ -1,7 +1,12 @@
-package calculator;
+package calculator.expression.operator;
 
 //Import Junit5 libraries for unit testing:
 import static org.junit.jupiter.api.Assertions.*;
+
+import calculator.expression.Expression;
+import calculator.IllegalConstruction;
+import calculator.expression.MyNumber;
+import calculator.expression.Notation;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;

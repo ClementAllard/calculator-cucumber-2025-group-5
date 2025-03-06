@@ -1,8 +1,8 @@
 package visitor;
 
-import calculator.Expression;
-import calculator.MyNumber;
-import calculator.Operation;
+import calculator.expression.Expression;
+import calculator.expression.MyNumber;
+import calculator.expression.operator.Operation;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class Evaluator extends Visitor {
     public void visit(Operation o) {
         ArrayList<Integer> evaluatedArgs = new ArrayList<>();
         //first loop to recursively evaluate each subexpression
-        for(Expression a:o.args) {
+        for(Expression a:o.getArgs()) {
             a.accept(this);
             evaluatedArgs.add(computedValue);
         }

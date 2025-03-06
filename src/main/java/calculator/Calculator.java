@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.expression.Expression;
 import visitor.Evaluator;
 
 /**
@@ -28,7 +29,7 @@ public class Calculator {
     /**
      * Prints an arithmetic expression provided as input parameter.
      * @param e the arithmetic Expression to be printed
-     * @see #printExpressionDetails(Expression) 
+     * @see #printExpressionDetails(Expression)
      */
     public void print(Expression e) {
         System.out.println("The result of evaluating expression " + e);
