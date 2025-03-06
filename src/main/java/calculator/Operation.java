@@ -120,7 +120,7 @@ public abstract class Operation implements Expression
 	return 1 + args.stream()
 			   .mapToInt(Expression::countDepth)
 			   .max()
-			   .getAsInt();  
+			   .orElse(0);
   }
 
 	/**
@@ -134,7 +134,7 @@ public abstract class Operation implements Expression
 	return 1 + args.stream()
 			   .mapToInt(Expression::countOps)
 			   .reduce(Integer::sum)
-			   .getAsInt();
+			   .orElse(0);
   }
 
   public final int countNbs() {
@@ -142,7 +142,7 @@ public abstract class Operation implements Expression
 	return args.stream()
 			   .mapToInt(Expression::countNbs)
 			   .reduce(Integer::sum)
-			   .getAsInt();  
+			   .orElse(0);
   }
 
   /**
@@ -194,7 +194,8 @@ public abstract class Operation implements Expression
 	@Override
 	public int hashCode()
 	{
-		int result = 5, prime = 31;
+		int result = 5;
+		int prime = 31;
 		result = prime * result + neutral;
 		result = prime * result + symbol.hashCode();
 		result = prime * result + args.hashCode();
