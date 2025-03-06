@@ -70,6 +70,12 @@ public class MyExpressionListener extends ExpressionBaseListener {
         makeOperation(operator,Notation.INFIX);
     }
 
+    @Override public void exitImplicitMultiplication(ExpressionParser.ImplicitMultiplicationContext ctx) {
+        String operator = "*";
+        stackCurrentOp = ctx.children.size() / 2 + 1;
+        makeOperation(operator,Notation.INFIX);
+    }
+
     private void makeOperation(String op, Notation notation) {
         try {
             List<Expression> args = new ArrayList<>();
@@ -84,7 +90,7 @@ public class MyExpressionListener extends ExpressionBaseListener {
             Collections.reverse(args);
 
             stack.push(createOperation(op, args, notation));
-        } catch (Exception e) { // TEMPORARY
+    } catch (Exception e) { // TEMPORARY // Impossible d'être ici SI LE PARSER A BIEN ETE CONFIGURER
             e.printStackTrace();
         }
     }
@@ -95,7 +101,7 @@ public class MyExpressionListener extends ExpressionBaseListener {
             case "-" -> new Minus(args, notation);
             case "*" -> new Times(args, notation);
             case "/" -> new Divides(args, notation);
-            default -> throw new IllegalConstruction();
+            default -> throw new IllegalConstruction(); // Impossible d'être ici SI LE PARSER A BIEN ETE CONFIGURER
         };
     }
 }

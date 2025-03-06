@@ -1,5 +1,5 @@
-package helper.antlr4;
 // Generated from Expression.g4 by ANTLR 4.13.2
+package helper.antlr4;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

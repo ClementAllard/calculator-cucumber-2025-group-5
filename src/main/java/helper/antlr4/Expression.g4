@@ -1,21 +1,15 @@
 grammar Expression;
 
-expr : (prefixExpr | prefixExprWithParenthesis | postfixExpr | postfixExprWithParenthesis | infixExpr ) EOF;
+expr : (prefixExpr | postfixExpr | infixExpr ) EOF;
 
-prefixExpr : ('+' | '-' | '*' | '/') prefixExpr prefixExpr+                         #PrefixOperation
+prefixExpr : ('+' | '-' | '*' | '/') '(' prefixExpr prefixExpr+ ')'                 #PrefixOperationWithParenthesis
+           | ('+' | '-' | '*' | '/') prefixExpr prefixExpr+                         #PrefixOperation
            | number                                                                 #PrefixNumber
            ;
 
-prefixExprWithParenthesis : ('+' | '-' | '*' | '/') '(' prefixExprWithParenthesis prefixExprWithParenthesis+ ')'  #PrefixOperationWithParenthesis
-                          | number                                                  #PrefixNumberWithParenthesis
-                          ;
-
-postfixExpr :  postfixExpr postfixExpr+ ('+' | '-' | '*' | '/')                      #PostfixOperation
-            | number                                                                 #PostfixNumber
-            ;
-
-postfixExprWithParenthesis : '(' postfixExprWithParenthesis postfixExprWithParenthesis+ ')' ('+' | '-' | '*' | '/')              #PostfixOperationWithParenthesis
-           | number                                                                 #PostfixNumberWithParenthesis
+postfixExpr : '(' postfixExpr postfixExpr+ ')' ('+' | '-' | '*' | '/')              #PostfixOperationWithParenthesis
+           |  postfixExpr postfixExpr+ ('+' | '-' | '*' | '/')                      #PostfixOperation
+           | number                                                                 #PostfixNumber
            ;
 
 infixExpr : infixExpr ('+' | '-') term                                              # AddSub
@@ -24,7 +18,10 @@ infixExpr : infixExpr ('+' | '-') term                                          
 
 term : term ('*' | '/') factor                                                      # MulDiv
      | factor                                                                       # SingleFactor
+     | factor implicitMul factor                                                    # ImplicitMultiplication
      ;
+
+implicitMul : ;
 
 factor : number                                                                     # NumberFactor
        | '(' infixExpr ')'                                                          # ParenthesizedExpression

@@ -1,5 +1,5 @@
-package helper.antlr4;
 // Generated from Expression.g4 by ANTLR 4.13.2
+package helper.antlr4;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -17,6 +17,18 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(ExpressionParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PrefixOperationWithParenthesis}
+	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PrefixOperationWithParenthesis}
+	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PrefixOperation}
 	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
@@ -41,30 +53,6 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrefixNumber(ExpressionParser.PrefixNumberContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code PrefixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#prefixExprWithParenthesis}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code PrefixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#prefixExprWithParenthesis}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code PrefixNumberWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#prefixExprWithParenthesis}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrefixNumberWithParenthesis(ExpressionParser.PrefixNumberWithParenthesisContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code PrefixNumberWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#prefixExprWithParenthesis}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrefixNumberWithParenthesis(ExpressionParser.PrefixNumberWithParenthesisContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PostfixOperation}
 	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
@@ -91,28 +79,16 @@ public interface ExpressionListener extends ParseTreeListener {
 	void exitPostfixNumber(ExpressionParser.PostfixNumberContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PostfixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#postfixExprWithParenthesis}.
+	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
 	 * @param ctx the parse tree
 	 */
 	void enterPostfixOperationWithParenthesis(ExpressionParser.PostfixOperationWithParenthesisContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code PostfixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#postfixExprWithParenthesis}.
+	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
 	 * @param ctx the parse tree
 	 */
 	void exitPostfixOperationWithParenthesis(ExpressionParser.PostfixOperationWithParenthesisContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code PostfixNumberWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#postfixExprWithParenthesis}.
-	 * @param ctx the parse tree
-	 */
-	void enterPostfixNumberWithParenthesis(ExpressionParser.PostfixNumberWithParenthesisContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code PostfixNumberWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#postfixExprWithParenthesis}.
-	 * @param ctx the parse tree
-	 */
-	void exitPostfixNumberWithParenthesis(ExpressionParser.PostfixNumberWithParenthesisContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code SingleTerm}
 	 * labeled alternative in {@link ExpressionParser#infixExpr}.
@@ -150,6 +126,18 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitMulDiv(ExpressionParser.MulDivContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ImplicitMultiplication}
+	 * labeled alternative in {@link ExpressionParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void enterImplicitMultiplication(ExpressionParser.ImplicitMultiplicationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ImplicitMultiplication}
+	 * labeled alternative in {@link ExpressionParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void exitImplicitMultiplication(ExpressionParser.ImplicitMultiplicationContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code SingleFactor}
 	 * labeled alternative in {@link ExpressionParser#term}.
 	 * @param ctx the parse tree
@@ -161,6 +149,16 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSingleFactor(ExpressionParser.SingleFactorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#implicitMul}.
+	 * @param ctx the parse tree
+	 */
+	void enterImplicitMul(ExpressionParser.ImplicitMulContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#implicitMul}.
+	 * @param ctx the parse tree
+	 */
+	void exitImplicitMul(ExpressionParser.ImplicitMulContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code NumberFactor}
 	 * labeled alternative in {@link ExpressionParser#factor}.

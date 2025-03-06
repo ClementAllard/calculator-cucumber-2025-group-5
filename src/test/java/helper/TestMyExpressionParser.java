@@ -28,7 +28,9 @@ class TestMyExpressionParser {
     void testBasicExpressionParsing() throws IllegalConstruction {
         String infixExpressionString = "((4+5+6)*(7+(5/2/7))*9)";
         String prefixExpressionString = "*(+(4 5 6),+(7 /(5 2 7)) 9)";
+        String prefixExpressionString2 = "* 9 + ( 4 5 6 ) + 7 / 5 2 7";
         String postfixExpressionString = "((4 5 6)+ (7 (5 2 7)/)+ 9)*";
+        String postfixExpressionString2 = "9 (4 5 6)+ (7 (5 2 7)/)+*";
 
         Expression infixExpressionParsing = MyExpressionParser.parseExpression(infixExpressionString);
         assertEquals(c.eval(e),c.eval(infixExpressionParsing));
@@ -36,8 +38,14 @@ class TestMyExpressionParser {
         Expression prefixExpressionParsing = MyExpressionParser.parseExpression(prefixExpressionString);
         assertEquals(c.eval(e),c.eval(prefixExpressionParsing));
 
+        Expression prefixExpressionParsing2 = MyExpressionParser.parseExpression(prefixExpressionString2);
+        assertEquals(c.eval(e),c.eval(prefixExpressionParsing2));
+
         Expression postfixExpressionParsing = MyExpressionParser.parseExpression(postfixExpressionString);
         assertEquals(c.eval(e),c.eval(postfixExpressionParsing));
+
+        Expression postfixExpressionParsing2 = MyExpressionParser.parseExpression(postfixExpressionString2);
+        assertEquals(c.eval(e),c.eval(postfixExpressionParsing2));
     }
 
     @Test
@@ -55,6 +63,23 @@ class TestMyExpressionParser {
         Expression expressionParsing = MyExpressionParser.parseExpression(shemaExpressionString);
         assertEquals(e.toString(Notation.PREFIX),expressionParsing.toString(Notation.PREFIX));
     }
+
+    @Test
+    void testPriorityOfOperation() throws IllegalConstruction {
+        String expressionString = "4 - 5 * 9";
+        Expression expression = new Minus(Arrays.asList(new MyNumber(4), new Times(Arrays.asList(new MyNumber(5), new MyNumber(9)))));
+
+        Expression expressionParsing = MyExpressionParser.parseExpression(expressionString);
+        assertEquals(c.eval(expression),c.eval(expressionParsing));
+    }
+
+    @Test
+    void testImplicitMultiplication() throws IllegalConstruction {
+        String expressionString = "(4+5+ 6)(7 + 5/2/7)*9";
+        Expression expressionParsing = MyExpressionParser.parseExpression(expressionString);
+        assertEquals(c.eval(e),c.eval(expressionParsing));
+    }
+
 
     @Test
     void testExeptionParsing(){
