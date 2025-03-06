@@ -1,5 +1,5 @@
 grammar Expression;
-
+// commande pour regen le parser : mvn clean generate-sources
 expr : (prefixExpr | postfixExpr | infixExpr ) EOF;
 
 prefixExpr : ('+' | '-' | '*' | '/') '(' prefixExpr prefixExpr+ ')'                 #PrefixOperationWithParenthesis

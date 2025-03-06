@@ -4,10 +4,17 @@ import calculator.Expression;
 import calculator.IllegalConstruction;
 import helper.antlr4.*;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
 
 public class MyExpressionParser {
 
+    private MyExpressionParser() {}
+
+    /**
+     * Parse an expression and return the corresponding Expression object
+     * @param input the expression to parse
+     * @return the corresponding Expression object
+     * @throws IllegalConstruction if the expression is not valid
+     */
     public static Expression parseExpression(String input) throws IllegalConstruction {
         ExpressionLexer lexer = new ExpressionLexer(CharStreams.fromString(input));
 
