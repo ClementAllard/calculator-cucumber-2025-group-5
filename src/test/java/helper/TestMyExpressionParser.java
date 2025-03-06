@@ -3,6 +3,8 @@ package helper;
 //Import Junit5 libraries for unit testing:
 import calculator.*;
 import org.junit.jupiter.api.*;
+import calculator.expression.*;
+import calculator.expression.operator.*;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,6 +1,6 @@
 package helper;
 
-import calculator.Expression;
+import calculator.expression.Expression;
 import calculator.IllegalConstruction;
 import helper.antlr4.*;
 import org.antlr.v4.runtime.*;
