@@ -49,28 +49,28 @@ Feature: Integer Arithmetic Expressions
     And its POSTFIX notation is (8, 6) +
 
   Scenario: from the text give the right operator
-    Given the operation is '+'
-    Then its INFIX notation is ( 8 + 6 )
-    And its PREFIX notation is + (8, 6)
-    And its POSTFIX notation is (8, 6) +
+    Given an integer operation '+'
+    When I provide a first number 8
+    And I provide a second number 2
+    Then the operation '+' and number 8 and 2 are correct
 
   Scenario: from the text give the right operator
-    Given the operation is '-'
-    Then its INFIX notation is ( 8 - 6 )
-    And its PREFIX notation is - (8, 6)
-    And its POSTFIX notation is (8, 6) -
+    Given an integer operation '-'
+    When I provide a first number 8
+    And I provide a second number 2
+    Then the operation '-' and number 8 and 2 are correct
 
   Scenario: from the text give the right operator
-    Given the operation is '/'
-    Then its INFIX notation is ( 8 / 6 )
-    And its PREFIX notation is / (8, 6)
-    And its POSTFIX notation is (8, 6) /
+    Given an integer operation '/'
+    When I provide a first number 8
+    And I provide a second number 2
+    Then the operation '/' and number 8 and 2 are correct
 
   Scenario: from the text give the right operator
-    Given the operation is '*'
-    Then its INFIX notation is ( 8 * 6 )
-    And its PREFIX notation is * (8, 6)
-    And its POSTFIX notation is (8, 6) *
+    Given an integer operation '*'
+    When I provide a first number 8
+    And I provide a second number 2
+    Then the operation '*' and number 8 and 2 are correct
 
   Scenario: from the given notation, the right string even for big expressions
     Given a big expression

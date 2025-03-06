@@ -12,7 +12,7 @@ Test coverage: ![Coverage Badge](https://github.com/ClementAllard/calculator-cuc
 
 ## About
 
-This repository is a fork of the [original project](https://github.com/tommens/calculator-cucumber) designed for computing arithmetic expressions. As Group 5, we have been tasked with extending its functionality as part of the Software Evolution course at the University of Mons, Belgium.
+This repository is a fork of the [original project](https://github.com/University-of-Mons/calculator-cucumber-2025) designed for computing arithmetic expressions. As Group 5, we have been tasked with extending its functionality as part of the Software Evolution course at the University of Mons, Belgium.
 
 ### Unit testing and BDD
 
