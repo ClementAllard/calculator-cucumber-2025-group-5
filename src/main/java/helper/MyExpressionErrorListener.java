@@ -8,7 +8,6 @@ public class MyExpressionErrorListener extends BaseErrorListener{
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
                             int line, int charPositionInLine, String msg, RecognitionException e) {
-        // Throw a RuntimeException in case of a lexer error
         throw new RuntimeException("Lexer Error at line " + line + ":" + charPositionInLine + " - " + msg);
     }
 }

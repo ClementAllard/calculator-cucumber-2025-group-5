@@ -1,18 +1,21 @@
 grammar Expression;
 
-expr : prefixExpr                                                                   # PrefixExpression
-     | postfixExpr                                                                  # PostfixExpression
-     | infixExpr                                                                    # InfixExpression
-     ;
+expr : (prefixExpr | prefixExprWithParenthesis | postfixExpr | postfixExprWithParenthesis | infixExpr ) EOF;
 
-prefixExpr : ('+' | '-' | '*' | '/') '(' prefixExpr prefixExpr+ ')'                 #PrefixOperationWithParenthesis
-           | ('+' | '-' | '*' | '/') prefixExpr prefixExpr+                         #PrefixOperation
+prefixExpr : ('+' | '-' | '*' | '/') prefixExpr prefixExpr+                         #PrefixOperation
            | number                                                                 #PrefixNumber
            ;
 
-postfixExpr : '(' postfixExpr postfixExpr+ ')' ('+' | '-' | '*' | '/')              #PostfixOperationWithParenthesis
-           |  postfixExpr postfixExpr+ ('+' | '-' | '*' | '/')                      #PostfixOperation
-           | number                                                                 #PostfixNumber
+prefixExprWithParenthesis : ('+' | '-' | '*' | '/') '(' prefixExprWithParenthesis prefixExprWithParenthesis+ ')'  #PrefixOperationWithParenthesis
+                          | number                                                  #PrefixNumberWithParenthesis
+                          ;
+
+postfixExpr :  postfixExpr postfixExpr+ ('+' | '-' | '*' | '/')                      #PostfixOperation
+            | number                                                                 #PostfixNumber
+            ;
+
+postfixExprWithParenthesis : '(' postfixExprWithParenthesis postfixExprWithParenthesis+ ')' ('+' | '-' | '*' | '/')              #PostfixOperationWithParenthesis
+           | number                                                                 #PostfixNumberWithParenthesis
            ;
 
 infixExpr : infixExpr ('+' | '-') term                                              # AddSub

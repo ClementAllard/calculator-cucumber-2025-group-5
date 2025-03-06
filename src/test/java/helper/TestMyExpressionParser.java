@@ -59,12 +59,17 @@ class TestMyExpressionParser {
     @Test
     void testExeptionParsing(){
         String expressionParantheseInequal = "*(+(4 5 6) +(+(7 /(5 2 7)) 9)";
+        String expressionWithOtherTokenInEnd = "*(+(4 5 6) +(7 /(5 2 7))) 9)"; // 9) is add in end of *(+(4 5 6) +(7 /(5 2 7)))
         String expressionNotationChange = "*((4 + 5 + 6) +(7 /(5 2 7)) 9";
         String expressionNotAExpression = "(4 + 5 + 6) efdsvbdrdb";
         String expressionTwoOperatorInARow = "*(+(4 5 6) +(7 //(5 2 7)) 9) + 5";
 
         assertThrowsExactly(IllegalConstruction.class, ()->{
             MyExpressionParser.parseExpression(expressionParantheseInequal);
+        });
+
+        assertThrowsExactly(IllegalConstruction.class, ()->{
+            MyExpressionParser.parseExpression(expressionWithOtherTokenInEnd);
         });
 
         assertThrowsExactly(IllegalConstruction.class, ()->{

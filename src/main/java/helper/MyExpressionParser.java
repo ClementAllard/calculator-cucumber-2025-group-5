@@ -4,6 +4,7 @@ import calculator.Expression;
 import calculator.IllegalConstruction; // Ensure IllegalConstruction is imported properly
 import helper.antlr4.*;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 public class MyExpressionParser {
 
@@ -25,11 +26,13 @@ public class MyExpressionParser {
         parser.addParseListener(listener);
 
         try {
-            parser.expr();  // This is where parsing happens
+            ParseTree tree = parser.expr();
+            System.out.println(tree.toStringTree(parser));
         } catch (RuntimeException e) {
-            // Throw the custom IllegalConstruction exception if a RuntimeException is caught
             throw new IllegalConstruction();
         }
+
+
 
         return listener.getResult();  // Return the result from the listener if parsing was successful
     }

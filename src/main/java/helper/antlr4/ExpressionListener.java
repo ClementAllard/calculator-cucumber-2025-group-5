@@ -8,53 +8,15 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface ExpressionListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by the {@code PrefixExpression}
-	 * labeled alternative in {@link ExpressionParser#expr}.
+	 * Enter a parse tree produced by {@link ExpressionParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrefixExpression(ExpressionParser.PrefixExpressionContext ctx);
+	void enterExpr(ExpressionParser.ExprContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code PrefixExpression}
-	 * labeled alternative in {@link ExpressionParser#expr}.
+	 * Exit a parse tree produced by {@link ExpressionParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrefixExpression(ExpressionParser.PrefixExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code PostfixExpression}
-	 * labeled alternative in {@link ExpressionParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterPostfixExpression(ExpressionParser.PostfixExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code PostfixExpression}
-	 * labeled alternative in {@link ExpressionParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitPostfixExpression(ExpressionParser.PostfixExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code InfixExpression}
-	 * labeled alternative in {@link ExpressionParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterInfixExpression(ExpressionParser.InfixExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code InfixExpression}
-	 * labeled alternative in {@link ExpressionParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitInfixExpression(ExpressionParser.InfixExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code PrefixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code PrefixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
+	void exitExpr(ExpressionParser.ExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PrefixOperation}
 	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
@@ -79,6 +41,30 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrefixNumber(ExpressionParser.PrefixNumberContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PrefixOperationWithParenthesis}
+	 * labeled alternative in {@link ExpressionParser#prefixExprWithParenthesis}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PrefixOperationWithParenthesis}
+	 * labeled alternative in {@link ExpressionParser#prefixExprWithParenthesis}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PrefixNumberWithParenthesis}
+	 * labeled alternative in {@link ExpressionParser#prefixExprWithParenthesis}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefixNumberWithParenthesis(ExpressionParser.PrefixNumberWithParenthesisContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PrefixNumberWithParenthesis}
+	 * labeled alternative in {@link ExpressionParser#prefixExprWithParenthesis}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefixNumberWithParenthesis(ExpressionParser.PrefixNumberWithParenthesisContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PostfixOperation}
 	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
@@ -105,16 +91,28 @@ public interface ExpressionListener extends ParseTreeListener {
 	void exitPostfixNumber(ExpressionParser.PostfixNumberContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PostfixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
+	 * labeled alternative in {@link ExpressionParser#postfixExprWithParenthesis}.
 	 * @param ctx the parse tree
 	 */
 	void enterPostfixOperationWithParenthesis(ExpressionParser.PostfixOperationWithParenthesisContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code PostfixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
+	 * labeled alternative in {@link ExpressionParser#postfixExprWithParenthesis}.
 	 * @param ctx the parse tree
 	 */
 	void exitPostfixOperationWithParenthesis(ExpressionParser.PostfixOperationWithParenthesisContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PostfixNumberWithParenthesis}
+	 * labeled alternative in {@link ExpressionParser#postfixExprWithParenthesis}.
+	 * @param ctx the parse tree
+	 */
+	void enterPostfixNumberWithParenthesis(ExpressionParser.PostfixNumberWithParenthesisContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PostfixNumberWithParenthesis}
+	 * labeled alternative in {@link ExpressionParser#postfixExprWithParenthesis}.
+	 * @param ctx the parse tree
+	 */
+	void exitPostfixNumberWithParenthesis(ExpressionParser.PostfixNumberWithParenthesisContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code SingleTerm}
 	 * labeled alternative in {@link ExpressionParser#infixExpr}.
