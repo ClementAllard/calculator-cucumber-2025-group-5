@@ -1,5 +1,6 @@
-package calculator;
+package calculator.expression;
 
+import calculator.expression.operator.Operation;
 import visitor.Displayer;
 import visitor.Visitor;
 
