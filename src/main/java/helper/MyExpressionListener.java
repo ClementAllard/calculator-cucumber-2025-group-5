@@ -135,9 +135,7 @@ public class MyExpressionListener extends ExpressionBaseListener {
             Collections.reverse(args);
 
             stack.push(createOperation(op, args, notation));
-    } catch (Exception e) { // TEMPORARY // Impossible d'être ici SI LE PARSER A BIEN ETE CONFIGURER
-            e.printStackTrace();
-        }
+    } catch (Exception e) {} // TEMPORARY // Impossible d'être ici SI LE PARSER A BIEN ETE CONFIGURER
     }
 
     /**
