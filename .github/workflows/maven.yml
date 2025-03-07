@@ -19,6 +19,7 @@ jobs:
       # need write permissions for publishing the test report
       checks: write
       contents: write
+      pull-requests: write
 
     steps:
     - name: Harden the runner (Audit all outbound calls)
