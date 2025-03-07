@@ -16,7 +16,7 @@ public class MyExpressionListener extends ExpressionBaseListener {
      * @return the result of the parsing
      */
     public Expression getResult() {
-        Expression result = stack.isEmpty() ? null : stack.peek();
+        Expression result = stack.peek();
         stack.clear();
         return result;
     }
@@ -137,7 +137,10 @@ public class MyExpressionListener extends ExpressionBaseListener {
             Collections.reverse(args);
 
             stack.push(createOperation(op, args, notation));
-    } catch (Exception e) {} // TEMPORARY // Impossible d'être ici SI LE PARSER A BIEN ETE CONFIGURER
+        } catch (Exception e) {
+            // throw a runtime exception because I don't want to modify the code generated each time I modify the parser
+            throw new RuntimeException(); //NOSONAR
+        }
     }
 
     /**
@@ -154,7 +157,7 @@ public class MyExpressionListener extends ExpressionBaseListener {
             case "-" -> new Minus(args, notation);
             case "*" -> new Times(args, notation);
             case "/" -> new Divides(args, notation);
-            default -> throw new IllegalConstruction(); // Impossible d'être ici SI LE PARSER A BIEN ETE CONFIGURER
+            default -> throw new IllegalConstruction(); // Impossible to be here IF THE PARSER HAS BEEN CONFIGURED WELL
         };
     }
 }
