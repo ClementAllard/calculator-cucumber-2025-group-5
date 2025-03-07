@@ -1,7 +1,6 @@
 package helper;
 
 import calculator.expression.Expression;
-import calculator.IllegalConstruction;
 import helper.antlr4.*;
 import org.antlr.v4.runtime.*;
 
@@ -13,7 +12,7 @@ public class MyExpressionParser {
      * Parse an expression and return the corresponding Expression object
      * @param input the expression to parse
      * @return the corresponding Expression object
-     * @throws IllegalConstruction if the expression is not valid
+     * @throws IllegalSyntax if the expression is not valid
      */
     public static Expression parseExpression(String input) throws IllegalSyntax {
         ExpressionLexer lexer = new ExpressionLexer(CharStreams.fromString(input));

@@ -129,7 +129,6 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>**/calculator/CLITest.class</exclude>
                         <exclude>**/helper/antlr4/**</exclude>
                     </excludes>
                 </configuration>
