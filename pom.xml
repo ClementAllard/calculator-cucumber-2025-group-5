@@ -129,6 +129,7 @@
                 </executions>
                 <configuration>
                     <excludes>
+                        <exclude>calculator/CLI.class</exclude>
                         <exclude>**/helper/antlr4/**</exclude>
                     </excludes>
                 </configuration>
