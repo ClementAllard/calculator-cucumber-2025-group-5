@@ -15,7 +15,7 @@ public class MyExpressionParser {
      * @return the corresponding Expression object
      * @throws IllegalConstruction if the expression is not valid
      */
-    public static Expression parseExpression(String input) throws IllegalConstruction {
+    public static Expression parseExpression(String input) throws IllegalSyntax {
         ExpressionLexer lexer = new ExpressionLexer(CharStreams.fromString(input));
 
         // listener for the error of the lexer
@@ -39,7 +39,7 @@ public class MyExpressionParser {
                 //ParseTree tree = parser.expr();
                 //System.out.println(tree.toStringTree(parser));
         } catch (RuntimeException e) {
-            throw new IllegalConstruction();
+            throw new IllegalSyntax();
         }
 
         // Return the result of the parsing

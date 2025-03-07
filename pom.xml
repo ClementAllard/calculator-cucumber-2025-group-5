@@ -102,7 +102,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
-                    <mainClass>calculator.Main</mainClass>
+                    <mainClass>calculator.CLI</mainClass>
                 </configuration>
             </plugin>
 
@@ -129,7 +129,6 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>calculator/Main.class</exclude>
                         <exclude>**/helper/antlr4/**</exclude>
                     </excludes>
                 </configuration>

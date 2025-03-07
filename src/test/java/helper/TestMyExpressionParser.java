@@ -115,23 +115,23 @@ class TestMyExpressionParser {
         String expressionNotAExpression = "(4 + 5 + 6) efdsvbdrdb";
         String expressionTwoOperatorInARow = "*(+(4 5 6) +(7 //(5 2 7)) 9) + 5";
 
-        assertThrowsExactly(IllegalConstruction.class, ()->{
+        assertThrowsExactly(IllegalSyntax.class, ()->{
             MyExpressionParser.parseExpression(expressionParenthesesNotEqual);
         });
 
-        assertThrowsExactly(IllegalConstruction.class, ()->{
+        assertThrowsExactly(IllegalSyntax.class, ()->{
             MyExpressionParser.parseExpression(expressionWithOtherTokenInEnd);
         });
 
-        assertThrowsExactly(IllegalConstruction.class, ()->{
+        assertThrowsExactly(IllegalSyntax.class, ()->{
             MyExpressionParser.parseExpression(expressionNotationChange);
         });
 
-        assertThrowsExactly(IllegalConstruction.class, ()->{
+        assertThrowsExactly(IllegalSyntax.class, ()->{
             MyExpressionParser.parseExpression(expressionNotAExpression);
         });
 
-        assertThrowsExactly(IllegalConstruction.class, ()->{
+        assertThrowsExactly(IllegalSyntax.class, ()->{
             MyExpressionParser.parseExpression(expressionTwoOperatorInARow);
         });
     }
