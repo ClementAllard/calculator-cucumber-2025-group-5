@@ -17,7 +17,7 @@
         <java.version>23</java.version>
         <junit-jupiter.version>5.11.4</junit-jupiter.version>
         <junit-platform-suite.version>1.11.4</junit-platform-suite.version>
-        <cucumber.version>7.20.1</cucumber.version>
+        <cucumber.version>7.21.1</cucumber.version>
         <jacoco.version>0.8.12</jacoco.version>
         <javadoc.version>3.11.2</javadoc.version>
         <sonar.projectKey>ClementAllard_calculator-cucumber-2025-group-5</sonar.projectKey>
@@ -26,7 +26,7 @@
 
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.version>3.13.0</maven.compiler.version>
+        <maven.compiler.version>3.14.0</maven.compiler.version>
         <!-- As of JDK 23, annotation processing is only run with some explicit configuration
              of annotation processing or with an explicit request to run annotation processing
              on the javac command line. This is a change in behavior from the existing default
@@ -158,7 +158,7 @@
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
+                <version>5.0.0.4389</version>
             </plugin>
             <plugin>
                 <groupId>org.antlr</groupId>

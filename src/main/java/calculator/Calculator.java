@@ -32,13 +32,12 @@ public class Calculator {
      * @see #printExpressionDetails(Expression)
      */
     public void print(Expression e) {
-        System.out.println("The result of evaluating expression " + e);
+        System.out.print("The result of evaluating expression " + e);
         if (eval(e) != null) {
-            System.out.println("is " + eval(e) + ".");
+            System.out.println(" is " + eval(e) + ".");
         } else {
-            System.out.println("is NaN.");
+            System.out.println(" is NaN.");
         }
-        System.out.println();
     }
 
     /**
