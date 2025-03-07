@@ -48,7 +48,7 @@ public class ParserSteps {
 
     @Then("There is an IllegalExpression throw")
     public void whenIProvideAnIllegalExpression() {
-        assertThrowsExactly(IllegalConstruction.class, ()->{
+        assertThrowsExactly(IllegalSyntax.class, ()->{
             MyExpressionParser.parseExpression(currentExpressionString);
         });
     }
