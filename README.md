@@ -1,10 +1,14 @@
 [![](https://img.shields.io/github/v/release/ClementAllard/calculator-cucumber-2025-group-5?label=Latest%20Release)](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/releases/latest)
+![PMD Code Analysis](https://github.com/ClementAllard/ClockSystem-TP3/actions/workflows/pmd.yml/badge.svg)
+![CodeQL Analysis](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/actions/workflows/codeql.yml/badge.svg)
 
 Code quality: ![Maven Build](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/actions/workflows/maven.yml/badge.svg)
 ![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ClementAllard_calculator-cucumber-2025-group-5&metric=alert_status)
 
 Test coverage: ![Coverage Badge](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/blob/master/.github/badges/jacoco.svg)
 ![Branch Coverage Badge](https://github.com/ClementAllard/calculator-cucumber-2025-group-5/blob/master/.github/badges/branches.svg)
+
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/ClementAllard/calculator-cucumber-2025-group-5/badge)](https://scorecard.dev/viewer/?uri=github.com/ClementAllard/calculator-cucumber-2025-group-5)
 
 
 
