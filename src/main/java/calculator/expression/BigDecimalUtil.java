@@ -16,8 +16,8 @@ public class BigDecimalUtil {
         return scale;
     }
 
-    public static void setRoundingMode(RoundingMode newRoundingMode) {
-        roundingMode = newRoundingMode;
+    public static void setRoundingMode(int newRoundingMode) {
+        roundingMode = RoundingMode.valueOf(newRoundingMode);
     }
 
     public static RoundingMode getRounding() {
