@@ -4,6 +4,7 @@ package calculator.expression;
 import static org.junit.jupiter.api.Assertions.*;
 
 import calculator.IllegalConstruction;
+import calculator.expression.number.MyInteger;
 import calculator.expression.operator.Times;
 import org.junit.jupiter.api.*;
 
@@ -12,20 +13,20 @@ import java.util.ArrayList;
 class TestMyNumber {
 
 	private final int value =8;
-	private MyNumber number;
-	
+	private MyInteger number;
+
 	@BeforeEach
 	void setUp() {
-		number = new MyNumber(value);
+		number = new MyInteger(value);
 	}
 
 	@Test
 	void testEquals() {
 		// Two distinct MyNumber, constructed separately (using a different constructor) but containing the same value should be equal
-		assertEquals(new MyNumber(value), number);
+		assertEquals(new MyInteger(value), number);
 		// Two MyNumbers containing a distinct value should not be equal:
 		int otherValue = 7;
-		assertNotEquals(new MyNumber(otherValue),number);
+		assertNotEquals(new MyInteger(otherValue),number);
 		assertEquals(number, number); // Identity check (for coverage, as this should always be true)
 		assertNotEquals(number, value); // number is of type MyNumber, while value is of type int, so not equal
 		try {

@@ -1,6 +1,7 @@
 package calculator;
 
 import calculator.expression.Expression;
+import jdk.jshell.spi.ExecutionControl;
 import visitor.Evaluator;
 
 /**
@@ -31,7 +32,7 @@ public class Calculator {
      * @param e the arithmetic Expression to be printed
      * @see #printExpressionDetails(Expression)
      */
-    public void print(Expression e) {
+    public void print(Expression e) throws ExecutionControl.NotImplementedException {
         System.out.print("The result of evaluating expression " + e);
         if (eval(e) != null) {
             System.out.println(" is " + eval(e) + ".");
@@ -45,7 +46,7 @@ public class Calculator {
      * @param e the arithmetic Expression to be printed
      * @see #print(Expression)
      */
-    public void printExpressionDetails(Expression e) {
+    public void printExpressionDetails(Expression e) throws ExecutionControl.NotImplementedException {
         print(e);
         System.out.print("It contains " + e.countDepth() + " levels of nested expressions, ");
         System.out.print(e.countOps() + " operations");
@@ -58,7 +59,7 @@ public class Calculator {
      * @param e the arithmetic Expression to be evaluated
      * @return The result of the evaluation
      */
-    public Integer eval(Expression e) {
+    public String eval(Expression e) throws ExecutionControl.NotImplementedException {
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process

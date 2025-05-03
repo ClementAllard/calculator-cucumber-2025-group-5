@@ -1,8 +1,11 @@
 package calculator.expression.number;
 
-import java.math.BigDecimal;
+import calculator.expression.BigDecimalUtil;
 
-public class MyComplex extends MyNewNumber {
+import java.math.BigDecimal;
+import java.util.Objects;
+
+public class MyComplex extends MyNumber {
 
     private BigDecimal real;
     private BigDecimal imaginary;
@@ -21,24 +24,29 @@ public class MyComplex extends MyNewNumber {
     }
 
     @Override
-    public MyNewNumber plus(MyNewNumber other) {
-        if(other instanceof MyInteger otherInter) {
-            return new MyComplex(this.real.add(new BigDecimal(otherInter.getValue())), this.imaginary);
+    public String toString() {
+        if (imaginary.compareTo(BigDecimal.ZERO) < 0) {
+            return BigDecimalUtil.stripZeros(real) + " - " + BigDecimalUtil.stripZeros(imaginary.negate()) + "i";
+        }else {
+            return BigDecimalUtil.stripZeros(real) + " + " + BigDecimalUtil.stripZeros(imaginary) + "i";
         }
-
-        if(other instanceof MyRational otherRational) {
-            return new MyComplex(this.real.add(otherRational.getReal()), this.imaginary);
-        }
-
-        if(other instanceof MyReal otherReal) {
-            return new MyComplex(this.real.add(otherReal.getReal()), this.imaginary);
-        }
-
-        return new MyComplex(this.real.add(((MyComplex)other).getReal()), this.imaginary.add(((MyComplex)other).getImaginary()));
     }
 
     @Override
-    public String toString() {
-        return real.toString() + " + " + imaginary.toString() + "i";
+    public MyNumber negate() {
+        return new MyComplex(real.negate(), imaginary.negate());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyComplex myComplex = (MyComplex) o;
+        return real.equals(myComplex.getReal()) && imaginary.equals(myComplex.getImaginary());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(real, imaginary);
     }
 }

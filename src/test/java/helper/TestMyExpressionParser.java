@@ -2,6 +2,7 @@ package helper;
 
 //Import Junit5 libraries for unit testing:
 import calculator.*;
+import calculator.expression.number.MyInteger;
 import org.junit.jupiter.api.*;
 import calculator.expression.*;
 import calculator.expression.operator.*;
@@ -19,10 +20,10 @@ class TestMyExpressionParser {
     @BeforeEach
     void setUp() {
         try{
-            List<Expression> params1 = Arrays.asList(new MyNumber(4), new MyNumber(5), new MyNumber(6));
-            List<Expression> params2 = Arrays.asList(new MyNumber(5), new MyNumber(2), new MyNumber(7));
-            List<Expression> params3 = Arrays.asList(new MyNumber(7), new Divides(params2));
-            List<Expression> params4 = Arrays.asList(new Plus(params1), new Plus(params3), new MyNumber(9));
+            List<Expression> params1 = Arrays.asList(new MyInteger(4), new MyInteger(5), new MyInteger(6));
+            List<Expression> params2 = Arrays.asList(new MyInteger(5), new MyInteger(2), new MyInteger(7));
+            List<Expression> params3 = Arrays.asList(new MyInteger(7), new Divides(params2));
+            List<Expression> params4 = Arrays.asList(new Plus(params1), new Plus(params3), new MyInteger(9));
 
             e = new Times(params4);
         }catch (Exception _){
@@ -86,7 +87,7 @@ class TestMyExpressionParser {
     void testPriorityOfOperation() {
         try{
             String expressionString = "4 - 5 * 9";
-            Expression expression = new Minus(Arrays.asList(new MyNumber(4), new Times(Arrays.asList(new MyNumber(5), new MyNumber(9)))));
+            Expression expression = new Minus(Arrays.asList(new MyInteger(4), new Times(Arrays.asList(new MyInteger(5), new MyInteger(9)))));
 
             Expression expressionParsing = MyExpressionParser.parseExpression(expressionString);
             assertEquals(c.eval(expression),c.eval(expressionParsing));

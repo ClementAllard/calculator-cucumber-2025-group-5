@@ -1,8 +1,8 @@
 package visitor;
 
 import calculator.expression.Expression;
-import calculator.expression.MyNumber;
 import calculator.expression.Notation;
+import calculator.expression.number.MyNumber;
 import calculator.expression.operator.Operation;
 
 public class Displayer implements NotationVisitor {
@@ -23,7 +23,7 @@ public class Displayer implements NotationVisitor {
      * @return The string that represents the number.
      */
     @Override
-    public String visit(MyNumber n){
+    public String visit(MyNumber n) {
         return n.toString();
     }
 

@@ -2,8 +2,9 @@ package calculator.expression.operator;
 
 import calculator.expression.Expression;
 import calculator.IllegalConstruction;
-import calculator.expression.MyNumber;
 import calculator.expression.Notation;
+import calculator.expression.number.*;
+import jdk.jshell.spi.ExecutionControl;
 import visitor.Visitor;
 import visitor.NotationVisitor;
 import visitor.Displayer;
@@ -89,8 +90,50 @@ public abstract class Operation implements Expression
 	 * @param r	second argument of the binary operation
 	 * @return	result of computing the binary operation
 	 */
-   public abstract int op(int l, int r);
-    // the operation itself is specified in the subclasses
+	// the operation itself is specified in the subclasses
+	public MyNumber op(MyNumber l, MyNumber r) throws ExecutionControl.NotImplementedException {
+		if (l instanceof MyInteger a) {
+			if (r instanceof MyInteger b) return op(a,b);
+			if (r instanceof MyRational b) return op(a,b);
+			if (r instanceof MyReal b) return op(a,b);
+			if (r instanceof MyComplex b) return op(a,b);
+		} else if (l instanceof MyRational a) {
+			if (r instanceof MyInteger b) return op(a,b);
+			if (r instanceof MyRational b) return op(a,b);
+			if (r instanceof MyReal b) return op(a,b);
+			if (r instanceof MyComplex b) return op(a,b);
+		} else if (l instanceof MyReal a) {
+			if (r instanceof MyInteger b) return op(a,b);
+			if (r instanceof MyRational b) return op(a,b);
+			if (r instanceof MyReal b) return op(a,b);
+			if (r instanceof MyComplex b) return op(a,b);
+		} else if (l instanceof MyComplex a) {
+			if (r instanceof MyInteger b) return op(a,b);
+			if (r instanceof MyRational b) return op(a,b);
+			if (r instanceof MyReal b) return op(a,b);
+			if (r instanceof MyComplex b) return op(a,b);
+		}
+
+		throw new ExecutionControl.NotImplementedException("The operation '" + getSymbol() + "' between "
+				+ l.getClass() + " and " + r.getClass() + " is not implemented yet");
+	}
+
+	protected abstract MyNumber op(MyInteger l, MyInteger r);
+	protected abstract MyNumber op(MyInteger l, MyRational r);
+	protected abstract MyNumber op(MyInteger l, MyReal r);
+	protected abstract MyNumber op(MyInteger l, MyComplex r);
+	protected abstract MyNumber op(MyRational l, MyInteger r);
+	protected abstract MyNumber op(MyRational l, MyRational r);
+	protected abstract MyNumber op(MyRational l, MyReal r);
+	protected abstract MyNumber op(MyRational l, MyComplex r);
+	protected abstract MyNumber op(MyReal l, MyInteger r);
+	protected abstract MyNumber op(MyReal l, MyRational r);
+	protected abstract MyNumber op(MyReal l, MyReal r);
+	protected abstract MyNumber op(MyReal l, MyComplex r);
+	protected abstract MyNumber op(MyComplex l, MyInteger r);
+	protected abstract MyNumber op(MyComplex l, MyRational r);
+	protected abstract MyNumber op(MyComplex l, MyReal r);
+	protected abstract MyNumber op(MyComplex l, MyComplex r);
 
 	/** Add more parameters to the existing list of parameters
 	 *
@@ -107,7 +150,7 @@ public abstract class Operation implements Expression
 	 *
 	 * @param v	The visitor object
 	 */
-  public void accept(Visitor v) {
+  public void accept(Visitor v) throws ExecutionControl.NotImplementedException {
   	for(Expression a:args) { a.accept(v); }
   	v.visit(this);
   }

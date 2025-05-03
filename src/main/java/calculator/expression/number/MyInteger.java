@@ -1,6 +1,8 @@
 package calculator.expression.number;
 
-public class MyInteger extends MyNewNumber {
+import java.util.Objects;
+
+public class MyInteger extends MyNumber {
 
     private int value;
 
@@ -13,16 +15,25 @@ public class MyInteger extends MyNewNumber {
     }
 
     @Override
-    public MyNewNumber plus(MyNewNumber other) {
-        if(other instanceof MyInteger otherInt) {
-            return new MyInteger(value + otherInt.getValue());
-        }
-
-        return other.plus(this);
+    public String toString() {
+        return Integer.toString(value);
     }
 
     @Override
-    public String toString() {
-        return Integer.toString(value);
+    public MyNumber negate() {
+        return new MyInteger(-value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyInteger myInteger = (MyInteger) o;
+        return value == myInteger.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

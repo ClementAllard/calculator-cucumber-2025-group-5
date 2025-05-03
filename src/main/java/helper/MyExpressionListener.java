@@ -2,6 +2,7 @@ package helper;
 
 import calculator.*;
 import calculator.expression.*;
+import calculator.expression.number.MyInteger;
 import calculator.expression.operator.*;
 import helper.antlr4.*;
 
@@ -30,7 +31,7 @@ public class MyExpressionListener extends ExpressionBaseListener {
     @Override
     public void exitSignedNumber(ExpressionParser.SignedNumberContext ctx) {
         int number = Integer.parseInt(ctx.getText());
-        stack.push(new MyNumber(number));
+        stack.push(new MyInteger(number));
     }
 
     // ---------------------- prefix ----------------------

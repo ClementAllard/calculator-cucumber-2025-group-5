@@ -3,6 +3,7 @@ package calculator;
 import calculator.expression.Expression;
 import helper.IllegalSyntax;
 import helper.MyExpressionParser;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Scanner;
 
@@ -43,8 +44,15 @@ public class CLI {
 				default:
 					try{
 						Expression e = MyExpressionParser.parseExpression(input);
-						int result = calculator.eval(e);
-						System.out.println("Result : " + e + " = "  + result);  //NOSONAR
+                        String result = null;
+
+                        try {
+                            result = calculator.eval(e);
+                        } catch (ExecutionControl.NotImplementedException ex) {
+							System.out.println("Invalid operation");
+                        }
+
+                        System.out.println("Result : " + e + " = "  + result);  //NOSONAR
 					}catch (IllegalSyntax _){
 						System.out.println("Illegal Syntax"); //NOSONAR
 						System.out.println("Please, enter a valid expression: "); //NOSONAR

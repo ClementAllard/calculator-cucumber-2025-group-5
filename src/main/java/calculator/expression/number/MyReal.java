@@ -1,8 +1,11 @@
 package calculator.expression.number;
 
-import java.math.BigDecimal;
+import calculator.expression.BigDecimalUtil;
 
-public class MyReal extends MyNewNumber{
+import java.math.BigDecimal;
+import java.util.Objects;
+
+public class MyReal extends MyNumber{
 
     private final BigDecimal real;
 
@@ -10,29 +13,30 @@ public class MyReal extends MyNewNumber{
         this.real = real;
     }
 
-    public BigDecimal getReal() {
+    public BigDecimal getValue() {
         return real;
     }
 
     @Override
-    public MyNewNumber plus(MyNewNumber other) {
-        if(other instanceof MyInteger otherInt) {
-            return new MyReal(new BigDecimal(String.valueOf(otherInt)).add(real));
-        }
-
-        if(other instanceof MyRational otherRational) {
-            return new MyReal(otherRational.getReal().add(real));
-        }
-
-        if(other instanceof MyReal otherReal) {
-            return new MyReal(real.add(otherReal.getReal()));
-        }
-
-        return other.plus(this);
+    public String toString() {
+        return BigDecimalUtil.stripZeros(real);
     }
 
     @Override
-    public String toString() {
-        return this.real.toString();
+    public MyNumber negate() {
+        return new MyReal(real.negate());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyReal myReal = (MyReal) o;
+        return real.equals(myReal.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(real);
     }
 }

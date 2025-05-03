@@ -1,12 +1,16 @@
 package calculator.expression.number;
 
+import calculator.IllegalConstruction;
+import calculator.expression.operator.*;
+import jdk.jshell.spi.ExecutionControl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class TestMyRational {
 
@@ -14,36 +18,69 @@ class TestMyRational {
     MyRational myRational;
     MyReal myReal;
     MyComplex myComplex;
+    Operation plus;
+    Operation minus;
+    Operation times;
+    Operation divides;
 
     @BeforeEach
-    public void setUp() {
-        myInteger = new MyInteger(1);
+    public void setUp() throws IllegalConstruction {
+        myInteger = new MyInteger(3);
         myRational = new MyRational(1,2);
         myReal = new MyReal(new BigDecimal("1.5"));
         myComplex = new MyComplex(new BigDecimal("2.5"),new BigDecimal("4"));
+
+        plus = new Plus(new ArrayList<>());
+        minus = new Minus(new ArrayList<>());
+        times = new Times(new ArrayList<>());
+        divides = new Divides(new ArrayList<>());
     }
 
     @Test
-     void TestAddMyRational() {
+    void TestAddMyRational() {
+        try{
+            assertEquals("7/2",plus.op(myRational,myInteger).toString());
+            assertEquals("1",plus.op(myRational,myRational).toString());
+            assertEquals("2",plus.op(myRational,myReal).toString());
+            assertEquals("3 + 4i",plus.op(myRational,myComplex).toString());
+        }catch (ExecutionControl.NotImplementedException e) {
+            fail();
+        }
+    }
 
-        // Add 1 rational & 1 integer
-        MyNewNumber number = myRational.plus(myInteger);
-        assertInstanceOf(MyRational.class, number);
-        assertEquals("3/2", number.toString());
+    @Test
+    void TestMinusMyRational() {
+        try{
+            assertEquals("5/2",minus.op(myRational,myInteger).toString());
+            assertEquals("0",minus.op(myRational,myRational).toString());
+            assertEquals("-1",minus.op(myRational,myReal).toString());
+            assertEquals("-2 - 4i",minus.op(myRational,myComplex).toString());
+        }catch (ExecutionControl.NotImplementedException e) {
+            fail();
+        }
+    }
 
-        // Add 2 rationals
-        MyNewNumber number2 = myRational.plus(myRational);
-        assertInstanceOf(MyRational.class, number2);
-        assertEquals("1/1", number2.toString());
+    @Test
+    void TestTimesMyRational() {
+        try{
+            assertEquals("3/2",times.op(myRational,myInteger).toString());
+            assertEquals("1/4",times.op(myRational,myRational).toString());
+            assertEquals("0.75",times.op(myRational,myReal).toString());
+            assertEquals("1.25 + 2i",times.op(myRational,myComplex).toString());
+        }catch (ExecutionControl.NotImplementedException e) {
+            fail();
+        }
+    }
 
-        // add 1 rational & 1 real
-        MyNewNumber number3 = myRational.plus(myReal);
-        assertInstanceOf(MyReal.class, number3);
-        assertEquals("2.0", number3.toString());
-
-        // add 1 rational & 1 complex
-        MyNewNumber number4 = myRational.plus(myComplex);
-        assertInstanceOf(MyComplex.class, number4);
-        assertEquals("3.0 + 4i", number4.toString());
+    @Test
+    void TestDividesMyRational() {
+        try{
+            assertEquals("1/6",divides.op(myRational,myInteger).toString());
+            assertEquals("1",divides.op(myRational,myRational).toString());
+            assertEquals("0.3333333333",divides.op(myRational,myReal).toString());
+            assertEquals("0.0561797753 - 0.0898876404i",divides.op(myRational,myComplex).toString());
+        }catch (ExecutionControl.NotImplementedException e) {
+            fail();
+        }
     }
 }

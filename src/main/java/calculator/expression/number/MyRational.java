@@ -1,13 +1,17 @@
 package calculator.expression.number;
 
-import java.math.BigDecimal;
+import calculator.expression.BigDecimalUtil;
 
-public class MyRational extends MyNewNumber {
+import java.math.BigDecimal;
+import java.util.Objects;
+
+public class MyRational extends MyNumber {
 
     private int numerator;
     private int denominator;
 
     public MyRational(int numerator, int denominator) {
+        if(denominator == 0){ throw new ArithmeticException("denominator is zero"); }
         simplify(numerator,denominator);
     }
 
@@ -20,7 +24,7 @@ public class MyRational extends MyNewNumber {
     }
 
     public BigDecimal getReal() {
-        return new BigDecimal(numerator).divide(new BigDecimal(denominator));
+        return BigDecimalUtil.divide(BigDecimal.valueOf(numerator), BigDecimal.valueOf(denominator));
     }
 
     private void simplify(int numerator, int denominator) {
@@ -34,23 +38,29 @@ public class MyRational extends MyNewNumber {
     }
 
     @Override
-    public MyNewNumber plus(MyNewNumber other) {
-        if(other instanceof MyInteger otherInt) {
-            return new MyRational(numerator + (otherInt.getValue() * denominator), denominator);
+    public String toString() {
+        if(denominator == 1){
+            return String.valueOf(numerator);
+        }else{
+            return numerator + "/" + denominator;
         }
-
-        if(other instanceof MyRational otherRational) {
-            int newDenominator = otherRational.getDenominator() * denominator;
-            int num1 = numerator * otherRational.getDenominator();
-            int num2 = otherRational.getNumerator() * denominator;
-            return new MyRational(num1 + num2, newDenominator);
-        }
-
-        return other.plus(this);
     }
 
     @Override
-    public String toString() {
-        return numerator + "/" + denominator;
+    public MyNumber negate() {
+        return new MyRational(-numerator, denominator);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyRational myRational = (MyRational) o;
+        return myRational.getNumerator() == numerator && myRational.getDenominator() == denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numerator, denominator);
     }
 }
