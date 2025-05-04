@@ -1,5 +1,7 @@
 package calculator.expression.number;
 
+import calculator.expression.Expression;
+
 import java.util.Objects;
 
 public class MyInteger extends MyNumber {
@@ -20,7 +22,7 @@ public class MyInteger extends MyNumber {
     }
 
     @Override
-    public MyNumber negate() {
+    public Expression negate() {
         return new MyInteger(-value);
     }
 

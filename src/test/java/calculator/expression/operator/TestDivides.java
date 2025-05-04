@@ -101,8 +101,6 @@ class TestDivides {
 		MyReal real2 = new MyReal(new BigDecimal("1.0"));
 		MyReal real3 = new MyReal(new BigDecimal("-1.0"));
 
-		// Division by zero should throw an ArithmeticException to be handled by the Evaluator
-
 		try {
 			params = Arrays.asList(real1, real1);
 			op = new Divides(params);

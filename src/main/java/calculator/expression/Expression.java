@@ -1,6 +1,6 @@
 package calculator.expression;
 
-import calculator.expression.operator.Operation;
+import calculator.IllegalConstruction;
 import jdk.jshell.spi.ExecutionControl;
 import visitor.Visitor;
 
@@ -47,4 +47,6 @@ public interface Expression {
     * @return String display.
     */
    String toString(Notation notation);
+
+   Expression negate() throws IllegalConstruction;
 }

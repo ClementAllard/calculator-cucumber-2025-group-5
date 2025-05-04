@@ -44,9 +44,10 @@ public class Displayer implements NotationVisitor {
         }
         int subset = !operation.getArgs().isEmpty() ? sep.length() : 0;
         String formula = args.substring(0, args.toString().length() - subset);
+        String negated = !operation.getNegated() ? "" : "-";
 
         return switch (notation) {
-            case INFIX -> "( "+ formula.replace(sep, " "+operation.getSymbol()+" ")+" )";
+            case INFIX -> negated + "( "+ formula.replace(sep, " "+operation.getSymbol()+" ")+" )";
             case PREFIX -> String.format("%s (%s)", operation.getSymbol(), formula);
             case POSTFIX -> String.format("(%s) %s", formula, operation.getSymbol());
         };

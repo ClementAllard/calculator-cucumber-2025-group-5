@@ -36,7 +36,7 @@ class TestMyExpressionParser {
         try{
             String infixExpressionString = "((4+5+6)*(7+(5/2/7))*9)";
             String prefixExpressionString = "*(+(4 5 6),+(7 /(5 2 7)) 9)";
-            String prefixExpressionString2 = "* 9 + ( 4 5 6 ) + 7 / 5 2 7";
+            String prefixExpressionString2 = "* 9 + ( 4 5 6 ) + (7 /(5 2 7))";
             String postfixExpressionString = "((4 5 6)+ (7 (5 2 7)/)+ 9)*";
             String postfixExpressionString2 = "9 (4 5 6)+ (7 (5 2 7)/)+*";
 

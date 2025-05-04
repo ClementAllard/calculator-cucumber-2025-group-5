@@ -42,6 +42,8 @@ public abstract class Operation implements Expression
    */
   protected Notation notation = Notation.INFIX;
 
+  protected boolean negated = false;
+
   /** It is not allowed to construct an operation with a null list of expressions.
    * Note that it is allowed to have an EMPTY list of arguments.
    *
@@ -256,4 +258,12 @@ public abstract class Operation implements Expression
 		return symbol;
 	}
 
+	public boolean getNegated() {
+		return negated;
+	}
+
+	public Expression negate(){
+		negated = !negated;
+		return this;
+	}
 }

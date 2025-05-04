@@ -63,7 +63,7 @@ public abstract class MyNumber implements Expression
     @Override
     public abstract String toString();
 
-    public abstract MyNumber negate();
+    public abstract Expression negate();
 
     /** Two MyNumber expressions are equal if the values they contain are equal
      *

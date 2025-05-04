@@ -169,6 +169,7 @@
                     <arguments>
                         <arg>-package</arg>
                         <arg>helper.antlr4</arg>
+                        <arg>-visitor</arg>
                     </arguments>
                 </configuration>
                 <executions>

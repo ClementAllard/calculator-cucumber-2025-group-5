@@ -65,7 +65,12 @@ public class Evaluator extends Visitor {
             temp = o.op(temp,evaluatedArgs.get(counter));
         }
         // store the accumulated result
-        computedValue = temp;
+        if(o.getNegated()) {
+            computedValue = (MyNumber) temp.negate();
+        }else{
+            computedValue = temp;
+        }
+
     }
 
 }

@@ -18,29 +18,17 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitExpr(ExpressionParser.ExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code PrefixOperationWithParenthesis}
+	 * Enter a parse tree produced by the {@code PrefixExpression}
 	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
+	void enterPrefixExpression(ExpressionParser.PrefixExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code PrefixOperationWithParenthesis}
+	 * Exit a parse tree produced by the {@code PrefixExpression}
 	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrefixOperationWithParenthesis(ExpressionParser.PrefixOperationWithParenthesisContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code PrefixOperation}
-	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrefixOperation(ExpressionParser.PrefixOperationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code PrefixOperation}
-	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrefixOperation(ExpressionParser.PrefixOperationContext ctx);
+	void exitPrefixExpression(ExpressionParser.PrefixExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PrefixNumber}
 	 * labeled alternative in {@link ExpressionParser#prefixExpr}.
@@ -54,17 +42,17 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitPrefixNumber(ExpressionParser.PrefixNumberContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code PostfixOperation}
+	 * Enter a parse tree produced by the {@code PostfixExpression}
 	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterPostfixOperation(ExpressionParser.PostfixOperationContext ctx);
+	void enterPostfixExpression(ExpressionParser.PostfixExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code PostfixOperation}
+	 * Exit a parse tree produced by the {@code PostfixExpression}
 	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitPostfixOperation(ExpressionParser.PostfixOperationContext ctx);
+	void exitPostfixExpression(ExpressionParser.PostfixExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PostfixNumber}
 	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
@@ -78,18 +66,6 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitPostfixNumber(ExpressionParser.PostfixNumberContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code PostfixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterPostfixOperationWithParenthesis(ExpressionParser.PostfixOperationWithParenthesisContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code PostfixOperationWithParenthesis}
-	 * labeled alternative in {@link ExpressionParser#postfixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitPostfixOperationWithParenthesis(ExpressionParser.PostfixOperationWithParenthesisContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code SingleTerm}
 	 * labeled alternative in {@link ExpressionParser#infixExpr}.
 	 * @param ctx the parse tree
@@ -102,41 +78,41 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitSingleTerm(ExpressionParser.SingleTermContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code AddSub}
+	 * Enter a parse tree produced by the {@code InfixExpressionAddSub}
 	 * labeled alternative in {@link ExpressionParser#infixExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterAddSub(ExpressionParser.AddSubContext ctx);
+	void enterInfixExpressionAddSub(ExpressionParser.InfixExpressionAddSubContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code AddSub}
+	 * Exit a parse tree produced by the {@code InfixExpressionAddSub}
 	 * labeled alternative in {@link ExpressionParser#infixExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitAddSub(ExpressionParser.AddSubContext ctx);
+	void exitInfixExpressionAddSub(ExpressionParser.InfixExpressionAddSubContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code MulDiv}
+	 * Enter a parse tree produced by the {@code InfixExpressionImplicitMul}
 	 * labeled alternative in {@link ExpressionParser#term}.
 	 * @param ctx the parse tree
 	 */
-	void enterMulDiv(ExpressionParser.MulDivContext ctx);
+	void enterInfixExpressionImplicitMul(ExpressionParser.InfixExpressionImplicitMulContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code MulDiv}
+	 * Exit a parse tree produced by the {@code InfixExpressionImplicitMul}
 	 * labeled alternative in {@link ExpressionParser#term}.
 	 * @param ctx the parse tree
 	 */
-	void exitMulDiv(ExpressionParser.MulDivContext ctx);
+	void exitInfixExpressionImplicitMul(ExpressionParser.InfixExpressionImplicitMulContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ImplicitMultiplication}
+	 * Enter a parse tree produced by the {@code InfixExpressionMulDiv}
 	 * labeled alternative in {@link ExpressionParser#term}.
 	 * @param ctx the parse tree
 	 */
-	void enterImplicitMultiplication(ExpressionParser.ImplicitMultiplicationContext ctx);
+	void enterInfixExpressionMulDiv(ExpressionParser.InfixExpressionMulDivContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ImplicitMultiplication}
+	 * Exit a parse tree produced by the {@code InfixExpressionMulDiv}
 	 * labeled alternative in {@link ExpressionParser#term}.
 	 * @param ctx the parse tree
 	 */
-	void exitImplicitMultiplication(ExpressionParser.ImplicitMultiplicationContext ctx);
+	void exitInfixExpressionMulDiv(ExpressionParser.InfixExpressionMulDivContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code SingleFactor}
 	 * labeled alternative in {@link ExpressionParser#term}.
@@ -160,39 +136,135 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitImplicitMul(ExpressionParser.ImplicitMulContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code NumberFactor}
+	 * Enter a parse tree produced by the {@code InfixExpressionWithParenthesis}
 	 * labeled alternative in {@link ExpressionParser#factor}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumberFactor(ExpressionParser.NumberFactorContext ctx);
+	void enterInfixExpressionWithParenthesis(ExpressionParser.InfixExpressionWithParenthesisContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code NumberFactor}
+	 * Exit a parse tree produced by the {@code InfixExpressionWithParenthesis}
 	 * labeled alternative in {@link ExpressionParser#factor}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumberFactor(ExpressionParser.NumberFactorContext ctx);
+	void exitInfixExpressionWithParenthesis(ExpressionParser.InfixExpressionWithParenthesisContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ParenthesizedExpression}
+	 * Enter a parse tree produced by the {@code InfixExpressionNegate}
 	 * labeled alternative in {@link ExpressionParser#factor}.
 	 * @param ctx the parse tree
 	 */
-	void enterParenthesizedExpression(ExpressionParser.ParenthesizedExpressionContext ctx);
+	void enterInfixExpressionNegate(ExpressionParser.InfixExpressionNegateContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ParenthesizedExpression}
+	 * Exit a parse tree produced by the {@code InfixExpressionNegate}
 	 * labeled alternative in {@link ExpressionParser#factor}.
 	 * @param ctx the parse tree
 	 */
-	void exitParenthesizedExpression(ExpressionParser.ParenthesizedExpressionContext ctx);
+	void exitInfixExpressionNegate(ExpressionParser.InfixExpressionNegateContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code SignedNumber}
+	 * Enter a parse tree produced by the {@code FactorNumber}
+	 * labeled alternative in {@link ExpressionParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void enterFactorNumber(ExpressionParser.FactorNumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FactorNumber}
+	 * labeled alternative in {@link ExpressionParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void exitFactorNumber(ExpressionParser.FactorNumberContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ComplexAtom}
+	 * labeled alternative in {@link ExpressionParser#complex}.
+	 * @param ctx the parse tree
+	 */
+	void enterComplexAtom(ExpressionParser.ComplexAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ComplexAtom}
+	 * labeled alternative in {@link ExpressionParser#complex}.
+	 * @param ctx the parse tree
+	 */
+	void exitComplexAtom(ExpressionParser.ComplexAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NotComplex}
+	 * labeled alternative in {@link ExpressionParser#complex}.
+	 * @param ctx the parse tree
+	 */
+	void enterNotComplex(ExpressionParser.NotComplexContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NotComplex}
+	 * labeled alternative in {@link ExpressionParser#complex}.
+	 * @param ctx the parse tree
+	 */
+	void exitNotComplex(ExpressionParser.NotComplexContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NegateAtom}
+	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * @param ctx the parse tree
+	 */
+	void enterNegateAtom(ExpressionParser.NegateAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NegateAtom}
+	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * @param ctx the parse tree
+	 */
+	void exitNegateAtom(ExpressionParser.NegateAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SimpleAtom}
+	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimpleAtom(ExpressionParser.SimpleAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SimpleAtom}
+	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimpleAtom(ExpressionParser.SimpleAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RationalNumber}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void enterSignedNumber(ExpressionParser.SignedNumberContext ctx);
+	void enterRationalNumber(ExpressionParser.RationalNumberContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code SignedNumber}
+	 * Exit a parse tree produced by the {@code RationalNumber}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void exitSignedNumber(ExpressionParser.SignedNumberContext ctx);
+	void exitRationalNumber(ExpressionParser.RationalNumberContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code IntergerAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntergerAtom(ExpressionParser.IntergerAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IntergerAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntergerAtom(ExpressionParser.IntergerAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RealAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterRealAtom(ExpressionParser.RealAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RealAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitRealAtom(ExpressionParser.RealAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RationalAtom}
+	 * labeled alternative in {@link ExpressionParser#rational}.
+	 * @param ctx the parse tree
+	 */
+	void enterRationalAtom(ExpressionParser.RationalAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RationalAtom}
+	 * labeled alternative in {@link ExpressionParser#rational}.
+	 * @param ctx the parse tree
+	 */
+	void exitRationalAtom(ExpressionParser.RationalAtomContext ctx);
 }
