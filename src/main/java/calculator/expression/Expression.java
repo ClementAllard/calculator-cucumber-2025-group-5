@@ -9,7 +9,7 @@ import visitor.Visitor;
  * It has two concrete subclasses Operation and MyNumber.
  *
  * @see calculator.expression.operator.Operation
- * @see MyNumber
+ * @see calculator.expression.number.MyNumber
  */
 public interface Expression {
 
