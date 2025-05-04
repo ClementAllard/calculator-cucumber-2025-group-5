@@ -30,7 +30,9 @@ class CLITest {
     void CLIChangeScaleTest() {
         useCLI("scale\n12\n", "Welcome to CLI Calculator: Please, enter expression:"
                 + " > Current scale expression: 10New chosen scale : New current scale expression: 12>");
-        useCLI("scale\nexit\n","Welcome to CLI Calculator: Please, enter expression: > Current scale expression: 12New chosen scale : >");
+        useCLI("scale\n10\n", "Welcome to CLI Calculator: Please, enter expression:"
+                + " > Current scale expression: 12New chosen scale : New current scale expression: 10>");
+        useCLI("scale\nexit\n","Welcome to CLI Calculator: Please, enter expression: > Current scale expression: 10New chosen scale : >");
     }
 
     @Test
@@ -38,8 +40,11 @@ class CLITest {
         useCLI("rounding\n0\n", "Welcome to CLI Calculator: Please, enter expression: > Current rounding expression:"
                 + " HALF_UP0 : UP1 : DOWN2 : CEILING3 : FLOOR4 : HALF_UP5 HALF_DOWN6 :"
                 + " HALF_EVEN7 : UNNECESSARYNew chosen rounding : New current rounding expression: UP>");
+        useCLI("rounding\n4\n", "Welcome to CLI Calculator: Please, enter expression: > Current rounding expression:"
+                + " UP0 : UP1 : DOWN2 : CEILING3 : FLOOR4 : HALF_UP5 HALF_DOWN6 :"
+                + " HALF_EVEN7 : UNNECESSARYNew chosen rounding : New current rounding expression: HALF_UP>");
         useCLI("rounding\nexit\n","Welcome to CLI Calculator: Please, enter expression: > Current rounding expression:"
-                + " UP0 : UP1 : DOWN2 : CEILING3 : FLOOR4 : HALF_UP5 HALF_DOWN6 : HALF_EVEN7 : UNNECESSARYNew chosen rounding : >");
+                + " HALF_UP0 : UP1 : DOWN2 : CEILING3 : FLOOR4 : HALF_UP5 HALF_DOWN6 : HALF_EVEN7 : UNNECESSARYNew chosen rounding : >");
 
     }
 

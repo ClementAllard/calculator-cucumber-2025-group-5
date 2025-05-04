@@ -13,8 +13,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCalculator {
 
@@ -49,14 +48,10 @@ public class TestCalculator {
     }
 
     @Test
-    void testPrintNaN() {
-        try {
+    void testDivisionByZeroError() {
+        assertThrows(ArithmeticException.class, () -> {
             c.print(e2);
-            assertEquals("The result of evaluating expression ( 3 / 0 ) is NaN.", outputStreamCaptor.toString().trim().replace("\n","").replace("\r",""));
-        } catch (ExecutionControl.NotImplementedException e) {
-            fail();
-        }
-
+        });
     }
 
     @Test

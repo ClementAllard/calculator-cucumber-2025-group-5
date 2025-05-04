@@ -11,7 +11,7 @@ public class MyRational extends MyNumber {
     private int denominator;
 
     public MyRational(int numerator, int denominator) {
-        if(denominator == 0){ throw new ArithmeticException("denominator is zero"); }
+        if(denominator == 0){ throw new ArithmeticException("Error : division by zero"); }
         simplify(numerator,denominator);
     }
 

@@ -23,12 +23,14 @@ public class Evaluator extends Visitor {
     /** The result of the evaluation will be stored in this private variable */
     private MyNumber computedValue;
 
+    private String errorMessage;
+
     /** getter method to obtain the result of the evaluation
      *
      * @return an Integer object containing the result of the evaluation
      */
     public String getResult() {
-        if( computedValue == null ) { return "NaN"; }
+        if( computedValue == null ) { return errorMessage; }
 
         if (computedValue instanceof MyRational rational){
             return BigDecimalUtil.stripZeros(rational.getReal());
@@ -49,7 +51,7 @@ public class Evaluator extends Visitor {
      *
      * @param o The operation being visited
      */
-    public void visit(Operation o) throws ExecutionControl.NotImplementedException {
+    public void visit(Operation o) throws ExecutionControl.NotImplementedException, ArithmeticException {
         ArrayList<MyNumber> evaluatedArgs = new ArrayList<>();
         //first loop to recursively evaluate each subexpression
         for(Expression a:o.getArgs()) {
@@ -60,12 +62,7 @@ public class Evaluator extends Visitor {
         MyNumber temp = evaluatedArgs.getFirst();
         int max = evaluatedArgs.size();
         for(int counter=1; counter<max; counter++) {
-            try {
-                temp = o.op(temp,evaluatedArgs.get(counter));
-            }catch (ArithmeticException e) {
-                computedValue = null;
-                return;
-            }
+            temp = o.op(temp,evaluatedArgs.get(counter));
         }
         // store the accumulated result
         computedValue = temp;

@@ -85,11 +85,12 @@ public class CLI {
 
                         try {
                             result = calculator.eval(e);
+							System.out.println("Result : " + e + " = "  + result);  //NOSONAR
                         } catch (ExecutionControl.NotImplementedException ex) {
 							System.out.println("Invalid operation"); //NOSONAR
-                        }
-
-                        System.out.println("Result : " + e + " = "  + result);  //NOSONAR
+                        } catch (ArithmeticException ex){
+							System.out.println(ex.getMessage()); //NOSONAR
+						}
 					}catch (IllegalSyntax _){
 						System.out.println("Illegal Syntax"); //NOSONAR
 						System.out.println("Please, enter a valid expression: "); //NOSONAR

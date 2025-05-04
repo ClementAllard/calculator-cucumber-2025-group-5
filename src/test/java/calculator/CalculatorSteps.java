@@ -138,13 +138,11 @@ public class CalculatorSteps {
         }
     }
 
-	@Then("the operation evaluates to NaN")
+	@Then("the operation evaluates to Division By Zero Error")
 	public void thenTheOperationEvaluatesToNaN() {
-        try {
-            assertEquals("NaN",c.eval(op));
-        } catch (ExecutionControl.NotImplementedException e) {
-            fail();
-        }
+		assertThrows(ArithmeticException.class, () -> {
+			c.print(op);
+		});
     }
 
 	@Given("a big expression")
