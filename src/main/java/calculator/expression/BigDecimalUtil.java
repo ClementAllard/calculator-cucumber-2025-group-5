@@ -29,6 +29,17 @@ public class BigDecimalUtil {
     }
 
     public static BigDecimal divide(BigDecimal dividend, BigDecimal divisor) {
+
+        if (divisor.compareTo(BigDecimal.ZERO) == 0) {
+            if (dividend.compareTo(BigDecimal.ZERO) == 0) {
+                throw new ArithmeticException("NaN");
+            } else if (dividend.compareTo(BigDecimal.ZERO) > 0) {
+                throw new ArithmeticException("+ Infinity");
+            } else {
+                throw new ArithmeticException("- Infinity");
+            }
+        }
+
         return dividend.divide(divisor, scale, roundingMode);
     }
 }
