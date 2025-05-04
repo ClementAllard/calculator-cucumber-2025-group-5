@@ -18,7 +18,7 @@
         <junit-jupiter.version>5.11.4</junit-jupiter.version>
         <junit-platform-suite.version>1.11.4</junit-platform-suite.version>
         <cucumber.version>7.21.1</cucumber.version>
-        <jacoco.version>0.8.12</jacoco.version>
+        <jacoco.version>0.8.13</jacoco.version>
         <javadoc.version>3.11.2</javadoc.version>
         <sonar.projectKey>ClementAllard_calculator-cucumber-2025-group-5</sonar.projectKey>
         <sonar.organization>calculator-cucumber-group-5</sonar.organization>
@@ -34,7 +34,7 @@
              without any explicit annotation processing related options needing to be present.
              In order to be enable this in Maven, we need to turn on full compilation processing: -->
         <maven.compiler.proc>full</maven.compiler.proc>
-        <maven.surefire.version>3.5.2</maven.surefire.version>
+        <maven.surefire.version>3.5.3</maven.surefire.version>
         <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
         <antlr4.version>4.13.2</antlr4.version>
 
@@ -157,7 +157,7 @@
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>5.0.0.4389</version>
+                <version>5.1.0.4751</version>
             </plugin>
             <plugin>
                 <groupId>org.antlr</groupId>
