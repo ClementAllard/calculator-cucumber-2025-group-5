@@ -2,12 +2,11 @@ package calculator;
 
 import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
-import calculator.expression.number.MyComplex;
-import calculator.expression.number.MyNumber;
-import calculator.expression.number.MyReal;
+import calculator.expression.number.*;
 import jdk.jshell.spi.ExecutionControl;
 import visitor.Evaluator;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 /**
@@ -24,10 +23,15 @@ public class Calculator {
      */
     public Calculator() {}
 
-    private static boolean scientificNotation = false;
+    private boolean scientificNotation = false;
+    private boolean degreeMode = false;
 
     public void setScientificNotation(boolean scientificNotation) {
-        scientificNotation = scientificNotation;
+        this.scientificNotation = scientificNotation;
+    }
+
+    public void setDegreeMode(boolean degreeMode) {
+        this.degreeMode = degreeMode;
     }
 
     /*
@@ -79,14 +83,16 @@ public class Calculator {
         // and return the result of the evaluation at the end of the process
         MyNumber result = v.getResult();
 
-        if(result == null) {return v.getErrorMessage();}
+        return switch (result) {
+            case null -> v.getErrorMessage();
+            case MyComplex complex -> complex.toString();
+            case MyReal real when scientificNotation -> {
+                DecimalFormat sciFormat = new DecimalFormat("0.###E0");
+                yield sciFormat.format(real);
+            }
+            default -> result.toString();
+        };
 
-        if(scientificNotation && result instanceof MyReal real){
-            DecimalFormat sciFormat = new DecimalFormat("0.###E0");
-            return sciFormat.format(real);
-        }else{
-            return result.toString();
-        }
     }
 
     /*
