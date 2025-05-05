@@ -62,11 +62,11 @@ public class CLI {
 					break;
 				case "scientific":
 					System.out.println("Scientific mode :"); //NOSONAR
-					BigDecimalUtil.setScientificNotation(true);
+					calculator.setScientificNotation(true);
 					break;
 				case "normal":
 					System.out.println("Normal mode :"); //NOSONAR
-					BigDecimalUtil.setScientificNotation(false);
+					calculator.setScientificNotation(false);
 					break;
 				case "rounding":
 					System.out.println("Current rounding expression: " + BigDecimalUtil.getRounding()); //NOSONAR

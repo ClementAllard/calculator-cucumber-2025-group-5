@@ -7,7 +7,6 @@ public class BigDecimalUtil {
 
     private static int scale = 10;
     private static RoundingMode roundingMode = RoundingMode.HALF_UP;
-    private static boolean scientificNotation = false;
 
     public static void setScale(int newScale) {
         scale = newScale;
@@ -19,14 +18,6 @@ public class BigDecimalUtil {
 
     public static void setRoundingMode(int newRoundingMode) {
         roundingMode = RoundingMode.valueOf(newRoundingMode);
-    }
-
-    public static void setScientificNotation(boolean scientificNotation) {
-        BigDecimalUtil.scientificNotation = scientificNotation;
-    }
-
-    public static boolean isScientificNotation() {
-        return scientificNotation;
     }
 
     public static RoundingMode getRounding() {

@@ -24,6 +24,12 @@ public class Calculator {
      */
     public Calculator() {}
 
+    private static boolean scientificNotation = false;
+
+    public void setScientificNotation(boolean scientificNotation) {
+        scientificNotation = scientificNotation;
+    }
+
     /*
      For the moment the calculator only contains a print method and an eval method
      It would be useful to complete this with a read method, so that we would be able
@@ -75,7 +81,7 @@ public class Calculator {
 
         if(result == null) {return v.getErrorMessage();}
 
-        if(BigDecimalUtil.isScientificNotation() && result instanceof MyReal real){
+        if(scientificNotation && result instanceof MyReal real){
             DecimalFormat sciFormat = new DecimalFormat("0.###E0");
             return sciFormat.format(real);
         }else{
