@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend.desktop.controllers.CalculatorSettingController">
+   <top>
+      <HBox prefHeight="40.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuButton fx:id="calculatorTypeMenuButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="65.0" text="≡">
+               <items>
+                <MenuItem mnemonicParsing="false" text="Standard" />
+                <MenuItem mnemonicParsing="false" text="Scientific" />
+                  <MenuItem mnemonicParsing="false" text="Programmer" />
+               </items>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </MenuButton>
+            <AnchorPane>
+               <children>
+                  <Label fx:id="calculatorTypeLabel" alignment="CENTER" layoutX="12.0" prefHeight="40.0" prefWidth="170.0" text="Standard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
