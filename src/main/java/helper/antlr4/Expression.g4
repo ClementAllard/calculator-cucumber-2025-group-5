@@ -40,8 +40,12 @@ factor : '(' infixExpr ')'                                                      
 
 // Not in number for not have error left-recursive
 complex : negatenumber ('+'|'-') negatenumber 'i'                                    # ComplexAtom
-        | negatenumber                                                               # NotComplex
+        | scientific                                                                 # NotComplex
         ;
+
+scientific : negatenumber ('e'|'E') negatenumber                                     # ScientificAtom
+           | negatenumber                                                            # NotScientific
+           ;
 
 negatenumber : '-' number                                                           # NegateAtom
              | number                                                               # SimpleAtom
@@ -54,7 +58,6 @@ number: rational                                                                
 
 rational : INTEGER '/' INTEGER                                                      # RationalAtom
          ;
-
 
 REAL : [0-9]+ '.' [0-9]+;
 INTEGER: [0-9]+;

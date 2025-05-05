@@ -60,6 +60,14 @@ public class CLI {
 						System.out.println("Invalid scale"); //NOSONAR
 					}
 					break;
+				case "scientific":
+					System.out.println("Scientific mode :"); //NOSONAR
+					BigDecimalUtil.setScientificNotation(true);
+					break;
+				case "normal":
+					System.out.println("Normal mode :"); //NOSONAR
+					BigDecimalUtil.setScientificNotation(false);
+					break;
 				case "rounding":
 					System.out.println("Current rounding expression: " + BigDecimalUtil.getRounding()); //NOSONAR
 					System.out.println("0 : UP\n1 : DOWN\n2 : CEILING\n3 : FLOOR\n4 : HALF_UP\n5 HALF_DOWN\n6 : HALF_EVEN\n7 : UNNECESSARY"); //NOSONAR

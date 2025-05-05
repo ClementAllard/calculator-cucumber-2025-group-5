@@ -210,7 +210,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     @Override
     public Expression visitNegateAtom(ExpressionParser.NegateAtomContext ctx) {
-        MyNumber number = (MyNumber) ctx.getChild(1);
+        MyNumber number = (MyNumber) visit(ctx.getChild(1));
         return number.negate();
     }
 
@@ -221,5 +221,24 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
         return new MyRational(numerator,denominator);
     }
+
+    @Override
+    public Expression visitScientificAtom(ExpressionParser.ScientificAtomContext ctx) {
+        MyNumber number = (MyNumber) visit(ctx.getChild(0));
+        Expression exponent = visit(ctx.getChild(2));
+
+        try {
+            Expression exponentResult = new Exponent(Arrays.asList(new MyInteger(10),exponent));
+            return new Times(Arrays.asList(number,exponentResult));
+        } catch (IllegalConstruction e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Expression visitNotScientific(ExpressionParser.NotScientificContext ctx) {
+        return visitChildren(ctx);
+    }
+
 }
 

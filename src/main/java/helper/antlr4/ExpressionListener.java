@@ -196,6 +196,30 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitNotComplex(ExpressionParser.NotComplexContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ScientificAtom}
+	 * labeled alternative in {@link ExpressionParser#scientific}.
+	 * @param ctx the parse tree
+	 */
+	void enterScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ScientificAtom}
+	 * labeled alternative in {@link ExpressionParser#scientific}.
+	 * @param ctx the parse tree
+	 */
+	void exitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NotScientific}
+	 * labeled alternative in {@link ExpressionParser#scientific}.
+	 * @param ctx the parse tree
+	 */
+	void enterNotScientific(ExpressionParser.NotScientificContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NotScientific}
+	 * labeled alternative in {@link ExpressionParser#scientific}.
+	 * @param ctx the parse tree
+	 */
+	void exitNotScientific(ExpressionParser.NotScientificContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code NegateAtom}
 	 * labeled alternative in {@link ExpressionParser#negatenumber}.
 	 * @param ctx the parse tree

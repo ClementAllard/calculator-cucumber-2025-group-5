@@ -2,11 +2,14 @@ package visitor;
 
 import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
+import calculator.expression.number.MyComplex;
 import calculator.expression.number.MyNumber;
 import calculator.expression.number.MyRational;
 import calculator.expression.operator.Operation;
 import jdk.jshell.spi.ExecutionControl;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -32,10 +35,23 @@ public class Evaluator extends Visitor {
     public String getResult() {
         if( computedValue == null ) { return errorMessage; }
 
-        if (computedValue instanceof MyRational rational){
-            return BigDecimalUtil.stripZeros(rational.getReal());
+        if(BigDecimalUtil.isScientificNotation()){
+            if(computedValue instanceof MyComplex){ return computedValue.toString(); }
+
+            BigDecimal bd;
+            if(computedValue instanceof MyRational rational){
+                bd = new BigDecimal(rational.getReal().toString());
+            }else{
+                bd = new BigDecimal(computedValue.toString());
+            }
+            DecimalFormat sciFormat = new DecimalFormat("0.###E0");
+            return sciFormat.format(bd);
         }else{
-            return computedValue.toString();
+            if (computedValue instanceof MyRational rational){
+                return BigDecimalUtil.stripZeros(rational.getReal());
+            }else{
+                return computedValue.toString();
+            }
         }
     }
 

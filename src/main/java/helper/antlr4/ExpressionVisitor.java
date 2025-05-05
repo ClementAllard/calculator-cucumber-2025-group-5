@@ -121,6 +121,20 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNotComplex(ExpressionParser.NotComplexContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ScientificAtom}
+	 * labeled alternative in {@link ExpressionParser#scientific}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NotScientific}
+	 * labeled alternative in {@link ExpressionParser#scientific}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNotScientific(ExpressionParser.NotScientificContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code NegateAtom}
 	 * labeled alternative in {@link ExpressionParser#negatenumber}.
 	 * @param ctx the parse tree

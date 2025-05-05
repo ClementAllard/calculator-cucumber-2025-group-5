@@ -27,9 +27,9 @@ public class MyComplex extends MyNumber {
     @Override
     public String toString() {
         if (imaginary.compareTo(BigDecimal.ZERO) < 0) {
-            return BigDecimalUtil.stripZeros(real) + " - " + BigDecimalUtil.stripZeros(imaginary.negate()) + "i";
+            return "(" + BigDecimalUtil.stripZeros(real) + " - " + BigDecimalUtil.stripZeros(imaginary.negate()) + "i)";
         }else {
-            return BigDecimalUtil.stripZeros(real) + " + " + BigDecimalUtil.stripZeros(imaginary) + "i";
+            return "(" + BigDecimalUtil.stripZeros(real) + " + " + BigDecimalUtil.stripZeros(imaginary) + "i)";
         }
     }
 
