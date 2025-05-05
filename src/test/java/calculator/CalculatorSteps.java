@@ -138,6 +138,15 @@ public class CalculatorSteps {
         }
     }
 
+	@Then("the fraction evaluates to {string}")
+	public void thenTheFractionEvaluatesTo(String val) {
+		try {
+			assertEquals(val, c.eval(op).toString());
+		} catch (ExecutionControl.NotImplementedException e) {
+			fail();
+		}
+	}
+
 	@Then("the operation evaluates to Division By Zero Error")
 	public void thenTheOperationEvaluatesToNaN() {
 		assertThrows(ArithmeticException.class, () -> {

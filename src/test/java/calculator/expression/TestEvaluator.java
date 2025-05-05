@@ -44,7 +44,6 @@ class TestEvaluator {
     @ValueSource(strings = {"*", "+", "/", "-"})
     void testEvaluateOperations(String symbol) {
         List<Expression> params = Arrays.asList(new MyInteger(value1),new MyInteger(value2));
-        BigDecimal divide = BigDecimalUtil.divide(BigDecimal.valueOf(value1), BigDecimal.valueOf(value2));
         try {
             //construct another type of operation depending on the input value
             //of the parameterised test
@@ -52,7 +51,7 @@ class TestEvaluator {
                 case "+"	->	assertEquals( String.valueOf(value1 + value2), calc.eval(new Plus(params)));
                 case "-"	->	assertEquals( String.valueOf(value1 - value2), calc.eval(new Minus(params)));
                 case "*"	->	assertEquals( String.valueOf(value1 * value2), calc.eval(new Times(params)));
-                case "/"	->	assertEquals( divide.toString() , calc.eval(new Divides(params)));
+                case "/"	->	assertEquals( "1 1/3" , calc.eval(new Divides(params)));
                 default		->	fail();
             }
         } catch (IllegalConstruction| ExecutionControl.NotImplementedException e) {

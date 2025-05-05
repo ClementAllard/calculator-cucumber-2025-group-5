@@ -32,27 +32,8 @@ public class Evaluator extends Visitor {
      *
      * @return an Integer object containing the result of the evaluation
      */
-    public String getResult() {
-        if( computedValue == null ) { return errorMessage; }
-
-        if(BigDecimalUtil.isScientificNotation()){
-            if(computedValue instanceof MyComplex){ return computedValue.toString(); }
-
-            BigDecimal bd;
-            if(computedValue instanceof MyRational rational){
-                bd = new BigDecimal(rational.getReal().toString());
-            }else{
-                bd = new BigDecimal(computedValue.toString());
-            }
-            DecimalFormat sciFormat = new DecimalFormat("0.###E0");
-            return sciFormat.format(bd);
-        }else{
-            if (computedValue instanceof MyRational rational){
-                return BigDecimalUtil.stripZeros(rational.getReal());
-            }else{
-                return computedValue.toString();
-            }
-        }
+    public MyNumber getResult() {
+        return computedValue;
     }
 
     /** Use the visitor design pattern to visit a number.
@@ -89,4 +70,7 @@ public class Evaluator extends Visitor {
 
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }

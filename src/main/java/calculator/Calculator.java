@@ -1,8 +1,14 @@
 package calculator;
 
+import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
+import calculator.expression.number.MyComplex;
+import calculator.expression.number.MyNumber;
+import calculator.expression.number.MyReal;
 import jdk.jshell.spi.ExecutionControl;
 import visitor.Evaluator;
+
+import java.text.DecimalFormat;
 
 /**
  * This class represents the core logic of a Calculator.
@@ -65,7 +71,16 @@ public class Calculator {
         // and ask the expression to accept this visitor to start the evaluation process
         e.accept(v);
         // and return the result of the evaluation at the end of the process
-        return v.getResult();
+        MyNumber result = v.getResult();
+
+        if(result == null) {return v.getErrorMessage();}
+
+        if(BigDecimalUtil.isScientificNotation() && result instanceof MyReal real){
+            DecimalFormat sciFormat = new DecimalFormat("0.###E0");
+            return sciFormat.format(real);
+        }else{
+            return result.toString();
+        }
     }
 
     /*

@@ -43,7 +43,16 @@ public class MyRational extends MyNumber {
         if(denominator == 1){
             return String.valueOf(numerator);
         }else{
-            return numerator + "/" + denominator;
+            int integerPart = numerator / denominator;
+            int fractionalPart = numerator % denominator;
+
+            if (fractionalPart == 0) {
+                return String.valueOf(integerPart);
+            } else if (integerPart == 0) {
+                return fractionalPart + "/" + denominator;
+            } else {
+                return integerPart + " " + fractionalPart + "/" + denominator;
+            }
         }
     }
 

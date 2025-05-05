@@ -39,7 +39,7 @@ class TestMyRational {
     @Test
     void TestAddMyRational() {
         try{
-            assertEquals("7/2",plus.op(myRational,myInteger).toString());
+            assertEquals("3 1/2",plus.op(myRational,myInteger).toString());
             assertEquals("1",plus.op(myRational,myRational).toString());
             assertEquals("2",plus.op(myRational,myReal).toString());
             assertEquals("3 + 4i",plus.op(myRational,myComplex).toString());
@@ -51,7 +51,7 @@ class TestMyRational {
     @Test
     void TestMinusMyRational() {
         try{
-            assertEquals("5/2",minus.op(myRational,myInteger).toString());
+            assertEquals("2 1/2",minus.op(myRational,myInteger).toString());
             assertEquals("0",minus.op(myRational,myRational).toString());
             assertEquals("-1",minus.op(myRational,myReal).toString());
             assertEquals("-2 - 4i",minus.op(myRational,myComplex).toString());
@@ -63,7 +63,7 @@ class TestMyRational {
     @Test
     void TestTimesMyRational() {
         try{
-            assertEquals("3/2",times.op(myRational,myInteger).toString());
+            assertEquals("1 1/2",times.op(myRational,myInteger).toString());
             assertEquals("1/4",times.op(myRational,myRational).toString());
             assertEquals("0.75",times.op(myRational,myReal).toString());
             assertEquals("1.25 + 2i",times.op(myRational,myComplex).toString());

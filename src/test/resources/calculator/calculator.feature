@@ -34,7 +34,7 @@ Feature: Integer Arithmetic Expressions
     Given an integer operation '/'
     When I provide a first number 7
     And I provide a second number 5
-    Then the operation evaluates to "1.4"
+    Then the fraction evaluates to "1 2/5"
 
   Scenario: Dividing two integer numbers
     Given an integer operation '/'
@@ -107,13 +107,13 @@ Feature: Integer Arithmetic Expressions
     Given an integer operation '/'
     When I provide a first number <n1>
     And I provide a second number <n2>
-    Then the operation evaluates to <result>
+    Then the fraction evaluates to <result>
 
     Examples:
       |n1|n2|result|
       |35|5|"7"|
-      |7|5|"1.4"|
-      |5|7|"0.7142857143"|
+      |7|5|"1 2/5"|
+      |5|7|"5/7"|
 
   Scenario Outline: Evaluating arithmetic operations with two integer parameters
     Given an integer operation <op>

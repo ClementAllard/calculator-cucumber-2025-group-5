@@ -39,7 +39,7 @@ class TestMyInteger {
     void TestAddMyInteger() {
         try{
             assertEquals("6",plus.op(myInteger,myInteger).toString());
-            assertEquals("7/2",plus.op(myInteger,myRational).toString());
+            assertEquals("3 1/2",plus.op(myInteger,myRational).toString());
             assertEquals("4.5",plus.op(myInteger,myReal).toString());
             assertEquals("5.5 + 4i",plus.op(myInteger,myComplex).toString());
         }catch (ExecutionControl.NotImplementedException e) {
@@ -51,7 +51,7 @@ class TestMyInteger {
     void TestMinusMyInteger() {
         try{
             assertEquals("0",minus.op(myInteger,myInteger).toString());
-            assertEquals("5/2",minus.op(myInteger,myRational).toString());
+            assertEquals("2 1/2",minus.op(myInteger,myRational).toString());
             assertEquals("1.5",minus.op(myInteger,myReal).toString());
             assertEquals("0.5 - 4i",minus.op(myInteger,myComplex).toString());
         }catch (ExecutionControl.NotImplementedException e) {
@@ -63,7 +63,7 @@ class TestMyInteger {
     void TestTimesMyInteger() {
         try{
             assertEquals("9",times.op(myInteger,myInteger).toString());
-            assertEquals("3/2",times.op(myInteger,myRational).toString());
+            assertEquals("1 1/2",times.op(myInteger,myRational).toString());
             assertEquals("4.5",times.op(myInteger,myReal).toString());
             assertEquals("7.5 + 12i",times.op(myInteger,myComplex).toString());
         }catch (ExecutionControl.NotImplementedException e) {
