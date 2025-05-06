@@ -4,9 +4,9 @@ import calculator.expression.Expression;
 
 import java.util.Objects;
 
-public class MyInteger extends MyNumber {
+public final class MyInteger extends MyNumber {
 
-    private int value;
+    private final int value;
 
     public MyInteger(int value) {
         this.value = value;
