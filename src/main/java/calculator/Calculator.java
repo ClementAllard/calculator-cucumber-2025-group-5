@@ -1,12 +1,10 @@
 package calculator;
 
-import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
 import jdk.jshell.spi.ExecutionControl;
 import visitor.Evaluator;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 /**
@@ -24,14 +22,9 @@ public class Calculator {
     public Calculator() {}
 
     private boolean scientificNotation = false;
-    private boolean degreeMode = false;
 
     public void setScientificNotation(boolean scientificNotation) {
         this.scientificNotation = scientificNotation;
-    }
-
-    public void setDegreeMode(boolean degreeMode) {
-        this.degreeMode = degreeMode;
     }
 
     /*
@@ -49,11 +42,11 @@ public class Calculator {
      * @see #printExpressionDetails(Expression)
      */
     public void print(Expression e) throws ExecutionControl.NotImplementedException {
-        System.out.print("The result of evaluating expression " + e);
+        System.out.print("The result of evaluating expression " + e); //NOSONAR
         if (eval(e) != null) {
-            System.out.println(" is " + eval(e) + ".");
+            System.out.println(" is " + eval(e) + "."); //NOSONAR
         } else {
-            System.out.println(" is NaN.");
+            System.out.println(" is NaN."); //NOSONAR
         }
     }
 
@@ -64,10 +57,10 @@ public class Calculator {
      */
     public void printExpressionDetails(Expression e) throws ExecutionControl.NotImplementedException {
         print(e);
-        System.out.print("It contains " + e.countDepth() + " levels of nested expressions, ");
-        System.out.print(e.countOps() + " operations");
-        System.out.println(" and " + e.countNbs() + " numbers.");
-        System.out.println();
+        System.out.print("It contains " + e.countDepth() + " levels of nested expressions, "); //NOSONAR
+        System.out.print(e.countOps() + " operations"); //NOSONAR
+        System.out.println(" and " + e.countNbs() + " numbers."); //NOSONAR
+        System.out.println(); //NOSONAR
     }
 
     /**

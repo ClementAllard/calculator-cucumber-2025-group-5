@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 
 public class BigDecimalUtil {
 
+    private BigDecimalUtil() {}
+
     private static int scale = 10;
     private static RoundingMode roundingMode = RoundingMode.HALF_UP;
 
