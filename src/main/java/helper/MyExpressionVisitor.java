@@ -7,10 +7,8 @@ import calculator.expression.number.*;
 import calculator.expression.operator.*;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
-import helper.antlr4.ExpressionVisitor;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,22 +23,16 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     @Override
     public Expression visitPrefixExpression(ExpressionParser.PrefixExpressionContext ctx) {
-        try{
-
-            List<Expression> expressions = new ArrayList<>();
-            String symbol = ctx.getChild(0).getText();
-            for (int i = 1; i < ctx.getChildCount(); i++) {
-                ParseTree child = ctx.getChild(i);
-                if (isPrefixExpression(child)) {
-                    expressions.add(visit(child));
-                }
+        List<Expression> expressions = new ArrayList<>();
+        String symbol = ctx.getChild(0).getText();
+        for (int i = 1; i < ctx.getChildCount(); i++) {
+            ParseTree child = ctx.getChild(i);
+            if (isPrefixExpression(child)) {
+                expressions.add(visit(child));
             }
-
-            return getExpression(expressions, symbol,Notation.PREFIX);
-
-        }catch (IllegalConstruction e){
-            throw new RuntimeException(e); //NOSONAR
         }
+
+        return getExpression(expressions, symbol,Notation.PREFIX);
     }
 
     @Override
@@ -55,25 +47,17 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     @Override
     public Expression visitPostfixExpression(ExpressionParser.PostfixExpressionContext ctx) {
-        try{
-
-            List<Expression> expressions = new ArrayList<>();
-            String symbol = ctx.getChild(ctx.getChildCount()-1).getText();
-            for (int i = 0; i < ctx.getChildCount()-1; i++) {
-                ParseTree child = ctx.getChild(i);
-                if (isPostfixExpression(child)) {
-                    expressions.add(visit(child));
-                }
+        List<Expression> expressions = new ArrayList<>();
+        String symbol = ctx.getChild(ctx.getChildCount()-1).getText();
+        for (int i = 0; i < ctx.getChildCount()-1; i++) {
+            ParseTree child = ctx.getChild(i);
+            if (isPostfixExpression(child)) {
+                expressions.add(visit(child));
             }
-
-            return getExpression(expressions, symbol,Notation.POSTFIX);
-
-        }catch (IllegalConstruction e){
-            throw new RuntimeException(e); //NOSONAR
         }
+
+        return getExpression(expressions, symbol,Notation.POSTFIX);
     }
-
-
 
     @Override
     public Expression visitPostfixNumber(ExpressionParser.PostfixNumberContext ctx) {
@@ -85,16 +69,6 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 tree instanceof ExpressionParser.PostfixExpressionContext;
     }
 
-    private Expression getExpression(List<Expression> expressions, String symbol,Notation notation) throws IllegalConstruction {
-        return switch (symbol) {
-            case "+" -> new Plus(expressions, notation);
-            case "-" -> new Minus(expressions, notation);
-            case "*" -> new Times(expressions, notation);
-            case "/" -> new Divides(expressions, notation);
-            default -> null;
-        };
-    }
-
     @Override
     public Expression visitSingleTerm(ExpressionParser.SingleTermContext ctx) {
         return visitChildren(ctx);
@@ -103,17 +77,10 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     @Override
     public Expression visitInfixExpressionAddSub(ExpressionParser.InfixExpressionAddSubContext ctx) {
         Expression left = visit(ctx.getChild(0));
+        String operator = ctx.getChild(1).getText();
         Expression right = visit(ctx.getChild(2));
 
-        try {
-            if(ctx.getChild(1).getText().equals("+")) {
-                return new Plus(Arrays.asList(left,right));
-            }else{
-                return new Minus(Arrays.asList(left,right));
-            }
-        } catch (IllegalConstruction e) {
-            throw new RuntimeException(e); // NOSONAR
-        }
+        return getExpression(Arrays.asList(left,right), operator,Notation.INFIX);
     }
 
     @Override
@@ -121,28 +88,16 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         Expression left = visit(ctx.getChild(0));
         Expression right = visit(ctx.getChild(2));
 
-        try{
-            return new Times(Arrays.asList(left,right));
-        }catch (IllegalConstruction e) {
-            throw new RuntimeException(e); // NOSONAR
-        }
+        return getExpression(Arrays.asList(left,right),"*", Notation.INFIX);
     }
 
     @Override
     public Expression visitInfixExpressionMulDiv(ExpressionParser.InfixExpressionMulDivContext ctx) {
         Expression left = visit(ctx.getChild(0));
+        String operator = ctx.getChild(1).getText();
         Expression right = visit(ctx.getChild(2));
 
-        try{
-            if(ctx.getChild(1).getText().equals("*")) {
-                return new Times(Arrays.asList(left,right));
-            }else{
-                return new Divides(Arrays.asList(left,right));
-            }
-        }catch (IllegalConstruction e) {
-            throw new RuntimeException(e); // NOSONAR
-        }
-
+        return getExpression(Arrays.asList(left,right),operator, Notation.INFIX);
     }
 
     @Override
@@ -224,20 +179,31 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     @Override
     public Expression visitScientificAtom(ExpressionParser.ScientificAtomContext ctx) {
-        MyNumber number = (MyNumber) visit(ctx.getChild(0));
+        Expression number = visit(ctx.getChild(0));
         Expression exponent = visit(ctx.getChild(2));
 
-        try {
-            Expression exponentResult = new Exponent(Arrays.asList(new MyInteger(10),exponent));
-            return new Times(Arrays.asList(number,exponentResult));
-        } catch (IllegalConstruction e) {
-            throw new RuntimeException(e);
-        }
+        Expression exponentResult = getExpression(Arrays.asList(new MyInteger(10),exponent),"^",Notation.INFIX);
+        return getExpression(Arrays.asList(number,exponentResult),"*",Notation.INFIX);
     }
 
     @Override
     public Expression visitNotScientific(ExpressionParser.NotScientificContext ctx) {
         return visitChildren(ctx);
+    }
+
+    private Expression getExpression(List<Expression> expressions, String symbol,Notation notation) {
+        try{
+            return switch (symbol) {
+                case "+" -> new Plus(expressions, notation);
+                case "-" -> new Minus(expressions, notation);
+                case "*" -> new Times(expressions, notation);
+                case "/" -> new Divides(expressions, notation);
+                case "^" -> new Exponent(expressions, notation);
+                default -> null;
+            };
+        }catch (IllegalConstruction e) {
+            throw new RuntimeException(e); // NOSONAR
+        }
     }
 
 }
