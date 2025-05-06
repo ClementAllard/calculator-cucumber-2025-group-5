@@ -34,8 +34,8 @@ implicitMul : ;
 factor : '(' infixExpr ')'                                                           # InfixExpressionWithParenthesis
        | '-' '(' infixExpr ')'                                                       # InfixExpressionNegate
        | complex                                                                     # FactorNumber
+       | FUNCTION infixExpr ')'                                                      # FunctionApplication
        ;
-
 
 
 // Not in number for not have error left-recursive
@@ -55,6 +55,7 @@ negatenumber : '-' number                                                       
 number: rational                                                                    # RationalNumber
       | INTEGER                                                                     # IntergerAtom
       | REAL                                                                        # RealAtom
+      | PI                                                                          # PiNumber
       ;
 
 rational : INTEGER '/' INTEGER                                                      # RationalAtom
@@ -63,3 +64,5 @@ rational : INTEGER '/' INTEGER                                                  
 REAL : [0-9]+ '.' [0-9]+;
 INTEGER: [0-9]+;
 WS: [ \t\r\n,]+ -> skip;
+FUNCTION: [a-zA-Z_][a-zA-Z0-9_]* ' '* '(';
+PI: ('pi' | 'PI');

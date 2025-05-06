@@ -172,6 +172,18 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitFactorNumber(ExpressionParser.FactorNumberContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code FunctionApplication}
+	 * labeled alternative in {@link ExpressionParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionApplication(ExpressionParser.FunctionApplicationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FunctionApplication}
+	 * labeled alternative in {@link ExpressionParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionApplication(ExpressionParser.FunctionApplicationContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ComplexAtom}
 	 * labeled alternative in {@link ExpressionParser#complex}.
 	 * @param ctx the parse tree
@@ -291,6 +303,18 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRealAtom(ExpressionParser.RealAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PiNumber}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterPiNumber(ExpressionParser.PiNumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PiNumber}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitPiNumber(ExpressionParser.PiNumberContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code RationalAtom}
 	 * labeled alternative in {@link ExpressionParser#rational}.

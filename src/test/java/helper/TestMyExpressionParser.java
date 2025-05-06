@@ -151,4 +151,17 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testPi() {
+        try{
+            String lowerPi = "pi";
+            String upperPi = "PI";
+            Expression expressionPiLower = MyExpressionParser.parseExpression(lowerPi);
+            Expression expressionPiUpper = MyExpressionParser.parseExpression(upperPi);
+            assertEquals(c.eval(expressionPiLower), c.eval(expressionPiUpper));
+        } catch (Exception _) {
+            fail();
+        }
+    }
 }

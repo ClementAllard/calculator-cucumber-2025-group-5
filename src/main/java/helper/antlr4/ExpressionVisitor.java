@@ -107,6 +107,13 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFactorNumber(ExpressionParser.FactorNumberContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code FunctionApplication}
+	 * labeled alternative in {@link ExpressionParser#factor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionApplication(ExpressionParser.FunctionApplicationContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ComplexAtom}
 	 * labeled alternative in {@link ExpressionParser#complex}.
 	 * @param ctx the parse tree
@@ -176,6 +183,13 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitRealAtom(ExpressionParser.RealAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PiNumber}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPiNumber(ExpressionParser.PiNumberContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code RationalAtom}
 	 * labeled alternative in {@link ExpressionParser#rational}.

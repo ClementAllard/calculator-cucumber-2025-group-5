@@ -185,6 +185,18 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunctionApplication(ExpressionParser.FunctionApplicationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionApplication(ExpressionParser.FunctionApplicationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterComplexAtom(ExpressionParser.ComplexAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -300,6 +312,18 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRealAtom(ExpressionParser.RealAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPiNumber(ExpressionParser.PiNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPiNumber(ExpressionParser.PiNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

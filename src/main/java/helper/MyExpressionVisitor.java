@@ -211,5 +211,14 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         return visit(ctx.getChild(1));
     }
 
-}
+    @Override
+    public Expression visitFunctionApplication(ExpressionParser.FunctionApplicationContext ctx) {
+        return visit(ctx.getChild(1));
+    }
 
+    @Override
+    public Expression visitPiNumber(ExpressionParser.PiNumberContext ctx){
+        return new MyReal(BigDecimal.valueOf(Math.PI));
+    }
+
+}
