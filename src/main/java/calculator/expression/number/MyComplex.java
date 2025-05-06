@@ -6,10 +6,10 @@ import calculator.expression.Expression;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class MyComplex extends MyNumber {
+public final class MyComplex extends MyNumber {
 
-    private BigDecimal real;
-    private BigDecimal imaginary;
+    private final BigDecimal real;
+    private final BigDecimal imaginary;
 
     public MyComplex(BigDecimal real, BigDecimal imaginary) {
         this.real = real;

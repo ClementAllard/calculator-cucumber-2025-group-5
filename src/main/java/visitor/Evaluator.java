@@ -1,17 +1,11 @@
 package visitor;
 
-import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
-import calculator.expression.number.MyComplex;
 import calculator.expression.number.MyNumber;
-import calculator.expression.number.MyRational;
 import calculator.expression.operator.Operation;
 import jdk.jshell.spi.ExecutionControl;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 /** Evaluation is a concrete visitor that serves to
  * compute and evaluate the results of arithmetic expressions.

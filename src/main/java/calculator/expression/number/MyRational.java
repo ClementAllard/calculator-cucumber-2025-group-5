@@ -6,7 +6,7 @@ import calculator.expression.Expression;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class MyRational extends MyNumber {
+public final class MyRational extends MyNumber {
 
     private int numerator;
     private int denominator;
