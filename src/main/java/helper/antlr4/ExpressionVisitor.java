@@ -149,6 +149,13 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSimpleAtom(ExpressionParser.SimpleAtomContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code PositiveAtom}
+	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPositiveAtom(ExpressionParser.PositiveAtomContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code RationalNumber}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree

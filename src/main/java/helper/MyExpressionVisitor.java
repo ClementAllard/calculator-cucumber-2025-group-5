@@ -240,5 +240,10 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         return visitChildren(ctx);
     }
 
+    @Override
+    public Expression visitPositiveAtom(ExpressionParser.PositiveAtomContext ctx) {
+        return visit(ctx.getChild(1));
+    }
+
 }
 

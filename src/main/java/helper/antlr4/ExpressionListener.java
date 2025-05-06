@@ -244,6 +244,18 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitSimpleAtom(ExpressionParser.SimpleAtomContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code PositiveAtom}
+	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * @param ctx the parse tree
+	 */
+	void enterPositiveAtom(ExpressionParser.PositiveAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PositiveAtom}
+	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * @param ctx the parse tree
+	 */
+	void exitPositiveAtom(ExpressionParser.PositiveAtomContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code RationalNumber}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree

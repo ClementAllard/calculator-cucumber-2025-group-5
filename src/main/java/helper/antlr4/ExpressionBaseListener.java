@@ -257,6 +257,18 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPositiveAtom(ExpressionParser.PositiveAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPositiveAtom(ExpressionParser.PositiveAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRationalNumber(ExpressionParser.RationalNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}

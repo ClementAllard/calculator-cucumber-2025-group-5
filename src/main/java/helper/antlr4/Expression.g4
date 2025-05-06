@@ -49,6 +49,7 @@ scientific : negatenumber ('e'|'E') negatenumber                                
 
 negatenumber : '-' number                                                           # NegateAtom
              | number                                                               # SimpleAtom
+             | '+' number                                                           # PositiveAtom
              ;
 
 number: rational                                                                    # RationalNumber

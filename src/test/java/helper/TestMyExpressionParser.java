@@ -137,4 +137,18 @@ class TestMyExpressionParser {
         });
     }
 
+    @Test
+    void testPositiveNumber() {
+        try{
+            String expressionString = "+1 - +1";
+            Expression expressionParsing = MyExpressionParser.parseExpression(expressionString);
+            assertEquals("0", c.eval(expressionParsing));
+
+            String expressionString2 = "+1";
+            Expression expressionParsing2 = MyExpressionParser.parseExpression(expressionString2);
+            assertEquals("1", c.eval(expressionParsing2));
+        } catch (Exception _){
+            fail();
+        }
+    }
 }
