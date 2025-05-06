@@ -3,7 +3,7 @@ package visitor;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
 import calculator.expression.number.MyNumber;
-import calculator.expression.operator.Negate;
+import calculator.expression.operator.Function;
 import calculator.expression.operator.Operation;
 import calculator.expression.operator.UnaryOperation;
 
@@ -49,6 +49,8 @@ public class Displayer implements NotationVisitor {
 
         if(operation instanceof UnaryOperation){
             return String.format("%s %s", operation.getSymbol(), formula);
+        } else if (operation instanceof Function){
+            return String.format("%s(%s)", operation.getSymbol(), formula);
         }
 
         return switch (notation) {

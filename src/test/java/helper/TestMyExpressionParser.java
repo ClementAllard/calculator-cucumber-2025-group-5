@@ -177,4 +177,17 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testFunctionDegree() {
+        try{
+            String expression = "degree(rad(180))";
+            String halfTurn = "180";
+            Expression piRadExpr = MyExpressionParser.parseExpression(expression);
+            Expression piExpr = MyExpressionParser.parseExpression(halfTurn);
+            assertEquals(c.eval(piRadExpr), c.eval(piExpr));
+        } catch (Exception _) {
+            fail();
+        }
+    }
 }

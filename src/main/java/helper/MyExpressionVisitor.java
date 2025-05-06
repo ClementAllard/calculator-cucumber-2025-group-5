@@ -168,7 +168,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         try {
             return new Negate(number);
         } catch (IllegalConstruction e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); // NOSONAR
         }
     }
 
