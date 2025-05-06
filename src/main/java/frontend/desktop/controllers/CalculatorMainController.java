@@ -54,7 +54,7 @@ public class CalculatorMainController {
             // Initialize the calculatorSettingController
             calculatorSettingController = loader.getController();
             calculatorSettingController.setCalculatorMainController(this);
-            calculatorSettingController.handleTypeSelection();
+            calculatorSettingController.initialize();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,6 +71,7 @@ public class CalculatorMainController {
             calculator.setCenter(anchorPane);
             Controller controller = loader.getController();
             controller.setCalculatorMainController(this);
+            controller.initialize();
             controllers.put(name, controller);
             currentView = name;
         } catch (IOException e) {

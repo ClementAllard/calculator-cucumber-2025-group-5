@@ -57,10 +57,13 @@ public class CalculatorSettingController extends Controller {
     /**
      * Sets the handler for the menu items in the calculator type menu button.
      */
-    void handleTypeSelection() {
+    private void handleTypeSelection() {
         for (MenuItem item : calculatorTypeMenuButton.getItems()) {
             item.setOnAction(event -> handleMenuItemSelection(item));
         }
     }
+
+    @Override
+    void initialize() {handleTypeSelection();}
 }
 
