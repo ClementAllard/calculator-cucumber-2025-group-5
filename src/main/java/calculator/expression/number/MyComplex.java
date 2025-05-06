@@ -34,11 +34,6 @@ public final class MyComplex extends MyNumber {
     }
 
     @Override
-    public Expression negate() {
-        return new MyComplex(real.negate(), imaginary.negate());
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

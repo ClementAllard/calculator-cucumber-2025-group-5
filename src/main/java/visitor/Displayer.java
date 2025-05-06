@@ -3,6 +3,7 @@ package visitor;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
 import calculator.expression.number.MyNumber;
+import calculator.expression.operator.Negate;
 import calculator.expression.operator.Operation;
 
 public class Displayer implements NotationVisitor {
@@ -44,10 +45,13 @@ public class Displayer implements NotationVisitor {
         }
         int subset = !operation.getArgs().isEmpty() ? sep.length() : 0;
         String formula = args.substring(0, args.toString().length() - subset);
-        String negated = !operation.getNegated() ? "" : "-";
+
+        if(operation instanceof Negate){
+            return String.format("%s %s", operation.getSymbol(), formula);
+        }
 
         return switch (notation) {
-            case INFIX -> negated + "( "+ formula.replace(sep, " "+operation.getSymbol()+" ")+" )";
+            case INFIX -> "( "+ formula.replace(sep, " "+operation.getSymbol()+" ")+" )";
             case PREFIX -> String.format("%s (%s)", operation.getSymbol(), formula);
             case POSTFIX -> String.format("(%s) %s", formula, operation.getSymbol());
         };

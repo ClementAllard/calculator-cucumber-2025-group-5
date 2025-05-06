@@ -57,11 +57,6 @@ public final class MyRational extends MyNumber {
     }
 
     @Override
-    public Expression negate() {
-        return new MyRational(-numerator, denominator);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
