@@ -16,7 +16,7 @@ import java.util.List;
  * @see Plus
  * @see Divides
  */
-public final class Times extends Operation {
+public final class Times extends BinaryOperation {
 
     /**
     * Class constructor specifying a number of Expressions to multiply.

@@ -16,7 +16,7 @@ import java.util.List;
  * @see Times
  * @see Divides
  */
-public final class Minus extends Operation {
+public final class Minus extends BinaryOperation {
 
     /**
     * Class constructor specifying a number of Expressions to subtract.
@@ -116,17 +116,17 @@ public final class Minus extends Operation {
 
     @Override
     protected MyNumber op(MyComplex l, MyInteger r) {
-        return op((MyInteger) r.negate(),(MyComplex) l.negate());
+        return new MyComplex(l.getReal().subtract(new BigDecimal(r.getValue())),l.getImaginary());
     }
 
     @Override
     protected MyNumber op(MyComplex l, MyRational r) {
-        return op((MyRational) r.negate(),(MyComplex) l.negate());
+        return new MyComplex(l.getReal().subtract(r.getReal()),l.getImaginary());
     }
 
     @Override
     protected MyNumber op(MyComplex l, MyReal r) {
-        return op((MyReal) r.negate(),(MyComplex) l.negate());
+        return new MyComplex(l.getReal().subtract(r.getValue()),l.getImaginary());
     }
 
     @Override

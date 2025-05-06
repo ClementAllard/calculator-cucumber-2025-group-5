@@ -22,11 +22,6 @@ public final class MyInteger extends MyNumber {
     }
 
     @Override
-    public Expression negate() {
-        return new MyInteger(-value);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

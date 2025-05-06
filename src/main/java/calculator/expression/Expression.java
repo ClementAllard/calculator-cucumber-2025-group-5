@@ -47,6 +47,4 @@ public interface Expression {
     * @return String display.
     */
    String toString(Notation notation);
-
-   Expression negate() throws IllegalConstruction;
 }

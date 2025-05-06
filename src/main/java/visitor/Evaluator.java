@@ -3,6 +3,7 @@ package visitor;
 import calculator.expression.Expression;
 import calculator.expression.number.MyNumber;
 import calculator.expression.operator.Operation;
+import calculator.expression.operator.UnaryOperation;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
@@ -49,19 +50,21 @@ public class Evaluator extends Visitor {
             a.accept(this);
             evaluatedArgs.add(computedValue);
         }
-        //second loop to accumulate all the evaluated subresults
-        MyNumber temp = evaluatedArgs.getFirst();
-        int max = evaluatedArgs.size();
-        for(int counter=1; counter<max; counter++) {
-            temp = o.op(temp,evaluatedArgs.get(counter));
-        }
-        // store the accumulated result
-        if(o.getNegated()) {
-            computedValue = (MyNumber) temp.negate();
+
+        if(o instanceof UnaryOperation){
+            MyNumber temp = evaluatedArgs.getFirst();
+            temp = o.op(temp);
+            computedValue = temp;
         }else{
+            //second loop to accumulate all the evaluated subresults
+            MyNumber temp = evaluatedArgs.getFirst();
+            int max = evaluatedArgs.size();
+            for(int counter=1; counter<max; counter++) {
+                temp = o.op(temp,evaluatedArgs.get(counter));
+            }
+            // store the accumulated result
             computedValue = temp;
         }
-
     }
 
     public String getErrorMessage() {

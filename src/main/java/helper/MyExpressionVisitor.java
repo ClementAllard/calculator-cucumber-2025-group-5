@@ -124,8 +124,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     public Expression visitInfixExpressionNegate(ExpressionParser.InfixExpressionNegateContext ctx) {
         try {
             Expression expression = visit(ctx.getChild(2));
-            expression = expression.negate();
-            return expression;
+            return new Negate(expression);
         } catch (IllegalConstruction e) {
             throw new RuntimeException(e); //NOSONAR
         }
@@ -166,7 +165,11 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     @Override
     public Expression visitNegateAtom(ExpressionParser.NegateAtomContext ctx) {
         MyNumber number = (MyNumber) visit(ctx.getChild(1));
-        return number.negate();
+        try {
+            return new Negate(number);
+        } catch (IllegalConstruction e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

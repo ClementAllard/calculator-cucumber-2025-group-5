@@ -63,8 +63,6 @@ public abstract class MyNumber implements Expression
     @Override
     public abstract String toString();
 
-    public abstract Expression negate();
-
     /** Two MyNumber expressions are equal if the values they contain are equal
      *
      * @param o The object to compare to

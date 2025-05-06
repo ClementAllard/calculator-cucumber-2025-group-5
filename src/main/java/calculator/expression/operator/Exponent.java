@@ -8,7 +8,7 @@ import calculator.expression.number.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-public final class Exponent extends Operation {
+public final class Exponent extends BinaryOperation {
 
     /**
      * Class constructor specifying a number of Expressions to exponentiate.
