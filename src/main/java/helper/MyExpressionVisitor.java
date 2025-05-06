@@ -216,7 +216,22 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     @Override
     public Expression visitFunctionApplication(ExpressionParser.FunctionApplicationContext ctx) {
-        return visit(ctx.getChild(1));
+        // We know the string contains at least a letter and '(', we remove '('.
+        String functionName = ctx.getChild(0).getText().substring(0, ctx.getChild(0).getText().length()-1);
+        Expression arg = visit(ctx.getChild(1));
+
+        try{
+            // need to create a tree of function if more than 2 args
+            if (ctx.getChild(3) == null){
+                return new Function(Arrays.asList(arg, new MyInteger(0)), functionName);
+            } else {
+                Expression secondArg = visit(ctx.getChild(3));
+                return new Function(Arrays.asList(arg, secondArg), functionName);
+            }
+
+        } catch (IllegalConstruction e) {
+            throw new RuntimeException(e); // NOSONAR
+        }
     }
 
     @Override

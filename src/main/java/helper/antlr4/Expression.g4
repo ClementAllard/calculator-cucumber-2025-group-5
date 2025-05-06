@@ -34,7 +34,7 @@ implicitMul : ;
 factor : '(' infixExpr ')'                                                           # InfixExpressionWithParenthesis
        | '-' '(' infixExpr ')'                                                       # InfixExpressionNegate
        | complex                                                                     # FactorNumber
-       | FUNCTION infixExpr ')'                                                      # FunctionApplication
+       | FUNCTION infixExpr (';' infixExpr)? ')'                                     # FunctionApplication
        ;
 
 

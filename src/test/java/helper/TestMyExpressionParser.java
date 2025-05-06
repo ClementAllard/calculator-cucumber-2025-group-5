@@ -164,4 +164,17 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testFunctionRad() {
+        try{
+            String piRad = "rad(180)";
+            String pi = "PI";
+            Expression piRadExpr = MyExpressionParser.parseExpression(piRad);
+            Expression piExpr = MyExpressionParser.parseExpression(pi);
+            assertEquals(c.eval(piRadExpr), c.eval(piExpr));
+        } catch (Exception _) {
+            fail();
+        }
+    }
 }
