@@ -27,31 +27,31 @@ public class StandardCalculatorController extends Controller {
 
     private static final Calculator calculator = new Calculator();
 
-    private void handleSymbolButton(String symbol) {
+    void handleSymbolButton(String symbol) {
         String currentInput = inputLabel.getText();
         inputLabel.setText(currentInput + symbol);
     }
 
-    private void handleDeleteButton() {
+    void handleDeleteButton() {
         String currentInput = inputLabel.getText();
         if (!currentInput.isEmpty()) {
             inputLabel.setText(currentInput.substring(0, currentInput.length() - 1));
         }
     }
 
-    private void handleClearButton() {
+    void handleClearButton() {
         inputLabel.setText("");
         outputLabel.setText("");
     }
 
-    private void handlePiButton() {
+    void handlePiButton() {
         String currentInput = inputLabel.getText();
         inputLabel.setText(currentInput + "PI");
     }
 
-    private void handleSQRTButton(String second) {
+    void handleSQRTButton(String second) {
         String currentInput = inputLabel.getText();
-        if (second.equals("2")) {
+        if (!second.isEmpty()) {
             inputLabel.setText(currentInput + "SQRT(" + second + ",");
 
         } else {
@@ -59,9 +59,9 @@ public class StandardCalculatorController extends Controller {
         }
     }
 
-    private void handleExpButton(String second) {
+    void handleExpButton(String second) {
         String currentInput = inputLabel.getText();
-        if (second.equals("2")) {
+        if (!second.isEmpty()) {
             inputLabel.setText(currentInput + "^" + second);
 
         } else {
@@ -69,7 +69,7 @@ public class StandardCalculatorController extends Controller {
         }
     }
 
-    private void handleEqualButton() {
+    void handleEqualButton() {
         String currentInput = inputLabel.getText();
         try {
             Expression e = MyExpressionParser.parseExpression(currentInput);
