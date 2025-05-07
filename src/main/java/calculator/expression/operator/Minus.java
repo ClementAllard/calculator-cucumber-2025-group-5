@@ -74,7 +74,8 @@ public final class Minus extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyRational l, MyInteger r) {
-        return op(r, l);
+        int minusPart = r.getValue() * l.getDenominator();
+        return new MyRational(l.getNumerator() - minusPart, l.getDenominator());
     }
 
     @Override
