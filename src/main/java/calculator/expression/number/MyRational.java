@@ -45,34 +45,25 @@ public final class MyRational extends MyNumber {
 
     @Override
     public String toString() {
-        if(denominator == 1){
+        if (denominator == 1) {
             return String.valueOf(numerator);
-        }else{
+        } else {
             boolean negative = numerator < 0;
-
-            if(negative){
-                numerator = -numerator;
-            }
-
-            int integerPart = numerator / denominator;
-            int fractionalPart = numerator % denominator;
+            int absNumerator = Math.abs(numerator);
+            int integerPart = absNumerator / denominator;
+            int fractionalPart = absNumerator % denominator;
 
             if (fractionalPart == 0) {
-                return String.valueOf(integerPart);
+                return String.valueOf(negative ? -integerPart : integerPart);
             } else if (integerPart == 0) {
-                return fractionalPart + "/" + denominator;
+                return (negative ? "-" : "") + fractionalPart + "/" + denominator;
             } else {
                 String simplification = integerPart + " " + fractionalPart + "/" + denominator;
-                if(negative){
-                    return String.format("-(%s)", simplification);
-                }else {
-                    return simplification;
-                }
-
-
+                return negative ? String.format("-(%s)", simplification) : simplification;
             }
         }
     }
+
 
     @Override
     public boolean equals(Object o) {
