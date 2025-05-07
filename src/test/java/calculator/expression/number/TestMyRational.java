@@ -51,7 +51,7 @@ class TestMyRational {
     @Test
     void TestMinusMyRational() {
         try{
-            assertEquals("2 1/2",minus.op(myRational,myInteger).toString());
+            assertEquals("-(2 1/2)",minus.op(myRational,myInteger).toString());
             assertEquals("0",minus.op(myRational,myRational).toString());
             assertEquals("-1",minus.op(myRational,myReal).toString());
             assertEquals("-2 - 4i",minus.op(myRational,myComplex).toString());

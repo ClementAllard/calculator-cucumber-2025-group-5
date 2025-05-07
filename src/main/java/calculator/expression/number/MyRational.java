@@ -32,6 +32,11 @@ public final class MyRational extends MyNumber {
         int gcd = gcd(numerator,denominator);
         this.numerator = numerator / gcd;
         this.denominator = denominator / gcd;
+
+        if(this.denominator < 0 && this.numerator > 0){
+            this.numerator = -this.numerator;
+            this.denominator = -this.denominator;
+        }
     }
 
     private int gcd(int a, int b) {
@@ -43,6 +48,12 @@ public final class MyRational extends MyNumber {
         if(denominator == 1){
             return String.valueOf(numerator);
         }else{
+            boolean negative = numerator < 0;
+
+            if(negative){
+                numerator = -numerator;
+            }
+
             int integerPart = numerator / denominator;
             int fractionalPart = numerator % denominator;
 
@@ -51,7 +62,14 @@ public final class MyRational extends MyNumber {
             } else if (integerPart == 0) {
                 return fractionalPart + "/" + denominator;
             } else {
-                return integerPart + " " + fractionalPart + "/" + denominator;
+                String simplification = integerPart + " " + fractionalPart + "/" + denominator;
+                if(negative){
+                    return String.format("-(%s)", simplification);
+                }else {
+                    return simplification;
+                }
+
+
             }
         }
     }
