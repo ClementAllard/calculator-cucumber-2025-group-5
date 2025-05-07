@@ -87,7 +87,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     @Override
     public Expression visitInfixExpressionImplicitMul(ExpressionParser.InfixExpressionImplicitMulContext ctx) {
         Expression left = visit(ctx.getChild(0));
-        Expression right = visit(ctx.getChild(2));
+        Expression right = visit(ctx.getChild(1));
 
         return getExpression(Arrays.asList(left,right),"*", Notation.INFIX);
     }
@@ -103,11 +103,6 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     @Override
     public Expression visitSingleFactor(ExpressionParser.SingleFactorContext ctx) {
-        return visitChildren(ctx);
-    }
-
-    @Override
-    public Expression visitImplicitMul(ExpressionParser.ImplicitMulContext ctx) {
         return visitChildren(ctx);
     }
 

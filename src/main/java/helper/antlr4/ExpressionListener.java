@@ -126,16 +126,6 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitSingleFactor(ExpressionParser.SingleFactorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExpressionParser#implicitMul}.
-	 * @param ctx the parse tree
-	 */
-	void enterImplicitMul(ExpressionParser.ImplicitMulContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ExpressionParser#implicitMul}.
-	 * @param ctx the parse tree
-	 */
-	void exitImplicitMul(ExpressionParser.ImplicitMulContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code InfixExpressionWithParenthesis}
 	 * labeled alternative in {@link ExpressionParser#factor}.
 	 * @param ctx the parse tree

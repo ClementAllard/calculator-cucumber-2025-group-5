@@ -80,12 +80,6 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSingleFactor(ExpressionParser.SingleFactorContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpressionParser#implicitMul}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitImplicitMul(ExpressionParser.ImplicitMulContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code InfixExpressionWithParenthesis}
 	 * labeled alternative in {@link ExpressionParser#factor}.
 	 * @param ctx the parse tree

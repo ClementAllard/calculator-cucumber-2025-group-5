@@ -24,10 +24,8 @@ infixExpr : infixExpr ('+' | '-') term                                          
 
 term : term ('*' | '/') factor                                                      # InfixExpressionMulDiv
      | factor                                                                       # SingleFactor
-     | factor implicitMul factor                                                    # InfixExpressionImplicitMul
+     | factor factor                                                                # InfixExpressionImplicitMul
      ;
-
-implicitMul : ;
 
 // ATOM
 
