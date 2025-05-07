@@ -18,7 +18,7 @@ public class ExpressionParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, REAL=12, INTEGER=13, WS=14, FUNCTION=15, PI=16;
+		T__9=10, REAL=11, INTEGER=12, WS=13, FUNCTION=14, PI=15;
 	public static final int
 		RULE_expr = 0, RULE_prefixExpr = 1, RULE_postfixExpr = 2, RULE_infixExpr = 3, 
 		RULE_term = 4, RULE_implicitMul = 5, RULE_factor = 6, RULE_complex = 7, 
@@ -33,15 +33,15 @@ public class ExpressionParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'+'", "'-'", "'*'", "'/'", "'('", "','", "')'", "';'", "'i'", 
-			"'e'", "'E'"
+			null, "'+'", "'-'", "'*'", "'/'", "'('", "','", "')'", "'i'", "'e'", 
+			"'E'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, null, null, null, null, 
-			"REAL", "INTEGER", "WS", "FUNCTION", "PI"
+			null, null, null, null, null, null, null, null, null, null, null, "REAL", 
+			"INTEGER", "WS", "FUNCTION", "PI"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -275,7 +275,7 @@ public class ExpressionParser extends Parser {
 					setState(40); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 77918L) != 0) );
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 39006L) != 0) );
 				setState(42);
 				match(T__6);
 				}
@@ -447,7 +447,7 @@ public class ExpressionParser extends Parser {
 					setState(63); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 77926L) != 0) );
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 39014L) != 0) );
 				setState(65);
 				match(T__6);
 				setState(66);
@@ -912,7 +912,7 @@ public class ExpressionParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class FunctionApplicationContext extends FactorContext {
+	public static class UnaryFunctionContext extends FactorContext {
 		public TerminalNode FUNCTION() { return getToken(ExpressionParser.FUNCTION, 0); }
 		public List<InfixExprContext> infixExpr() {
 			return getRuleContexts(InfixExprContext.class);
@@ -920,18 +920,18 @@ public class ExpressionParser extends Parser {
 		public InfixExprContext infixExpr(int i) {
 			return getRuleContext(InfixExprContext.class,i);
 		}
-		public FunctionApplicationContext(FactorContext ctx) { copyFrom(ctx); }
+		public UnaryFunctionContext(FactorContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).enterFunctionApplication(this);
+			if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).enterUnaryFunction(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitFunctionApplication(this);
+			if ( listener instanceof ExpressionListener ) ((ExpressionListener)listener).exitUnaryFunction(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitFunctionApplication(this);
+			if ( visitor instanceof ExpressionVisitor ) return ((ExpressionVisitor<? extends T>)visitor).visitUnaryFunction(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1019,7 +1019,7 @@ public class ExpressionParser extends Parser {
 				}
 				break;
 			case 4:
-				_localctx = new FunctionApplicationContext(_localctx);
+				_localctx = new UnaryFunctionContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(123);
@@ -1029,10 +1029,10 @@ public class ExpressionParser extends Parser {
 				setState(127);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==T__7) {
+				if (_la==T__5) {
 					{
 					setState(125);
-					match(T__7);
+					match(T__5);
 					setState(126);
 					infixExpr(0);
 					}
@@ -1138,7 +1138,7 @@ public class ExpressionParser extends Parser {
 				setState(135);
 				negatenumber();
 				setState(136);
-				match(T__8);
+				match(T__7);
 				}
 				break;
 			case 2:
@@ -1234,7 +1234,7 @@ public class ExpressionParser extends Parser {
 				negatenumber();
 				setState(142);
 				_la = _input.LA(1);
-				if ( !(_la==T__9 || _la==T__10) ) {
+				if ( !(_la==T__8 || _la==T__9) ) {
 				_errHandler.recoverInline(this);
 				}
 				else {
@@ -1625,7 +1625,7 @@ public class ExpressionParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0010\u00a6\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
+		"\u0004\u0001\u000f\u00a6\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
 		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004"+
 		"\u0002\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007"+
 		"\u0002\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b"+
@@ -1653,7 +1653,7 @@ public class ExpressionParser extends Parser {
 		"\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0000\u0003"+
 		"\u0004\u0006\b\f\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014"+
 		"\u0016\u0000\u0004\u0001\u0000\u0001\u0004\u0001\u0000\u0001\u0002\u0001"+
-		"\u0000\u0003\u0004\u0001\u0000\n\u000b\u00b3\u0000\u001b\u0001\u0000\u0000"+
+		"\u0000\u0003\u0004\u0001\u0000\t\n\u00b3\u0000\u001b\u0001\u0000\u0000"+
 		"\u0000\u00024\u0001\u0000\u0000\u0000\u0004E\u0001\u0000\u0000\u0000\u0006"+
 		"T\u0001\u0000\u0000\u0000\be\u0001\u0000\u0000\u0000\no\u0001\u0000\u0000"+
 		"\u0000\f\u0083\u0001\u0000\u0000\u0000\u000e\u008b\u0001\u0000\u0000\u0000"+
@@ -1702,14 +1702,14 @@ public class ExpressionParser extends Parser {
 		"st\u0005\u0007\u0000\u0000t\u0084\u0001\u0000\u0000\u0000uv\u0005\u0002"+
 		"\u0000\u0000vw\u0005\u0005\u0000\u0000wx\u0003\u0006\u0003\u0000xy\u0005"+
 		"\u0007\u0000\u0000y\u0084\u0001\u0000\u0000\u0000z\u0084\u0003\u000e\u0007"+
-		"\u0000{|\u0005\u000f\u0000\u0000|\u007f\u0003\u0006\u0003\u0000}~\u0005"+
-		"\b\u0000\u0000~\u0080\u0003\u0006\u0003\u0000\u007f}\u0001\u0000\u0000"+
+		"\u0000{|\u0005\u000e\u0000\u0000|\u007f\u0003\u0006\u0003\u0000}~\u0005"+
+		"\u0006\u0000\u0000~\u0080\u0003\u0006\u0003\u0000\u007f}\u0001\u0000\u0000"+
 		"\u0000\u007f\u0080\u0001\u0000\u0000\u0000\u0080\u0081\u0001\u0000\u0000"+
 		"\u0000\u0081\u0082\u0005\u0007\u0000\u0000\u0082\u0084\u0001\u0000\u0000"+
 		"\u0000\u0083q\u0001\u0000\u0000\u0000\u0083u\u0001\u0000\u0000\u0000\u0083"+
 		"z\u0001\u0000\u0000\u0000\u0083{\u0001\u0000\u0000\u0000\u0084\r\u0001"+
 		"\u0000\u0000\u0000\u0085\u0086\u0003\u0012\t\u0000\u0086\u0087\u0007\u0001"+
-		"\u0000\u0000\u0087\u0088\u0003\u0012\t\u0000\u0088\u0089\u0005\t\u0000"+
+		"\u0000\u0000\u0087\u0088\u0003\u0012\t\u0000\u0088\u0089\u0005\b\u0000"+
 		"\u0000\u0089\u008c\u0001\u0000\u0000\u0000\u008a\u008c\u0003\u0010\b\u0000"+
 		"\u008b\u0085\u0001\u0000\u0000\u0000\u008b\u008a\u0001\u0000\u0000\u0000"+
 		"\u008c\u000f\u0001\u0000\u0000\u0000\u008d\u008e\u0003\u0012\t\u0000\u008e"+
@@ -1721,12 +1721,12 @@ public class ExpressionParser extends Parser {
 		"\u0000\u0000\u0098\u009a\u0003\u0014\n\u0000\u0099\u0094\u0001\u0000\u0000"+
 		"\u0000\u0099\u0096\u0001\u0000\u0000\u0000\u0099\u0097\u0001\u0000\u0000"+
 		"\u0000\u009a\u0013\u0001\u0000\u0000\u0000\u009b\u00a0\u0003\u0016\u000b"+
-		"\u0000\u009c\u00a0\u0005\r\u0000\u0000\u009d\u00a0\u0005\f\u0000\u0000"+
-		"\u009e\u00a0\u0005\u0010\u0000\u0000\u009f\u009b\u0001\u0000\u0000\u0000"+
+		"\u0000\u009c\u00a0\u0005\f\u0000\u0000\u009d\u00a0\u0005\u000b\u0000\u0000"+
+		"\u009e\u00a0\u0005\u000f\u0000\u0000\u009f\u009b\u0001\u0000\u0000\u0000"+
 		"\u009f\u009c\u0001\u0000\u0000\u0000\u009f\u009d\u0001\u0000\u0000\u0000"+
 		"\u009f\u009e\u0001\u0000\u0000\u0000\u00a0\u0015\u0001\u0000\u0000\u0000"+
-		"\u00a1\u00a2\u0005\r\u0000\u0000\u00a2\u00a3\u0005\u0004\u0000\u0000\u00a3"+
-		"\u00a4\u0005\r\u0000\u0000\u00a4\u0017\u0001\u0000\u0000\u0000\u0013\u001b"+
+		"\u00a1\u00a2\u0005\f\u0000\u0000\u00a2\u00a3\u0005\u0004\u0000\u0000\u00a3"+
+		"\u00a4\u0005\f\u0000\u0000\u00a4\u0017\u0001\u0000\u0000\u0000\u0013\u001b"+
 		"#(14:?EKQ\\el\u007f\u0083\u008b\u0092\u0099\u009f";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());

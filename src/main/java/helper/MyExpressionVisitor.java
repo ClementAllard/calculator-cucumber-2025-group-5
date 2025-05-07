@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
@@ -215,19 +216,17 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     }
 
     @Override
-    public Expression visitFunctionApplication(ExpressionParser.FunctionApplicationContext ctx) {
+    public Expression visitUnaryFunction(ExpressionParser.UnaryFunctionContext ctx) {
         // We know the string contains at least a letter and '(', we remove '('.
         String functionName = ctx.getChild(0).getText().substring(0, ctx.getChild(0).getText().length()-1);
         Expression arg = visit(ctx.getChild(1));
 
-        try{
-            // need to create a tree of function if more than 2 args
-            if (ctx.getChild(3) == null){
-                return new Function(Arrays.asList(arg, new MyInteger(0)), functionName);
-            } else {
-                Expression secondArg = visit(ctx.getChild(3));
-                return new Function(Arrays.asList(arg, secondArg), functionName);
-            }
+        try {
+            return switch (functionName) {
+                case "rad" -> new FunctionRad(Collections.singletonList(arg), functionName);
+                case "degree" -> new FunctionDegree(Collections.singletonList(arg), functionName);
+                default -> throw new IllegalConstruction();
+            };
 
         } catch (IllegalConstruction e) {
             throw new RuntimeException(e); // NOSONAR

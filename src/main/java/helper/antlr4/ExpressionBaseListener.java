@@ -185,13 +185,13 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionApplication(ExpressionParser.FunctionApplicationContext ctx) { }
+	@Override public void enterUnaryFunction(ExpressionParser.UnaryFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionApplication(ExpressionParser.FunctionApplicationContext ctx) { }
+	@Override public void exitUnaryFunction(ExpressionParser.UnaryFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

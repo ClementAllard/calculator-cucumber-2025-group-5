@@ -47,10 +47,10 @@ public class Displayer implements NotationVisitor {
         int subset = !operation.getArgs().isEmpty() ? sep.length() : 0;
         String formula = args.substring(0, args.toString().length() - subset);
 
-        if(operation instanceof UnaryOperation){
-            return String.format("%s %s", operation.getSymbol(), formula);
-        } else if (operation instanceof Function){
+        if (operation instanceof Function){
             return String.format("%s(%s)", operation.getSymbol(), formula);
+        } else if(operation instanceof UnaryOperation){
+            return String.format("%s %s", operation.getSymbol(), formula);
         }
 
         return switch (notation) {

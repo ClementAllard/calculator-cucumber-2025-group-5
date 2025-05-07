@@ -172,17 +172,17 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitFactorNumber(ExpressionParser.FactorNumberContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code FunctionApplication}
+	 * Enter a parse tree produced by the {@code UnaryFunction}
 	 * labeled alternative in {@link ExpressionParser#factor}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionApplication(ExpressionParser.FunctionApplicationContext ctx);
+	void enterUnaryFunction(ExpressionParser.UnaryFunctionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code FunctionApplication}
+	 * Exit a parse tree produced by the {@code UnaryFunction}
 	 * labeled alternative in {@link ExpressionParser#factor}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionApplication(ExpressionParser.FunctionApplicationContext ctx);
+	void exitUnaryFunction(ExpressionParser.UnaryFunctionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ComplexAtom}
 	 * labeled alternative in {@link ExpressionParser#complex}.
