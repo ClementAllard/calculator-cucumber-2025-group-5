@@ -174,6 +174,18 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitUnaryFunction(ExpressionParser.UnaryFunctionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code BinaryFunction}
+	 * labeled alternative in {@link ExpressionParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void enterBinaryFunction(ExpressionParser.BinaryFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BinaryFunction}
+	 * labeled alternative in {@link ExpressionParser#factor}.
+	 * @param ctx the parse tree
+	 */
+	void exitBinaryFunction(ExpressionParser.BinaryFunctionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ComplexAtom}
 	 * labeled alternative in {@link ExpressionParser#complex}.
 	 * @param ctx the parse tree

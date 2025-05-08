@@ -223,7 +223,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "inv" -> new FunctionInverse(Collections.singletonList(arg), functionName);
                 case "log" -> new FunctionLog(Collections.singletonList(arg), functionName);
                 case "ln" -> new FunctionLn(Collections.singletonList(arg), functionName);
-                default -> throw new IllegalConstruction();
+                default -> throw new IllegalArgumentException("Unknow function " + functionName+ " of arity 1");
             };
 
         } catch (IllegalConstruction e) {
@@ -239,6 +239,24 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     @Override
     public Expression visitENumber(ExpressionParser.ENumberContext ctx) {
         return new MyReal(BigDecimal.valueOf(Math.E));
+    }
+
+    @Override
+    public Expression visitBinaryFunction(ExpressionParser.BinaryFunctionContext ctx) {
+        // We know the string contains at least a letter and '(', we remove '('.
+        String functionName = ctx.getChild(0).getText().substring(0, ctx.getChild(0).getText().length()-1);
+        Expression arg1 = visit(ctx.getChild(1));
+        Expression arg2 = visit(ctx.getChild(3));
+
+        try {
+            return switch (functionName) {
+                case "log" -> new FunctionLogBinary(Arrays.asList(arg1, arg2), functionName);
+                default -> throw new IllegalArgumentException("Unknow function " + functionName+ " of arity 2");
+            };
+
+        } catch (IllegalConstruction e) {
+            throw new RuntimeException(e); // NOSONAR
+        }
     }
 
 }

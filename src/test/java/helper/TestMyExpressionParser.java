@@ -331,4 +331,34 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testFunctionLogBinary(){
+        try {
+            Expression expression = MyExpressionParser.parseExpression("log(10,100)");
+            final Expression result = MyExpressionParser.parseExpression("2");
+            assertEquals(c.eval(result), c.eval(expression));
+            expression = MyExpressionParser.parseExpression("log(2.0,4.0)");
+            assertEquals(c.eval(result), c.eval(expression));
+            expression = MyExpressionParser.parseExpression("log(2.0,4.0)");
+            assertEquals(c.eval(result), c.eval(expression));
+
+            final Expression errorExpression1 = MyExpressionParser.parseExpression("log(-2,-4)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(errorExpression1));
+            final Expression errorExpression2 = MyExpressionParser.parseExpression("log(1,4.0)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(errorExpression2));
+            final Expression errorExpression3 = MyExpressionParser.parseExpression("log(1+1i,4)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(errorExpression3));
+            final Expression errorExpression4 = MyExpressionParser.parseExpression("log(0,4.0)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(errorExpression4));
+            final Expression errorExpression5 = MyExpressionParser.parseExpression("log(2,0)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(errorExpression5));
+            final Expression errorExpression6 = MyExpressionParser.parseExpression("log(2+1i,4)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(errorExpression6));
+            final Expression errorExpression7 = MyExpressionParser.parseExpression("log(2,4+1i)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(errorExpression7));
+        } catch (Exception _) {
+            fail();
+        }
+    }
 }

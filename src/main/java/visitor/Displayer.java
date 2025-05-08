@@ -4,6 +4,7 @@ import calculator.expression.Expression;
 import calculator.expression.Notation;
 import calculator.expression.number.MyNumber;
 import calculator.expression.operator.Function;
+import calculator.expression.operator.FunctionBinary;
 import calculator.expression.operator.Operation;
 import calculator.expression.operator.UnaryOperation;
 
@@ -47,7 +48,7 @@ public class Displayer implements NotationVisitor {
         int subset = !operation.getArgs().isEmpty() ? sep.length() : 0;
         String formula = args.substring(0, args.toString().length() - subset);
 
-        if (operation instanceof Function){
+        if (operation instanceof Function || operation instanceof FunctionBinary) {
             return String.format("%s(%s)", operation.getSymbol(), formula);
         } else if(operation instanceof UnaryOperation){
             return String.format("%s %s", operation.getSymbol(), formula);

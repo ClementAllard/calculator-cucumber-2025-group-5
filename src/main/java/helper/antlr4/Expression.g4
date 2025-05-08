@@ -32,7 +32,8 @@ term : term ('*' | '/') factor                                                  
 factor : '(' infixExpr ')'                                                           # InfixExpressionWithParenthesis
        | '-' '(' infixExpr ')'                                                       # InfixExpressionNegate
        | complex                                                                     # FactorNumber
-       | FUNCTION infixExpr (',' infixExpr)? ')'                                     # UnaryFunction
+       | FUNCTION infixExpr ')'                                                      # UnaryFunction
+       | FUNCTION infixExpr ',' infixExpr ')'                                        # BinaryFunction
        ;
 
 

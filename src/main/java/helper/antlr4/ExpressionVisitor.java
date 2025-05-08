@@ -108,6 +108,13 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUnaryFunction(ExpressionParser.UnaryFunctionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code BinaryFunction}
+	 * labeled alternative in {@link ExpressionParser#factor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBinaryFunction(ExpressionParser.BinaryFunctionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ComplexAtom}
 	 * labeled alternative in {@link ExpressionParser#complex}.
 	 * @param ctx the parse tree
