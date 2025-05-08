@@ -63,6 +63,6 @@ rational : INTEGER '/' INTEGER                                                  
 
 REAL : [0-9]+ '.' [0-9]+;
 INTEGER: [0-9]+;
-WS: [ \t\r\n,]+ -> skip;
-FUNCTION: [a-zA-Z_][a-zA-Z0-9_]* ' '* '(';
+WS: [ \t\r\n]+ -> skip;
+FUNCTION: [a-zA-Z_][a-zA-Z0-9_]* '(';
 PI: ('pi' | 'PI');
