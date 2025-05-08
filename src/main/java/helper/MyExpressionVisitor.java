@@ -222,6 +222,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "degree" -> new FunctionDegree(Collections.singletonList(arg), functionName);
                 case "inv" -> new FunctionInverse(Collections.singletonList(arg), functionName);
                 case "log" -> new FunctionLog(Collections.singletonList(arg), functionName);
+                case "ln" -> new FunctionLn(Collections.singletonList(arg), functionName);
                 default -> throw new IllegalConstruction();
             };
 
@@ -233,6 +234,11 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     @Override
     public Expression visitPiNumber(ExpressionParser.PiNumberContext ctx){
         return new MyReal(BigDecimal.valueOf(Math.PI));
+    }
+
+    @Override
+    public Expression visitENumber(ExpressionParser.ENumberContext ctx) {
+        return new MyReal(BigDecimal.valueOf(Math.E));
     }
 
 }

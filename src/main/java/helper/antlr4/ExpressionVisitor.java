@@ -122,6 +122,13 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNotComplex(ExpressionParser.NotComplexContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ENumber}
+	 * labeled alternative in {@link ExpressionParser#scientific}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitENumber(ExpressionParser.ENumberContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ScientificAtom}
 	 * labeled alternative in {@link ExpressionParser#scientific}.
 	 * @param ctx the parse tree

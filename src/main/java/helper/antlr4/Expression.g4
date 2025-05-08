@@ -41,7 +41,8 @@ complex : negatenumber ('+'|'-') negatenumber 'i'                               
         | scientific                                                                 # NotComplex
         ;
 
-scientific : negatenumber ('e'|'E') negatenumber                                     # ScientificAtom
+scientific : ('e' | 'E')                                                             # ENumber
+           | negatenumber ('e'|'E') negatenumber                                     # ScientificAtom
            | negatenumber                                                            # NotScientific
            ;
 
