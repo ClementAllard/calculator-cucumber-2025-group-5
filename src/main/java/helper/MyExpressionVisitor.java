@@ -221,6 +221,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "rad" -> new FunctionRad(Collections.singletonList(arg), functionName);
                 case "degree" -> new FunctionDegree(Collections.singletonList(arg), functionName);
                 case "inv" -> new FunctionInverse(Collections.singletonList(arg), functionName);
+                case "log" -> new FunctionLog(Collections.singletonList(arg), functionName);
                 default -> throw new IllegalConstruction();
             };
 

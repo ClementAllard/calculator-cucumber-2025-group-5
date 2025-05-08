@@ -116,25 +116,15 @@ class TestMyExpressionParser {
         String expressionNotAExpression = "(4 + 5 + 6) efdsvbdrdb";
         String expressionTwoOperatorInARow = "*(+(4 5 6) +(7 //(5 2 7)) 9) + 5";
 
-        assertThrowsExactly(IllegalSyntax.class, ()->{
-            MyExpressionParser.parseExpression(expressionParenthesesNotEqual);
-        });
+        assertThrowsExactly(IllegalSyntax.class, ()-> MyExpressionParser.parseExpression(expressionParenthesesNotEqual));
 
-        assertThrowsExactly(IllegalSyntax.class, ()->{
-            MyExpressionParser.parseExpression(expressionWithOtherTokenInEnd);
-        });
+        assertThrowsExactly(IllegalSyntax.class, ()-> MyExpressionParser.parseExpression(expressionWithOtherTokenInEnd));
 
-        assertThrowsExactly(IllegalSyntax.class, ()->{
-            MyExpressionParser.parseExpression(expressionNotationChange);
-        });
+        assertThrowsExactly(IllegalSyntax.class, ()-> MyExpressionParser.parseExpression(expressionNotationChange));
 
-        assertThrowsExactly(IllegalSyntax.class, ()->{
-            MyExpressionParser.parseExpression(expressionNotAExpression);
-        });
+        assertThrowsExactly(IllegalSyntax.class, ()-> MyExpressionParser.parseExpression(expressionNotAExpression));
 
-        assertThrowsExactly(IllegalSyntax.class, ()->{
-            MyExpressionParser.parseExpression(expressionTwoOperatorInARow);
-        });
+        assertThrowsExactly(IllegalSyntax.class, ()-> MyExpressionParser.parseExpression(expressionTwoOperatorInARow));
     }
 
     @Test
@@ -230,6 +220,49 @@ class TestMyExpressionParser {
             inverse = MyExpressionParser.parseExpression("inv(4-3i)");
             response = MyExpressionParser.parseExpression("4/25 - 0+3i / 25");
             assertEquals(c.eval(inverse), c.eval(response));
+        } catch (Exception _) {
+            fail();
+        }
+    }
+
+    @Test
+    void testFunctionLog(){
+        try {
+            // positive rational
+            Expression inverse = MyExpressionParser.parseExpression("log(10/1)");
+            Expression response = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(inverse), c.eval(response));
+
+            // negative rational
+            // domain error here!
+            final Expression inverse2 = MyExpressionParser.parseExpression("log(-3/4)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(inverse2));
+
+            // positive integer
+            // Forces real value comparison
+            inverse = MyExpressionParser.parseExpression("log(100/1)");
+            response = MyExpressionParser.parseExpression("2/1");
+            assertEquals(c.eval(inverse), c.eval(response));
+
+            // negative integer
+            final Expression inverse3 = MyExpressionParser.parseExpression("log(-2)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(inverse3));
+
+            // positive real
+            inverse = MyExpressionParser.parseExpression("log(100.0)");
+            response = MyExpressionParser.parseExpression("2.0");
+            assertEquals(c.eval(inverse), c.eval(response));
+
+            // negative real
+            // error here.
+            final Expression inverse4 = MyExpressionParser.parseExpression("log(-0.5)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(inverse4));
+
+            // complex
+            //error here.
+            final Expression inverse5 = MyExpressionParser.parseExpression("log(4-3i)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(inverse5));
+
         } catch (Exception _) {
             fail();
         }
