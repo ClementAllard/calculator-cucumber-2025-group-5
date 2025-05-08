@@ -72,7 +72,7 @@ class TestMyExpressionParser {
     }
 
     @Test
-    void testSchemaExpressionParsing() throws IllegalConstruction {
+    void testSchemaExpressionParsing() {
         try{
             String shemaExpressionString = "*(+(4 5 6) +(7 /(5 2 7)) 9)";
 
@@ -186,6 +186,50 @@ class TestMyExpressionParser {
             Expression piRadExpr = MyExpressionParser.parseExpression(expression);
             Expression piExpr = MyExpressionParser.parseExpression(halfTurn);
             assertEquals(c.eval(piRadExpr), c.eval(piExpr));
+        } catch (Exception _) {
+            fail();
+        }
+    }
+
+    @Test
+    void testFunctionInverse(){
+        try {
+            // positive rational
+            Expression inverse = MyExpressionParser.parseExpression("inv(3/4)");
+            Expression response = MyExpressionParser.parseExpression("4/3");
+            assertEquals(c.eval(inverse), c.eval(response));
+
+            // negative rational
+            inverse = MyExpressionParser.parseExpression("inv(-3/4)");
+            response = MyExpressionParser.parseExpression("-4/3");
+            assertEquals(c.eval(inverse), c.eval(response));
+
+            // positive integer
+            // Forces real value comparison
+            inverse = MyExpressionParser.parseExpression("0.0 + inv(2)");
+            response = MyExpressionParser.parseExpression("0.0 + 1/2");
+            assertEquals(c.eval(inverse), c.eval(response));
+
+            // negative integer
+            // Forces real value comparison
+            inverse = MyExpressionParser.parseExpression("0.0 + inv(-2)");
+            response = MyExpressionParser.parseExpression("0.0 + -1/2");
+            assertEquals(c.eval(inverse), c.eval(response));
+
+            // positive real
+            inverse = MyExpressionParser.parseExpression("inv(0.5)");
+            response = MyExpressionParser.parseExpression("2.0");
+            assertEquals(c.eval(inverse), c.eval(response));
+
+            // negative real
+            inverse = MyExpressionParser.parseExpression("inv(-0.5)");
+            response = MyExpressionParser.parseExpression("-2.0");
+            assertEquals(c.eval(inverse), c.eval(response));
+
+            // complex
+            inverse = MyExpressionParser.parseExpression("inv(4-3i)");
+            response = MyExpressionParser.parseExpression("4/25 - 0+3i / 25");
+            assertEquals(c.eval(inverse), c.eval(response));
         } catch (Exception _) {
             fail();
         }
