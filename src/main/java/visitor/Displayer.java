@@ -1,9 +1,12 @@
 package visitor;
 
 import calculator.expression.Expression;
-import calculator.expression.MyNumber;
 import calculator.expression.Notation;
+import calculator.expression.number.MyNumber;
+import calculator.expression.operator.Function;
+import calculator.expression.operator.FunctionBinary;
 import calculator.expression.operator.Operation;
+import calculator.expression.operator.UnaryOperation;
 
 public class Displayer implements NotationVisitor {
 
@@ -23,7 +26,7 @@ public class Displayer implements NotationVisitor {
      * @return The string that represents the number.
      */
     @Override
-    public String visit(MyNumber n){
+    public String visit(MyNumber n) {
         return n.toString();
     }
 
@@ -44,6 +47,12 @@ public class Displayer implements NotationVisitor {
         }
         int subset = !operation.getArgs().isEmpty() ? sep.length() : 0;
         String formula = args.substring(0, args.toString().length() - subset);
+
+        if (operation instanceof Function || operation instanceof FunctionBinary) {
+            return String.format("%s(%s)", operation.getSymbol(), formula);
+        } else if(operation instanceof UnaryOperation){
+            return String.format("%s %s", operation.getSymbol(), formula);
+        }
 
         return switch (notation) {
             case INFIX -> "( "+ formula.replace(sep, " "+operation.getSymbol()+" ")+" )";

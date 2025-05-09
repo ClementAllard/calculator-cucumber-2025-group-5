@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import calculator.expression.Expression;
 import calculator.IllegalConstruction;
-import calculator.expression.MyNumber;
 import calculator.expression.Notation;
+import calculator.expression.number.MyInteger;
+import calculator.expression.number.MyReal;
 import org.junit.jupiter.api.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +24,7 @@ class TestDivides {
 
 	@BeforeEach
 	void setUp() {
-		  params = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
+		  params = Arrays.asList(new MyInteger(value1), new MyInteger(value2));
 		  try {
 		  	op = new Divides(params);
 			op.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
@@ -50,7 +52,7 @@ class TestDivides {
 	@Test
 	void testEquals() {
 		// Two similar expressions, constructed separately (and using different constructors) should be equal
-		List<Expression> p = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
+		List<Expression> p = Arrays.asList(new MyInteger(value1), new MyInteger(value2));
 		try {
 			Divides d = new Divides(p, Notation.INFIX);
 			assertEquals(op, d);
@@ -67,7 +69,7 @@ class TestDivides {
 	@Test
 	void testHashCode() {
 		// Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
-		List<Expression> p = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
+		List<Expression> p = Arrays.asList(new MyInteger(value1), new MyInteger(value2));
 		try {
 			Divides e = new Divides(p, Notation.INFIX);
 			assertEquals(e.hashCode(), op.hashCode());
@@ -84,10 +86,36 @@ class TestDivides {
 	@Test
 	void zeroDivisionError() {
 		// Division by zero should throw an ArithmeticException to be handled by the Evaluator
-		params = Arrays.asList(new MyNumber(value1), new MyNumber(0));
+		params = Arrays.asList(new MyInteger(value1), new MyInteger(0));
 		try {
 			op = new Divides(params);
-			assertThrows(ArithmeticException.class, () -> op.op(value1, 0));
+			assertThrows(ArithmeticException.class, () -> op.op(new MyInteger(value1), new MyInteger(0)));
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
+	@Test
+	void zeroDivisionRealError() {
+		MyReal real1 = new MyReal(new BigDecimal("0.0"));
+		MyReal real2 = new MyReal(new BigDecimal("1.0"));
+		MyReal real3 = new MyReal(new BigDecimal("-1.0"));
+
+		try {
+			params = Arrays.asList(real1, real1);
+			op = new Divides(params);
+			ArithmeticException thrown = assertThrows(ArithmeticException.class, () -> op.op(real1,real1));
+			assertEquals("NaN", thrown.getMessage());
+
+			params = Arrays.asList(real2, real1);
+			op = new Divides(params);
+			thrown = assertThrows(ArithmeticException.class, () -> op.op(real2,real1));
+			assertEquals("+ Infinity", thrown.getMessage());
+
+			params = Arrays.asList(real3, real1);
+			op = new Divides(params);
+			thrown = assertThrows(ArithmeticException.class, () -> op.op(real3,real1));
+			assertEquals("- Infinity", thrown.getMessage());
 		} catch (IllegalConstruction e) {
 			fail();
 		}

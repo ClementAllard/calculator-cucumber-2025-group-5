@@ -1,59 +1,64 @@
 grammar Expression;
 // commande pour regen le parser : mvn clean generate-sources
+expr : (infixExpr | prefixExpr | postfixExpr ) EOF;
 
-expr : (prefixExpr | postfixExpr | infixExpr ) EOF;
+// PREFIX
 
-prefixExpr : ('+' | '-' | '*' | '/' | 'and' | 'or' | 'xor' | '=>' | '<=>' | 'not') '(' prefixExpr prefixExpr+ ')'                 #PrefixOperationWithParenthesis
-           | ('+' | '-' | '*' | '/' | 'and' | 'or' | 'xor' | '=>' | '<=>' | 'not') prefixExpr prefixExpr+                         #PrefixOperation
-           | number                                                                 # PrefixNumber
+prefixExpr : ('+' | '-' | '*' | '/') '(' prefixExpr (','? prefixExpr)+ ')'          #PrefixExpression
+           | ('+' | '-' | '*' | '/') prefixExpr prefixExpr+                         #PrefixExpression
+           | complex                                                                #PrefixNumber
            ;
 
-postfixExpr : '(' postfixExpr postfixExpr+ ')' ('+' | '-' | '*' | '/' | 'and' | 'or' | 'xor' | '=>' | '<=>' | 'not')              #PostfixOperationWithParenthesis
-           |  postfixExpr postfixExpr+ ('+' | '-' | '*' | '/' | 'and' | 'or' | 'xor' | '=>' | '<=>' | 'not')                      #PostfixOperation
-           | number                                                                 # PostfixNumber
-           ;
+// POSTFIX
 
-infixExpr : infixExpr ('+' | '-') term                                              # AddSub
-          | infixExpr ('and' | 'or' | 'xor' | '=>' | '<=>') term                    # LogicalOp
-          | infixExpr ('&' | '|' | '^' | '<<' | '>>') term                          # BitwiseOp
+postfixExpr : '(' postfixExpr (','? postfixExpr)+ ')' ('+' | '-' | '*' | '/')       #PostfixExpression
+            | postfixExpr postfixExpr+ ('+' | '-' | '*' | '/')                      #PostfixExpression
+            | complex                                                               #PostfixNumber
+            ;
+
+// INFIX
+
+infixExpr : infixExpr ('+' | '-') term                                              # InfixExpressionAddSub
           | term                                                                    # SingleTerm
           ;
 
-term : term ('*' | '/') factor                                                      # MulDiv
+term : term ('*' | '/') factor                                                      # InfixExpressionMulDiv
      | factor                                                                       # SingleFactor
-     | factor implicitMul factor                                                    # ImplicitMultiplication
+     | factor factor                                                                # InfixExpressionImplicitMul
      ;
 
-implicitMul : ;
+// ATOM
 
-factor : 'not' factor                                                               # NotFactor
-       | number                                                                     # NumberFactor
-       | BOOL                                                                       # BoolFactor
-       | '(' infixExpr ')'                                                          # ParenthesizedExpression
+factor : '(' infixExpr ')'                                                           # InfixExpressionWithParenthesis
+       | '-' '(' infixExpr ')'                                                       # InfixExpressionNegate
+       | complex                                                                     # FactorNumber
+       | FUNCTION infixExpr ')'                                                      # UnaryFunction
+       | FUNCTION infixExpr ',' infixExpr ')'                                        # BinaryFunction
        ;
 
-number: '-'? NUMBER                                                                 # SignedNumber
-      | BINARY                                                                      # BinaryNumber
-      | OCTAL                                                                       # OctalNumber
-      | HEXA                                                                        # HexadecimalNumber
-      ;
 
-BOOL: 'T' | 'F' | '0' | '1';
-BINARY: '0b' [01]+;
-OCTAL: '0o' [0-7]+;
-HEXA: '0x' [0-9a-fA-F]+;
-NUMBER: [0-9]+;
+// Not in number for not have error left-recursive
+complex : number ('+'|'-') number 'i'                                                # ComplexAtom
+        | number                                                                     # NotComplex
+        ;
 
-AND: 'and';
-OR: 'or';
-NOT: 'not';
-XOR: 'xor';
-IMPLIES: '=>';
-EQUIV: '<=>';
-SHIFT_LEFT: '<<';
-SHIFT_RIGHT: '>>';
-BIT_AND: '&';
-BIT_OR: '|';
-BIT_XOR: '^';
+number : ('-' | '+')? numberatom                                                    # SimpleAtom
+       ;
 
-WS: [ \t\r\n,]+ -> skip;
+numberatom : rational                                                               # RationalNumber
+           | INTEGER                                                                # IntergerAtom
+           | REAL                                                                   # RealAtom
+           | PI                                                                     # PiNumber
+           | E                                                                      # ENumber
+           | numberatom E number                                                    # ScientificAtom
+           ;
+
+rational : INTEGER '/' INTEGER                                                      # RationalAtom
+         ;
+
+REAL : [0-9]+ '.' [0-9]+;
+INTEGER: [0-9]+;
+WS: [ \t\r\n]+ -> skip;
+FUNCTION: [a-zA-Z_][a-zA-Z0-9_]* '(';
+PI: ('pi' | 'PI');
+E : ('e' | 'E');

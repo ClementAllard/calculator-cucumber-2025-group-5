@@ -1,8 +1,10 @@
 package calculator;
 
+import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import helper.IllegalSyntax;
 import helper.MyExpressionParser;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.Scanner;
 
@@ -36,21 +38,90 @@ public class CLI {
 
 			switch (input){
 				case "help":
-					System.out.println("Basic usage: write basic expression like add, subtract, multiply, divide with infix,postfix,prefix notation"); //NOSONAR
+					printHelpDetails();
 					break;
 				case "exit":
 					return;
+				case "scale":
+					scaleCommand(scanner);
+					break;
+				case "scientific":
+					System.out.println("Scientific mode :"); //NOSONAR
+					calculator.setScientificNotation(true);
+					break;
+				case "normal":
+					System.out.println("Normal mode :"); //NOSONAR
+					calculator.setScientificNotation(false);
+					break;
+				case "rounding":
+					roundingCommand(scanner);
+					break;
 				default:
 					try{
 						Expression e = MyExpressionParser.parseExpression(input);
-						int result = calculator.eval(e);
-						System.out.println("Result : " + e + " = "  + result);  //NOSONAR
+						printEvaluate(e);
 					}catch (IllegalSyntax _){
 						System.out.println("Illegal Syntax"); //NOSONAR
 						System.out.println("Please, enter a valid expression: "); //NOSONAR
+					}catch (RuntimeException ex){
+						System.out.println("Calculator error: " + ex.getMessage()); //NOSONAR
 					}
 			}
 		}
  	}
 
+	 private static void printHelpDetails() {
+		 System.out.println("Basic usage: write basic expression like add, subtract, multiply, divide with infix,postfix,prefix notation"); //NOSONAR
+		 System.out.println(); //NOSONAR
+		 System.out.println("Command : "); //NOSONAR
+		 System.out.println("help, give command help"); //NOSONAR
+		 System.out.println("scale, allows change of the precision"); //NOSONAR
+		 System.out.println("rounding, allows change of the rounding"); //NOSONAR
+	 }
+
+	 private static void printEvaluate(Expression e){
+		 try {
+			 String result = calculator.eval(e);
+			 System.out.println("Result : " + e + " = "  + result);  //NOSONAR
+		 } catch (ExecutionControl.NotImplementedException ex) {
+			 System.out.println("Invalid operation"); //NOSONAR
+		 }
+	 }
+
+	 private static void scaleCommand(Scanner scanner){
+		 System.out.println("Current scale expression: " + BigDecimalUtil.getScale()); //NOSONAR
+		 System.out.print("New chosen scale : "); //NOSONAR
+		 try{
+			 String expression = scanner.nextLine().trim();
+
+			 if(expression.equals("exit")){ return; }
+
+			 int scale = Integer.parseInt(expression);
+			 BigDecimalUtil.setScale(scale);
+			 System.out.println("New current scale expression: " + BigDecimalUtil.getScale()); //NOSONAR
+		 }catch (NumberFormatException e){
+			 System.out.println("Invalid scale"); //NOSONAR
+		 }
+	 }
+
+	 private static void roundingCommand(Scanner scanner){
+		 System.out.println("Current rounding expression: " + BigDecimalUtil.getRounding()); //NOSONAR
+		 System.out.println("0 : UP\n1 : DOWN\n2 : CEILING\n3 : FLOOR\n4 : HALF_UP\n5 HALF_DOWN\n6 : HALF_EVEN\n7 : UNNECESSARY"); //NOSONAR
+		 System.out.print("New chosen rounding : "); //NOSONAR
+		 try{
+			 String expression = scanner.nextLine().trim();
+
+			 if(expression.equals("exit")){ return; }
+
+			 int mode = Integer.parseInt(expression);
+			 if(mode < 0 || mode > 7){
+				 System.out.println("Invalid rounding"); //NOSONAR
+			 }else{
+				 BigDecimalUtil.setRoundingMode(mode);
+				 System.out.println("New current rounding expression: " + BigDecimalUtil.getRounding()); //NOSONAR
+			 }
+		 }catch (NumberFormatException e){
+			 System.out.println("Invalid rounding mode"); //NOSONAR
+		 }
+	 }
 }
