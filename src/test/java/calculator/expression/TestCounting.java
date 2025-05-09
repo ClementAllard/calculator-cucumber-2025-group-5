@@ -2,7 +2,6 @@ package calculator.expression;
 
 //Import Junit5 libraries for unit testing:
 import calculator.IllegalConstruction;
-import calculator.expression.number.MyInteger;
 import calculator.expression.operator.Divides;
 import calculator.expression.operator.Minus;
 import calculator.expression.operator.Plus;
@@ -31,7 +30,7 @@ class TestCounting {
 
     @Test
     void testNumberCounting() {
-        e = new MyInteger(value1);
+        e = new MyNumber(value1);
         //test whether a number has zero depth (i.e. no nested expressions)
         assertEquals( 0, e.countDepth());
         //test whether a number contains zero operations
@@ -43,7 +42,7 @@ class TestCounting {
     @ParameterizedTest
     @ValueSource(strings = {"*", "+", "/", "-"})
     void testOperationCounting(String symbol) {
-        List<Expression> params = Arrays.asList(new MyInteger(value1),new MyInteger(value2));
+        List<Expression> params = Arrays.asList(new MyNumber(value1),new MyNumber(value2));
         try {
             //construct another type of operation depending on the input value
             //of the parameterised test

@@ -2,9 +2,8 @@ package calculator.expression.operator;
 
 import calculator.expression.Expression;
 import calculator.IllegalConstruction;
+import calculator.expression.MyNumber;
 import calculator.expression.Notation;
-import calculator.expression.number.*;
-import jdk.jshell.spi.ExecutionControl;
 import visitor.Visitor;
 import visitor.NotationVisitor;
 import visitor.Displayer;
@@ -41,8 +40,6 @@ public abstract class Operation implements Expression
    * By default, the infix notation will be used.
    */
   protected Notation notation = Notation.INFIX;
-
-  protected boolean negated = false;
 
   /** It is not allowed to construct an operation with a null list of expressions.
    * Note that it is allowed to have an EMPTY list of arguments.
@@ -92,9 +89,8 @@ public abstract class Operation implements Expression
 	 * @param r	second argument of the binary operation
 	 * @return	result of computing the binary operation
 	 */
-	// the operation itself is specified in the subclasses
-	public abstract MyNumber op(MyNumber l, MyNumber r) throws ExecutionControl.NotImplementedException,ArithmeticException;
-	public abstract MyNumber op(MyNumber myNumber) throws ExecutionControl.NotImplementedException,ArithmeticException;
+   public abstract int op(int l, int r);
+    // the operation itself is specified in the subclasses
 
 	/** Add more parameters to the existing list of parameters
 	 *
@@ -111,7 +107,7 @@ public abstract class Operation implements Expression
 	 *
 	 * @param v	The visitor object
 	 */
-  public void accept(Visitor v) throws ExecutionControl.NotImplementedException {
+  public void accept(Visitor v) {
   	for(Expression a:args) { a.accept(v); }
   	v.visit(this);
   }
@@ -217,12 +213,4 @@ public abstract class Operation implements Expression
 		return symbol;
 	}
 
-	public boolean getNegated() {
-		return negated;
-	}
-
-	public Expression negate(){
-		negated = !negated;
-		return this;
-	}
 }

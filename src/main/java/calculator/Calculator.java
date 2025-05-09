@@ -1,11 +1,7 @@
 package calculator;
 
 import calculator.expression.Expression;
-import calculator.expression.number.*;
-import jdk.jshell.spi.ExecutionControl;
 import visitor.Evaluator;
-
-import java.text.DecimalFormat;
 
 /**
  * This class represents the core logic of a Calculator.
@@ -21,12 +17,6 @@ public class Calculator {
      */
     public Calculator() {}
 
-    private boolean scientificNotation = false;
-
-    public void setScientificNotation(boolean scientificNotation) {
-        this.scientificNotation = scientificNotation;
-    }
-
     /*
      For the moment the calculator only contains a print method and an eval method
      It would be useful to complete this with a read method, so that we would be able
@@ -41,12 +31,12 @@ public class Calculator {
      * @param e the arithmetic Expression to be printed
      * @see #printExpressionDetails(Expression)
      */
-    public void print(Expression e) throws ExecutionControl.NotImplementedException {
-        System.out.print("The result of evaluating expression " + e); //NOSONAR
+    public void print(Expression e) {
+        System.out.print("The result of evaluating expression " + e);
         if (eval(e) != null) {
-            System.out.println(" is " + eval(e) + "."); //NOSONAR
+            System.out.println(" is " + eval(e) + ".");
         } else {
-            System.out.println(" is NaN."); //NOSONAR
+            System.out.println(" is NaN.");
         }
     }
 
@@ -55,12 +45,12 @@ public class Calculator {
      * @param e the arithmetic Expression to be printed
      * @see #print(Expression)
      */
-    public void printExpressionDetails(Expression e) throws ExecutionControl.NotImplementedException {
+    public void printExpressionDetails(Expression e) {
         print(e);
-        System.out.print("It contains " + e.countDepth() + " levels of nested expressions, "); //NOSONAR
-        System.out.print(e.countOps() + " operations"); //NOSONAR
-        System.out.println(" and " + e.countNbs() + " numbers."); //NOSONAR
-        System.out.println(); //NOSONAR
+        System.out.print("It contains " + e.countDepth() + " levels of nested expressions, ");
+        System.out.print(e.countOps() + " operations");
+        System.out.println(" and " + e.countNbs() + " numbers.");
+        System.out.println();
     }
 
     /**
@@ -68,24 +58,13 @@ public class Calculator {
      * @param e the arithmetic Expression to be evaluated
      * @return The result of the evaluation
      */
-    public String eval(Expression e) throws ExecutionControl.NotImplementedException {
+    public Integer eval(Expression e) {
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process
         e.accept(v);
         // and return the result of the evaluation at the end of the process
-        MyNumber result = v.getResult();
-
-        return switch (result) {
-            case null -> v.getErrorMessage();
-            case MyComplex complex -> complex.toString();
-            case MyReal real when scientificNotation -> {
-                DecimalFormat sciFormat = new DecimalFormat("0.###E0");
-                yield sciFormat.format(real);
-            }
-            default -> result.toString();
-        };
-
+        return v.getResult();
     }
 
     /*
