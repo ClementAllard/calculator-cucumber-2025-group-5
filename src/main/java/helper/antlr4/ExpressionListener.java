@@ -102,18 +102,6 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitSingleTerm(ExpressionParser.SingleTermContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code BitwiseOp}
-	 * labeled alternative in {@link ExpressionParser#infixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterBitwiseOp(ExpressionParser.BitwiseOpContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code BitwiseOp}
-	 * labeled alternative in {@link ExpressionParser#infixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitBitwiseOp(ExpressionParser.BitwiseOpContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code AddSub}
 	 * labeled alternative in {@link ExpressionParser#infixExpr}.
 	 * @param ctx the parse tree
@@ -125,18 +113,6 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAddSub(ExpressionParser.AddSubContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code LogicalOp}
-	 * labeled alternative in {@link ExpressionParser#infixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogicalOp(ExpressionParser.LogicalOpContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code LogicalOp}
-	 * labeled alternative in {@link ExpressionParser#infixExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogicalOp(ExpressionParser.LogicalOpContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code MulDiv}
 	 * labeled alternative in {@link ExpressionParser#term}.
@@ -184,18 +160,6 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitImplicitMul(ExpressionParser.ImplicitMulContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code NotFactor}
-	 * labeled alternative in {@link ExpressionParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void enterNotFactor(ExpressionParser.NotFactorContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code NotFactor}
-	 * labeled alternative in {@link ExpressionParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void exitNotFactor(ExpressionParser.NotFactorContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code NumberFactor}
 	 * labeled alternative in {@link ExpressionParser#factor}.
 	 * @param ctx the parse tree
@@ -207,18 +171,6 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNumberFactor(ExpressionParser.NumberFactorContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code BoolFactor}
-	 * labeled alternative in {@link ExpressionParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void enterBoolFactor(ExpressionParser.BoolFactorContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code BoolFactor}
-	 * labeled alternative in {@link ExpressionParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void exitBoolFactor(ExpressionParser.BoolFactorContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ParenthesizedExpression}
 	 * labeled alternative in {@link ExpressionParser#factor}.
@@ -243,40 +195,4 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSignedNumber(ExpressionParser.SignedNumberContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code BinaryNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void enterBinaryNumber(ExpressionParser.BinaryNumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code BinaryNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void exitBinaryNumber(ExpressionParser.BinaryNumberContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code OctalNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void enterOctalNumber(ExpressionParser.OctalNumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code OctalNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void exitOctalNumber(ExpressionParser.OctalNumberContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code HexadecimalNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void enterHexadecimalNumber(ExpressionParser.HexadecimalNumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code HexadecimalNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void exitHexadecimalNumber(ExpressionParser.HexadecimalNumberContext ctx);
 }
