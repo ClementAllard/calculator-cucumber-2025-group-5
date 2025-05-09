@@ -80,15 +80,15 @@ public class StandardCalculatorController extends Controller {
         }
     }
 
-    @Override
-    void initialize() {
-        // Initialize buttons and set their actions
+    void initializeLeftGridPane() {
         leftGridPane.getChildren().forEach(node -> {
             if (node instanceof Button button) {
                 button.setOnAction(event -> handleSymbolButton(button.getText()));
             }
         });
+    }
 
+    void initializeCenterGridPane() {
         centerGridPane.getChildren().forEach(node -> {
             if (node instanceof Button button) {
                 switch (button.getText()) {
@@ -97,12 +97,19 @@ public class StandardCalculatorController extends Controller {
                     case "×" -> button.setOnAction(event -> handleSymbolButton("*"));
                     case "÷" -> button.setOnAction(event -> handleSymbolButton("/"));
                     case "+" -> button.setOnAction(event -> handleSymbolButton("+"));
-                    case "-" -> button.setOnAction(event -> handleSymbolButton("-"));
+                    case "−" -> button.setOnAction(event -> handleSymbolButton("−"));
                     case "=" -> button.setOnAction(event -> handleEqualButton());
                     default -> button.setOnAction(event -> handleSymbolButton(""));
                 }
             }
-        });
+        });}
+
+    @Override
+    void initialize() {
+        // Initialize buttons and set their actions
+        initializeLeftGridPane();
+
+        initializeCenterGridPane();
 
         rightGridPane.getChildren().forEach(node -> {
             if (node instanceof Button button) {

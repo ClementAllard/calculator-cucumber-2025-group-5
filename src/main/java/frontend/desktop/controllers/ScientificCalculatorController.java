@@ -56,7 +56,7 @@ public class ScientificCalculatorController extends StandardCalculatorController
         String currentInput = inputLabel.getText();
         StringBuilder lastNumber = new StringBuilder();
         while (!currentInput.isEmpty() && (Character.isDigit(currentInput.charAt(currentInput.length() - 1))
-                || currentInput.charAt(currentInput.length() - 1) == '.'
+                || currentInput.charAt(currentInput.length() - 1) == ','
                 || currentInput.charAt(currentInput.length() - 1) == 'I'
                 || currentInput.charAt(currentInput.length() - 1) == 'P'
                 || currentInput.charAt(currentInput.length() - 1) == 'e')) {
@@ -108,30 +108,6 @@ public class ScientificCalculatorController extends StandardCalculatorController
     void handleComplexGeneration(String precision) {
         // TODO : Implement complex generation logic
     }
-
-    private void initializeLeftGridPane() {
-        leftGridPane.getChildren().forEach(node -> {
-            if (node instanceof Button button) {
-                button.setOnAction(event -> handleSymbolButton(button.getText()));
-            }
-        });
-    }
-
-    private void initializeCenterGridPane() {
-        centerGridPane.getChildren().forEach(node -> {
-        if (node instanceof Button button) {
-            switch (button.getText()) {
-                case "DEL" -> button.setOnAction(event -> handleDeleteButton());
-                case "Reset" -> button.setOnAction(event -> handleClearButton());
-                case "×" -> button.setOnAction(event -> handleSymbolButton("*"));
-                case "÷" -> button.setOnAction(event -> handleSymbolButton("/"));
-                case "+" -> button.setOnAction(event -> handleSymbolButton("+"));
-                case "−" -> button.setOnAction(event -> handleSymbolButton("−"));
-                case "=" -> button.setOnAction(event -> handleEqualButton());
-                default -> button.setOnAction(event -> handleSymbolButton(""));
-            }
-        }
-    });}
 
     private void initializeRightGridPane() {
         rightGridPane.getChildren().forEach(node -> {

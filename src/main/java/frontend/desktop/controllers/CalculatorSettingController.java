@@ -1,6 +1,7 @@
 package frontend.desktop.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -8,11 +9,17 @@ import javafx.scene.control.MenuItem;
 import java.util.Objects;
 
 public class CalculatorSettingController extends Controller {
+
     @FXML
     MenuButton calculatorTypeMenuButton;
 
     @FXML
     Label calculatorTypeLabel;
+
+    @FXML
+    public ChoiceBox<String> operationOrderSetting;
+
+    private String OPERATION_ORDER = "INFIX";
 
     /*
         * This method is called when the user selects a menu item from the calculator type menu button.
@@ -63,7 +70,24 @@ public class CalculatorSettingController extends Controller {
         }
     }
 
+    private void initializeOperationOrderSetting() {
+        operationOrderSetting.getItems().addAll("INFIX", "POSTFIX", "PREFIX");
+        operationOrderSetting.setValue("INFIX");
+        operationOrderSetting.setOnAction(_ -> setOPERATION_ORDER(operationOrderSetting.getValue()));
+    }
+
     @Override
-    void initialize() {handleTypeSelection();}
+    void initialize() {
+        handleTypeSelection();
+        initializeOperationOrderSetting();
+    }
+
+    public String getOPERATION_ORDER() {
+        return OPERATION_ORDER;
+    }
+
+    public void setOPERATION_ORDER(String OPERATION_ORDER) {
+        this.OPERATION_ORDER = OPERATION_ORDER;
+    }
 }
 
