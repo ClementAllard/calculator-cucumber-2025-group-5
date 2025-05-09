@@ -402,4 +402,16 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testSpacesInBinaryFunctions(){
+        // this test comes from examples like log(1, 2) recognised as log(1*2).
+        try{
+            Expression expression = MyExpressionParser.parseExpression("log(   10  ,    100   )");
+            final Expression result = MyExpressionParser.parseExpression("2");
+            assertEquals(c.eval(result), c.eval(expression));
+        } catch (Exception _) {
+          fail();
+        }
+    }
 }
