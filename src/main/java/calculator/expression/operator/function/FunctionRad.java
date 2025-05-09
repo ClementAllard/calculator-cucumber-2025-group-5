@@ -1,4 +1,4 @@
-package calculator.expression.operator;
+package calculator.expression.operator.function;
 
 import calculator.IllegalConstruction;
 import calculator.expression.BigDecimalUtil;
@@ -6,18 +6,17 @@ import calculator.expression.Expression;
 import calculator.expression.number.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 
-public class FunctionRad extends Function{
+public class FunctionRad extends Function {
     /**
      * Class constructor specifying the arguments of a function.
      *
-     * @param elist The list of Expressions as arguments of the function.
+     * @param expression Expressions as arguments of the function.
      * @param functionName the name of the function.
      */
-    public FunctionRad(List<Expression> elist, String functionName) throws IllegalConstruction {
-        super(elist, functionName);
+    public FunctionRad(Expression expression, String functionName) throws IllegalConstruction {
+        super(expression, functionName);
     }
 
     /**

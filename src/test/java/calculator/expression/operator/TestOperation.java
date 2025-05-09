@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import calculator.expression.Expression;
 import calculator.expression.number.MyInteger;
+import calculator.expression.operator.basic.Divides;
+import calculator.expression.operator.basic.Minus;
+import calculator.expression.operator.basic.Plus;
 import org.junit.jupiter.api.*;
 
 import java.util.Arrays;

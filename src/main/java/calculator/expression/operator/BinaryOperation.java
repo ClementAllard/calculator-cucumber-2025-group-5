@@ -10,12 +10,13 @@ import java.util.List;
 
 public abstract class BinaryOperation extends Operation {
 
-    protected BinaryOperation(List<Expression> elist) throws IllegalConstruction {
-        super(elist);
-    }
-
     protected BinaryOperation(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist, n);
+    }
+
+    protected BinaryOperation(List<Expression> elist, String symbol) throws IllegalConstruction {
+        this(elist,Notation.INFIX);
+        this.symbol = symbol;
     }
 
     @Override

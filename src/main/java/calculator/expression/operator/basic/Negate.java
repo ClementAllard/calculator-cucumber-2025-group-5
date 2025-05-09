@@ -1,22 +1,15 @@
-package calculator.expression.operator;
+package calculator.expression.operator.basic;
 
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
-import calculator.expression.Notation;
 import calculator.expression.number.*;
+import calculator.expression.operator.UnaryOperation;
 
-import java.util.Collections;
-import java.util.List;
-
-public final class Negate extends UnaryOperation{
-
-    public Negate(List<Expression> elist, Notation n) throws IllegalConstruction {
-        super(elist, n);
-        symbol = "-";
-    }
+public final class Negate extends UnaryOperation {
 
     public Negate(Expression expression) throws IllegalConstruction {
-        this(Collections.singletonList(expression), null);
+        super(expression, null);
+        symbol = "-";
     }
 
     @Override

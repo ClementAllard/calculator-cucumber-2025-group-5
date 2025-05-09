@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import calculator.IllegalConstruction;
 import calculator.expression.number.MyInteger;
 import calculator.expression.operator.*;
+import calculator.expression.operator.basic.Divides;
+import calculator.expression.operator.basic.Minus;
+import calculator.expression.operator.basic.Plus;
+import calculator.expression.operator.basic.Times;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

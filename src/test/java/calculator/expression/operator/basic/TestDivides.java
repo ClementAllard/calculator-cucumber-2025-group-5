@@ -1,4 +1,4 @@
-package calculator.expression.operator;
+package calculator.expression.operator.basic;
 
 //Import Junit5 libraries for unit testing:
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +27,7 @@ class TestDivides {
 		  params = Arrays.asList(new MyInteger(value1), new MyInteger(value2));
 		  try {
 		  	op = new Divides(params);
-			op.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
+			op.setNotation(Notation.INFIX); // reset the notation to infix (which is the default) before each test
 		  }
 		  catch(IllegalConstruction e) { fail(); }
 	}

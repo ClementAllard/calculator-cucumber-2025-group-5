@@ -2,8 +2,8 @@ package calculator;
 
 import calculator.expression.Expression;
 import calculator.expression.number.MyInteger;
-import calculator.expression.operator.Divides;
-import calculator.expression.operator.Plus;
+import calculator.expression.operator.basic.Divides;
+import calculator.expression.operator.basic.Plus;
 import jdk.jshell.spi.ExecutionControl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

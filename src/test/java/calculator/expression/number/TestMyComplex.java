@@ -2,13 +2,16 @@ package calculator.expression.number;
 
 import calculator.IllegalConstruction;
 import calculator.expression.operator.*;
+import calculator.expression.operator.basic.Divides;
+import calculator.expression.operator.basic.Minus;
+import calculator.expression.operator.basic.Plus;
+import calculator.expression.operator.basic.Times;
 import jdk.jshell.spi.ExecutionControl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 

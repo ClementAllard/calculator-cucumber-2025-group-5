@@ -1,4 +1,4 @@
-package calculator.expression.operator;
+package calculator.expression.operator.basic;
 
 //Import Junit5 libraries for unit testing:
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,30 +13,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class TestMinus {
+class TestPlus {
 
 	private final int value1 = 8;
 	private final int value2 = 6;
-	private Minus op;
+	private Plus op;
 	private List<Expression> params;
 
 	@BeforeEach
 	void setUp() {
-		  params = Arrays.asList(new MyInteger(value1),new MyInteger(value2));
-		  try { op = new Minus(params); }
+		  params = new ArrayList<>(Arrays.asList(new MyInteger(value1),new MyInteger(value2)));
+		  try { op = new Plus(params); }
 		  catch(IllegalConstruction e) { fail(); }
 	}
 
 	@Test
 	void testConstructor1() {
-		// It should not be possible to create an expression without null parameter list
-		assertThrows(IllegalConstruction.class, () -> op = new Minus(null));
+		// It should not be possible to create a Plus expression without null parameter list
+		assertThrows(IllegalConstruction.class, () -> op = new Plus(null));
 	}
 
 	@SuppressWarnings("AssertBetweenInconvertibleTypes")
 	@Test
 	void testConstructor2() {
-		// A Times expression should not be the same as a Minus expression
+		// A Times expression should not be the same as a Plus expression
 		try {
 			assertNotSame(new Times(new ArrayList<>()), op);
 		} catch (IllegalConstruction e) {
@@ -46,11 +46,13 @@ class TestMinus {
 
 	@Test
 	void testEquals() {
-		// Two similar expressions, constructed separately (and using different constructors) should not be equal
-		List<Expression> p = Arrays.asList(new MyInteger(value1), new MyInteger(value2));
+		// Two similar expressions, constructed separately (and using different constructors) should be equal
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyInteger(value1), new MyInteger(value2)));
 		try {
-			Minus e = new Minus(p, Notation.INFIX);
+			Plus e = new Plus(p, Notation.INFIX);
 			assertEquals(op, e);
+			assertEquals(e, e);
+			assertNotEquals(e, new Plus(new ArrayList<>(Arrays.asList(new MyInteger(5), new MyInteger(4))), Notation.INFIX));
 		}
 		catch(IllegalConstruction e) { fail(); }
 	}
@@ -58,15 +60,15 @@ class TestMinus {
 	@SuppressWarnings("ConstantConditions")
 	@Test
 	void testNull() {
-		assertDoesNotThrow(() -> op==null); // Direct way to test if the null case is handled.
+			assertDoesNotThrow(() -> op==null); // Direct way to test if the null case is handled.
 	}
 
 	@Test
 	void testHashCode() {
 		// Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
-		List<Expression> p = Arrays.asList(new MyInteger(value1), new MyInteger(value2));
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyInteger(value1), new MyInteger(value2)));
 		try {
-			Minus e = new Minus(p, Notation.INFIX);
+			Plus e = new Plus(p, Notation.INFIX);
 			assertEquals(e.hashCode(), op.hashCode());
 		}
 		catch(IllegalConstruction e) { fail(); }
@@ -75,7 +77,7 @@ class TestMinus {
 	@Test
 	void testNullParamList() {
 		params = null;
-		assertThrows(IllegalConstruction.class, () -> op = new Minus(params));
+		assertThrows(IllegalConstruction.class, () -> op = new Plus(params));
 	}
 
 }

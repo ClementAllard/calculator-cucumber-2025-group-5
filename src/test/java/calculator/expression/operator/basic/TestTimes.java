@@ -1,4 +1,4 @@
-package calculator.expression.operator;
+package calculator.expression.operator.basic;
 
 //Import Junit5 libraries for unit testing:
 import static org.junit.jupiter.api.Assertions.*;

@@ -3,8 +3,8 @@ package visitor;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
 import calculator.expression.number.MyNumber;
-import calculator.expression.operator.Function;
-import calculator.expression.operator.FunctionBinary;
+import calculator.expression.operator.function.Function;
+import calculator.expression.operator.function.FunctionBinary;
 import calculator.expression.operator.Operation;
 import calculator.expression.operator.UnaryOperation;
 

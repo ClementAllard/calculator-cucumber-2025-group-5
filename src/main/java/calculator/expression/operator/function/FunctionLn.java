@@ -1,16 +1,15 @@
-package calculator.expression.operator;
+package calculator.expression.operator.function;
 
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public class FunctionLn extends Function{
+public class FunctionLn extends Function {
     static final String NEGATIVE_ERROR_STRING = "Invalid argument: The value inside log must be positive.";
-    public FunctionLn(List<Expression> elist, String functionName) throws IllegalConstruction {
-        super(elist, functionName);
+    public FunctionLn(Expression expression, String functionName) throws IllegalConstruction {
+        super(expression, functionName);
     }
 
     @Override

@@ -3,9 +3,12 @@ package helper;
 //Import Junit5 libraries for unit testing:
 import calculator.*;
 import calculator.expression.number.MyInteger;
+import calculator.expression.operator.basic.Divides;
+import calculator.expression.operator.basic.Minus;
+import calculator.expression.operator.basic.Plus;
+import calculator.expression.operator.basic.Times;
 import org.junit.jupiter.api.*;
 import calculator.expression.*;
-import calculator.expression.operator.*;
 
 import java.util.Arrays;
 import java.util.List;

@@ -3,10 +3,10 @@ package calculator.expression;
 //Import Junit5 libraries for unit testing:
 import calculator.IllegalConstruction;
 import calculator.expression.number.MyInteger;
-import calculator.expression.operator.Divides;
-import calculator.expression.operator.Minus;
-import calculator.expression.operator.Plus;
-import calculator.expression.operator.Times;
+import calculator.expression.operator.basic.Divides;
+import calculator.expression.operator.basic.Minus;
+import calculator.expression.operator.basic.Plus;
+import calculator.expression.operator.basic.Times;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

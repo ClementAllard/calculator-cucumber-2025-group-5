@@ -1,4 +1,4 @@
-package calculator.expression.operator;
+package calculator.expression.operator.function;
 
 import calculator.IllegalConstruction;
 import calculator.expression.BigDecimalUtil;
@@ -6,11 +6,10 @@ import calculator.expression.Expression;
 import calculator.expression.number.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public class FunctionInverse extends Function{
-    public FunctionInverse(List<Expression> elist, String functionName) throws IllegalConstruction {
-        super(elist, functionName);
+public class FunctionInverse extends Function {
+    public FunctionInverse(Expression expression, String functionName) throws IllegalConstruction {
+        super(expression, functionName);
     }
 
     @Override

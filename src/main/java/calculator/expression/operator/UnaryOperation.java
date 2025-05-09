@@ -2,19 +2,16 @@ package calculator.expression.operator;
 
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
-import calculator.expression.Notation;
 import calculator.expression.number.*;
 import jdk.jshell.spi.ExecutionControl;
 
-import java.util.List;
+import java.util.Collections;
 
 public abstract class UnaryOperation extends Operation {
-    protected UnaryOperation(List<Expression> elist, Notation n) throws IllegalConstruction {
-        super(elist, n);
-    }
 
-    protected UnaryOperation(List<Expression> elist) throws IllegalConstruction {
-        super(elist);
+    protected UnaryOperation(Expression expression,String symbol) throws IllegalConstruction {
+        super(Collections.singletonList(expression));
+        this.symbol = symbol;
     }
 
     @Override

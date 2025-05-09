@@ -5,7 +5,8 @@ import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
 import calculator.expression.number.*;
-import calculator.expression.operator.*;
+import calculator.expression.operator.basic.*;
+import calculator.expression.operator.function.*;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -13,7 +14,6 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
@@ -216,11 +216,11 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
         try {
             return switch (functionName) {
-                case "rad" -> new FunctionRad(Collections.singletonList(arg), functionName);
-                case "degree" -> new FunctionDegree(Collections.singletonList(arg), functionName);
-                case "inv" -> new FunctionInverse(Collections.singletonList(arg), functionName);
-                case "log" -> new FunctionLog(Collections.singletonList(arg), functionName);
-                case "ln" -> new FunctionLn(Collections.singletonList(arg), functionName);
+                case "rad" -> new FunctionRad(arg, functionName);
+                case "degree" -> new FunctionDegree(arg, functionName);
+                case "inv" -> new FunctionInverse(arg, functionName);
+                case "log" -> new FunctionLog(arg, functionName);
+                case "ln" -> new FunctionLn(arg, functionName);
                 default -> throw new IllegalArgumentException("Unknow function " + functionName+ " of arity 1");
             };
 

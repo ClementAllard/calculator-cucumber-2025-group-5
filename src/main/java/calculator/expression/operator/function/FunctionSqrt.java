@@ -1,13 +1,14 @@
-package calculator.expression.operator;
+package calculator.expression.operator.function;
 
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
+import calculator.expression.operator.BinaryOperation;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class FunctionSqrt extends FunctionBinary{
+public class FunctionSqrt extends FunctionBinary {
     static final String COMPLEX_BASE_ERROR = "The complex-th root of a number is undefined";
     static final String COMPLEX_NUMBER_ERROR = "The root of a complex number is undefined";
     public FunctionSqrt(List<Expression> elist, String functionName) throws IllegalConstruction {

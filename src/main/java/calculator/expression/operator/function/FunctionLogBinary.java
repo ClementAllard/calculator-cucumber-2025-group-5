@@ -1,8 +1,9 @@
-package calculator.expression.operator;
+package calculator.expression.operator.function;
 
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
+import calculator.expression.operator.BinaryOperation;
 
 import java.math.BigDecimal;
 import java.util.List;

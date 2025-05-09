@@ -1,22 +1,26 @@
-package calculator.expression.operator;
+package calculator.expression.operator.basic;
 
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
+import calculator.expression.Notation;
 import calculator.expression.number.*;
+import calculator.expression.operator.BinaryOperation;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class FunctionPow extends FunctionBinary{
+public class Power extends BinaryOperation {
     static final String COMPLEX_BASE_ERROR = "Exponent with a complex base is undefined";
     static final String COMPLEX_EXPONENT_ERROR = "Exponent with a complex exponent is undefined";
-    public FunctionPow(List<Expression> elist, String functionName) throws IllegalConstruction {
-        super(elist, functionName);
+
+    public Power(List<Expression> elist, Notation n) throws IllegalConstruction {
+        super(elist, n);
+        symbol = "^";
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        return new MyInteger((int) Math.pow(l.getValue(), r.getValue()));
+        return new MyReal( BigDecimal.valueOf(Math.pow(l.getValue(), r.getValue())));
     }
 
     @Override

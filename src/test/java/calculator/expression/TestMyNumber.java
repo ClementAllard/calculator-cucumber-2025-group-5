@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import calculator.IllegalConstruction;
 import calculator.expression.number.MyInteger;
-import calculator.expression.operator.Times;
+import calculator.expression.operator.basic.Times;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
