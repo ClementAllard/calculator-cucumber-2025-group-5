@@ -66,6 +66,18 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitPostfixNumber(ExpressionParser.PostfixNumberContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code InfixExpressionExponent}
+	 * labeled alternative in {@link ExpressionParser#infixExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterInfixExpressionExponent(ExpressionParser.InfixExpressionExponentContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code InfixExpressionExponent}
+	 * labeled alternative in {@link ExpressionParser#infixExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitInfixExpressionExponent(ExpressionParser.InfixExpressionExponentContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code SingleTerm}
 	 * labeled alternative in {@link ExpressionParser#infixExpr}.
 	 * @param ctx the parse tree

@@ -77,6 +77,18 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterInfixExpressionExponent(ExpressionParser.InfixExpressionExponentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInfixExpressionExponent(ExpressionParser.InfixExpressionExponentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSingleTerm(ExpressionParser.SingleTermContext ctx) { }
 	/**
 	 * {@inheritDoc}

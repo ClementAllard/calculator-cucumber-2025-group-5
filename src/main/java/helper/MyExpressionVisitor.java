@@ -199,7 +199,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "-" -> new Minus(expressions, notation);
                 case "*" -> new Times(expressions, notation);
                 case "/" -> new Divides(expressions, notation);
-                case "^" -> new Exponent(expressions, notation);
+                case "^" -> new Power(expressions, notation);
                 default -> null;
             };
         }catch (IllegalConstruction e) {
@@ -249,7 +249,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
             return switch (functionName) {
                 case "log" -> new FunctionLogBinary(Arrays.asList(arg1, arg2), functionName);
                 case "pow" -> new FunctionPow(Arrays.asList(arg1, arg2), functionName);
-                default -> throw new IllegalArgumentException("Unknow function " + functionName+ " of arity 2");
+                default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 2");
             };
 
         } catch (IllegalConstruction e) {
@@ -257,4 +257,12 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         }
     }
 
+    @Override
+    public Expression visitInfixExpressionExponent(ExpressionParser.InfixExpressionExponentContext ctx) {
+        Expression left = visit(ctx.getChild(0));
+        String operator = ctx.getChild(1).getText();
+        Expression right = visit(ctx.getChild(2));
+
+        return getExpression(Arrays.asList(left,right), operator, Notation.INFIX);
+    }
 }

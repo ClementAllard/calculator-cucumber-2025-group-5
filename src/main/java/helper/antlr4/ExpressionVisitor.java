@@ -45,6 +45,13 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPostfixNumber(ExpressionParser.PostfixNumberContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code InfixExpressionExponent}
+	 * labeled alternative in {@link ExpressionParser#infixExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExpressionExponent(ExpressionParser.InfixExpressionExponentContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code SingleTerm}
 	 * labeled alternative in {@link ExpressionParser#infixExpr}.
 	 * @param ctx the parse tree

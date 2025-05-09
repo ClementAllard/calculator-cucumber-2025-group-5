@@ -19,6 +19,7 @@ postfixExpr : '(' postfixExpr (','? postfixExpr)+ ')' ('+' | '-' | '*' | '/')   
 // INFIX
 
 infixExpr : infixExpr ('+' | '-') term                                              # InfixExpressionAddSub
+          | infixExpr ('^') term                                                    # InfixExpressionExponent
           | term                                                                    # SingleTerm
           ;
 
