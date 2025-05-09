@@ -7,9 +7,7 @@ import calculator.expression.number.*;
 import calculator.expression.operator.*;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
-import jdk.jshell.spi.ExecutionControl;
 import org.antlr.v4.runtime.tree.ParseTree;
-import visitor.Evaluator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -250,6 +248,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         try {
             return switch (functionName) {
                 case "log" -> new FunctionLogBinary(Arrays.asList(arg1, arg2), functionName);
+                case "pow" -> new FunctionPow(Arrays.asList(arg1, arg2), functionName);
                 default -> throw new IllegalArgumentException("Unknow function " + functionName+ " of arity 2");
             };
 
