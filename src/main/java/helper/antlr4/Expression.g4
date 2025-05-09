@@ -38,25 +38,20 @@ factor : '(' infixExpr ')'                                                      
 
 
 // Not in number for not have error left-recursive
-complex : negatenumber ('+'|'-') negatenumber 'i'                                    # ComplexAtom
-        | scientific                                                                 # NotComplex
+complex : number ('+'|'-') number 'i'                                                # ComplexAtom
+        | number                                                                     # NotComplex
         ;
 
-scientific : ('e' | 'E')                                                             # ENumber
-           | negatenumber ('e'|'E') negatenumber                                     # ScientificAtom
-           | negatenumber                                                            # NotScientific
+number : ('-' | '+')? numberatom                                                    # SimpleAtom
+       ;
+
+numberatom : rational                                                               # RationalNumber
+           | INTEGER                                                                # IntergerAtom
+           | REAL                                                                   # RealAtom
+           | PI                                                                     # PiNumber
+           | E                                                                      # ENumber
+           | numberatom E number                                                    # ScientificAtom
            ;
-
-negatenumber : '-' number                                                           # NegateAtom
-             | number                                                               # SimpleAtom
-             | '+' number                                                           # PositiveAtom
-             ;
-
-number: rational                                                                    # RationalNumber
-      | INTEGER                                                                     # IntergerAtom
-      | REAL                                                                        # RealAtom
-      | PI                                                                          # PiNumber
-      ;
 
 rational : INTEGER '/' INTEGER                                                      # RationalAtom
          ;
@@ -66,3 +61,4 @@ INTEGER: [0-9]+;
 WS: [ \t\r\n]+ -> skip;
 FUNCTION: [a-zA-Z_][a-zA-Z0-9_]* '(';
 PI: ('pi' | 'PI');
+E : ('e' | 'E');

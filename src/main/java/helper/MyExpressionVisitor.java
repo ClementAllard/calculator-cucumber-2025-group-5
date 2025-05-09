@@ -7,7 +7,9 @@ import calculator.expression.number.*;
 import calculator.expression.operator.*;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
+import jdk.jshell.spi.ExecutionControl;
 import org.antlr.v4.runtime.tree.ParseTree;
+import visitor.Evaluator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -159,13 +161,20 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     }
 
     @Override
-    public Expression visitNegateAtom(ExpressionParser.NegateAtomContext ctx) {
-        MyNumber number = (MyNumber) visit(ctx.getChild(1));
-        try {
-            return new Negate(number);
-        } catch (IllegalConstruction e) {
-            throw new RuntimeException(e); // NOSONAR
+    public Expression visitSimpleAtom(ExpressionParser.SimpleAtomContext ctx) {
+        if(ctx.children.size() == 2) {
+            MyNumber number = (MyNumber) visit(ctx.getChild(1));
+            if(ctx.getChild(0).getText().equals("-")){
+                try {
+                    return new Negate(number);
+                } catch (IllegalConstruction e) {
+                    throw new RuntimeException(e); // NOSONAR
+                }
+            }else {
+                return number;
+            }
         }
+        return visit(ctx.getChild(0));
     }
 
     @Override
@@ -185,11 +194,6 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         return getExpression(Arrays.asList(number,exponentResult),"*",Notation.INFIX);
     }
 
-    @Override
-    public Expression visitNotScientific(ExpressionParser.NotScientificContext ctx) {
-        return visitChildren(ctx);
-    }
-
     private Expression getExpression(List<Expression> expressions, String symbol,Notation notation) {
         try{
             return switch (symbol) {
@@ -203,11 +207,6 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         }catch (IllegalConstruction e) {
             throw new RuntimeException(e); // NOSONAR
         }
-    }
-
-    @Override
-    public Expression visitPositiveAtom(ExpressionParser.PositiveAtomContext ctx) {
-        return visit(ctx.getChild(1));
     }
 
     @Override

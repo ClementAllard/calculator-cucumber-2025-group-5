@@ -129,75 +129,54 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNotComplex(ExpressionParser.NotComplexContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ENumber}
-	 * labeled alternative in {@link ExpressionParser#scientific}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitENumber(ExpressionParser.ENumberContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ScientificAtom}
-	 * labeled alternative in {@link ExpressionParser#scientific}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code NotScientific}
-	 * labeled alternative in {@link ExpressionParser#scientific}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNotScientific(ExpressionParser.NotScientificContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code NegateAtom}
-	 * labeled alternative in {@link ExpressionParser#negatenumber}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNegateAtom(ExpressionParser.NegateAtomContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code SimpleAtom}
-	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSimpleAtom(ExpressionParser.SimpleAtomContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code PositiveAtom}
-	 * labeled alternative in {@link ExpressionParser#negatenumber}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPositiveAtom(ExpressionParser.PositiveAtomContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code RationalNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRationalNumber(ExpressionParser.RationalNumberContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code IntergerAtom}
-	 * labeled alternative in {@link ExpressionParser#number}.
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIntergerAtom(ExpressionParser.IntergerAtomContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code RealAtom}
-	 * labeled alternative in {@link ExpressionParser#number}.
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitRealAtom(ExpressionParser.RealAtomContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ENumber}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitENumber(ExpressionParser.ENumberContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code PiNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitPiNumber(ExpressionParser.PiNumberContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ScientificAtom}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RationalNumber}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRationalNumber(ExpressionParser.RationalNumberContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code RationalAtom}
 	 * labeled alternative in {@link ExpressionParser#rational}.

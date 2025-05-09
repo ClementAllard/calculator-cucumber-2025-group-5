@@ -210,125 +210,89 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitNotComplex(ExpressionParser.NotComplexContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ENumber}
-	 * labeled alternative in {@link ExpressionParser#scientific}.
-	 * @param ctx the parse tree
-	 */
-	void enterENumber(ExpressionParser.ENumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ENumber}
-	 * labeled alternative in {@link ExpressionParser#scientific}.
-	 * @param ctx the parse tree
-	 */
-	void exitENumber(ExpressionParser.ENumberContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ScientificAtom}
-	 * labeled alternative in {@link ExpressionParser#scientific}.
-	 * @param ctx the parse tree
-	 */
-	void enterScientificAtom(ExpressionParser.ScientificAtomContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ScientificAtom}
-	 * labeled alternative in {@link ExpressionParser#scientific}.
-	 * @param ctx the parse tree
-	 */
-	void exitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code NotScientific}
-	 * labeled alternative in {@link ExpressionParser#scientific}.
-	 * @param ctx the parse tree
-	 */
-	void enterNotScientific(ExpressionParser.NotScientificContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code NotScientific}
-	 * labeled alternative in {@link ExpressionParser#scientific}.
-	 * @param ctx the parse tree
-	 */
-	void exitNotScientific(ExpressionParser.NotScientificContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code NegateAtom}
-	 * labeled alternative in {@link ExpressionParser#negatenumber}.
-	 * @param ctx the parse tree
-	 */
-	void enterNegateAtom(ExpressionParser.NegateAtomContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code NegateAtom}
-	 * labeled alternative in {@link ExpressionParser#negatenumber}.
-	 * @param ctx the parse tree
-	 */
-	void exitNegateAtom(ExpressionParser.NegateAtomContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code SimpleAtom}
-	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 */
 	void enterSimpleAtom(ExpressionParser.SimpleAtomContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code SimpleAtom}
-	 * labeled alternative in {@link ExpressionParser#negatenumber}.
+	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 */
 	void exitSimpleAtom(ExpressionParser.SimpleAtomContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code PositiveAtom}
-	 * labeled alternative in {@link ExpressionParser#negatenumber}.
-	 * @param ctx the parse tree
-	 */
-	void enterPositiveAtom(ExpressionParser.PositiveAtomContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code PositiveAtom}
-	 * labeled alternative in {@link ExpressionParser#negatenumber}.
-	 * @param ctx the parse tree
-	 */
-	void exitPositiveAtom(ExpressionParser.PositiveAtomContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code RationalNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void enterRationalNumber(ExpressionParser.RationalNumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code RationalNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void exitRationalNumber(ExpressionParser.RationalNumberContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code IntergerAtom}
-	 * labeled alternative in {@link ExpressionParser#number}.
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 */
 	void enterIntergerAtom(ExpressionParser.IntergerAtomContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code IntergerAtom}
-	 * labeled alternative in {@link ExpressionParser#number}.
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 */
 	void exitIntergerAtom(ExpressionParser.IntergerAtomContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code RealAtom}
-	 * labeled alternative in {@link ExpressionParser#number}.
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 */
 	void enterRealAtom(ExpressionParser.RealAtomContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code RealAtom}
-	 * labeled alternative in {@link ExpressionParser#number}.
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 */
 	void exitRealAtom(ExpressionParser.RealAtomContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ENumber}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 */
+	void enterENumber(ExpressionParser.ENumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ENumber}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 */
+	void exitENumber(ExpressionParser.ENumberContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code PiNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 */
 	void enterPiNumber(ExpressionParser.PiNumberContext ctx);
 	/**
 	 * Exit a parse tree produced by the {@code PiNumber}
-	 * labeled alternative in {@link ExpressionParser#number}.
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 */
 	void exitPiNumber(ExpressionParser.PiNumberContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ScientificAtom}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 */
+	void enterScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ScientificAtom}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 */
+	void exitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RationalNumber}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 */
+	void enterRationalNumber(ExpressionParser.RationalNumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RationalNumber}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 */
+	void exitRationalNumber(ExpressionParser.RationalNumberContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code RationalAtom}
 	 * labeled alternative in {@link ExpressionParser#rational}.

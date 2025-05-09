@@ -143,6 +143,45 @@ class TestMyExpressionParser {
     }
 
     @Test
+    void testNegateNumber() {
+        try{
+            String expressionString = "-1 - -1";
+            Expression expressionParsing = MyExpressionParser.parseExpression(expressionString);
+            assertEquals("0", c.eval(expressionParsing));
+
+            expressionString = "-1/2 - 1/-2";
+            expressionParsing = MyExpressionParser.parseExpression(expressionString);
+            assertEquals("0", c.eval(expressionParsing));
+
+            expressionString = "-1";
+            expressionParsing = MyExpressionParser.parseExpression(expressionString);
+            assertEquals("-1", c.eval(expressionParsing));
+
+            expressionString = "-1/4 - 1/-2";
+            expressionParsing = MyExpressionParser.parseExpression(expressionString);
+            assertEquals("1/4", c.eval(expressionParsing));
+
+            expressionString = "-11/4 - 1/-2";
+            expressionParsing = MyExpressionParser.parseExpression(expressionString);
+            assertEquals("-(2 1/4)", c.eval(expressionParsing));
+
+            expressionString = "1/-2";
+            expressionParsing = MyExpressionParser.parseExpression(expressionString);
+            assertEquals("-1/2", c.eval(expressionParsing));
+
+            expressionString = "-PI";
+            expressionParsing = MyExpressionParser.parseExpression(expressionString);
+            assertEquals("-3.141592653589793", c.eval(expressionParsing));
+
+            expressionString = "-e";
+            expressionParsing = MyExpressionParser.parseExpression(expressionString);
+            assertEquals("-2.718281828459045", c.eval(expressionParsing));
+        } catch (Exception _){
+            fail();
+        }
+    }
+
+    @Test
     void testPi() {
         try{
             String lowerPi = "pi";
@@ -341,6 +380,8 @@ class TestMyExpressionParser {
             expression = MyExpressionParser.parseExpression("log(2.0,4.0)");
             assertEquals(c.eval(result), c.eval(expression));
             expression = MyExpressionParser.parseExpression("log(2.0,4.0)");
+            assertEquals(c.eval(result), c.eval(expression));
+            expression = MyExpressionParser.parseExpression("log(2.0, 4.0)");
             assertEquals(c.eval(result), c.eval(expression));
 
             final Expression errorExpression1 = MyExpressionParser.parseExpression("log(-2,-4)");
