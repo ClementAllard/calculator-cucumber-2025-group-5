@@ -143,6 +143,20 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSimpleAtom(ExpressionParser.SimpleAtomContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code ScientificAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RationalNumber}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRationalNumber(ExpressionParser.RationalNumberContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code IntergerAtom}
 	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
@@ -157,13 +171,6 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRealAtom(ExpressionParser.RealAtomContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ENumber}
-	 * labeled alternative in {@link ExpressionParser#numberatom}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitENumber(ExpressionParser.ENumberContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code PiNumber}
 	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
@@ -171,19 +178,12 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPiNumber(ExpressionParser.PiNumberContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ScientificAtom}
+	 * Visit a parse tree produced by the {@code ENumber}
 	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code RationalNumber}
-	 * labeled alternative in {@link ExpressionParser#numberatom}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRationalNumber(ExpressionParser.RationalNumberContext ctx);
+	T visitENumber(ExpressionParser.ENumberContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code RationalAtom}
 	 * labeled alternative in {@link ExpressionParser#rational}.
@@ -191,4 +191,11 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitRationalAtom(ExpressionParser.RationalAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PercentageAtom}
+	 * labeled alternative in {@link ExpressionParser#rational}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPercentageAtom(ExpressionParser.PercentageAtomContext ctx);
 }

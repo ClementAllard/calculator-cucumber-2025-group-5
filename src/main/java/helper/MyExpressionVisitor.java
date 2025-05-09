@@ -1,6 +1,7 @@
 package helper;
 
 import calculator.IllegalConstruction;
+import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
 import calculator.expression.number.*;
@@ -265,5 +266,17 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         Expression right = visit(ctx.getChild(2));
 
         return getExpression(Arrays.asList(left,right), operator, Notation.INFIX);
+    }
+
+    @Override
+    public Expression visitPercentageAtom(ExpressionParser.PercentageAtomContext ctx) {
+        try{
+            return new MyRational(Integer.parseInt(ctx.getChild(0).getText()), 100);
+        } catch (NumberFormatException e) {
+            return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(
+                    Double.parseDouble(ctx.getChild(0).getText())),
+                    BigDecimal.valueOf(100)));
+        }
+
     }
 }

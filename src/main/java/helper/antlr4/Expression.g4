@@ -44,6 +44,7 @@ complex : number ('+'|'-') number 'i'                                           
         ;
 
 number : ('-' | '+')? numberatom                                                    # SimpleAtom
+       | numberatom E number                                                        # ScientificAtom
        ;
 
 numberatom : rational                                                               # RationalNumber
@@ -51,10 +52,10 @@ numberatom : rational                                                           
            | REAL                                                                   # RealAtom
            | PI                                                                     # PiNumber
            | E                                                                      # ENumber
-           | numberatom E number                                                    # ScientificAtom
            ;
 
 rational : INTEGER '/' INTEGER                                                      # RationalAtom
+         | (REAL | INTEGER) '%'                                                     # PercentageAtom
          ;
 
 REAL : [0-9]+ '.' [0-9]+;

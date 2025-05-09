@@ -234,6 +234,30 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitSimpleAtom(ExpressionParser.SimpleAtomContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code ScientificAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ScientificAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code RationalNumber}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 */
+	void enterRationalNumber(ExpressionParser.RationalNumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code RationalNumber}
+	 * labeled alternative in {@link ExpressionParser#numberatom}.
+	 * @param ctx the parse tree
+	 */
+	void exitRationalNumber(ExpressionParser.RationalNumberContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code IntergerAtom}
 	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
@@ -258,18 +282,6 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitRealAtom(ExpressionParser.RealAtomContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ENumber}
-	 * labeled alternative in {@link ExpressionParser#numberatom}.
-	 * @param ctx the parse tree
-	 */
-	void enterENumber(ExpressionParser.ENumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ENumber}
-	 * labeled alternative in {@link ExpressionParser#numberatom}.
-	 * @param ctx the parse tree
-	 */
-	void exitENumber(ExpressionParser.ENumberContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code PiNumber}
 	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
@@ -282,29 +294,17 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitPiNumber(ExpressionParser.PiNumberContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ScientificAtom}
+	 * Enter a parse tree produced by the {@code ENumber}
 	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 */
-	void enterScientificAtom(ExpressionParser.ScientificAtomContext ctx);
+	void enterENumber(ExpressionParser.ENumberContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ScientificAtom}
+	 * Exit a parse tree produced by the {@code ENumber}
 	 * labeled alternative in {@link ExpressionParser#numberatom}.
 	 * @param ctx the parse tree
 	 */
-	void exitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code RationalNumber}
-	 * labeled alternative in {@link ExpressionParser#numberatom}.
-	 * @param ctx the parse tree
-	 */
-	void enterRationalNumber(ExpressionParser.RationalNumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code RationalNumber}
-	 * labeled alternative in {@link ExpressionParser#numberatom}.
-	 * @param ctx the parse tree
-	 */
-	void exitRationalNumber(ExpressionParser.RationalNumberContext ctx);
+	void exitENumber(ExpressionParser.ENumberContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code RationalAtom}
 	 * labeled alternative in {@link ExpressionParser#rational}.
@@ -317,4 +317,16 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRationalAtom(ExpressionParser.RationalAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PercentageAtom}
+	 * labeled alternative in {@link ExpressionParser#rational}.
+	 * @param ctx the parse tree
+	 */
+	void enterPercentageAtom(ExpressionParser.PercentageAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PercentageAtom}
+	 * labeled alternative in {@link ExpressionParser#rational}.
+	 * @param ctx the parse tree
+	 */
+	void exitPercentageAtom(ExpressionParser.PercentageAtomContext ctx);
 }

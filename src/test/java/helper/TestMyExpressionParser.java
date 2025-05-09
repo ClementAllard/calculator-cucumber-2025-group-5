@@ -529,4 +529,21 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testPercentage(){
+        try {
+            // basic operation (with real testing)
+            Expression expression = MyExpressionParser.parseExpression("0.0+1%");
+            Expression response = MyExpressionParser.parseExpression("0.0+1/100");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // real
+            expression = MyExpressionParser.parseExpression("0.0+0.02%");
+            response = MyExpressionParser.parseExpression("0.0+2/1e4");
+            assertEquals(c.eval(expression), c.eval(response));
+        } catch (Exception _) {
+            fail();
+        }
+    }
 }
