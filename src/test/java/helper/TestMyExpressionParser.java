@@ -479,4 +479,54 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testSqrt(){
+        try {
+            // basic operation
+            Expression expression = MyExpressionParser.parseExpression("sqrt(2, 9)");
+            Expression response = MyExpressionParser.parseExpression("3");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // x^O = 1
+            expression = MyExpressionParser.parseExpression("sqrt(3, 4.0^3)");
+            response = MyExpressionParser.parseExpression("4");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // negative rational (force real checking)
+            expression = MyExpressionParser.parseExpression("0.0 + sqrt(3, 1/2^3)");
+            response = MyExpressionParser.parseExpression("0.0 + 0.5");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // complex
+            //error here.
+            final Expression error1 = MyExpressionParser.parseExpression("sqrt(2, 4-3i)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(error1));
+
+            final Expression error2 = MyExpressionParser.parseExpression("sqrt(2, 423-612i)");
+            assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(error2));
+
+            // Long equation
+            expression = MyExpressionParser.parseExpression("sqrt((1+2-3+8/4),(2/2*8)^2)");
+            response = MyExpressionParser.parseExpression("8");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // special case
+            expression = MyExpressionParser.parseExpression("sqrt(1, 12983.081)");
+            response = MyExpressionParser.parseExpression("12983.081");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // negative number
+            expression = MyExpressionParser.parseExpression("sqrt(3, -8)");
+            response = MyExpressionParser.parseExpression("0+2i");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // negative number
+            expression = MyExpressionParser.parseExpression("sqrt(2, -25)");
+            response = MyExpressionParser.parseExpression("0+5i");
+            assertEquals(c.eval(expression), c.eval(response));
+        } catch (Exception _) {
+            fail();
+        }
+    }
 }

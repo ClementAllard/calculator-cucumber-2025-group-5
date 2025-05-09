@@ -249,6 +249,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
             return switch (functionName) {
                 case "log" -> new FunctionLogBinary(Arrays.asList(arg1, arg2), functionName);
                 case "pow" -> new FunctionPow(Arrays.asList(arg1, arg2), functionName);
+                case "sqrt", "root" -> new FunctionSqrt(Arrays.asList(arg1, arg2), functionName);
                 default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 2");
             };
 
