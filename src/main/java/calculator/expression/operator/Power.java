@@ -19,7 +19,7 @@ public class Power extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        return new MyInteger((int) Math.pow(l.getValue(), r.getValue()));
+        return new MyReal( BigDecimal.valueOf(Math.pow(l.getValue(), r.getValue())));
     }
 
     @Override
