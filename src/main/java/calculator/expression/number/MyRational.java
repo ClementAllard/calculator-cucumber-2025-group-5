@@ -1,64 +1,76 @@
 package calculator.expression.number;
 
 import calculator.expression.BigDecimalUtil;
-import calculator.expression.Expression;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Objects;
 
 public final class MyRational extends MyNumber {
 
-    private int numerator;
-    private int denominator;
+    private BigDecimal numerator;
+    private BigDecimal denominator;
 
-    public MyRational(int numerator, int denominator) {
-        if(denominator == 0){ throw new ArithmeticException("Error : division by zero"); }
-        simplify(numerator,denominator);
+    public MyRational(BigDecimal numerator, BigDecimal denominator) {
+        if (denominator.compareTo(BigDecimal.ZERO) == 0) {
+            throw new ArithmeticException("Error: division by zero");
+        }
+        simplify(numerator, denominator);
     }
 
-    public int getNumerator() {
+    public MyRational(int numerator, int denominator) {
+        this(new BigDecimal(numerator), new BigDecimal(denominator));
+    }
+
+    public MyRational(String numerator, String denominator) {
+        this(new BigDecimal(numerator), new BigDecimal(denominator));
+    }
+
+    public BigDecimal getNumerator() {
         return numerator;
     }
 
-    public int getDenominator() {
+    public BigDecimal getDenominator() {
         return denominator;
     }
 
     public BigDecimal getReal() {
-        return BigDecimalUtil.divide(BigDecimal.valueOf(numerator), BigDecimal.valueOf(denominator));
+        return BigDecimalUtil.divide(numerator, denominator);
     }
 
-    private void simplify(int numerator, int denominator) {
-        int gcd = gcd(numerator,denominator);
-        this.numerator = numerator / gcd;
-        this.denominator = denominator / gcd;
+    private void simplify(BigDecimal num, BigDecimal den) {
+        BigInteger numInt = num.toBigIntegerExact();
+        BigInteger denInt = den.toBigIntegerExact();
+        BigInteger currentGCD = numInt.gcd(denInt);
 
-        if(this.denominator < 0 && this.numerator > 0){
-            this.numerator = -this.numerator;
-            this.denominator = -this.denominator;
+        this.numerator = new BigDecimal(numInt.divide(currentGCD));
+        this.denominator = new BigDecimal(denInt.divide(currentGCD));
+
+        if (this.denominator.compareTo(BigDecimal.ZERO) < 0) {
+            this.numerator = this.numerator.negate();
+            this.denominator = this.denominator.negate();
         }
-    }
-
-    private int gcd(int a, int b) {
-        return (b == 0) ? a : gcd(b, a % b);
     }
 
     @Override
     public String toString() {
-        if (denominator == 1) {
-            return String.valueOf(numerator);
+        if (denominator.equals(BigDecimal.ONE)) {
+            return numerator.toPlainString();
         } else {
-            boolean negative = numerator < 0;
-            int absNumerator = Math.abs(numerator);
-            int integerPart = absNumerator / denominator;
-            int fractionalPart = absNumerator % denominator;
+            boolean negative = numerator.compareTo(BigDecimal.ZERO) < 0;
+            BigDecimal absNumerator = numerator.abs();
+            BigDecimal[] divisionResult = absNumerator.divideAndRemainder(denominator);
 
-            if (fractionalPart == 0) {
-                return String.valueOf(negative ? -integerPart : integerPart);
-            } else if (integerPart == 0) {
-                return (negative ? "-" : "") + fractionalPart + "/" + denominator;
+            BigDecimal integerPart = divisionResult[0];
+            BigDecimal fractionalPart = divisionResult[1];
+
+            if (fractionalPart.compareTo(BigDecimal.ZERO) == 0) {
+                return (negative ? "-" : "") + integerPart.toPlainString();
+            } else if (integerPart.compareTo(BigDecimal.ZERO) == 0) {
+                return (negative ? "-" : "") + fractionalPart.toPlainString() + "/" + denominator.toPlainString();
             } else {
-                String simplification = integerPart + " " + fractionalPart + "/" + denominator;
+                String simplification = integerPart.toPlainString() + " "
+                        + fractionalPart.toPlainString() + "/" + denominator.toPlainString();
                 return negative ? String.format("-(%s)", simplification) : simplification;
             }
         }
@@ -70,7 +82,7 @@ public final class MyRational extends MyNumber {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MyRational myRational = (MyRational) o;
-        return myRational.getNumerator() == numerator && myRational.getDenominator() == denominator;
+        return numerator.equals(myRational.numerator) && denominator.equals(myRational.denominator);
     }
 
     @Override

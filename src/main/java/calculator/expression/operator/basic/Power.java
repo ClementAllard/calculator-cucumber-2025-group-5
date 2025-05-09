@@ -20,19 +20,19 @@ public class Power extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        return new MyReal( BigDecimal.valueOf(Math.pow(l.getValue(), r.getValue())));
+        return new MyReal( BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getValue().doubleValue())));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyRational r) {
-        double numerator = Math.pow(l.getValue(), r.getNumerator());
-        double denominator = Math.pow(l.getValue(), (double) 1 / r.getDenominator());
+        double numerator = Math.pow(l.getValue().doubleValue(), r.getNumerator().doubleValue());
+        double denominator = Math.pow(l.getValue().doubleValue(), 1 / r.getDenominator().doubleValue());
         return new MyReal(BigDecimal.valueOf(numerator*denominator));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyReal r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue(), r.getValue().doubleValue())));
+        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getValue().doubleValue())));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Power extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyRational l, MyInteger r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getReal().doubleValue(), r.getValue())));
+        return new MyReal(BigDecimal.valueOf(Math.pow(l.getReal().doubleValue(), r.getValue().doubleValue())));
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Power extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyReal l, MyInteger r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getValue())));
+        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getValue().doubleValue())));
     }
 
     @Override

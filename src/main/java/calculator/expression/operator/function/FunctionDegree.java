@@ -14,17 +14,21 @@ public class FunctionDegree extends Function {
 
     @Override
     protected MyNumber op(MyInteger l) {
-        return new MyReal(BigDecimal.valueOf(l.getValue() / Math.PI * 180));
+        return op(l.getValue());
     }
 
     @Override
     protected MyNumber op(MyRational l) {
-        return new MyReal(BigDecimalUtil.divide(l.getReal().multiply(BigDecimal.valueOf(180)), BigDecimal.valueOf(Math.PI)));
+        return op(l.getReal());
     }
 
     @Override
     protected MyNumber op(MyReal l) {
-        return new MyReal(BigDecimalUtil.divide(l.getValue().multiply(BigDecimal.valueOf(180)), BigDecimal.valueOf(Math.PI)));
+        return op(l.getValue());
+    }
+
+    private MyNumber op(BigDecimal l) {
+        return new MyReal(BigDecimalUtil.divide(l.multiply(BigDecimal.valueOf(180)), BigDecimal.valueOf(Math.PI)));
     }
 
     @Override

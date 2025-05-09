@@ -174,11 +174,11 @@ class TestMyExpressionParser {
 
             expressionString = "-PI";
             expressionParsing = MyExpressionParser.parseExpression(expressionString);
-            assertEquals("-3.141592653589793", c.eval(expressionParsing));
+            assertEquals("-3.1415926536", c.eval(expressionParsing));
 
             expressionString = "-e";
             expressionParsing = MyExpressionParser.parseExpression(expressionString);
-            assertEquals("-2.718281828459045", c.eval(expressionParsing));
+            assertEquals("-2.7182818285", c.eval(expressionParsing));
         } catch (Exception _){
             fail();
         }
@@ -213,12 +213,15 @@ class TestMyExpressionParser {
     @Test
     void testFunctionDegree() {
         try{
+            BigDecimalUtil.setScale(20);
             String expression = "degree(rad(180))";
             String halfTurn = "180";
             Expression piRadExpr = MyExpressionParser.parseExpression(expression);
             Expression piExpr = MyExpressionParser.parseExpression(halfTurn);
             assertEquals(c.eval(piRadExpr), c.eval(piExpr));
+            BigDecimalUtil.setScale(10);
         } catch (Exception _) {
+            BigDecimalUtil.setScale(10);
             fail();
         }
     }
@@ -348,16 +351,18 @@ class TestMyExpressionParser {
             // Forces real value comparison
             inverse = MyExpressionParser.parseExpression("ln(1/1)");
             response = MyExpressionParser.parseExpression("0/1");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // negative integer
             final Expression inverse3 = MyExpressionParser.parseExpression("ln(-2)");
             assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(inverse3));
 
+            BigDecimalUtil.setScale(20);
             // positive real
             inverse = MyExpressionParser.parseExpression("ln(e)");
             response = MyExpressionParser.parseExpression("1");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
+            BigDecimalUtil.setScale(10);
 
             // negative real
             // error here.
@@ -370,6 +375,7 @@ class TestMyExpressionParser {
             assertThrowsExactly(IllegalArgumentException.class, ()-> c.eval(inverse5));
 
         } catch (Exception _) {
+            BigDecimalUtil.setScale(10);
             fail();
         }
     }

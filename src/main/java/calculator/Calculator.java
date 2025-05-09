@@ -79,9 +79,9 @@ public class Calculator {
         return switch (result) {
             case null -> v.getErrorMessage();
             case MyComplex complex -> complex.toString();
-            case MyReal real when scientificNotation -> {
+            case MyNumber number when result.toString().length() > 20 -> {
                 DecimalFormat sciFormat = new DecimalFormat("0.###E0");
-                yield sciFormat.format(real);
+                yield sciFormat.format(number);
             }
             default -> result.toString();
         };

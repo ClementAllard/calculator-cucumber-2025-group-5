@@ -231,12 +231,12 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     @Override
     public Expression visitPiNumber(ExpressionParser.PiNumberContext ctx){
-        return new MyReal(BigDecimal.valueOf(Math.PI));
+        return new MyReal(BigDecimal.valueOf(Math.PI).setScale(BigDecimalUtil.getScale(),BigDecimalUtil.getRounding()));
     }
 
     @Override
     public Expression visitENumber(ExpressionParser.ENumberContext ctx) {
-        return new MyReal(BigDecimal.valueOf(Math.E));
+        return new MyReal(BigDecimal.valueOf(Math.E).setScale(BigDecimalUtil.getScale(),BigDecimalUtil.getRounding()));
     }
 
     @Override

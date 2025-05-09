@@ -60,27 +60,27 @@ public final class Divides extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyInteger l, MyRational r) {
-        return new MyRational(l.getValue() * r.getDenominator(),r.getNumerator());
+        return new MyRational(l.getValue().multiply(r.getDenominator()),r.getNumerator());
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyReal r) {
-        return new MyReal(BigDecimalUtil.divide(new BigDecimal(l.getValue()),r.getValue()));
+        return new MyReal(BigDecimalUtil.divide(l.getValue(),r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyComplex r) {
-        return diviserParComplexe(new BigDecimal(l.getValue()),r);
+        return diviserParComplexe(l.getValue(),r);
     }
 
     @Override
     protected MyNumber op(MyRational l, MyInteger r) {
-        return new MyRational(l.getNumerator(),l.getDenominator() * r.getValue());
+        return new MyRational(l.getNumerator(),l.getDenominator().multiply(r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyRational l, MyRational r) {
-        return new MyRational(l.getNumerator() * r.getDenominator(),l.getDenominator() * r.getNumerator());
+        return new MyRational(l.getNumerator().multiply(r.getDenominator()),l.getDenominator().multiply(r.getNumerator()));
     }
 
     @Override
@@ -95,7 +95,7 @@ public final class Divides extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyReal l, MyInteger r) {
-        return new MyReal(BigDecimalUtil.divide(l.getValue(),new BigDecimal(r.getValue())));
+        return new MyReal(BigDecimalUtil.divide(l.getValue(),r.getValue()));
     }
 
     @Override
@@ -115,8 +115,8 @@ public final class Divides extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyComplex l, MyInteger r) {
-        BigDecimal newReal = BigDecimalUtil.divide(l.getReal(),new BigDecimal(r.getValue()));
-        BigDecimal newImaginary = BigDecimalUtil.divide(l.getImaginary(),new BigDecimal(r.getValue()));
+        BigDecimal newReal = BigDecimalUtil.divide(l.getReal(),r.getValue());
+        BigDecimal newImaginary = BigDecimalUtil.divide(l.getImaginary(),r.getValue());
         return new MyComplex(newReal,newImaginary);
     }
 

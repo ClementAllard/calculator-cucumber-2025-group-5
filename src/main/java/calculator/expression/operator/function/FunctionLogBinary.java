@@ -18,28 +18,26 @@ public class FunctionLogBinary extends FunctionBinary {
         super(elist, functionName);
     }
 
+    private MyNumber op(BigDecimal base, BigDecimal number) {
+        if (base.equals(BigDecimal.ONE)) throw new IllegalArgumentException(BASE_ERROR);
+        if (base.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
+        if (number.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
+        return new MyReal(BigDecimal.valueOf(Math.log(number.doubleValue()) / Math.log(base.doubleValue())));
+    }
+
     @Override
     protected MyNumber op(MyInteger base, MyInteger number) {
-        if (base.getValue() == 1) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.getValue() <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.getValue() <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
-        return new MyReal(BigDecimal.valueOf(Math.log(number.getValue()) / Math.log(base.getValue())));
+        return op(base.getValue(), number.getValue());
     }
 
     @Override
     protected MyNumber op(MyInteger base, MyRational number) {
-        if (base.getValue() == 1) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.getValue() <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.getReal().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
-        return new MyReal(BigDecimal.valueOf(Math.log(number.getReal().doubleValue()) / Math.log(base.getValue())));
+        return op(base.getValue(), number.getReal());
     }
 
     @Override
     protected MyNumber op(MyInteger base, MyReal number) {
-        if (base.getValue() == 1) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.getValue() <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.getValue().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
-        return new MyReal(BigDecimal.valueOf(Math.log(number.getValue().doubleValue()) / Math.log(base.getValue())));
+        return op(base.getValue(), number.getValue());
     }
 
     @Override
@@ -49,26 +47,17 @@ public class FunctionLogBinary extends FunctionBinary {
 
     @Override
     protected MyNumber op(MyRational base, MyInteger number) {
-        if (base.getReal().equals(BigDecimal.ONE)) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.getReal().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.getValue() <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
-        return new MyReal(BigDecimal.valueOf(Math.log(number.getValue()) / Math.log(base.getReal().doubleValue())));
+        return op(base.getReal(), number.getValue());
     }
 
     @Override
     protected MyNumber op(MyRational base, MyRational number) {
-        if (base.getReal().equals(BigDecimal.ONE)) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.getReal().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.getReal().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
-        return new MyReal(BigDecimal.valueOf(Math.log(number.getReal().doubleValue()) / Math.log(base.getReal().doubleValue())));
+        return op(base.getReal(), number.getReal());
     }
 
     @Override
     protected MyNumber op(MyRational base, MyReal number) {
-        if (base.getReal().equals(BigDecimal.ONE)) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.getReal().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.getValue().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
-        return new MyReal(BigDecimal.valueOf(Math.log(number.getValue().doubleValue()) / Math.log(base.getReal().doubleValue())));
+        return op(base.getReal(), number.getValue());
     }
 
     @Override
@@ -78,26 +67,17 @@ public class FunctionLogBinary extends FunctionBinary {
 
     @Override
     protected MyNumber op(MyReal base, MyInteger number) {
-        if (base.getValue().equals(BigDecimal.ONE)) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.getValue().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.getValue() <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
-        return new MyReal(BigDecimal.valueOf(Math.log(number.getValue()) / Math.log(base.getValue().doubleValue())));
+        return op(base.getValue(), number.getValue());
     }
 
     @Override
     protected MyNumber op(MyReal base, MyRational number) {
-        if (base.getValue().equals(BigDecimal.ONE)) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.getValue().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.getReal().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
-        return new MyReal(BigDecimal.valueOf(Math.log(number.getReal().doubleValue()) / Math.log(base.getValue().doubleValue())));
+        return op(base.getValue(), number.getReal());
     }
 
     @Override
     protected MyNumber op(MyReal base, MyReal number) {
-        if (base.getValue().equals(BigDecimal.ONE)) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.getValue().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.getValue().compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
-        return new MyReal(BigDecimal.valueOf(Math.log(number.getValue().doubleValue()) / Math.log(base.getValue().doubleValue())));
+        return op(base.getValue(), number.getValue());
     }
 
     @Override

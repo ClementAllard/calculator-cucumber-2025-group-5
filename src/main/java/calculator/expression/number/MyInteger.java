@@ -1,24 +1,34 @@
 package calculator.expression.number;
 
-import calculator.expression.Expression;
+import calculator.expression.BigDecimalUtil;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public final class MyInteger extends MyNumber {
 
-    private final int value;
+    private final BigDecimal value;
 
-    public MyInteger(int value) {
-        this.value = value;
+    public MyInteger(BigDecimal value) {
+        this.value = value.setScale(0, RoundingMode.FLOOR);
     }
 
-    public int getValue() {
+    public MyInteger(int value) {
+        this.value = new BigDecimal(value).setScale(0, RoundingMode.FLOOR);
+    }
+
+    public MyInteger(String value) {
+        this.value = new BigDecimal(value).setScale(0, RoundingMode.FLOOR);
+    }
+
+    public BigDecimal getValue() {
         return value;
     }
 
     @Override
     public String toString() {
-        return Integer.toString(value);
+        return BigDecimalUtil.stripZeros(value);
     }
 
     @Override
@@ -26,7 +36,7 @@ public final class MyInteger extends MyNumber {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MyInteger myInteger = (MyInteger) o;
-        return value == myInteger.value;
+        return value.equals(myInteger.value);
     }
 
     @Override

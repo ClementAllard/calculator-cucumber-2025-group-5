@@ -14,7 +14,7 @@ public class FunctionInverse extends Function {
 
     @Override
     protected MyNumber op(MyInteger l) {
-        return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(1), BigDecimal.valueOf(l.getValue())));
+        return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(1), l.getValue()));
     }
 
     @Override

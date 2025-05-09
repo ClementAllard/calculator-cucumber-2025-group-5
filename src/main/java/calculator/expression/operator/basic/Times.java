@@ -55,22 +55,22 @@ public final class Times extends BinaryOperation {
      */
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        return new MyInteger(l.getValue() * r.getValue());
+        return new MyInteger(l.getValue().multiply(r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyRational r) {
-        return new MyRational(l.getValue() * r.getNumerator(), r.getDenominator());
+        return new MyRational(l.getValue().multiply(r.getNumerator()), r.getDenominator());
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyReal r) {
-        return new MyReal(new BigDecimal(l.getValue()).multiply(r.getValue()));
+        return new MyReal(l.getValue().multiply(r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyComplex r) {
-        return new MyComplex(new BigDecimal(l.getValue()).multiply(r.getReal()), new BigDecimal(l.getValue()).multiply(r.getImaginary()));
+        return new MyComplex(l.getValue().multiply(r.getReal()), l.getValue().multiply(r.getImaginary()));
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class Times extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyRational l, MyRational r) {
-        return new MyRational(l.getNumerator() * r.getNumerator(), l.getDenominator() * r.getDenominator());
+        return new MyRational(l.getNumerator().multiply(r.getNumerator()), l.getDenominator().multiply(r.getDenominator()));
     }
 
     @Override

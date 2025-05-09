@@ -55,35 +55,35 @@ public final class Minus extends BinaryOperation {
      */
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        return new MyInteger(l.getValue() - r.getValue());
+        return new MyInteger(l.getValue().subtract(r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyRational r) {
-        int minusPart = l.getValue() * r.getDenominator();
-        return new MyRational(minusPart - r.getNumerator(), r.getDenominator());
+        BigDecimal minusPart = l.getValue().multiply(r.getDenominator());
+        return new MyRational(minusPart.subtract(r.getNumerator()), r.getDenominator());
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyReal r) {
-        return new MyReal(new BigDecimal(l.getValue()).subtract(r.getValue()));
+        return new MyReal(l.getValue().subtract(r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyComplex r) {
-        return new MyComplex(new BigDecimal(l.getValue()).subtract(r.getReal()),r.getImaginary().negate());
+        return new MyComplex(l.getValue().subtract(r.getReal()),r.getImaginary().negate());
     }
 
     @Override
     protected MyNumber op(MyRational l, MyInteger r) {
-        int minusPart = r.getValue() * l.getDenominator();
-        return new MyRational(l.getNumerator() - minusPart, l.getDenominator());
+        BigDecimal minusPart = r.getValue().multiply(l.getDenominator());
+        return new MyRational(l.getNumerator().subtract(minusPart), l.getDenominator());
     }
 
     @Override
     protected MyNumber op(MyRational l, MyRational r) {
-        int newDenominator = l.getDenominator() * r.getDenominator();
-        int newNumerator = l.getNumerator() * r.getDenominator() - r.getNumerator() * l.getDenominator();
+        BigDecimal newDenominator = l.getDenominator().multiply(r.getDenominator());
+        BigDecimal newNumerator = l.getNumerator().multiply(r.getDenominator()).subtract(r.getNumerator().multiply(l.getDenominator()));
         return new MyRational(newNumerator, newDenominator);
     }
 
@@ -119,7 +119,7 @@ public final class Minus extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyComplex l, MyInteger r) {
-        return new MyComplex(l.getReal().subtract(new BigDecimal(r.getValue())),l.getImaginary());
+        return new MyComplex(l.getReal().subtract(r.getValue()),l.getImaginary());
     }
 
     @Override

@@ -14,12 +14,12 @@ public final class Negate extends UnaryOperation {
 
     @Override
     protected MyNumber op(MyInteger l) {
-        return new MyInteger(-l.getValue());
+        return new MyInteger(l.getValue().negate());
     }
 
     @Override
     protected MyNumber op(MyRational l) {
-        return new MyRational(-l.getNumerator(), l.getDenominator());
+        return new MyRational(l.getNumerator().negate(), l.getDenominator());
     }
 
     @Override

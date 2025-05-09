@@ -1,6 +1,7 @@
 package calculator.expression.operator.function;
 
 import calculator.IllegalConstruction;
+import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
 import calculator.expression.operator.BinaryOperation;
@@ -40,34 +41,28 @@ public class FunctionSqrt extends FunctionBinary {
         return num < 0;
     }
 
-    @Override
-    protected MyNumber op(MyInteger l, MyInteger r) {
-        BigDecimal result = BigDecimal.valueOf(root(l.getValue(), r.getValue()));
-        if (isComplexResult(r.getValue())){
+    private MyNumber op(BigDecimal l, BigDecimal r) {
+        BigDecimal result = BigDecimal.valueOf(root(l.doubleValue(), r.doubleValue()));
+        if (isComplexResult(r.doubleValue())){
             return new MyComplex(BigDecimal.ZERO, result);
         } else {
             return new MyReal(result);
         }
+    }
+
+    @Override
+    protected MyNumber op(MyInteger l, MyInteger r) {
+        return op(l.getValue(), r.getValue());
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyRational r) {
-        BigDecimal result = BigDecimal.valueOf(root(l.getValue(), r.getReal().doubleValue()));
-        if (isComplexResult(r.getReal().doubleValue())){
-            return new MyComplex(BigDecimal.ZERO, result);
-        } else {
-            return new MyReal(result);
-        }
+        return op(l.getValue(), r.getReal());
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyReal r) {
-        BigDecimal result = BigDecimal.valueOf(root(l.getValue(), r.getValue().doubleValue()));
-        if (isComplexResult(r.getValue().doubleValue())){
-            return new MyComplex(BigDecimal.ZERO, result);
-        } else {
-            return new MyReal(result);
-        }
+        return op(l.getValue(), r.getValue());
     }
 
     @Override
@@ -77,32 +72,17 @@ public class FunctionSqrt extends FunctionBinary {
 
     @Override
     protected MyNumber op(MyRational l, MyInteger r) {
-        BigDecimal result = BigDecimal.valueOf(root(l.getReal().doubleValue(), r.getValue()));
-        if (isComplexResult(r.getValue())){
-            return new MyComplex(BigDecimal.ZERO, result);
-        } else {
-            return new MyReal(result);
-        }
+        return op(l.getReal(), r.getValue());
     }
 
     @Override
     protected MyNumber op(MyRational l, MyRational r) {
-        BigDecimal result = BigDecimal.valueOf(root(l.getReal().doubleValue(), r.getReal().doubleValue()));
-        if (isComplexResult(r.getReal().doubleValue())){
-            return new MyComplex(BigDecimal.ZERO, result);
-        } else {
-            return new MyReal(result);
-        }
+        return op(l.getReal(), r.getReal());
     }
 
     @Override
     protected MyNumber op(MyRational l, MyReal r) {
-        BigDecimal result = BigDecimal.valueOf(root(l.getReal().doubleValue(), r.getValue().doubleValue()));
-        if (isComplexResult(r.getValue().doubleValue())){
-            return new MyComplex(BigDecimal.ZERO, result);
-        } else {
-            return new MyReal(result);
-        }
+        return op(l.getReal(), r.getValue());
     }
 
     @Override
@@ -112,32 +92,17 @@ public class FunctionSqrt extends FunctionBinary {
 
     @Override
     protected MyNumber op(MyReal l, MyInteger r) {
-        BigDecimal result = BigDecimal.valueOf(root(l.getValue().doubleValue(), r.getValue()));
-        if (isComplexResult(r.getValue())){
-            return new MyComplex(BigDecimal.ZERO, result);
-        } else {
-            return new MyReal(result);
-        }
+        return op(l.getValue(), r.getValue());
     }
 
     @Override
     protected MyNumber op(MyReal l, MyRational r) {
-        BigDecimal result = BigDecimal.valueOf(root(l.getValue().doubleValue(), r.getReal().doubleValue()));
-        if (isComplexResult(r.getReal().doubleValue())){
-            return new MyComplex(BigDecimal.ZERO, result);
-        } else {
-            return new MyReal(result);
-        }
+        return op(l.getValue(), r.getReal());
     }
 
     @Override
     protected MyNumber op(MyReal l, MyReal r) {
-        BigDecimal result = BigDecimal.valueOf(root(l.getValue().doubleValue(), r.getValue().doubleValue()));
-        if (isComplexResult(r.getValue().doubleValue())){
-            return new MyComplex(BigDecimal.ZERO, result);
-        } else {
-            return new MyReal(result);
-        }
+        return op(l.getValue(), r.getValue());
     }
 
     @Override

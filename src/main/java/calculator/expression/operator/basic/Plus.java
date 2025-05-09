@@ -55,23 +55,23 @@ public final class Plus extends BinaryOperation {
      */
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        return new MyInteger(l.getValue() + r.getValue());
+        return new MyInteger(l.getValue().add(r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyRational r) {
-     int addingPart = l.getValue() * r.getDenominator();
-        return new MyRational(r.getNumerator() + addingPart, r.getDenominator());
+     BigDecimal addingPart = l.getValue().multiply(r.getDenominator());
+        return new MyRational(r.getNumerator().add(addingPart), r.getDenominator());
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyReal r) {
-        return new MyReal(r.getValue().add(new BigDecimal(l.getValue())));
+        return new MyReal(r.getValue().add(l.getValue()));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyComplex r) {
-        return new MyComplex(r.getReal().add(new BigDecimal(l.getValue())), r.getImaginary());
+        return new MyComplex(r.getReal().add(l.getValue()), r.getImaginary());
     }
 
     @Override
@@ -81,8 +81,8 @@ public final class Plus extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyRational l, MyRational r) {
-        int newDenominator = l.getDenominator() * r.getDenominator();
-        int newNumerator = l.getNumerator() * r.getDenominator() + r.getNumerator() * l.getDenominator();
+        BigDecimal newDenominator = l.getDenominator().multiply(r.getDenominator());
+        BigDecimal newNumerator = l.getNumerator().multiply(r.getDenominator()).add(r.getNumerator().multiply(l.getDenominator()));
         return new MyRational(newNumerator, newDenominator);
     }
 
