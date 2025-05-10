@@ -1,10 +1,8 @@
 package calculator.expression.operator.function;
 
 import calculator.IllegalConstruction;
-import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
-import calculator.expression.operator.BinaryOperation;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,6 +12,10 @@ public class FunctionSqrt extends FunctionBinary {
     static final String COMPLEX_NUMBER_ERROR = "The root of a complex number is undefined";
     public FunctionSqrt(List<Expression> elist, String functionName) throws IllegalConstruction {
         super(elist, functionName);
+    }
+
+    public FunctionSqrt(List<Expression> elist) throws IllegalConstruction {
+        super(elist, "root");
     }
 
     /**
