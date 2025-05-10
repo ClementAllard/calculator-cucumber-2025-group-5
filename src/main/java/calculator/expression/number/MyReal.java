@@ -20,7 +20,7 @@ public final class MyReal extends MyNumber{
 
     @Override
     public String toString() {
-        return BigDecimalUtil.stripZeros(real);
+        return BigDecimalUtil.stripZeros(real.setScale(BigDecimalUtil.getScale(), BigDecimalUtil.getRounding()));
     }
 
     @Override

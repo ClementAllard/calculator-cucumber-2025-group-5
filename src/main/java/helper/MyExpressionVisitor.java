@@ -216,10 +216,10 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
         try {
             return switch (functionName) {
-                case "rad" -> new FunctionRad(arg, functionName);
+                case "rad" -> new FunctionRad(arg);
                 case "degree" -> new FunctionDegree(arg, functionName);
-                case "inv" -> new FunctionInverse(arg, functionName);
-                case "log" -> new FunctionLog(arg, functionName);
+                case "inv" -> new FunctionInverse(arg);
+                case "log" -> new FunctionLog(arg);
                 case "ln" -> new FunctionLn(arg, functionName);
                 default -> throw new IllegalArgumentException("Unknow function " + functionName+ " of arity 1");
             };
@@ -249,7 +249,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         try {
             return switch (functionName) {
                 case "log" -> new FunctionLogBinary(Arrays.asList(arg1, arg2), functionName);
-                case "pow" -> new FunctionPow(Arrays.asList(arg1, arg2), functionName);
+                case "pow" -> new FunctionPow(Arrays.asList(arg1, arg2));
                 case "sqrt", "root" -> new FunctionSqrt(Arrays.asList(arg1, arg2), functionName);
                 default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 2");
             };

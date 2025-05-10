@@ -44,4 +44,12 @@ public class BigDecimalUtil {
 
         return dividend.divide(divisor, scale, roundingMode);
     }
+
+    public static BigDecimal preciseDivide(BigDecimal bigDecimal, BigDecimal bigDecimal1) {
+        scale = scale+20;
+        BigDecimal temp = divide(bigDecimal, bigDecimal1);
+        scale = scale-20;
+        return temp;
+    }
+
 }

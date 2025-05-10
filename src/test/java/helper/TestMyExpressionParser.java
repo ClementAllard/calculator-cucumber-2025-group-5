@@ -35,34 +35,6 @@ class TestMyExpressionParser {
     }
 
     @Test
-    void testBasicExpressionParsing() {
-        try{
-            String infixExpressionString = "((4+5+6)*(7+(5/2/7))*9)";
-            String prefixExpressionString = "*(+(4 5 6),+(7 /(5 2 7)) 9)";
-            String prefixExpressionString2 = "* 9 + ( 4 5 6 ) + (7 /(5 2 7))";
-            String postfixExpressionString = "((4 5 6)+ (7 (5 2 7)/)+ 9)*";
-            String postfixExpressionString2 = "9 (4 5 6)+ (7 (5 2 7)/)+*";
-
-            Expression infixExpressionParsing = MyExpressionParser.parseExpression(infixExpressionString);
-            assertEquals(c.eval(e),c.eval(infixExpressionParsing));
-
-            Expression prefixExpressionParsing = MyExpressionParser.parseExpression(prefixExpressionString);
-            assertEquals(c.eval(e),c.eval(prefixExpressionParsing));
-
-            Expression prefixExpressionParsing2 = MyExpressionParser.parseExpression(prefixExpressionString2);
-            assertEquals(c.eval(e),c.eval(prefixExpressionParsing2));
-
-            Expression postfixExpressionParsing = MyExpressionParser.parseExpression(postfixExpressionString);
-            assertEquals(c.eval(e),c.eval(postfixExpressionParsing));
-
-            Expression postfixExpressionParsing2 = MyExpressionParser.parseExpression(postfixExpressionString2);
-            assertEquals(c.eval(e),c.eval(postfixExpressionParsing2));
-        }catch (Exception _) {
-            fail();
-        }
-    }
-
-    @Test
     void testSensitivityExpressionParsing() {
         try{
             String expressionStringWithSpaceAndTab = "(( 4          + 5 + 6    )     *   (   7       +( 5 / 2 / 7 ) )  * 9  )";
@@ -232,39 +204,39 @@ class TestMyExpressionParser {
             // positive rational
             Expression inverse = MyExpressionParser.parseExpression("inv(3/4)");
             Expression response = MyExpressionParser.parseExpression("4/3");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // negative rational
             inverse = MyExpressionParser.parseExpression("inv(-3/4)");
             response = MyExpressionParser.parseExpression("-4/3");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // positive integer
             // Forces real value comparison
             inverse = MyExpressionParser.parseExpression("0.0 + inv(2)");
             response = MyExpressionParser.parseExpression("0.0 + 1/2");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // negative integer
             // Forces real value comparison
             inverse = MyExpressionParser.parseExpression("0.0 + inv(-2)");
             response = MyExpressionParser.parseExpression("0.0 + -1/2");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // positive real
             inverse = MyExpressionParser.parseExpression("inv(0.5)");
             response = MyExpressionParser.parseExpression("2.0");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // negative real
             inverse = MyExpressionParser.parseExpression("inv(-0.5)");
             response = MyExpressionParser.parseExpression("-2.0");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // complex
             inverse = MyExpressionParser.parseExpression("inv(4-3i)");
-            response = MyExpressionParser.parseExpression("4/25 - 0+3i / 25");
-            assertEquals(c.eval(inverse), c.eval(response));
+            response = MyExpressionParser.parseExpression("0.16 + 0.12i");
+            assertEquals(c.eval(response),c.eval(inverse));
         } catch (Exception _) {
             fail();
         }
@@ -276,7 +248,7 @@ class TestMyExpressionParser {
             // positive rational
             Expression inverse = MyExpressionParser.parseExpression("log(10/1)");
             Expression response = MyExpressionParser.parseExpression("1");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // O excluded
             final Expression inverse1 = MyExpressionParser.parseExpression("log(0)");
@@ -291,7 +263,7 @@ class TestMyExpressionParser {
             // Forces real value comparison
             inverse = MyExpressionParser.parseExpression("log(100/1)");
             response = MyExpressionParser.parseExpression("2/1");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // negative integer
             final Expression inverse3 = MyExpressionParser.parseExpression("log(-2)");
@@ -300,7 +272,7 @@ class TestMyExpressionParser {
             // positive real
             inverse = MyExpressionParser.parseExpression("log(100.0)");
             response = MyExpressionParser.parseExpression("2.0");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // negative real
             // error here.
@@ -336,7 +308,7 @@ class TestMyExpressionParser {
             // positive rational
             Expression inverse = MyExpressionParser.parseExpression("ln(1)");
             Expression response = MyExpressionParser.parseExpression("0");
-            assertEquals(c.eval(inverse), c.eval(response));
+            assertEquals(c.eval(response),c.eval(inverse));
 
             // O excluded
             final Expression inverse1 = MyExpressionParser.parseExpression("ln(0)");

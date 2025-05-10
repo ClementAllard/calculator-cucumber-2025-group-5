@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import calculator.expression.Expression;
 import calculator.IllegalConstruction;
 import calculator.expression.Notation;
+import calculator.expression.number.MyComplex;
 import calculator.expression.number.MyInteger;
+import calculator.expression.number.MyRational;
 import calculator.expression.number.MyReal;
 import org.junit.jupiter.api.*;
 
@@ -119,6 +121,34 @@ class TestDivides {
 		} catch (IllegalConstruction e) {
 			fail();
 		}
+	}
+
+	@Test
+	void operationTest(){
+		MyInteger integer = new MyInteger(2);
+		MyRational rational = new MyRational(1,2);
+		MyReal real = new MyReal(new BigDecimal("0.5"));
+		MyComplex complex = new MyComplex(new BigDecimal("1"),new BigDecimal("2"));
+
+		assertEquals("1", op.op(integer,integer).toString());
+		assertEquals("4", op.op(integer,rational).toString());
+		assertEquals("4", op.op(integer,real).toString());
+		assertEquals("0.4 - 0.8i", op.op(integer,complex).toString());
+
+		assertEquals("1/4", op.op(rational,integer).toString());
+		assertEquals("1", op.op(rational,rational).toString());
+		assertEquals("1", op.op(rational,real).toString());
+		assertEquals("0.1 - 0.2i", op.op(rational,complex).toString());
+
+		assertEquals("0.25", op.op(real,integer).toString());
+		assertEquals("1", op.op(real,rational).toString());
+		assertEquals("1", op.op(real,real).toString());
+		assertEquals("0.1 - 0.2i", op.op(real,complex).toString());
+
+		assertEquals("0.5 + 1i", op.op(complex,integer).toString());
+		assertEquals("2 + 4i", op.op(complex,rational).toString());
+		assertEquals("2 + 4i", op.op(complex,real).toString());
+		assertEquals("1 + 0i", op.op(complex,complex).toString());
 	}
 
 }

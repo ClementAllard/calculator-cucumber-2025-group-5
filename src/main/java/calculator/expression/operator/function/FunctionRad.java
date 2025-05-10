@@ -13,10 +13,9 @@ public class FunctionRad extends Function {
      * Class constructor specifying the arguments of a function.
      *
      * @param expression Expressions as arguments of the function.
-     * @param functionName the name of the function.
      */
-    public FunctionRad(Expression expression, String functionName) throws IllegalConstruction {
-        super(expression, functionName);
+    public FunctionRad(Expression expression) throws IllegalConstruction {
+        super(expression, "rad");
     }
 
     /**
@@ -50,7 +49,8 @@ public class FunctionRad extends Function {
     }
 
     private MyNumber op(BigDecimal l){
-        return new MyReal(BigDecimalUtil.divide(l.multiply(BigDecimal.valueOf(Math.PI)), BigDecimal.valueOf(180)));
+        BigDecimal bd = BigDecimalUtil.preciseDivide(BigDecimal.valueOf(Math.PI), BigDecimal.valueOf(180));
+        return new MyReal(l.multiply(bd));
     }
 
     /**
@@ -60,7 +60,7 @@ public class FunctionRad extends Function {
      */
     @Override
     protected MyNumber op(MyComplex l) {
-        double radiant = Math.atan2(l.getReal().doubleValue(), l.getImaginary().doubleValue()); // degree to rad
+        double radiant = Math.atan2(l.getImaginary().doubleValue(),l.getReal().doubleValue()); // degree to rad
         return new MyReal(BigDecimal.valueOf(radiant));
     }
 }

@@ -3,7 +3,6 @@ package calculator.expression.operator.function;
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
-import calculator.expression.operator.BinaryOperation;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,8 +10,8 @@ import java.util.List;
 public class FunctionPow extends FunctionBinary {
     static final String COMPLEX_BASE_ERROR = "Exponent with a complex base is undefined";
     static final String COMPLEX_EXPONENT_ERROR = "Exponent with a complex exponent is undefined";
-    public FunctionPow(List<Expression> elist, String functionName) throws IllegalConstruction {
-        super(elist,functionName);
+    public FunctionPow(List<Expression> elist) throws IllegalConstruction {
+        super(elist,"pow");
     }
 
     @Override
@@ -22,9 +21,7 @@ public class FunctionPow extends FunctionBinary {
 
     @Override
     protected MyNumber op(MyInteger l, MyRational r) {
-        double numerator = Math.pow(l.getValue().doubleValue(), r.getNumerator().doubleValue());
-        double denominator = Math.pow(l.getValue().doubleValue(), 1 / r.getDenominator().doubleValue());
-        return new MyReal(BigDecimal.valueOf(numerator*denominator));
+        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getReal().doubleValue())));
     }
 
     @Override
@@ -39,7 +36,9 @@ public class FunctionPow extends FunctionBinary {
 
     @Override
     protected MyNumber op(MyRational l, MyInteger r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getReal().doubleValue(), r.getValue().doubleValue())));
+        double numerator = Math.pow(l.getNumerator().doubleValue(), r.getValue().doubleValue());
+        double denominator = Math.pow(l.getDenominator().doubleValue(),r.getValue().doubleValue());
+        return new MyRational(BigDecimal.valueOf(numerator), BigDecimal.valueOf(denominator));
     }
 
     @Override

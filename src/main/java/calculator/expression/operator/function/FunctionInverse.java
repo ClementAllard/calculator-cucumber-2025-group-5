@@ -8,8 +8,8 @@ import calculator.expression.number.*;
 import java.math.BigDecimal;
 
 public class FunctionInverse extends Function {
-    public FunctionInverse(Expression expression, String functionName) throws IllegalConstruction {
-        super(expression, functionName);
+    public FunctionInverse(Expression expression) throws IllegalConstruction {
+        super(expression, "inv");
     }
 
     @Override
@@ -30,7 +30,7 @@ public class FunctionInverse extends Function {
     @Override
     protected MyNumber op(MyComplex l) {
         BigDecimal real = BigDecimalUtil.divide(l.getReal(), l.getReal().pow(2).add(l.getImaginary().pow(2)));
-        BigDecimal imaginary = BigDecimalUtil.divide(l.getImaginary(), l.getReal().pow(2).add(l.getImaginary().pow(2)));
+        BigDecimal imaginary = BigDecimalUtil.divide(l.getImaginary().negate(), l.getReal().pow(2).add(l.getImaginary().pow(2)));
         return new MyComplex(real, imaginary);
     }
 }
