@@ -8,8 +8,8 @@ import java.math.BigDecimal;
 
 public class FunctionLn extends Function {
     static final String NEGATIVE_ERROR_STRING = "Invalid argument: The value inside log must be positive.";
-    public FunctionLn(Expression expression, String functionName) throws IllegalConstruction {
-        super(expression, functionName);
+    public FunctionLn(Expression expression) throws IllegalConstruction {
+        super(expression, "ln");
     }
 
     @Override

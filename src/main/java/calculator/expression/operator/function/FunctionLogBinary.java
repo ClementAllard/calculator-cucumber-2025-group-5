@@ -1,6 +1,7 @@
 package calculator.expression.operator.function;
 
 import calculator.IllegalConstruction;
+import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
 import calculator.expression.operator.BinaryOperation;
@@ -14,8 +15,8 @@ public class FunctionLogBinary extends FunctionBinary {
     static final String NEGATIVE_BASE_ERROR = "Invalid argument: The logarithm with a negative base or zero is undefined.";
     static final String NEGATIVE_NUMBER_ERROR = "Invalid argument: The logarithm with a negative number or zero is undefined.";
     static final String BASE_ERROR = "Invalid argument: The logarithm with a base 1 is undefined.";
-    public FunctionLogBinary(List<Expression> elist, String functionName) throws IllegalConstruction {
-        super(elist, functionName);
+    public FunctionLogBinary(List<Expression> elist) throws IllegalConstruction {
+        super(elist, "log");
     }
 
     private MyNumber op(BigDecimal base, BigDecimal number) {

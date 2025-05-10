@@ -8,8 +8,8 @@ import calculator.expression.number.*;
 import java.math.BigDecimal;
 
 public class FunctionDegree extends Function {
-    public FunctionDegree(Expression expression, String functionName) throws IllegalConstruction {
-        super(expression, functionName);
+    public FunctionDegree(Expression expression) throws IllegalConstruction {
+        super(expression, "degree");
     }
 
     @Override
