@@ -41,7 +41,7 @@ public class FunctionSqrt extends FunctionBinary {
         return num < 0;
     }
 
-    private MyNumber op(BigDecimal l, BigDecimal r) {
+    public MyNumber op(BigDecimal l, BigDecimal r) {
         BigDecimal result = BigDecimal.valueOf(root(l.doubleValue(), r.doubleValue()));
         if (isComplexResult(r.doubleValue())){
             return new MyComplex(BigDecimal.ZERO, result);

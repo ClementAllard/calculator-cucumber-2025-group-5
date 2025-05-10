@@ -41,6 +41,18 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrefixSimpleNumber(ExpressionParser.PrefixSimpleNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrefixSimpleNumber(ExpressionParser.PrefixSimpleNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrefixNumber(ExpressionParser.PrefixNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -48,6 +60,30 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPrefixNumber(ExpressionParser.PrefixNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrefixUnaryFunction(ExpressionParser.PrefixUnaryFunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrefixUnaryFunction(ExpressionParser.PrefixUnaryFunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrefixBinaryFunction(ExpressionParser.PrefixBinaryFunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrefixBinaryFunction(ExpressionParser.PrefixBinaryFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -65,6 +101,18 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPostfixSimpleNumber(ExpressionParser.PostfixSimpleNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPostfixSimpleNumber(ExpressionParser.PostfixSimpleNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPostfixNumber(ExpressionParser.PostfixNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -77,73 +125,85 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInfixExpressionExponent(ExpressionParser.InfixExpressionExponentContext ctx) { }
+	@Override public void enterPostfixUnaryFunction(ExpressionParser.PostfixUnaryFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInfixExpressionExponent(ExpressionParser.InfixExpressionExponentContext ctx) { }
+	@Override public void exitPostfixUnaryFunction(ExpressionParser.PostfixUnaryFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSingleTerm(ExpressionParser.SingleTermContext ctx) { }
+	@Override public void enterPostfixBinaryFunction(ExpressionParser.PostfixBinaryFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSingleTerm(ExpressionParser.SingleTermContext ctx) { }
+	@Override public void exitPostfixBinaryFunction(ExpressionParser.PostfixBinaryFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInfixExpressionAddSub(ExpressionParser.InfixExpressionAddSubContext ctx) { }
+	@Override public void enterInfixExpr(ExpressionParser.InfixExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInfixExpressionAddSub(ExpressionParser.InfixExpressionAddSubContext ctx) { }
+	@Override public void exitInfixExpr(ExpressionParser.InfixExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInfixExpressionImplicitMul(ExpressionParser.InfixExpressionImplicitMulContext ctx) { }
+	@Override public void enterInfixExprPrio1(ExpressionParser.InfixExprPrio1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInfixExpressionImplicitMul(ExpressionParser.InfixExpressionImplicitMulContext ctx) { }
+	@Override public void exitInfixExprPrio1(ExpressionParser.InfixExprPrio1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInfixExpressionMulDiv(ExpressionParser.InfixExpressionMulDivContext ctx) { }
+	@Override public void enterInfixExprPrio2(ExpressionParser.InfixExprPrio2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInfixExpressionMulDiv(ExpressionParser.InfixExpressionMulDivContext ctx) { }
+	@Override public void exitInfixExprPrio2(ExpressionParser.InfixExprPrio2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSingleFactor(ExpressionParser.SingleFactorContext ctx) { }
+	@Override public void enterInfixExprPrio3(ExpressionParser.InfixExprPrio3Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSingleFactor(ExpressionParser.SingleFactorContext ctx) { }
+	@Override public void exitInfixExprPrio3(ExpressionParser.InfixExprPrio3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInfixExpressionSigned(ExpressionParser.InfixExpressionSignedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInfixExpressionSigned(ExpressionParser.InfixExpressionSignedContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -161,49 +221,61 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInfixExpressionNegate(ExpressionParser.InfixExpressionNegateContext ctx) { }
+	@Override public void enterInfixFunc(ExpressionParser.InfixFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInfixExpressionNegate(ExpressionParser.InfixExpressionNegateContext ctx) { }
+	@Override public void exitInfixFunc(ExpressionParser.InfixFuncContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFactorNumber(ExpressionParser.FactorNumberContext ctx) { }
+	@Override public void enterComplexNumber(ExpressionParser.ComplexNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFactorNumber(ExpressionParser.FactorNumberContext ctx) { }
+	@Override public void exitComplexNumber(ExpressionParser.ComplexNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnaryFunction(ExpressionParser.UnaryFunctionContext ctx) { }
+	@Override public void enterInfixSimpleNumber(ExpressionParser.InfixSimpleNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnaryFunction(ExpressionParser.UnaryFunctionContext ctx) { }
+	@Override public void exitInfixSimpleNumber(ExpressionParser.InfixSimpleNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBinaryFunction(ExpressionParser.BinaryFunctionContext ctx) { }
+	@Override public void enterInfixUnaryFunction(ExpressionParser.InfixUnaryFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBinaryFunction(ExpressionParser.BinaryFunctionContext ctx) { }
+	@Override public void exitInfixUnaryFunction(ExpressionParser.InfixUnaryFunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInfixBinaryFunction(ExpressionParser.InfixBinaryFunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInfixBinaryFunction(ExpressionParser.InfixBinaryFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -221,30 +293,6 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNotComplex(ExpressionParser.NotComplexContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNotComplex(ExpressionParser.NotComplexContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSimpleAtom(ExpressionParser.SimpleAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSimpleAtom(ExpressionParser.SimpleAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterScientificAtom(ExpressionParser.ScientificAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -252,18 +300,6 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitScientificAtom(ExpressionParser.ScientificAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRationalNumber(ExpressionParser.RationalNumberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRationalNumber(ExpressionParser.RationalNumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -312,18 +348,6 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitENumber(ExpressionParser.ENumberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterRationalAtom(ExpressionParser.RationalAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitRationalAtom(ExpressionParser.RationalAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -23,6 +23,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         return visit(ctx.getChild(0)); // For have the Expression, not the EOF
     }
 
+    // PREFIX EXPRESSION
+
     @Override
     public Expression visitPrefixExpression(ExpressionParser.PrefixExpressionContext ctx) {
         List<Expression> expressions = new ArrayList<>();
@@ -37,15 +39,12 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         return getExpression(expressions, symbol,Notation.PREFIX);
     }
 
-    @Override
-    public Expression visitPrefixNumber(ExpressionParser.PrefixNumberContext ctx) {
-        return visitChildren(ctx);
-    }
-
     private boolean isPrefixExpression(ParseTree tree) {
-        return tree instanceof ExpressionParser.PrefixNumberContext ||
+        return tree instanceof ExpressionParser.PrefixSimpleNumberContext ||
                 tree instanceof ExpressionParser.PrefixExpressionContext;
     }
+
+    // POSTFIX EXPRESSION
 
     @Override
     public Expression visitPostfixExpression(ExpressionParser.PostfixExpressionContext ctx) {
@@ -61,56 +60,12 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         return getExpression(expressions, symbol,Notation.POSTFIX);
     }
 
-    @Override
-    public Expression visitPostfixNumber(ExpressionParser.PostfixNumberContext ctx) {
-        return visitChildren(ctx);
-    }
-
     private boolean isPostfixExpression(ParseTree tree) {
-        return tree instanceof ExpressionParser.PostfixNumberContext ||
+        return tree instanceof ExpressionParser.PostfixSimpleNumberContext ||
                 tree instanceof ExpressionParser.PostfixExpressionContext;
     }
 
-    @Override
-    public Expression visitSingleTerm(ExpressionParser.SingleTermContext ctx) {
-        return visitChildren(ctx);
-    }
-
-    @Override
-    public Expression visitInfixExpressionAddSub(ExpressionParser.InfixExpressionAddSubContext ctx) {
-        Expression left = visit(ctx.getChild(0));
-        String operator = ctx.getChild(1).getText();
-        Expression right = visit(ctx.getChild(2));
-
-        return getExpression(Arrays.asList(left,right), operator,Notation.INFIX);
-    }
-
-    @Override
-    public Expression visitInfixExpressionImplicitMul(ExpressionParser.InfixExpressionImplicitMulContext ctx) {
-        Expression left = visit(ctx.getChild(0));
-        Expression right = visit(ctx.getChild(1));
-
-        return getExpression(Arrays.asList(left,right),"*", Notation.INFIX);
-    }
-
-    @Override
-    public Expression visitInfixExpressionMulDiv(ExpressionParser.InfixExpressionMulDivContext ctx) {
-        Expression left = visit(ctx.getChild(0));
-        String operator = ctx.getChild(1).getText();
-        Expression right = visit(ctx.getChild(2));
-
-        return getExpression(Arrays.asList(left,right),operator, Notation.INFIX);
-    }
-
-    @Override
-    public Expression visitSingleFactor(ExpressionParser.SingleFactorContext ctx) {
-        return visitChildren(ctx);
-    }
-
-    @Override
-    public Expression visitFactorNumber(ExpressionParser.FactorNumberContext ctx) {
-        return visitChildren(ctx);
-    }
+    // INFIX EXPRESSION
 
     @Override
     public Expression visitInfixExpressionWithParenthesis(ExpressionParser.InfixExpressionWithParenthesisContext ctx) {
@@ -118,79 +73,62 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     }
 
     @Override
-    public Expression visitInfixExpressionNegate(ExpressionParser.InfixExpressionNegateContext ctx) {
-        try {
-            Expression expression = visit(ctx.getChild(2));
-            return new Negate(expression);
-        } catch (IllegalConstruction e) {
-            throw new RuntimeException(e); //NOSONAR
-        }
-    }
-
-    @Override
-    public Expression visitComplexAtom(ExpressionParser.ComplexAtomContext ctx) {
-        BigDecimal real = new BigDecimal(ctx.getChild(0).getText());
-        BigDecimal imaginary = new BigDecimal(ctx.getChild(2).getText());
-
-        if(ctx.getChild(1).getText().equals("-")) {
-            imaginary = imaginary.negate();
-        }
-
-        return new MyComplex(real,imaginary);
-    }
-
-    @Override
-    public Expression visitNotComplex(ExpressionParser.NotComplexContext ctx) {
-        return visitChildren(ctx);
-    }
-
-    @Override
-    public Expression visitRationalNumber(ExpressionParser.RationalNumberContext ctx) {
-        return visitChildren(ctx);
-    }
-
-    @Override
-    public Expression visitIntergerAtom(ExpressionParser.IntergerAtomContext ctx) {
-        return new MyInteger(Integer.parseInt(ctx.getChild(0).getText()));
-    }
-
-    @Override
-    public Expression visitRealAtom(ExpressionParser.RealAtomContext ctx) {
-        return new MyReal(new BigDecimal(ctx.getChild(0).getText()));
-    }
-
-    @Override
-    public Expression visitSimpleAtom(ExpressionParser.SimpleAtomContext ctx) {
-        if(ctx.children.size() == 2) {
-            MyNumber number = (MyNumber) visit(ctx.getChild(1));
-            if(ctx.getChild(0).getText().equals("-")){
-                try {
-                    return new Negate(number);
-                } catch (IllegalConstruction e) {
-                    throw new RuntimeException(e); // NOSONAR
-                }
-            }else {
-                return number;
+    public Expression visitInfixExpressionSigned(ExpressionParser.InfixExpressionSignedContext ctx) {
+        if(ctx.getChild(0).getText().equals("-")) {
+            try {
+                return new Negate(visit(ctx.getChild(1)));
+            } catch (IllegalConstruction e) {
+                throw new RuntimeException(e); // NOSONAR
             }
+        }else{
+            return visit(ctx.getChild(1));
         }
-        return visit(ctx.getChild(0));
     }
 
     @Override
-    public Expression visitRationalAtom(ExpressionParser.RationalAtomContext ctx) {
-        int numerator = Integer.parseInt(ctx.getChild(0).getText());
-        int denominator = Integer.parseInt(ctx.getChild(2).getText());
+    public Expression visitInfixExprPrio1(ExpressionParser.InfixExprPrio1Context ctx) {
+        if(ctx.getChildCount() == 1) { return visitChildren(ctx); }
 
-        return new MyRational(numerator,denominator);
+        Expression left = visit(ctx.getChild(0));
+        String operator = ctx.getChild(1).getText();
+        Expression right = visit(ctx.getChild(2));
+
+        return getExpression(Arrays.asList(left,right), operator, Notation.INFIX);
     }
 
     @Override
-    public Expression visitScientificAtom(ExpressionParser.ScientificAtomContext ctx) {
-        Expression number = visit(ctx.getChild(0));
-        Expression exponent = visit(ctx.getChild(2));
+    public Expression visitInfixExprPrio2(ExpressionParser.InfixExprPrio2Context ctx) {
+        Expression left;
+        Expression right;
+        String operator;
 
-        Expression exponentResult = getExpression(Arrays.asList(new MyInteger(10),exponent),"^",Notation.INFIX);
-        return getExpression(Arrays.asList(number,exponentResult),"*",Notation.INFIX);
+        switch (ctx.getChildCount()){
+            case 1:
+                return visitChildren(ctx);
+            case 2:
+                left = visit(ctx.getChild(0));
+                right = visit(ctx.getChild(1));
+                operator = "*";
+                break;
+            default:
+                left = visit(ctx.getChild(0));
+                operator = ctx.getChild(1).getText();
+                right = visit(ctx.getChild(2));
+                break;
+        }
+
+        return getExpression(Arrays.asList(left,right), operator, Notation.INFIX);
+    }
+
+    @Override
+    public Expression visitInfixExprPrio3(ExpressionParser.InfixExprPrio3Context ctx) {
+        if(ctx.getChildCount() == 1) { return visitChildren(ctx); }
+
+        Expression left = visit(ctx.getChild(0));
+        String operator = ctx.getChild(1).getText();
+        Expression right = visit(ctx.getChild(2));
+
+        return getExpression(Arrays.asList(left,right), operator, Notation.INFIX);
     }
 
     private Expression getExpression(List<Expression> expressions, String symbol,Notation notation) {
@@ -208,11 +146,80 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         }
     }
 
+    // ATOM
+
     @Override
-    public Expression visitUnaryFunction(ExpressionParser.UnaryFunctionContext ctx) {
-        // We know the string contains at least a letter and '(', we remove '('.
-        String functionName = ctx.getChild(0).getText().substring(0, ctx.getChild(0).getText().length()-1);
-        Expression arg = visit(ctx.getChild(1));
+    public Expression visitIntergerAtom(ExpressionParser.IntergerAtomContext ctx) {
+        return new MyInteger(Integer.parseInt(ctx.getChild(0).getText()));
+    }
+
+    @Override
+    public Expression visitRealAtom(ExpressionParser.RealAtomContext ctx) {
+        return new MyReal(new BigDecimal(ctx.getChild(0).getText()));
+    }
+
+    @Override
+    public Expression visitPiNumber(ExpressionParser.PiNumberContext ctx){
+        return new MyReal(BigDecimal.valueOf(Math.PI).setScale(BigDecimalUtil.getScale(),BigDecimalUtil.getRounding()));
+    }
+
+    @Override
+    public Expression visitENumber(ExpressionParser.ENumberContext ctx) {
+        return new MyReal(BigDecimal.valueOf(Math.E).setScale(BigDecimalUtil.getScale(),BigDecimalUtil.getRounding()));
+    }
+
+    @Override
+    public Expression visitPercentageAtom(ExpressionParser.PercentageAtomContext ctx) {
+        try{
+            return new MyRational(Integer.parseInt(ctx.getChild(0).getText()), 100);
+        } catch (NumberFormatException e) {
+            return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(
+                            Double.parseDouble(ctx.getChild(0).getText())),
+                    BigDecimal.valueOf(100)));
+        }
+    }
+
+    @Override
+    public Expression visitScientificAtom(ExpressionParser.ScientificAtomContext ctx) {
+        Expression number = new MyReal(new BigDecimal(ctx.getChild(0).getText()));
+        Expression exponent = new MyReal(new BigDecimal(ctx.getChild(2).getText()));
+
+        Expression exponentResult = getExpression(Arrays.asList(new MyInteger(10),exponent),"^",Notation.INFIX);
+        return getExpression(Arrays.asList(number,exponentResult),"*",Notation.INFIX);
+    }
+
+    @Override
+    public Expression visitComplexAtom(ExpressionParser.ComplexAtomContext ctx) {
+        BigDecimal real = new BigDecimal(ctx.getChild(0).getText());
+        BigDecimal imaginary = new BigDecimal(ctx.getChild(2).getText());
+
+        if(ctx.getChild(1).getText().equals("-")) {
+            imaginary = imaginary.negate();
+        }
+
+        return new MyComplex(real,imaginary);
+    }
+
+    // UNARY FUNCTION
+
+    @Override
+    public Expression visitPostfixUnaryFunction(ExpressionParser.PostfixUnaryFunctionContext ctx) {
+        return unaryFunction(ctx);
+    }
+
+    @Override
+    public Expression visitInfixUnaryFunction(ExpressionParser.InfixUnaryFunctionContext ctx) {
+        return unaryFunction(ctx);
+    }
+
+    @Override
+    public Expression visitPrefixUnaryFunction(ExpressionParser.PrefixUnaryFunctionContext ctx) {
+        return unaryFunction(ctx);
+    }
+
+    private Expression unaryFunction(ParseTree tree){
+        String functionName = tree.getChild(0).getText().substring(0, tree.getChild(0).getText().length()-1);
+        Expression arg = visit(tree.getChild(1));
 
         try {
             return switch (functionName) {
@@ -229,54 +236,37 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         }
     }
 
+    // BINARY FUNCTION
+
     @Override
-    public Expression visitPiNumber(ExpressionParser.PiNumberContext ctx){
-        return new MyReal(BigDecimal.valueOf(Math.PI).setScale(BigDecimalUtil.getScale(),BigDecimalUtil.getRounding()));
+    public Expression visitPostfixBinaryFunction(ExpressionParser.PostfixBinaryFunctionContext ctx) {
+        return binaryFunction(ctx);
     }
 
     @Override
-    public Expression visitENumber(ExpressionParser.ENumberContext ctx) {
-        return new MyReal(BigDecimal.valueOf(Math.E).setScale(BigDecimalUtil.getScale(),BigDecimalUtil.getRounding()));
+    public Expression visitInfixBinaryFunction(ExpressionParser.InfixBinaryFunctionContext ctx) {
+        return binaryFunction(ctx);
     }
 
     @Override
-    public Expression visitBinaryFunction(ExpressionParser.BinaryFunctionContext ctx) {
-        // We know the string contains at least a letter and '(', we remove '('.
-        String functionName = ctx.getChild(0).getText().substring(0, ctx.getChild(0).getText().length()-1);
-        Expression arg1 = visit(ctx.getChild(1));
-        Expression arg2 = visit(ctx.getChild(3));
+    public Expression visitPrefixBinaryFunction(ExpressionParser.PrefixBinaryFunctionContext ctx) {
+        return binaryFunction(ctx);
+    }
+
+    private Expression binaryFunction(ParseTree tree){
+        String funcName = tree.getChild(0).getText().substring(0, tree.getChild(0).getText().length()-1);
+        List<Expression> args = Arrays.asList(visit(tree.getChild(1)),visit(tree.getChild(3)));
 
         try {
-            return switch (functionName) {
-                case "log" -> new FunctionLogBinary(Arrays.asList(arg1, arg2));
-                case "pow" -> new FunctionPow(Arrays.asList(arg1, arg2));
-                case "sqrt", "root" -> new FunctionSqrt(Arrays.asList(arg1, arg2), functionName);
-                default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 2");
+            return switch (funcName) {
+                case "log" -> new FunctionLogBinary(args);
+                case "pow" -> new FunctionPow(args);
+                case "sqrt", "root" -> new FunctionSqrt(args, funcName);
+                default -> throw new IllegalArgumentException("Unknown function " + funcName+ " of arity 2");
             };
 
         } catch (IllegalConstruction e) {
             throw new RuntimeException(e); // NOSONAR
         }
-    }
-
-    @Override
-    public Expression visitInfixExpressionExponent(ExpressionParser.InfixExpressionExponentContext ctx) {
-        Expression left = visit(ctx.getChild(0));
-        String operator = ctx.getChild(1).getText();
-        Expression right = visit(ctx.getChild(2));
-
-        return getExpression(Arrays.asList(left,right), operator, Notation.INFIX);
-    }
-
-    @Override
-    public Expression visitPercentageAtom(ExpressionParser.PercentageAtomContext ctx) {
-        try{
-            return new MyRational(Integer.parseInt(ctx.getChild(0).getText()), 100);
-        } catch (NumberFormatException e) {
-            return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(
-                    Double.parseDouble(ctx.getChild(0).getText())),
-                    BigDecimal.valueOf(100)));
-        }
-
     }
 }

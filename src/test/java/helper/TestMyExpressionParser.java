@@ -49,7 +49,7 @@ class TestMyExpressionParser {
     @Test
     void testSchemaExpressionParsing() {
         try{
-            String shemaExpressionString = "*(+(4 5 6) +(7 /(5 2 7)) 9)";
+            String shemaExpressionString = "*(+(4,5,6),+(7,/(5,2,7)),9)";
 
             Expression expressionParsing = MyExpressionParser.parseExpression(shemaExpressionString);
             assertEquals(e.toString(Notation.PREFIX),expressionParsing.toString(Notation.PREFIX));
@@ -74,7 +74,7 @@ class TestMyExpressionParser {
     @Test
     void testImplicitMultiplication() {
         try{
-            String expressionString = "(4+5+ 6)(7 + 5/2/7)*9";
+            String expressionString = "(4+5+6)(7+(5/2/7))*9";
             Expression expressionParsing = MyExpressionParser.parseExpression(expressionString);
             assertEquals(c.eval(e),c.eval(expressionParsing));
         } catch (Exception _){
@@ -440,7 +440,7 @@ class TestMyExpressionParser {
             assertEquals(c.eval(expression), c.eval(response));
 
             // negative rational (force real checking)
-            expression = MyExpressionParser.parseExpression("0.0 + -1/2 ^2");
+            expression = MyExpressionParser.parseExpression("0.0 + (-1/2) ^2");
             response = MyExpressionParser.parseExpression("0.0 + 1/4");
             assertEquals(c.eval(expression), c.eval(response));
 

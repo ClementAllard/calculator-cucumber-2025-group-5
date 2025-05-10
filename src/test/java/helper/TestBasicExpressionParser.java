@@ -26,7 +26,7 @@ class TestBasicExpressionParser {
     @Test
     void testPrefixExpressionParser() {
         try {
-            String expressionToParse = "/(*(/(+(1 2)*(2 3))+(*(2 2) 3))0.5)";
+            String expressionToParse = "/(*(/(+(1, 2), *(2, 3)), +(*(2, 2), 3)), 0.5)";
             Expression parsedExpression = MyExpressionParser.parseExpression(expressionToParse);
             assertEquals("7",c.eval(parsedExpression));
         } catch (IllegalSyntax | ExecutionControl.NotImplementedException e) {
@@ -37,7 +37,7 @@ class TestBasicExpressionParser {
     @Test
     void testPostfixExpressionParser() {
         try {
-            String expressionToParse = "((((1 2)+(2 3)*)/ ((2 2)* 3)+)*0.5)/";
+            String expressionToParse = "(( ( (1,2)+ , (2,3)* )/ ,( (2,2)* , 3 )+ )*,0.5)/";
             Expression parsedExpression = MyExpressionParser.parseExpression(expressionToParse);
             assertEquals("7",c.eval(parsedExpression));
         } catch (IllegalSyntax | ExecutionControl.NotImplementedException e) {
