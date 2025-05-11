@@ -19,36 +19,12 @@ public class FunctionRad extends Function {
     }
 
     /**
-     * define the logic when the number is integer
-     * @param l the integer value
-     * @return real value from degree to radiant
+     * define the logic when the number is not complex.
+     * @param l the number
+     * @return the radiant.
      */
     @Override
-    protected MyNumber op(MyInteger l) {
-        return op(l.getValue());
-    }
-
-    /**
-     * define the logic when the number is rational
-     * @param l the rational value
-     * @return real value from degree to radiant.
-     */
-    @Override
-    protected MyNumber op(MyRational l) {
-        return op(l.getReal());
-    }
-
-    /**
-     * define the logic when the number is real
-     * @param l the real number
-     * @return real value from degree to radiant.
-     */
-    @Override
-    protected MyNumber op(MyReal l) {
-        return op(l.getValue());
-    }
-
-    private MyNumber op(BigDecimal l){
+    protected MyNumber op(BigDecimal l){
         BigDecimal bd = BigDecimalUtil.preciseDivide(BigDecimal.valueOf(Math.PI), BigDecimal.valueOf(180));
         return new MyReal(l.multiply(bd));
     }

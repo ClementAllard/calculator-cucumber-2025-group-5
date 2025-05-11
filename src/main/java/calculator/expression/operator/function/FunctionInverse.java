@@ -13,18 +13,13 @@ public class FunctionInverse extends Function {
     }
 
     @Override
-    protected MyNumber op(MyInteger l) {
-        return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(1), l.getValue()));
-    }
-
-    @Override
     protected MyNumber op(MyRational l) {
         return new MyRational(l.getDenominator(), l.getNumerator());
     }
 
     @Override
-    protected MyNumber op(MyReal l) {
-        return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(1), l.getValue()));
+    protected MyNumber op(BigDecimal l) {
+        return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(1), l));
     }
 
     @Override

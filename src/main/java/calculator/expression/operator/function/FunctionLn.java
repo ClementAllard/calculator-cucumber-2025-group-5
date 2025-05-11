@@ -13,21 +13,7 @@ public class FunctionLn extends Function {
     }
 
     @Override
-    protected MyNumber op(MyInteger l) {
-        return op(l.getValue());
-    }
-
-    @Override
-    protected MyNumber op(MyRational l) {
-        return op(l.getReal());
-    }
-
-    @Override
-    protected MyNumber op(MyReal l) {
-        return op(l.getValue());
-    }
-
-    private MyNumber op(BigDecimal l) {
+    protected MyNumber op(BigDecimal l) {
         if (l.compareTo(BigDecimal.ZERO) > 0){
             return new MyReal(BigDecimal.valueOf(Math.log(l.doubleValue())));
         } else {
