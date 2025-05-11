@@ -42,16 +42,12 @@ public class CLI {
 					break;
 				case "exit":
 					return;
+				case "fraction":
+					calculator.invShowFraction();
+					System.out.println("mode fraction: " + calculator.getShowFraction()); //NOSONAR
+					break;
 				case "scale":
 					scaleCommand(scanner);
-					break;
-				case "scientific":
-					System.out.println("Scientific mode :"); //NOSONAR
-					calculator.setScientificNotation(true);
-					break;
-				case "normal":
-					System.out.println("Normal mode :"); //NOSONAR
-					calculator.setScientificNotation(false);
 					break;
 				case "rounding":
 					roundingCommand(scanner);

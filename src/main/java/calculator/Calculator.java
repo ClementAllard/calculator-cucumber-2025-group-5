@@ -1,11 +1,13 @@
 package calculator;
 
+import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
 import jdk.jshell.spi.ExecutionControl;
 import visitor.Evaluator;
 
 import java.text.DecimalFormat;
+import java.util.stream.Stream;
 
 /**
  * This class represents the core logic of a Calculator.
@@ -21,10 +23,14 @@ public class Calculator {
      */
     public Calculator() {}
 
-    private boolean scientificNotation = false;
+    private boolean showFraction = true;
 
-    public void setScientificNotation(boolean scientificNotation) {
-        this.scientificNotation = scientificNotation;
+    public void invShowFraction() {
+        this.showFraction = !showFraction;
+    }
+
+    public boolean getShowFraction() {
+        return showFraction;
     }
 
     /*
@@ -79,6 +85,19 @@ public class Calculator {
         return switch (result) {
             case null -> v.getErrorMessage();
             case MyComplex complex -> complex.toString();
+            case MyRational rational -> {
+                if(showFraction) {
+                    yield rational.toString();
+                }else{
+                    String resultStr = BigDecimalUtil.stripZeros(rational.getReal());
+                    if(result.toString().length() > 20){
+                        DecimalFormat sciFormat = new DecimalFormat("0.###E0");
+                        yield sciFormat.format(resultStr);
+                    }else {
+                        yield resultStr;
+                    }
+                }
+            }
             case MyNumber number when result.toString().length() > 20 -> {
                 DecimalFormat sciFormat = new DecimalFormat("0.###E0");
                 yield sciFormat.format(number);
@@ -87,6 +106,8 @@ public class Calculator {
         };
 
     }
+
+
 
     /*
      We could also have other methods, e.g. to verify whether an expression is syntactically correct

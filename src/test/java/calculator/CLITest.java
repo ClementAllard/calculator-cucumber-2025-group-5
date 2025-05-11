@@ -27,6 +27,14 @@ class CLITest {
     }
 
     @Test
+    void CLIFractionTest(){
+        useCLI("1/2\nfraction\n1/2\nfraction\n1/2\n","Welcome to CLI Calculator: " +
+                "Please, enter expression: > Result : ( 1 / 2 ) = 1/2> " +
+                "mode fraction: false> Result : ( 1 / 2 ) = 0.5" +
+                "> mode fraction: true> Result : ( 1 / 2 ) = 1/2>");
+    }
+
+    @Test
     void CLIChangeScaleTest() {
         useCLI("scale\n12\n", "Welcome to CLI Calculator: Please, enter expression:"
                 + " > Current scale expression: 10New chosen scale : New current scale expression: 12>");
