@@ -16,31 +16,31 @@ Feature: Integer Arithmetic Expressions
     Given an integer operation '+'
     When I provide a first number 4
     And I provide a second number 5
-    Then the operation evaluates to "9"
+    Then the operation evaluates to 9
 
   Scenario: Subtracting two integer numbers
     Given an integer operation '-'
     When I provide a first number 7
     And I provide a second number 5
-    Then the operation evaluates to "2"
+    Then the operation evaluates to 2
 
   Scenario: Multiplying two integer numbers
     Given an integer operation '*'
     When I provide a first number 7
     And I provide a second number 5
-    Then the operation evaluates to "35"
+    Then the operation evaluates to 35
 
   Scenario: Dividing two integer numbers
     Given an integer operation '/'
     When I provide a first number 7
     And I provide a second number 5
-    Then the fraction evaluates to "1 2/5"
+    Then the operation evaluates to 1
 
   Scenario: Dividing two integer numbers
     Given an integer operation '/'
     When I provide a first number 8
     And I provide a second number 0
-    Then the operation evaluates to Division By Zero Error
+    Then the operation evaluates to NaN
 
   Scenario: Printing the sum of two integer numbers
     Given the sum of two numbers 8 and 6
@@ -100,20 +100,20 @@ Feature: Integer Arithmetic Expressions
 
     Examples:
       |n1|n2|result|
-      |4|5|"9"|
-      |5|3|"8"|
+      |4|5|9|
+      |5|3|8|
 
   Scenario Outline: Dividing two integer numbers
     Given an integer operation '/'
     When I provide a first number <n1>
     And I provide a second number <n2>
-    Then the fraction evaluates to <result>
+    Then the operation evaluates to <result>
 
     Examples:
       |n1|n2|result|
-      |35|5|"7"|
-      |7|5|"1 2/5"|
-      |5|7|"5/7"|
+      |35|5|7|
+      |7|5|1|
+      |5|7|0|
 
   Scenario Outline: Evaluating arithmetic operations with two integer parameters
     Given an integer operation <op>
@@ -123,7 +123,7 @@ Feature: Integer Arithmetic Expressions
 
     Examples:
       | op  |n1|n2|result|
-      | "+" | 4| 5|     "9"|
-      | "-" | 8| 5|     "3"|
-      | "*" | 7| 2|    "14"|
-      | "/" | 6| 2|     "3"|
+      | "+" | 4| 5|     9|
+      | "-" | 8| 5|     3|
+      | "*" | 7| 2|    14|
+      | "/" | 6| 2|     3|

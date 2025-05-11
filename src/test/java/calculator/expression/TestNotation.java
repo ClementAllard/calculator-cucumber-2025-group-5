@@ -3,7 +3,6 @@ package calculator.expression;
 import static org.junit.jupiter.api.Assertions.*;
 
 import calculator.IllegalConstruction;
-import calculator.expression.number.MyInteger;
 import calculator.expression.operator.*;
 import calculator.expression.operator.basic.Divides;
 import calculator.expression.operator.basic.Minus;
@@ -43,7 +42,7 @@ class TestNotation {
 		int value1 = 8;
 		int value2 = 6;
 		Operation op = null;
-		List<Expression> params = Arrays.asList(new MyInteger(value1),new MyInteger(value2));
+		List<Expression> params = Arrays.asList(new MyNumber(value1),new MyNumber(value2));
 		try {
 			//construct another type of operation depending on the input value
 			//of the parameterised test
