@@ -3,13 +3,20 @@ package calculator;
 import static org.junit.jupiter.api.Assertions.*;
 
 import calculator.expression.*;
+import calculator.expression.number.MyInteger;
 import calculator.expression.operator.*;
 import calculator.expression.Notation;
+import calculator.expression.operator.basic.Divides;
+import calculator.expression.operator.basic.Minus;
+import calculator.expression.operator.basic.Plus;
+import calculator.expression.operator.basic.Times;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import jdk.jshell.spi.ExecutionControl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,7 +64,7 @@ public class CalculatorSteps {
 		params = new ArrayList<>();
 		// Since we only use one line of input, we use get(0) to take the first line of the list,
 		// which is a list of strings, that we will manually convert to integers:
-		numbers.getFirst().forEach(n -> params.add(new MyNumber(Integer.parseInt(n))));
+		numbers.getFirst().forEach(n -> params.add(new MyInteger(Integer.parseInt(n))));
 	    params.forEach(n -> System.out.println("value ="+ n));
 		op = null;
 	}
@@ -70,8 +77,8 @@ public class CalculatorSteps {
 	public void givenTheSum(int n1, int n2) {
 		try {
 			params = new ArrayList<>();
-		    params.add(new MyNumber(n1));
-		    params.add(new MyNumber(n2));
+		    params.add(new MyInteger(n1));
+		    params.add(new MyInteger(n2));
 		    op = new Plus(params);}
 		catch(IllegalConstruction e) { fail(); }
 	}
@@ -89,7 +96,7 @@ public class CalculatorSteps {
 	public void whenIProvideANumber(String s, int val) {
 		//add extra parameter to the operation
 		params = new ArrayList<>();
-		params.add(new MyNumber(val));
+		params.add(new MyInteger(val));
 		op.addMoreParams(params);
 	}
 
@@ -103,8 +110,8 @@ public class CalculatorSteps {
 				case "difference"	->	op = new Minus(params);
 				default -> fail();
 			}
-			assertEquals(val, c.eval(op));
-		} catch (IllegalConstruction e) {
+			assertEquals(String.valueOf(val), c.eval(op));
+		} catch (IllegalConstruction | ExecutionControl.NotImplementedException e) {
 			fail();
 		}
 	}
@@ -126,28 +133,43 @@ public class CalculatorSteps {
 		assertEquals(s, o.toString());
 	}
 
-	@Then("the operation evaluates to {int}")
-	public void thenTheOperationEvaluatesTo(int val) {
-		assertEquals(val, c.eval(op));
+	@Then("the operation evaluates to {string}")
+	public void thenTheOperationEvaluatesTo(String val) {
+        try {
+            assertEquals(BigDecimalUtil.stripZeros(new BigDecimal(val)), c.eval(op));
+        } catch (ExecutionControl.NotImplementedException e) {
+			fail();
+        }
+    }
+
+	@Then("the fraction evaluates to {string}")
+	public void thenTheFractionEvaluatesTo(String val) {
+		try {
+			assertEquals(val, c.eval(op).toString());
+		} catch (ExecutionControl.NotImplementedException e) {
+			fail();
+		}
 	}
 
-	@Then("the operation evaluates to NaN")
+	@Then("the operation evaluates to Division By Zero Error")
 	public void thenTheOperationEvaluatesToNaN() {
-		assertNull(c.eval(op));
-	}
+		assertThrows(ArithmeticException.class, () -> {
+			c.print(op);
+		});
+    }
 
 	@Given("a big expression")
 	public void theExpressionIs() throws IllegalConstruction {
 		List<Expression> plusExpressionArray = new ArrayList<>();
-		Collections.addAll(plusExpressionArray, new MyNumber(3), new MyNumber(4), new MyNumber(5));
+		Collections.addAll(plusExpressionArray, new MyInteger(3), new MyInteger(4), new MyInteger(5));
 		final Expression plus = new Plus(plusExpressionArray);
 
 		List<Expression> minusExpressionArray = new ArrayList<>();
-		Collections.addAll(minusExpressionArray, new MyNumber(5), new MyNumber(3));
+		Collections.addAll(minusExpressionArray, new MyInteger(5), new MyInteger(3));
 		final Expression minus = new Minus(minusExpressionArray);
 
 		List<Expression> timesExpressionArray = new ArrayList<>();
-		Collections.addAll(timesExpressionArray, new MyNumber(3), new MyNumber(3));
+		Collections.addAll(timesExpressionArray, new MyInteger(3), new MyInteger(3));
 		final Expression times = new Times(timesExpressionArray);
 
 		ArrayList<Expression> divideExpressionArray = new ArrayList<>();
