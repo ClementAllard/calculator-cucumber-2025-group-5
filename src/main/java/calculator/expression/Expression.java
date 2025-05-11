@@ -1,6 +1,7 @@
 package calculator.expression;
 
-import calculator.expression.operator.Operation;
+import calculator.IllegalConstruction;
+import jdk.jshell.spi.ExecutionControl;
 import visitor.Visitor;
 
 /**
@@ -8,7 +9,7 @@ import visitor.Visitor;
  * It has two concrete subclasses Operation and MyNumber.
  *
  * @see calculator.expression.operator.Operation
- * @see MyNumber
+ * @see calculator.expression.number.MyNumber
  */
 public interface Expression {
 
@@ -17,7 +18,7 @@ public interface Expression {
     *
     * @param v The visitor object being passed as a parameter
     */
-   void accept(Visitor v);
+   void accept(Visitor v) throws ExecutionControl.NotImplementedException;
 
    /**
     * Counts the depth of nested expressions in an arithmetic expression

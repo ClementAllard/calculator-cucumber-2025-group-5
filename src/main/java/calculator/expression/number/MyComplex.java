@@ -1,7 +1,6 @@
 package calculator.expression.number;
 
 import calculator.expression.BigDecimalUtil;
-import calculator.expression.Expression;
 
 import java.math.BigDecimal;
 import java.util.Objects;
