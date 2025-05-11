@@ -23,6 +23,7 @@
         <sonar.projectKey>ClementAllard_calculator-cucumber-2025-group-5</sonar.projectKey>
         <sonar.organization>calculator-cucumber-group-5</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.exclusions>src/main/java/helper/antlr4/**/*</sonar.exclusions>
 
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -169,6 +170,7 @@
                     <arguments>
                         <arg>-package</arg>
                         <arg>helper.antlr4</arg>
+                        <arg>-visitor</arg>
                     </arguments>
                 </configuration>
                 <executions>
