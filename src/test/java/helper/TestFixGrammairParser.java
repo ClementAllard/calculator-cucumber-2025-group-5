@@ -8,12 +8,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class TestFixGrammairParser {
+class TestFixGrammairParser {
 
     Calculator c = new Calculator();
 
     @Test
-    public void testFixPriorityOp() {
+     void testFixPriorityOp() {
         try {
             Expression expression = MyExpressionParser.parseExpression("2*2^3");
             final Expression result = MyExpressionParser.parseExpression("16");

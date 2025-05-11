@@ -14,19 +14,23 @@ public class FunctionPow extends FunctionBinary {
         super(elist,"pow");
     }
 
+    private BigDecimal pow(BigDecimal l, BigDecimal r) {
+        return BigDecimal.valueOf(Math.pow(l.doubleValue(),r.doubleValue()));
+    }
+
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        return new MyInteger(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getValue().doubleValue())));
+        return new MyInteger(pow(l.getValue(),r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyRational r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getReal().doubleValue())));
+        return new MyReal(pow(l.getValue(),r.getReal()));
     }
 
     @Override
     protected MyNumber op(MyInteger l, MyReal r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getValue().doubleValue())));
+        return new MyReal(pow(l.getValue(),r.getValue()));
     }
 
     @Override
@@ -36,19 +40,20 @@ public class FunctionPow extends FunctionBinary {
 
     @Override
     protected MyNumber op(MyRational l, MyInteger r) {
-        double numerator = Math.pow(l.getNumerator().doubleValue(), r.getValue().doubleValue());
-        double denominator = Math.pow(l.getDenominator().doubleValue(),r.getValue().doubleValue());
-        return new MyRational(BigDecimal.valueOf(numerator), BigDecimal.valueOf(denominator));
+        BigDecimal numerator = pow(l.getNumerator(),r.getValue());
+        BigDecimal denominator = pow(l.getDenominator(),r.getValue());
+
+        return new MyRational(numerator, denominator);
     }
 
     @Override
     protected MyNumber op(MyRational l, MyRational r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getReal().doubleValue(), r.getReal().doubleValue())));
+        return new MyReal(pow(l.getReal(),r.getReal()));
     }
 
     @Override
     protected MyNumber op(MyRational l, MyReal r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getReal().doubleValue(), r.getValue().doubleValue())));
+        return new MyReal(pow(l.getReal(),r.getValue()));
     }
 
     @Override
@@ -58,17 +63,17 @@ public class FunctionPow extends FunctionBinary {
 
     @Override
     protected MyNumber op(MyReal l, MyInteger r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getValue().doubleValue())));
+        return new MyReal(pow(l.getValue(),r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyReal l, MyRational r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getReal().doubleValue())));
+        return new MyReal(pow(l.getValue(),r.getReal()));
     }
 
     @Override
     protected MyNumber op(MyReal l, MyReal r) {
-        return new MyReal(BigDecimal.valueOf(Math.pow(l.getValue().doubleValue(), r.getValue().doubleValue())));
+        return new MyReal(pow(l.getValue(),r.getValue()));
     }
 
     @Override

@@ -29,14 +29,23 @@ class FunctionDegreeTest {
             Expression expression = new FunctionDegree(new FunctionRad(myInteger));
             assertEquals("9",calculator.eval(expression));
 
+            expression = new FunctionRad(new FunctionDegree(myInteger));
+            assertEquals("9",calculator.eval(expression));
+
             expression = new FunctionDegree(new FunctionRad(myReal));
+            assertEquals("0.5",calculator.eval(expression));
+
+            expression = new FunctionRad(new FunctionDegree(myReal));
             assertEquals("0.5",calculator.eval(expression));
 
             expression = new FunctionDegree(new FunctionRad(myRational));
             assertEquals("0.5",calculator.eval(expression));
 
-            expression = new FunctionDegree(new FunctionRad(myComplex));
-            assertEquals("45",calculator.eval(expression));
+            expression = new FunctionRad(new FunctionDegree(myRational));
+            assertEquals("0.5",calculator.eval(expression));
+
+            expression = new FunctionDegree(new FunctionRad(myRational));
+            assertEquals("0.5",calculator.eval(expression));
 
         } catch (IllegalConstruction | ExecutionControl.NotImplementedException e) {
             fail(e.getMessage());
