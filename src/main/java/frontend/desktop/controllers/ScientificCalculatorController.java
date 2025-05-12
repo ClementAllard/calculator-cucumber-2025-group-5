@@ -1,6 +1,7 @@
 package frontend.desktop.controllers;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -27,6 +28,8 @@ public class ScientificCalculatorController extends StandardCalculatorController
 
     @FXML
     public ChoiceBox<String> angleSetting;
+
+    private final ObservableList<String> items = FXCollections.observableArrayList("DEG", "RAD");
 
     private boolean radianMode = false;
 
@@ -67,7 +70,7 @@ public class ScientificCalculatorController extends StandardCalculatorController
         String currentInput = inputLabel.getText();
         StringBuilder lastNumber = new StringBuilder();
         while (!currentInput.isEmpty() && (Character.isDigit(currentInput.charAt(currentInput.length() - 1))
-                || currentInput.charAt(currentInput.length() - 1) == ','
+                || currentInput.charAt(currentInput.length() - 1) == '.'
                 || currentInput.charAt(currentInput.length() - 1) == 'I'
                 || currentInput.charAt(currentInput.length() - 1) == 'P'
                 || currentInput.charAt(currentInput.length() - 1) == 'e')) {
@@ -99,11 +102,21 @@ public class ScientificCalculatorController extends StandardCalculatorController
         Pair<String, String> result = popLastNumber();
         String currentInput = result.getKey();
         String lastNumber = result.getValue();
-        if (conversionType.equals("to rad")) {
-            inputLabel.setText(currentInput + "rad(" + lastNumber + ")");
+        if (!lastNumber.isEmpty()) {
+            if (conversionType.equals("to rad")) {
+                inputLabel.setText(currentInput + "rad(" + lastNumber + ")");
+            }
+            else if (conversionType.equals("to deg")) {
+                inputLabel.setText(currentInput + "deg(" + lastNumber + ")");
+            }
         }
-        else if (conversionType.equals("to deg")) {
-            inputLabel.setText(currentInput + "deg(" + lastNumber + ")");
+        else {
+            if (conversionType.equals("to rad")) {
+                inputLabel.setText(currentInput + "rad(");
+            }
+            else if (conversionType.equals("to deg")) {
+                inputLabel.setText(currentInput + "deg(");
+            }
         }
     }
 
@@ -166,7 +179,9 @@ public class ScientificCalculatorController extends StandardCalculatorController
                     case "log" -> button.setOnAction(event -> handleSymbolButton("log("));
                     case "1/x" -> button.setOnAction(event -> handleInverseButton());
                     case "ln" -> button.setOnAction(event -> handleSymbolButton("ln("));
+                    case "log2" -> button.setOnAction(event -> handleSymbolButton("log(2,"));
                     case "mod" -> button.setOnAction(event -> handleSymbolButton("mod("));
+                    case "," -> button.setOnAction(event -> handleSymbolButton(","));
                     default -> button.setOnAction(event -> handleSymbolButton(""));
                 }
             }
@@ -275,15 +290,9 @@ public class ScientificCalculatorController extends StandardCalculatorController
      */
     @Override
     public void initialize() {
-        angleSetting.setItems(FXCollections.observableArrayList("DEG", "RAD"));
-        angleSetting.setValue("DEG");
-        angleSetting.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
-            if (newValue.equals("DEG")) {
-                radianMode = false;
-            } else if (newValue.equals("RAD")) {
-                radianMode = true;
-            }
-        });
+        angleSetting.setItems(items);
+        angleSetting.setValue(items.getFirst());
+        angleSetting.setOnAction(_ -> setRadianMode(angleSetting.getValue().equals("RAD")));
         initializeLeftGridPane();
         initializeCenterGridPane();
         initializeRightGridPane();

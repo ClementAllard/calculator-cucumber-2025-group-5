@@ -159,7 +159,7 @@ public class StandardCalculatorController extends Controller {
                     case "×" -> button.setOnAction(event -> handleSymbolButton("*"));
                     case "÷" -> button.setOnAction(event -> handleSymbolButton("/"));
                     case "+" -> button.setOnAction(event -> handleSymbolButton("+"));
-                    case "−" -> button.setOnAction(event -> handleSymbolButton("−"));
+                    case "−" -> button.setOnAction(event -> handleSymbolButton("-"));
                     case "=" -> button.setOnAction(event -> handleEqualButton());
                     default -> button.setOnAction(event -> handleSymbolButton(""));
                 }
@@ -189,6 +189,7 @@ public class StandardCalculatorController extends Controller {
                     case "xʸ" -> button.setOnAction(event -> handleExpButton(""));
                     case "²√x" -> button.setOnAction(event -> handleSQRTButton("2"));
                     case "ʸ√x" -> button.setOnAction(event -> handleSQRTButton(""));
+                    case "%" -> button.setOnAction(event -> handleSymbolButton("%"));
                     default -> button.setOnAction(event -> handleSymbolButton(""));
                 }
             }

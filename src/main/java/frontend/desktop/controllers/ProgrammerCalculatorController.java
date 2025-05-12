@@ -1,5 +1,7 @@
 package frontend.desktop.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -25,8 +27,8 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
 
     private String shiftType;
 
-    private final String[] shiftTypes = {"Arithmetic", "Logical", "Rotate", "Rotate through carry"};
-    private final String[] baseTypes = {"BIN", "OCT", "DEC", "HEX"};
+    private final ObservableList<String> shiftTypes = FXCollections.observableArrayList("Arithmetic", "Logical", "Rotate", "Rotate through carry");
+    private final ObservableList<String> baseTypes = FXCollections.observableArrayList("BIN", "OCT", "DEC", "HEX");
 
 
     /**
@@ -40,7 +42,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         String currentInput = inputLabel.getText();
         StringBuilder lastNumber = new StringBuilder();
         while (!currentInput.isEmpty() && (Character.isDigit(currentInput.charAt(currentInput.length() - 1))
-                || String.valueOf(currentInput.charAt(currentInput.length() - 1)).matches("[,A-Fa-f]"))) {
+                || String.valueOf(currentInput.charAt(currentInput.length() - 1)).matches("[.A-Fa-f]"))) {
             lastNumber.insert(0, currentInput.charAt(currentInput.length() - 1));
             currentInput = currentInput.substring(0, currentInput.length() - 1);
         }
@@ -187,8 +189,8 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
     @Override
     public void initialize() {
         // Initialize the base setting choice box
-        baseSetting.getItems().addAll(baseTypes);
-        baseSetting.setValue(baseTypes[2]);
+        baseSetting.setItems(baseTypes);
+        baseSetting.setValue(baseTypes.get(2));
         baseSetting.setOnAction(_ -> {
             currBase = baseSetting.getValue();
             if (!prevBase.equals(currBase)) {
@@ -198,8 +200,8 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         });
         handleBaseChange();
         // Initialize the shift setting choice box
-        shiftSetting.getItems().addAll(shiftTypes);
-        shiftSetting.setValue(shiftTypes[0]);
+        shiftSetting.setItems(shiftTypes);
+        shiftSetting.setValue(shiftTypes.getFirst());
         setShiftType(shiftSetting.getValue());
         shiftSetting.setOnAction(_ -> setShiftType(shiftSetting.getValue()));
 

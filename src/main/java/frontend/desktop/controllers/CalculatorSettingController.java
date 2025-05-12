@@ -1,10 +1,15 @@
 package frontend.desktop.controllers;
 
+import calculator.expression.Notation;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+
 
 import java.util.Objects;
 
@@ -23,6 +28,8 @@ public class CalculatorSettingController extends Controller {
 
     @FXML
     public ChoiceBox<String> operationOrderSetting;
+
+    private final ObservableList<String> operationOrderTypes = FXCollections.observableArrayList("INFIX", "POSTFIX", "PREFIX");
 
     public String operationOrder = "INFIX";
 
@@ -81,8 +88,8 @@ public class CalculatorSettingController extends Controller {
      * Sets the default value to "INFIX" and adds an action listener to update the operation order.
      */
     private void initializeOperationOrderSetting() {
-        operationOrderSetting.getItems().addAll("INFIX", "POSTFIX", "PREFIX");
-        operationOrderSetting.setValue("INFIX");
+        operationOrderSetting.setItems(operationOrderTypes);
+        operationOrderSetting.setValue(operationOrderTypes.getFirst());
         operationOrderSetting.setOnAction(_ -> setOperationOrder(operationOrderSetting.getValue()));
     }
 

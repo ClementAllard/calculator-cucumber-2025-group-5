@@ -95,7 +95,7 @@
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="118.0" layoutY="204.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="113.0" text="," GridPane.rowIndex="3">
+                <Button layoutX="118.0" layoutY="204.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="113.0" text="." GridPane.rowIndex="3">
                     <font>
                         <Font size="24.0" />
                     </font>
@@ -179,6 +179,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
                 <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="(">
@@ -217,6 +218,16 @@
                </font>
             </Button>
             <Button layoutX="10.0" layoutY="205.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="105.0" text="mod" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="105.0" text="," GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="105.0" text="log2" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>

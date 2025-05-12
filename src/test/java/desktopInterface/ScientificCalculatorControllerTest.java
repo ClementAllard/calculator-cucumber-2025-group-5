@@ -71,10 +71,10 @@ class ScientificCalculatorControllerTest {
         assertEquals("1/e", scientificCalculatorController.inputLabel.getText());
 
         scientificCalculatorController.inputLabel.setText("");
-        scientificCalculatorController.handleSymbolButton("3,14");
-        assertEquals("3,14", scientificCalculatorController.inputLabel.getText());
+        scientificCalculatorController.handleSymbolButton("3.14");
+        assertEquals("3.14", scientificCalculatorController.inputLabel.getText());
         scientificCalculatorController.handleInverseButton();
-        assertEquals("1/3,14", scientificCalculatorController.inputLabel.getText());
+        assertEquals("1/3.14", scientificCalculatorController.inputLabel.getText());
     }
 
     /**
@@ -90,9 +90,9 @@ class ScientificCalculatorControllerTest {
         assertEquals("rad(5)", scientificCalculatorController.inputLabel.getText());
 
         scientificCalculatorController.inputLabel.setText("");
-        scientificCalculatorController.handleSymbolButton("3,14");
+        scientificCalculatorController.handleSymbolButton("3.14");
         scientificCalculatorController.handleConvertButton("to deg");
-        assertEquals("deg(3,14)", scientificCalculatorController.inputLabel.getText());
+        assertEquals("deg(3.14)", scientificCalculatorController.inputLabel.getText());
 
         scientificCalculatorController.inputLabel.setText("");
         scientificCalculatorController.handleSymbolButton("e");
