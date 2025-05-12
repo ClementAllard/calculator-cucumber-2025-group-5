@@ -607,4 +607,50 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testFunctionAsinParser() {
+        try {
+            Expression expression = MyExpressionParser.parseExpression("asin(0)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(expected));
+
+            expression = MyExpressionParser.parseExpression("asin(1)");
+            expected = MyExpressionParser.parseExpression(String.valueOf(Math.PI / 2));
+            assertEquals(c.eval(expression), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testFunctionAcosParser() {
+        try {
+            Expression expression = MyExpressionParser.parseExpression("acos(1)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(expected));
+
+            expression = MyExpressionParser.parseExpression("acos(0)");
+            expected = MyExpressionParser.parseExpression(String.valueOf(Math.PI / 2));
+            assertEquals(c.eval(expression), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testFunctionAtanParser() {
+        try {
+            Expression expression = MyExpressionParser.parseExpression("atan(0)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(expected));
+
+            expression = MyExpressionParser.parseExpression("atan(1)");
+            expected = MyExpressionParser.parseExpression(String.valueOf(Math.PI / 4));
+            assertEquals(c.eval(expression), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
 }
