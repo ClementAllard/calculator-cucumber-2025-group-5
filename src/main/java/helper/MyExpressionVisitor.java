@@ -228,7 +228,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "inv" -> new FunctionInverse(arg);
                 case "log" -> new FunctionLog(arg);
                 case "ln" -> new FunctionLn(arg);
-                default -> throw new IllegalArgumentException("Unknow function " + functionName+ " of arity 1");
+                case "sin" -> new FunctionSin(arg);
+                default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 1");
             };
 
         } catch (IllegalConstruction e) {

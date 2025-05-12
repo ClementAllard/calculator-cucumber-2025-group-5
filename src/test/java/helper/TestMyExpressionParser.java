@@ -527,4 +527,28 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testFunctionSin(){
+        try {
+            // special cases
+            Expression expression = MyExpressionParser.parseExpression("sin(pi/2)");
+            Expression response = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            expression = MyExpressionParser.parseExpression("sin(3*pi/2)");
+            response = MyExpressionParser.parseExpression("-1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            expression = MyExpressionParser.parseExpression("sin(pi)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            expression = MyExpressionParser.parseExpression("sin(2*pi)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+        } catch (Exception _) {
+            fail();
+        }
+    }
 }
