@@ -66,14 +66,14 @@ public class ScientificCalculatorController extends StandardCalculatorController
         return new Pair<>(currentInput, lastNumber.toString());
     }
 
-    void handleInverseButton() {
+    public void handleInverseButton() {
         Pair<String, String> result = popLastNumber();
         String currentInput = result.getKey();
         String lastNumber = result.getValue();
         inputLabel.setText(currentInput + "1/" + lastNumber);
     }
 
-    void handleConvertButton(String conversionType) {
+    public void handleConvertButton(String conversionType) {
         Pair<String, String> result = popLastNumber();
         String currentInput = result.getKey();
         String lastNumber = result.getValue();
@@ -85,7 +85,7 @@ public class ScientificCalculatorController extends StandardCalculatorController
         }
     }
 
-    void handleXExpButton(String x) {
+    public void handleXExpButton(String x) {
         Pair<String, String> result = popLastNumber();
         String currentInput = result.getKey();
         String lastNumber = result.getValue();
@@ -198,7 +198,7 @@ public class ScientificCalculatorController extends StandardCalculatorController
     }
 
     @Override
-    void initialize() {
+    public void initialize() {
         angleSetting.setItems(FXCollections.observableArrayList("DEG", "RAD"));
         angleSetting.setValue("DEG");
         angleSetting.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {

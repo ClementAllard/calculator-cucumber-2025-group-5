@@ -27,29 +27,29 @@ public class StandardCalculatorController extends Controller {
 
     private static final Calculator calculator = new Calculator();
 
-    void handleSymbolButton(String symbol) {
+    public void handleSymbolButton(String symbol) {
         String currentInput = inputLabel.getText();
         inputLabel.setText(currentInput + symbol);
     }
 
-    void handleDeleteButton() {
+    public void handleDeleteButton() {
         String currentInput = inputLabel.getText();
         if (!currentInput.isEmpty()) {
             inputLabel.setText(currentInput.substring(0, currentInput.length() - 1));
         }
     }
 
-    void handleClearButton() {
+    public void handleClearButton() {
         inputLabel.setText("");
         outputLabel.setText("");
     }
 
-    void handlePiButton() {
+    public void handlePiButton() {
         String currentInput = inputLabel.getText();
         inputLabel.setText(currentInput + "PI");
     }
 
-    void handleSQRTButton(String second) {
+    public void handleSQRTButton(String second) {
         String currentInput = inputLabel.getText();
         if (!second.isEmpty()) {
             inputLabel.setText(currentInput + "SQRT(" + second + ",");
@@ -59,7 +59,7 @@ public class StandardCalculatorController extends Controller {
         }
     }
 
-    void handleExpButton(String second) {
+    public void handleExpButton(String second) {
         String currentInput = inputLabel.getText();
         if (!second.isEmpty()) {
             inputLabel.setText(currentInput + "^" + second);
@@ -69,7 +69,7 @@ public class StandardCalculatorController extends Controller {
         }
     }
 
-    void handleEqualButton() {
+    public void handleEqualButton() {
         String currentInput = inputLabel.getText();
         try {
             Expression e = MyExpressionParser.parseExpression(currentInput);
@@ -105,7 +105,7 @@ public class StandardCalculatorController extends Controller {
         });}
 
     @Override
-    void initialize() {
+    public void initialize() {
         // Initialize buttons and set their actions
         initializeLeftGridPane();
 

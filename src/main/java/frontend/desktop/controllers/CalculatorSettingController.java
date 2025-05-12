@@ -11,20 +11,20 @@ import java.util.Objects;
 public class CalculatorSettingController extends Controller {
 
     @FXML
-    MenuButton calculatorTypeMenuButton;
+    public MenuButton calculatorTypeMenuButton;
 
     @FXML
-    Label calculatorTypeLabel;
+    public Label calculatorTypeLabel;
 
     @FXML
     public ChoiceBox<String> operationOrderSetting;
 
-    private String OPERATION_ORDER = "INFIX";
+    private String operationOrder = "INFIX";
 
     /*
         * This method is called when the user selects a menu item from the calculator type menu button.
      */
-    private void handleMenuItemSelection(MenuItem item) {
+    public void handleMenuItemSelection(MenuItem item) {
         if (item != null) {
             String selectedType = item.getText();
             switch (selectedType) {
@@ -73,21 +73,25 @@ public class CalculatorSettingController extends Controller {
     private void initializeOperationOrderSetting() {
         operationOrderSetting.getItems().addAll("INFIX", "POSTFIX", "PREFIX");
         operationOrderSetting.setValue("INFIX");
-        operationOrderSetting.setOnAction(_ -> setOPERATION_ORDER(operationOrderSetting.getValue()));
+        operationOrderSetting.setOnAction(_ -> setOperationOrder(operationOrderSetting.getValue()));
     }
 
     @Override
-    void initialize() {
+    public void initialize() {
         handleTypeSelection();
         initializeOperationOrderSetting();
     }
 
-    public String getOPERATION_ORDER() {
-        return OPERATION_ORDER;
+    public String getOperationOrder() {
+        return operationOrder;
     }
 
-    public void setOPERATION_ORDER(String OPERATION_ORDER) {
-        this.OPERATION_ORDER = OPERATION_ORDER;
+    public void setOperationOrder(String operationOrder) {
+        this.operationOrder = operationOrder;
+    }
+
+    public String getCalculatorType() {
+        return calculatorTypeLabel.getText();
     }
 }
 

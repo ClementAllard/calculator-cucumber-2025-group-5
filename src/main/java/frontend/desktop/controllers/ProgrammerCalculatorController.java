@@ -52,7 +52,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         });
     }
 
-    private void changeNumbersToBase() {
+    public void changeNumbersToBase() {
         // Change the numbers in the calculator to the specified base
         String currentInput = inputLabel.getText();
         ArrayList<String> numbers = new ArrayList<>();
@@ -102,7 +102,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
     }
 
 
-    private void handleBaseChange() {
+    public void handleBaseChange() {
         // Handle the base change logic here
         switch (currBase) {
             case "BIN" -> {
@@ -146,7 +146,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
 
 
     @Override
-    void initialize() {
+    public void initialize() {
         // Initialize the base setting choice box
         baseSetting.getItems().addAll(baseTypes);
         baseSetting.setValue(baseTypes[2]);
@@ -177,4 +177,21 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
     public void setShiftType(String shiftType) {
         this.shiftType = shiftType;
     }
+
+    public String getPrevBase() {
+        return prevBase;
+    }
+
+    public void setPrevBase(String prevBase) {
+        this.prevBase = prevBase;
+    }
+
+    public String getCurrBase() {
+        return currBase;
+    }
+
+    public void setCurrBase(String currBase) {
+        this.currBase = currBase;
+    }
+
 }
