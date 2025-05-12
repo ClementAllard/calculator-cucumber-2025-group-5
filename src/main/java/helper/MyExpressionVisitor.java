@@ -234,6 +234,9 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "asin" -> new FunctionAsin(arg);
                 case "acos" -> new FunctionAcos(arg);
                 case "atan" -> new FunctionAtan(arg);
+                case "sinh" -> new FunctionSinh(arg);
+                case "cosh" -> new FunctionCosh(arg);
+                case "tanh" -> new FunctionTanh(arg);
                 default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 1");
             };
 

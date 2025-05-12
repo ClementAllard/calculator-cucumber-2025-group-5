@@ -653,4 +653,36 @@ class TestMyExpressionParser {
         }
     }
 
+    @Test
+    void testFunctionSinhParser() {
+        try {
+            Expression expr = MyExpressionParser.parseExpression("sinh(0)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expr), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testFunctionCoshParser() {
+        try {
+            Expression expr = MyExpressionParser.parseExpression("cosh(0)");
+            Expression expected = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expr), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testFunctionTanhParser() {
+        try {
+            Expression expr = MyExpressionParser.parseExpression("tanh(0)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expr), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
 }
