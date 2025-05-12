@@ -7,12 +7,18 @@ import javafx.stage.Stage;
 
 public class DesktopInterface extends Application {
 
+    private CalculatorMainController calculatorMainController;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-        new CalculatorMainController(primaryStage);
+        calculatorMainController = new CalculatorMainController(primaryStage);
+    }
+
+    public CalculatorMainController getCalculatorMainController() {
+        return calculatorMainController;
     }
 }

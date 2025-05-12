@@ -19,7 +19,7 @@ public class CalculatorSettingController extends Controller {
     @FXML
     public ChoiceBox<String> operationOrderSetting;
 
-    private String operationOrder = "INFIX";
+    public String operationOrder = "INFIX";
 
     /*
         * This method is called when the user selects a menu item from the calculator type menu button.

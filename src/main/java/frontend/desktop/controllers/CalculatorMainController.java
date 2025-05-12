@@ -102,4 +102,8 @@ public class CalculatorMainController {
     public String getCurrentView() {
         return currentView;
     }
+
+    public CalculatorSettingController getCalculatorSettingController() {
+        return calculatorSettingController;
+    }
 }
