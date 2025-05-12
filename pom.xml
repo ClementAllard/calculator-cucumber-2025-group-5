@@ -129,6 +129,7 @@
                 <version>${maven.surefire.version}</version>
                 <configuration>
                     <argLine>
+                        @{argLine}
                         --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                         --add-exports javafx.graphics/com.sun.javafx.graphics=ALL-UNNAMED
                         --add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
