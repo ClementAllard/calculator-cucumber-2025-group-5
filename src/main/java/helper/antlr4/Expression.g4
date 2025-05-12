@@ -35,8 +35,16 @@ postfixfonction : FUNCTION postfixfonction ')'                                  
 
 // INFIX
 
-infixExpr : infixExprPrio1
+infixExpr : infixExprLogic
           ;
+
+infixExprLogic : infixExprLogic ('not' | 'and' | 'or' | 'xor' | '=>' | '<=>') infixExprBitwise
+               | infixExprBitwise
+               ;
+
+infixExprBitwise : infixExprBitwise ('<<' | '>>' | '~' | '&' | '|' | '^^') infixExprPrio1
+                 | infixExprPrio1
+                 ;
 
 infixExprPrio1 : infixExprPrio1 ('+' | '-') infixExprPrio2
                | infixExprPrio2
@@ -73,6 +81,7 @@ number : (REAL | INTEGER) E (REAL | INTEGER)                                    
        | PI                                                                                      # PiNumber
        | E                                                                                       # ENumber
        | (REAL | INTEGER) '%'                                                                    # PercentageAtom
+       | BOOL                                                                                    # BoolAtom
        ;
 
 REAL : [0-9]+ '.' [0-9]+;
@@ -80,5 +89,9 @@ INTEGER: [0-9]+;
 FUNCTION: [a-zA-Z_][a-zA-Z0-9_]* '(';
 PI: ('pi' | 'PI');
 E : ('e' | 'E');
+BOOL: 'T' | 'F' | '0' | '1';
+BINARY: '0b' [01]+;
+OCTAL: '0o' [0-7]+;
+HEXA: '0x' [0-9a-fA-F]+;
 
 WS: [ \t\r\n]+ -> skip;

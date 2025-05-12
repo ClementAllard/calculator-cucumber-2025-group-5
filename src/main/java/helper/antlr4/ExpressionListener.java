@@ -144,6 +144,26 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitInfixExpr(ExpressionParser.InfixExprContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#infixExprLogic}.
+	 * @param ctx the parse tree
+	 */
+	void enterInfixExprLogic(ExpressionParser.InfixExprLogicContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#infixExprLogic}.
+	 * @param ctx the parse tree
+	 */
+	void exitInfixExprLogic(ExpressionParser.InfixExprLogicContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#infixExprBitwise}.
+	 * @param ctx the parse tree
+	 */
+	void enterInfixExprBitwise(ExpressionParser.InfixExprBitwiseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#infixExprBitwise}.
+	 * @param ctx the parse tree
+	 */
+	void exitInfixExprBitwise(ExpressionParser.InfixExprBitwiseContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ExpressionParser#infixExprPrio1}.
 	 * @param ctx the parse tree
 	 */
@@ -341,4 +361,16 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPercentageAtom(ExpressionParser.PercentageAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BoolAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolAtom(ExpressionParser.BoolAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BoolAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolAtom(ExpressionParser.BoolAtomContext ctx);
 }

@@ -91,6 +91,18 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInfixExpr(ExpressionParser.InfixExprContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprLogic}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprLogic(ExpressionParser.InfixExprLogicContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprBitwise}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprBitwise(ExpressionParser.InfixExprBitwiseContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ExpressionParser#infixExprPrio1}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -206,4 +218,11 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPercentageAtom(ExpressionParser.PercentageAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolAtom(ExpressionParser.BoolAtomContext ctx);
 }
