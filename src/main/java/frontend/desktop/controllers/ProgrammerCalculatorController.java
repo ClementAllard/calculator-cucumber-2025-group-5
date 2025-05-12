@@ -8,7 +8,11 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 
 public class ProgrammerCalculatorController extends StandardCalculatorController {
-
+    /**
+     * This class is the controller for the programmer calculator.
+     * It extends the StandardCalculatorController class and adds functionality for programmer mode.
+     * It handles the user interface and the logic for the programmer calculator.
+     */
 
     @FXML
     public ChoiceBox<String> baseSetting;
@@ -25,7 +29,13 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
     private final String[] baseTypes = {"BIN", "OCT", "DEC", "HEX"};
 
 
-
+    /**
+     * This method pops the last number from the input label.
+     * It removes the last number from the input label and returns it as a string.
+     * "Numbers" also include the symbols ",", "A", "B", "C", "D", "E", and "F" for hexadecimal representation.
+     * Lowercase letters are also accepted to prevent errors.
+     * @return a Pair containing the current input minus the last number and the last number
+     */
     Pair<String, String> popLastNumber() {
         String currentInput = inputLabel.getText();
         StringBuilder lastNumber = new StringBuilder();
@@ -37,6 +47,9 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         return new Pair<>(currentInput, lastNumber.toString());
     }
 
+    /**
+     * This method initializes the left grid pane with buttons and their actions.
+     */
     private void initializeRightGridPane() {
         // Initialize the right grid pane with buttons and their actions
         rightGridPane.getChildren().forEach(node -> {
@@ -52,6 +65,12 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         });
     }
 
+    /**
+     * This method changes the numbers in the calculator to the specified base.
+     * It extracts the numbers from the current input and replaces them with their equivalent in the specified base.
+     * It also handles invalid number formats.
+     * The method uses the getRadixFromBase method to convert the numbers to the specified base.
+     */
     public void changeNumbersToBase() {
         // Change the numbers in the calculator to the specified base
         String currentInput = inputLabel.getText();
@@ -89,6 +108,12 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         inputLabel.setText(currentInput);
     }
 
+    /**
+     * This method gets the radix (base) from the specified base string.
+     * It uses a switch statement to determine the radix based on the base string.
+     * @param prevBase The base string (e.g., "BIN", "OCT", "DEC", "HEX") that was previously set
+     * @return The radix (base) as an integer
+     */
     private int getRadixFromBase(String prevBase) {
         int radix;
         switch (prevBase) {
@@ -101,7 +126,13 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         return radix;
     }
 
-
+    /**
+     * This method handles the base change logic.
+     * It updates the calculator to the selected base and disables buttons that are not valid for the selected base.
+     * It also calls the changeNumbersToBase method to update the numbers in the calculator.
+     * It uses a switch statement to determine the base and updates the buttons accordingly.
+     * @see #changeNumbersToBase()
+     */
     public void handleBaseChange() {
         // Handle the base change logic here
         switch (currBase) {
@@ -145,6 +176,14 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
     }
 
 
+    /**
+     * This method is called when the controller is initialized.
+     * It initializes the base and shift settings and sets their actions.
+     * It also initializes the left, center, and right grid panes.
+     * @see #initializeLeftGridPane()
+     * @see #initializeCenterGridPane()
+     * @see #initializeRightGridPane()
+     */
     @Override
     public void initialize() {
         // Initialize the base setting choice box
@@ -170,26 +209,55 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
 
     }
 
+    /**
+     * This method returns the shift type as a string ("Arithmetic", "Logical", "Rotate", "Rotate through carry").
+     * @return The shift type as a String
+     */
     public String getShiftType() {
         return shiftType;
     }
 
+    /**
+     * This method sets the shift type to the specified value.
+     * THe inputs are not verified because the choices are limited to the choice box.
+     * @param shiftType The shift type to set ("Arithmetic", "Logical", "Rotate", "Rotate through carry")
+     */
     public void setShiftType(String shiftType) {
         this.shiftType = shiftType;
     }
 
+    /**
+     * This method returns the previous base as a string ("BIN", "OCT", "DEC", "HEX").
+     * @return The previous base as a String
+     */
     public String getPrevBase() {
         return prevBase;
     }
 
+    /**
+     * This method sets the previous base to the specified value.
+     * Inputs are not verified because the choices are limited to the choice box.
+     * Unknown values will be handled in other methods.
+     * @param prevBase The previous base to set ("BIN", "OCT", "DEC", "HEX")
+     */
     public void setPrevBase(String prevBase) {
         this.prevBase = prevBase;
     }
 
+    /**
+     * This method returns the current base as a string ("BIN", "OCT", "DEC", "HEX").
+     * @return The current base as a String
+     */
     public String getCurrBase() {
         return currBase;
     }
 
+    /**
+     * This method sets the current base to the specified value.
+     * Inputs are not verified because the choices are limited to the choice box.
+     * Unknown values will be handled in other methods.
+     * @param currBase The current base to set ("BIN", "OCT", "DEC", "HEX")
+     */
     public void setCurrBase(String currBase) {
         this.currBase = currBase;
     }

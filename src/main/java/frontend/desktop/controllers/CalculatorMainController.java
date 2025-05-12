@@ -17,9 +17,10 @@ import java.util.Map;
  * (Author: Simon MICHEL)
  */
 public class CalculatorMainController {
-    // This class is the main controller for the calculator application.
-    // It is responsible for initializing the application and managing the main view.
-    // It will also handle the navigation between different calculator modes (Standard, Scientific, Programmer).
+    /**
+     * This class is the main controller for the calculator application.
+     * It initializes the calculator and manages the different views (Standard, Scientific, Programmer).
+     */
 
     private static final String TITLE = "Calculator";
     private BorderPane calculator;
@@ -29,6 +30,12 @@ public class CalculatorMainController {
     private final Map<String, Controller> controllers = new HashMap<>();
 
     private String currentView;
+
+    /**
+     * Constructor for the CalculatorMainController.
+     *
+     * @param primaryStage The primary stage for this application.
+     */
     public CalculatorMainController(Stage primaryStage) {
         this.primaryStage = primaryStage;
         primaryStage.setTitle(TITLE);
@@ -39,6 +46,8 @@ public class CalculatorMainController {
 
     /**
      * This method initializes the calculator application.
+     * It loads the calculator settings view and sets up the primary stage.
+     * It also initializes the calculatorSettingController and sets it up.
      */
     public void initCalculator() {
         try {
@@ -60,6 +69,12 @@ public class CalculatorMainController {
         }
     }
 
+    /**
+     * This method is used to show a specific view in the calculator application.
+     * It will load the view from the specified path and set it as the main view.
+     *
+     * @param name The name of the view to be shown.
+     */
     public void showMe(String name) {
         // This method is used to show a specific view in the calculator application.
         // It will load the view from the specified path and set it as the main view.
@@ -81,28 +96,46 @@ public class CalculatorMainController {
 
     // Settings
 
+    /**
+     * This method is used to show the Standard calculator view.
+     * @see #showMe(String)
+     */
     public void showStandardCalculator() {
         // This method is used to show the standard calculator view.
         // It will load the view from the specified path and set it as the main view.
         showMe("StandardCalculator");
     }
 
+    /**
+     * This method is used to show the Scientific calculator view.
+     * @see #showMe(String)
+     */
     public void showScientificCalculator() {
         // This method is used to show the scientific calculator view.
         // It will load the view from the specified path and set it as the main view.
         showMe("ScientificCalculator");
     }
 
+    /**
+     * This method is used to show the Programmer calculator view.
+     * @see #showMe(String)
+     */
     public void showProgrammerCalculator() {
         // This method is used to show the programmer calculator view.
         // It will load the view from the specified path and set it as the main view.
         showMe("ProgrammerCalculator");
     }
 
+    /**
+     * This method is used to get the current view of the calculator application.
+     */
     public String getCurrentView() {
         return currentView;
     }
 
+    /**
+     * This method is used to get the settings controller of the calculator application.
+     */
     public CalculatorSettingController getCalculatorSettingController() {
         return calculatorSettingController;
     }

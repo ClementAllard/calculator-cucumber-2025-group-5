@@ -19,6 +19,10 @@ public class ProgrammerCalculatorControllerTest {
     private AnchorPane calculator;
     private ProgrammerCalculatorController programmerCalculatorController;
 
+    /**
+     * This method is called before each test method in the class.
+     * @param stage the stage to be used for the test (used by TestFX)
+     */
     @Start
     private void start(Stage stage) {
         FXMLLoader loader = new FXMLLoader();
@@ -32,6 +36,9 @@ public class ProgrammerCalculatorControllerTest {
         stage.setScene(new javafx.scene.Scene(calculator));
     }
 
+    /**
+     * Tests the base setting of the programmer calculator.
+     */
     @Test
     void testHandleBaseSetting() {
         programmerCalculatorController.baseSetting.setValue("BIN");
@@ -47,6 +54,9 @@ public class ProgrammerCalculatorControllerTest {
         assertEquals("HEX", programmerCalculatorController.baseSetting.getValue());
     }
 
+    /**
+     * Tests the shift setting of the programmer calculator.
+     */
     @Test
     void testHandleShiftSetting() {
         programmerCalculatorController.shiftSetting.setValue("Arithmetic");
@@ -62,6 +72,10 @@ public class ProgrammerCalculatorControllerTest {
         assertEquals("Rotate through carry", programmerCalculatorController.shiftSetting.getValue());
     }
 
+    /**
+     * Tests the handling of the base change in the programmer calculator.
+     * @see #programmerCalculatorController
+     */
     @Test
     void testHandleBaseChange() {
         programmerCalculatorController.handleSymbolButton("17");

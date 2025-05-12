@@ -9,6 +9,11 @@ import javafx.scene.control.MenuItem;
 import java.util.Objects;
 
 public class CalculatorSettingController extends Controller {
+    /**
+     * Class responsible for managing the calculator settings.
+     * It allows the user to select the type of calculator (Standard, Scientific, Programmer)
+     * and the order of operations (Infix, Postfix, Prefix).
+     */
 
     @FXML
     public MenuButton calculatorTypeMenuButton;
@@ -21,8 +26,9 @@ public class CalculatorSettingController extends Controller {
 
     public String operationOrder = "INFIX";
 
-    /*
-        * This method is called when the user selects a menu item from the calculator type menu button.
+    /**
+     * This method is called when the user selects a menu item from the calculator type menu button.
+     * @param item the selected menu item (Standard, Scientific, Programmer)
      */
     public void handleMenuItemSelection(MenuItem item) {
         if (item != null) {
@@ -70,26 +76,46 @@ public class CalculatorSettingController extends Controller {
         }
     }
 
+    /**
+     * Initializes the operation order setting choice box with available options (INFIX, POSTFIX, PREFIX).
+     * Sets the default value to "INFIX" and adds an action listener to update the operation order.
+     */
     private void initializeOperationOrderSetting() {
         operationOrderSetting.getItems().addAll("INFIX", "POSTFIX", "PREFIX");
         operationOrderSetting.setValue("INFIX");
         operationOrderSetting.setOnAction(_ -> setOperationOrder(operationOrderSetting.getValue()));
     }
 
+    /**
+     * Initializes the calculator settings controller.
+     * This method is called when the controller is loaded.
+     */
     @Override
     public void initialize() {
         handleTypeSelection();
         initializeOperationOrderSetting();
     }
 
+    /**
+     * Gets the current operation order setting.
+     * @return the current operation order (INFIX, POSTFIX, PREFIX)
+     */
     public String getOperationOrder() {
         return operationOrder;
     }
 
+    /**
+     * Sets the operation order setting.
+     * @param operationOrder the new operation order (INFIX, POSTFIX, PREFIX)
+     */
     public void setOperationOrder(String operationOrder) {
         this.operationOrder = operationOrder;
     }
 
+    /**
+     * Gets the current calculator type.
+     * @return the current calculator type (Standard, Scientific, Programmer)
+     */
     public String getCalculatorType() {
         return calculatorTypeLabel.getText();
     }

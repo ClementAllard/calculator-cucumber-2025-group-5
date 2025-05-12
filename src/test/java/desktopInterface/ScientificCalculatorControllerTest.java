@@ -20,6 +20,10 @@ class ScientificCalculatorControllerTest {
     private AnchorPane calculator;
     private ScientificCalculatorController scientificCalculatorController;
 
+    /**
+     * This method is called before each test method in the class.
+     * @param stage the stage to be used for the test (used by TestFX)
+     */
     @Start
     private void start(Stage stage) {
         FXMLLoader loader = new FXMLLoader();
@@ -33,6 +37,9 @@ class ScientificCalculatorControllerTest {
         stage.setScene(new javafx.scene.Scene(calculator));
     }
 
+    /**
+     * Tests the inverse button of the scientific calculator.
+     */
     @Test
     void testHandleInverseButton() {
         scientificCalculatorController.handleSymbolButton("5");
@@ -70,6 +77,10 @@ class ScientificCalculatorControllerTest {
         assertEquals("1/3,14", scientificCalculatorController.inputLabel.getText());
     }
 
+    /**
+     * Tests the handling of the convert button in the scientific calculator.
+     * @see #scientificCalculatorController
+     */
     @Test
     void testHandleConvertButton() {
         scientificCalculatorController.handleSymbolButton("5");
@@ -89,6 +100,10 @@ class ScientificCalculatorControllerTest {
         assertEquals("rad(e)", scientificCalculatorController.inputLabel.getText());
     }
 
+    /**
+     * Tests the handling of the XExp button in the scientific calculator.
+     * @see #scientificCalculatorController
+     */
     @Test
     void testHandleXExpButton() {
         scientificCalculatorController.inputLabel.setText("5+3");

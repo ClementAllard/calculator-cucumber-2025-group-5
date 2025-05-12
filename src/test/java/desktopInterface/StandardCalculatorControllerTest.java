@@ -21,6 +21,12 @@ class StandardCalculatorControllerTest {
     private AnchorPane calculator;
     private StandardCalculatorController standardCalculatorController;
 
+    /**
+     * This method is used to set up the JavaFX application for testing.
+     * It loads the FXML file and initializes the controller.
+     *
+     * @param stage The primary stage for this application, onto which the application scene can be set.
+     */
     @Start
     private void start(Stage stage) {
         FXMLLoader loader = new FXMLLoader();
@@ -34,6 +40,10 @@ class StandardCalculatorControllerTest {
         stage.setScene(new javafx.scene.Scene(calculator));
     }
 
+    /**
+     * This method is used to test the handleSymbolButton method of the StandardCalculatorController class.
+     * It simulates button presses and checks if the inputLabel is updated correctly.
+     */
     @Test
     void testHandleSymbolButton() {
         standardCalculatorController.handleSymbolButton("5");
@@ -46,6 +56,10 @@ class StandardCalculatorControllerTest {
         assertEquals("5+3", standardCalculatorController.inputLabel.getText());
     }
 
+    /**
+     * This method is used to test the handleDeleteButton method of the StandardCalculatorController class.
+     * It simulates the delete button press and checks if the inputLabel is updated correctly.
+     */
     @Test
     void testHandleDeleteButton() {
         standardCalculatorController.inputLabel.setText("5+3");
@@ -59,6 +73,10 @@ class StandardCalculatorControllerTest {
         assertEquals("", standardCalculatorController.inputLabel.getText());
     }
 
+    /**
+     * This method is used to test the handleClearButton method of the StandardCalculatorController class.
+     * It simulates the clear button press and checks if both inputLabel and outputLabel are cleared.
+     */
     @Test
     void testHandleClearButton() {
         standardCalculatorController.inputLabel.setText("5+3");
@@ -70,6 +88,10 @@ class StandardCalculatorControllerTest {
         assertEquals("", standardCalculatorController.outputLabel.getText());
     }
 
+    /**
+     * This method is used to test the handlePiButton method of the StandardCalculatorController class.
+     * It simulates the Pi button press and checks if the inputLabel is updated correctly.
+     */
     @Test
     void testHandlePiButton() {
         standardCalculatorController.inputLabel.setText("5+");
@@ -77,6 +99,10 @@ class StandardCalculatorControllerTest {
         assertEquals("5+PI", standardCalculatorController.inputLabel.getText());
     }
 
+    /**
+     * This method is used to test the handleSQRTButton method of the StandardCalculatorController class.
+     * It simulates the SQRT button press and checks if the inputLabel is updated correctly.
+     */
     @Test
     void testHandleSQRTButton() {
         standardCalculatorController.inputLabel.setText("5+");
@@ -88,6 +114,10 @@ class StandardCalculatorControllerTest {
         assertEquals("5+SQRT(9,", standardCalculatorController.inputLabel.getText());
     }
 
+    /**
+     * This method is used to test the handleExpButton method of the StandardCalculatorController class.
+     * It simulates the Exp button press and checks if the inputLabel is updated correctly.
+     */
     @Test
     void testHandleExpButton() {
         standardCalculatorController.inputLabel.setText("5+");
@@ -99,6 +129,10 @@ class StandardCalculatorControllerTest {
         assertEquals("5+^3", standardCalculatorController.inputLabel.getText());
     }
 
+    /**
+     * This method is used to test the handleDeleteButton method of the StandardCalculatorController class with an empty input.
+     * It simulates the delete button press and checks if the inputLabel remains empty and does not throw an error.
+     */
     @Test
     void testHandleDeleteButtonWithEmptyInput() {
         standardCalculatorController.inputLabel.setText("");
@@ -106,6 +140,10 @@ class StandardCalculatorControllerTest {
         assertEquals("", standardCalculatorController.inputLabel.getText());
     }
 
+    /**
+     * This method is used to test the handleClearButton method of the StandardCalculatorController class with an empty input.
+     * It simulates the clear button press and checks if both inputLabel and outputLabel remain empty and do not throw an error.
+     */
     @Test
     void testHandleClearButtonWithEmptyInput() {
         standardCalculatorController.inputLabel.setText("");
@@ -117,6 +155,12 @@ class StandardCalculatorControllerTest {
         assertEquals("", standardCalculatorController.outputLabel.getText());
     }
 
+    /**
+     * This method is used to test the handleEqualButton method of the StandardCalculatorController class.
+     * It simulates the equal button press and checks if the outputLabel is updated correctly based on the inputLabel.
+     * The equal button calls the backend calculator to evaluate the expression.
+     * It also checks for syntax errors in the input.
+     */
     @Test
     void testHandleEqualButton() {
         standardCalculatorController.inputLabel.setText("5+3");
