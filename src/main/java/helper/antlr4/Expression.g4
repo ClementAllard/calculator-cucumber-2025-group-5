@@ -24,7 +24,7 @@ postfixExpr : '(' postfixExpr (',' postfixExpr)+ ')' ('+' | '-' | '*' | '/' | '^
             | postfixNumber                                                                     # PostfixSimpleNumber
             ;
 
-postfixNumber : prefixfonction
+postfixNumber : postfixfonction
               | complex
               | number
               ;
@@ -38,13 +38,13 @@ postfixfonction : FUNCTION postfixfonction ')'                                  
 infixExpr : infixExprLogic
           ;
 
-infixExprLogic : infixExprLogic ('not' | 'and' | 'or' | 'xor' | '=>' | '<=>') infixExprBitwise
-               | infixExprBitwise
-               ;
-
-infixExprBitwise : infixExprBitwise ('<<' | '>>' | '~' | '&' | '|' | '^^') infixExprPrio1
-                 | infixExprPrio1
+infixExprBitwise : infixExprBitwise ('<<' | '>>' | '~' | '&' | '|' | '^^') infixExprLogic
+                 | infixExprLogic
                  ;
+
+infixExprLogic : infixExprLogic ('not' | 'and' | 'xor' | 'or' | '=>' | '<=>') infixExprPrio1
+               | infixExprPrio1
+               ;
 
 infixExprPrio1 : infixExprPrio1 ('+' | '-') infixExprPrio2
                | infixExprPrio2
@@ -82,6 +82,9 @@ number : (REAL | INTEGER) E (REAL | INTEGER)                                    
        | E                                                                                       # ENumber
        | (REAL | INTEGER) '%'                                                                    # PercentageAtom
        | BOOL                                                                                    # BoolAtom
+       | BINARY                                                                                  # BinaryAtom
+       | OCTAL                                                                                   # OctalAtom
+       | HEXADECIMAL                                                                             # HexadecimalAtom
        ;
 
 REAL : [0-9]+ '.' [0-9]+;
@@ -92,6 +95,6 @@ E : ('e' | 'E');
 BOOL: 'T' | 'F' | '0' | '1';
 BINARY: '0b' [01]+;
 OCTAL: '0o' [0-7]+;
-HEXA: '0x' [0-9a-fA-F]+;
+HEXADECIMAL: '0x' [0-9a-fA-F]+;
 
 WS: [ \t\r\n]+ -> skip;

@@ -7,11 +7,13 @@ import calculator.expression.Notation;
 import calculator.expression.number.*;
 import calculator.expression.operator.basic.*;
 import calculator.expression.operator.function.*;
+import calculator.expression.operator.logic.*;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -139,6 +141,18 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "*" -> new Times(expressions, notation);
                 case "/" -> new Divides(expressions, notation);
                 case "^" -> new Power(expressions, notation);
+                //case "<<" -> new Bitwise_Left(expressions, notation);
+                //case ">>" -> new Bitwise_Right(expressions, notation);
+                //case "~" -> new Bitwise_Not(expressions, notation;
+                //case "&" -> new Bitwise_And(expressions, notation;
+                //case "|" -> new Bitwise_Or(expressions, notation;
+                //case "^^" -> new Bitwise_Xor(expressions, notation;
+                //case "not" -> new LogicalNot();
+                case "and" -> new LogicalAnd(expressions, notation);
+                case "xor" -> new LogicalXor(expressions, notation);
+                case "or" -> new LogicalOr(expressions, notation);
+                case "=>" -> new Implication(expressions, notation);
+                case "<=>" -> new Equivalence(expressions, notation);
                 default -> null;
             };
         }catch (IllegalConstruction e) {
@@ -177,6 +191,37 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                             Double.parseDouble(ctx.getChild(0).getText())),
                     BigDecimal.valueOf(100)));
         }
+    }
+
+    @Override
+    public Expression visitBoolAtom(ExpressionParser.BoolAtomContext ctx) {
+        String value = ctx.getText();
+        if (value.equals("T") || value.equals("1")) {
+            return new MyInteger(new BigDecimal(1));
+        } else {
+            return new MyInteger(new BigDecimal(0));
+        }
+    }
+
+    @Override
+    public Expression visitBinaryAtom(ExpressionParser.BinaryAtomContext ctx) {
+        String value = ctx.getText().substring(2); // Skip '0b'
+        BigInteger bigInteger = new BigInteger(value, 2);
+        return new MyInteger(new BigDecimal(bigInteger));
+    }
+
+    @Override
+    public Expression visitOctalAtom(ExpressionParser.OctalAtomContext ctx) {
+        String value = ctx.getText().substring(2); // Skip '0o'
+        BigInteger bigInteger = new BigInteger(value, 8);
+        return new MyInteger(new BigDecimal(bigInteger));
+    }
+
+    @Override
+    public Expression visitHexadecimalAtom(ExpressionParser.HexadecimalAtomContext ctx) {
+        String value = ctx.getText().substring(2); // Skip '0x'
+        BigInteger bigInteger = new BigInteger(value, 16);
+        return new MyInteger(new BigDecimal(bigInteger));
     }
 
     @Override
