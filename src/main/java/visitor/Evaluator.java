@@ -1,8 +1,10 @@
 package visitor;
 
 import calculator.expression.Expression;
-import calculator.expression.MyNumber;
+import calculator.expression.number.MyNumber;
 import calculator.expression.operator.Operation;
+import calculator.expression.operator.UnaryOperation;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
 
@@ -17,46 +19,55 @@ public class Evaluator extends Visitor {
     public Evaluator() {}
 
     /** The result of the evaluation will be stored in this private variable */
-    private Integer computedValue;
+    private MyNumber computedValue;
+
+    private String errorMessage;
 
     /** getter method to obtain the result of the evaluation
      *
      * @return an Integer object containing the result of the evaluation
      */
-    public Integer getResult() { return computedValue; }
+    public MyNumber getResult() {
+        return computedValue;
+    }
 
     /** Use the visitor design pattern to visit a number.
      *
      * @param n The number being visited
      */
     public void visit(MyNumber n) {
-        computedValue = n.getValue();
+        computedValue = n;
     }
 
     /** Use the visitor design pattern to visit an operation
      *
      * @param o The operation being visited
      */
-    public void visit(Operation o) {
-        ArrayList<Integer> evaluatedArgs = new ArrayList<>();
+    public void visit(Operation o) throws ExecutionControl.NotImplementedException, ArithmeticException {
+        ArrayList<MyNumber> evaluatedArgs = new ArrayList<>();
         //first loop to recursively evaluate each subexpression
         for(Expression a:o.getArgs()) {
             a.accept(this);
             evaluatedArgs.add(computedValue);
         }
-        //second loop to accumulate all the evaluated subresults
-        int temp = evaluatedArgs.getFirst();
-        int max = evaluatedArgs.size();
-        for(int counter=1; counter<max; counter++) {
-            try {
+
+        if(o instanceof UnaryOperation){
+            MyNumber temp = evaluatedArgs.getFirst();
+            temp = o.op(temp);
+            computedValue = temp;
+        }else{
+            //second loop to accumulate all the evaluated subresults
+            MyNumber temp = evaluatedArgs.getFirst();
+            int max = evaluatedArgs.size();
+            for(int counter=1; counter<max; counter++) {
                 temp = o.op(temp,evaluatedArgs.get(counter));
-            }catch (ArithmeticException e) {
-                computedValue = null;
-                return;
             }
+            // store the accumulated result
+            computedValue = temp;
         }
-        // store the accumulated result
-        computedValue = temp;
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }

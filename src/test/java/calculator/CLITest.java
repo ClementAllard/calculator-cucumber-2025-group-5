@@ -21,7 +21,39 @@ class CLITest {
 
     @Test
     void CLIHelpTest() {
-        useCLI("help\n","Welcome to CLI Calculator: Please, enter expression: > Basic usage: write basic expression like add, subtract, multiply, divide with infix,postfix,prefix notation>");
+        useCLI("help\n","Welcome to CLI Calculator: Please, enter expression:" +
+                " > Basic usage: write basic expression like add, subtract, multiply, divide with infix,postfix,prefix notation" +
+                "Command : help, give command helpscale, allows change of the precisionrounding, allows change of the rounding>");
+    }
+
+    @Test
+    void CLIFractionTest(){
+        useCLI("1/2\nfraction\n1/2\nfraction\n1/2\n","Welcome to CLI Calculator: " +
+                "Please, enter expression: > Result : ( 1 / 2 ) = 1/2> " +
+                "mode fraction: false> Result : ( 1 / 2 ) = 0.5" +
+                "> mode fraction: true> Result : ( 1 / 2 ) = 1/2>");
+    }
+
+    @Test
+    void CLIChangeScaleTest() {
+        useCLI("scale\n12\n", "Welcome to CLI Calculator: Please, enter expression:"
+                + " > Current scale expression: 10New chosen scale : New current scale expression: 12>");
+        useCLI("scale\n10\n", "Welcome to CLI Calculator: Please, enter expression:"
+                + " > Current scale expression: 12New chosen scale : New current scale expression: 10>");
+        useCLI("scale\nexit\n","Welcome to CLI Calculator: Please, enter expression: > Current scale expression: 10New chosen scale : >");
+    }
+
+    @Test
+    void CLIChangeRoundingTest() {
+        useCLI("rounding\n0\n", "Welcome to CLI Calculator: Please, enter expression: > Current rounding expression:"
+                + " HALF_UP0 : UP1 : DOWN2 : CEILING3 : FLOOR4 : HALF_UP5 HALF_DOWN6 :"
+                + " HALF_EVEN7 : UNNECESSARYNew chosen rounding : New current rounding expression: UP>");
+        useCLI("rounding\n4\n", "Welcome to CLI Calculator: Please, enter expression: > Current rounding expression:"
+                + " UP0 : UP1 : DOWN2 : CEILING3 : FLOOR4 : HALF_UP5 HALF_DOWN6 :"
+                + " HALF_EVEN7 : UNNECESSARYNew chosen rounding : New current rounding expression: HALF_UP>");
+        useCLI("rounding\nexit\n","Welcome to CLI Calculator: Please, enter expression: > Current rounding expression:"
+                + " HALF_UP0 : UP1 : DOWN2 : CEILING3 : FLOOR4 : HALF_UP5 HALF_DOWN6 : HALF_EVEN7 : UNNECESSARYNew chosen rounding : >");
+
     }
 
     private void useCLI(String input,String output) {

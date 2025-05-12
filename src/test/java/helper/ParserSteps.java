@@ -2,11 +2,15 @@ package helper;
 
 import calculator.Calculator;
 import calculator.IllegalConstruction;
+import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import jdk.jshell.spi.ExecutionControl;
+
+import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,9 +45,13 @@ public class ParserSteps {
         }
     }
 
-    @Then("^the expression evaluates to (\\d+)$")
-    public void whenIProvideANumber(int val) {
-        assertEquals(val,c.eval(currentExpression));
+    @Then("the expression evaluates to {string}")
+    public void whenIProvideANumber(String val) {
+        try {
+            assertEquals(BigDecimalUtil.stripZeros(new BigDecimal(val)),c.eval(currentExpression));
+        } catch (ExecutionControl.NotImplementedException e) {
+            fail();
+        }
     }
 
     @Then("There is an IllegalExpression throw")
@@ -52,5 +60,4 @@ public class ParserSteps {
             MyExpressionParser.parseExpression(currentExpressionString);
         });
     }
-
 }
