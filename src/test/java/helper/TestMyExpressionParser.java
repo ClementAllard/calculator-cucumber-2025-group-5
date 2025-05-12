@@ -551,4 +551,60 @@ class TestMyExpressionParser {
             fail();
         }
     }
+
+    @Test
+    void testFunctionCos() {
+        try {
+            // cos(0) = 1
+            Expression expression = MyExpressionParser.parseExpression("cos(0)");
+            Expression response = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // cos(pi) = -1
+            expression = MyExpressionParser.parseExpression("cos(pi)");
+            response = MyExpressionParser.parseExpression("-1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // cos(pi/2) = 0
+            expression = MyExpressionParser.parseExpression("cos(pi/2)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // cos(2*pi) = 1
+            expression = MyExpressionParser.parseExpression("cos(2*pi)");
+            response = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+        } catch (Exception _) {
+            fail();
+        }
+    }
+
+    @Test
+    void testFunctionTan() {
+        try {
+            // tan(0) = 0
+            Expression expression = MyExpressionParser.parseExpression("tan(0)");
+            Expression response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // tan(pi/4) = 1
+            expression = MyExpressionParser.parseExpression("tan(pi/4)");
+            response = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // tan(pi) = 0
+            expression = MyExpressionParser.parseExpression("tan(pi)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // tan(2*pi) = 0
+            expression = MyExpressionParser.parseExpression("tan(2*pi)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+        } catch (Exception _) {
+            fail();
+        }
+    }
 }
