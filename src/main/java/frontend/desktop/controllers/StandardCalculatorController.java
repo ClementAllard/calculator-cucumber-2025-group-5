@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import jdk.jshell.spi.ExecutionControl;
 
 public class StandardCalculatorController extends Controller {
     /**
@@ -116,10 +117,12 @@ public class StandardCalculatorController extends Controller {
         String currentInput = inputLabel.getText();
         try {
             Expression e = MyExpressionParser.parseExpression(currentInput);
-            Number result = calculator.eval(e);
+            String result = calculator.eval(e);
             outputLabel.setText(String.valueOf(result));
         } catch (IllegalSyntax _) {
             outputLabel.setText("SYNTAX ERROR");
+        } catch (ExecutionControl.NotImplementedException e) {
+            outputLabel.setText("CALCULATOR ERROR");
         }
     }
 
