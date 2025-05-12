@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
@@ -68,6 +69,37 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     }
 
     // INFIX EXPRESSION
+
+    @Override public Expression visitInfixExprBitwise(ExpressionParser.InfixExprBitwiseContext ctx) {
+        if(ctx.getChildCount() == 1) { return visitChildren(ctx); }
+
+        Expression left = visit(ctx.getChild(0));
+        String operator = ctx.getChild(1).getText();
+        Expression right = visit(ctx.getChild(2));
+
+        return getExpression(Arrays.asList(left,right), operator, Notation.INFIX);
+    }
+
+    @Override public Expression visitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx) {
+        if (ctx.getChildCount() == 1) {
+            return visitChildren(ctx);
+        } else {
+            Expression left = visit(ctx.getChild(0));
+            String operator = ctx.getChild(1).getText();
+            Expression right = visit(ctx.getChild(2));
+            return getExpression(Arrays.asList(left, right), operator, Notation.INFIX);
+        }
+    }
+
+    @Override public Expression visitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx) {
+        if (ctx.getChildCount() == 2) {
+            try {
+                return new LogicalNot(visit(ctx.getChild(1)));
+            } catch (IllegalConstruction e) {
+                throw new RuntimeException(e); //NOSONAR
+            }
+        } else return visitChildren(ctx);
+    }
 
     @Override
     public Expression visitInfixExpressionWithParenthesis(ExpressionParser.InfixExpressionWithParenthesisContext ctx) {
@@ -147,7 +179,6 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 //case "&" -> new Bitwise_And(expressions, notation;
                 //case "|" -> new Bitwise_Or(expressions, notation;
                 //case "^^" -> new Bitwise_Xor(expressions, notation;
-                //case "not" -> new LogicalNot();
                 case "and" -> new LogicalAnd(expressions, notation);
                 case "xor" -> new LogicalXor(expressions, notation);
                 case "or" -> new LogicalOr(expressions, notation);

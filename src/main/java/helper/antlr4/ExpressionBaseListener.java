@@ -173,13 +173,25 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInfixExprLogic(ExpressionParser.InfixExprLogicContext ctx) { }
+	@Override public void enterInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInfixExprLogic(ExpressionParser.InfixExprLogicContext ctx) { }
+	@Override public void exitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -35,14 +35,18 @@ postfixfonction : FUNCTION postfixfonction ')'                                  
 
 // INFIX
 
-infixExpr : infixExprLogic
+infixExpr : infixExprLogicPrio1
           ;
 
-infixExprBitwise : infixExprBitwise ('<<' | '>>' | '~' | '&' | '|' | '^^') infixExprLogic
-                 | infixExprLogic
+infixExprBitwise : infixExprBitwise ('<<' | '>>' | '~' | '&' | '|' | '^^') infixExprLogicPrio1
+                 | infixExprLogicPrio1
                  ;
 
-infixExprLogic : infixExprLogic ('not' | 'and' | 'xor' | 'or' | '=>' | '<=>') infixExprPrio1
+infixExprLogicPrio1 : infixExprLogicPrio1 ('and' | 'xor' | 'or' | '=>' | '<=>') infixExprLogicPrio2
+               | infixExprLogicPrio2
+               ;
+
+infixExprLogicPrio2 : 'not' infixExprPrio1
                | infixExprPrio1
                ;
 

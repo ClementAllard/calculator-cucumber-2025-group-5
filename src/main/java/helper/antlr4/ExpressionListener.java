@@ -154,15 +154,25 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitInfixExprBitwise(ExpressionParser.InfixExprBitwiseContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ExpressionParser#infixExprLogic}.
+	 * Enter a parse tree produced by {@link ExpressionParser#infixExprLogicPrio1}.
 	 * @param ctx the parse tree
 	 */
-	void enterInfixExprLogic(ExpressionParser.InfixExprLogicContext ctx);
+	void enterInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link ExpressionParser#infixExprLogic}.
+	 * Exit a parse tree produced by {@link ExpressionParser#infixExprLogicPrio1}.
 	 * @param ctx the parse tree
 	 */
-	void exitInfixExprLogic(ExpressionParser.InfixExprLogicContext ctx);
+	void exitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#infixExprLogicPrio2}.
+	 * @param ctx the parse tree
+	 */
+	void enterInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#infixExprLogicPrio2}.
+	 * @param ctx the parse tree
+	 */
+	void exitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link ExpressionParser#infixExprPrio1}.
 	 * @param ctx the parse tree

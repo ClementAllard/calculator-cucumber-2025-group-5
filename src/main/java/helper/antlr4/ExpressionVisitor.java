@@ -97,11 +97,17 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInfixExprBitwise(ExpressionParser.InfixExprBitwiseContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpressionParser#infixExprLogic}.
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprLogicPrio1}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInfixExprLogic(ExpressionParser.InfixExprLogicContext ctx);
+	T visitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprLogicPrio2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExpressionParser#infixExprPrio1}.
 	 * @param ctx the parse tree
