@@ -222,9 +222,9 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         Expression arg = visit(tree.getChild(1));
 
         try {
-            return switch (functionName) {
+            return switch (functionName.toLowerCase()) {
                 case "rad" -> new FunctionRad(arg);
-                case "degree" -> new FunctionDegree(arg);
+                case "degree", "deg" -> new FunctionDegree(arg);
                 case "inv" -> new FunctionInverse(arg);
                 case "log" -> new FunctionLog(arg);
                 case "ln" -> new FunctionLn(arg);
@@ -267,7 +267,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         List<Expression> args = Arrays.asList(visit(tree.getChild(1)),visit(tree.getChild(3)));
 
         try {
-            return switch (funcName) {
+            return switch (funcName.toLowerCase()) {
                 case "log" -> new FunctionLogBinary(args);
                 case "pow" -> new FunctionPow(args);
                 case "sqrt", "root" -> new FunctionSqrt(args, funcName);
