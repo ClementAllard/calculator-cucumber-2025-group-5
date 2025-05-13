@@ -1,4 +1,4 @@
-package calculator.expression.operator.function.random;
+package calculator.expression.operator.random;
 
 import calculator.Calculator;
 import calculator.expression.Expression;
@@ -6,7 +6,6 @@ import calculator.expression.number.MyComplex;
 import calculator.expression.number.MyInteger;
 import calculator.expression.number.MyRational;
 import calculator.expression.number.MyReal;
-import calculator.expression.operator.random.RandomIntegerSeed;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

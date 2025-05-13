@@ -1,4 +1,4 @@
-package calculator.expression.operator.function.random;
+package calculator.expression.operator.random;
 
 import calculator.Calculator;
 import calculator.expression.Expression;
@@ -6,7 +6,6 @@ import calculator.expression.number.MyComplex;
 import calculator.expression.number.MyInteger;
 import calculator.expression.number.MyRational;
 import calculator.expression.number.MyReal;
-import calculator.expression.operator.random.RandomRationalSeed;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -28,11 +27,11 @@ class RandomRationalSeedTest {
         try {
             List<Expression> args = Arrays.asList(myInteger, myInteger);
             Expression expression = new RandomRationalSeed(args);
-            assertEquals("3", calculator.eval(expression));
+            assertEquals("1 2/3", calculator.eval(expression));
 
             args = Arrays.asList(myInteger, myRational);
             expression = new RandomRationalSeed(args);
-            assertEquals("3 1/2", calculator.eval(expression));
+            assertEquals("0", calculator.eval(expression));
 
             args = Arrays.asList(myInteger, myReal);
             expression = new RandomRationalSeed(args);
@@ -40,7 +39,7 @@ class RandomRationalSeedTest {
 
             args = Arrays.asList(myInteger, myComplex);
             expression = new RandomRationalSeed(args);
-            assertEquals("1 1/4", calculator.eval(expression));
+            assertEquals("1/9", calculator.eval(expression));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -55,15 +54,15 @@ class RandomRationalSeedTest {
 
             args = Arrays.asList(myRational, myRational);
             expression = new RandomRationalSeed(args);
-            assertEquals("1", calculator.eval(expression));
+            assertEquals("1 1/4", calculator.eval(expression));
 
             args = Arrays.asList(myRational, myReal);
             expression = new RandomRationalSeed(args);
-            assertEquals("2", calculator.eval(expression));
+            assertEquals("1", calculator.eval(expression));
 
             args = Arrays.asList(myRational, myComplex);
             expression = new RandomRationalSeed(args);
-            assertEquals("0", calculator.eval(expression));
+            assertEquals("5", calculator.eval(expression));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -74,19 +73,19 @@ class RandomRationalSeedTest {
         try {
             List<Expression> args = Arrays.asList(myReal, myInteger);
             Expression expression = new RandomRationalSeed(args);
-            assertEquals("1/3", calculator.eval(expression));
+            assertEquals("1 1/8", calculator.eval(expression));
 
             args = Arrays.asList(myReal, myRational);
             expression = new RandomRationalSeed(args);
-            assertEquals("2", calculator.eval(expression));
+            assertEquals("2 1/4", calculator.eval(expression));
 
             args = Arrays.asList(myReal, myReal);
             expression = new RandomRationalSeed(args);
-            assertEquals("12", calculator.eval(expression));
+            assertEquals("1 1/2", calculator.eval(expression));
 
             args = Arrays.asList(myReal, myComplex);
             expression = new RandomRationalSeed(args);
-            assertEquals("0", calculator.eval(expression));
+            assertEquals("7/8", calculator.eval(expression));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -97,19 +96,19 @@ class RandomRationalSeedTest {
         try {
             List<Expression> args = Arrays.asList(myComplex, myInteger);
             Expression expression = new RandomRationalSeed(args);
-            assertEquals("1 1/8", calculator.eval(expression));
+            assertEquals("3", calculator.eval(expression));
 
             args = Arrays.asList(myComplex, myRational);
             expression = new RandomRationalSeed(args);
-            assertEquals("2 1/4", calculator.eval(expression));
+            assertEquals("2/7", calculator.eval(expression));
 
             args = Arrays.asList(myComplex, myReal);
             expression = new RandomRationalSeed(args);
-            assertEquals("1 1/2", calculator.eval(expression));
+            assertEquals("7/10", calculator.eval(expression));
 
             args = Arrays.asList(myComplex, myComplex);
             expression = new RandomRationalSeed(args);
-            assertEquals("7/8", calculator.eval(expression));
+            assertEquals("5/9", calculator.eval(expression));
         } catch (Exception e) {
             fail(e.getMessage());
         }
