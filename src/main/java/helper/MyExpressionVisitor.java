@@ -7,6 +7,8 @@ import calculator.expression.Notation;
 import calculator.expression.number.*;
 import calculator.expression.operator.basic.*;
 import calculator.expression.operator.function.*;
+import calculator.expression.operator.function.FunctionAcos;
+import calculator.expression.operator.function.RandomInteger;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -237,6 +239,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "sinh" -> new FunctionSinh(arg);
                 case "cosh" -> new FunctionCosh(arg);
                 case "tanh" -> new FunctionTanh(arg);
+                case "rint" -> new RandomInteger(arg);
+                case "sqrt" -> new FunctionSqrt(Arrays.asList(new MyInteger(2), arg));
                 default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 1");
             };
 
@@ -270,7 +274,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
             return switch (funcName.toLowerCase()) {
                 case "log" -> new FunctionLogBinary(args);
                 case "pow" -> new FunctionPow(args);
-                case "sqrt", "root" -> new FunctionSqrt(args, funcName);
+                case "sqrt", "root" -> new FunctionSqrt(args);
+                case "rint" -> new RandomIntegerSeed(args);
                 default -> throw new IllegalArgumentException("Unknown function " + funcName+ " of arity 2");
             };
 
