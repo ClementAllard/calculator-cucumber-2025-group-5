@@ -1,4 +1,4 @@
-package calculator.expression.operator.function.random;
+package calculator.expression.operator.random;
 
 import calculator.expression.number.MyInteger;
 import calculator.expression.number.MyNumber;
@@ -26,6 +26,11 @@ public interface RandomGenerator {
         }
         BigDecimal numerator = BigDecimal.valueOf(random.nextInt(max));
         BigDecimal denominator = BigDecimal.valueOf(random.nextInt(max));
+
+        // One way to avoid division by zero.
+        if (denominator.compareTo(BigDecimal.ZERO) == 0){
+            denominator = BigDecimal.ONE;
+        }
         return new MyRational(numerator, denominator);
     }
 }

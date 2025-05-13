@@ -5,6 +5,7 @@ import calculator.expression.Expression;
 import calculator.expression.number.MyComplex;
 import calculator.expression.number.MyInteger;
 import calculator.expression.number.MyReal;
+import calculator.expression.operator.random.RandomInteger;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
