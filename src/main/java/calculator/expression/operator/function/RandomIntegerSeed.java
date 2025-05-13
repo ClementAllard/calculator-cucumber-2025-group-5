@@ -13,10 +13,9 @@ public class RandomIntegerSeed extends FunctionBinary {
     }
 
     private MyNumber randomInt(int max, long seed) {
-        int min = 0;
         Random random = new Random(seed);
         // Generates between a and b (inclusive)
-        return new MyInteger(random.nextInt(max - min + 1) + min);
+        return new MyInteger(random.nextInt(max + 1));
     }
 
     @Override
