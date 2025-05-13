@@ -1,4 +1,4 @@
-package calculator.expression.operator.function;
+package calculator.expression.operator.function.random;
 
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
@@ -7,7 +7,7 @@ import calculator.expression.number.*;
 import java.util.List;
 import java.util.Random;
 
-public class RandomIntegerSeed extends FunctionBinary {
+public class RandomIntegerSeed extends FunctionRandomBinary {
     public RandomIntegerSeed(List<Expression> elist) throws IllegalConstruction {
         super(elist, "rIntSeed");
     }
@@ -16,6 +16,11 @@ public class RandomIntegerSeed extends FunctionBinary {
         Random random = new Random(seed);
         // Generates between a and b (inclusive)
         return new MyInteger(random.nextInt(max + 1));
+    }
+
+    @Override
+    protected MyNumber randomNumber(int max, long seed) {
+        return null;
     }
 
     @Override
