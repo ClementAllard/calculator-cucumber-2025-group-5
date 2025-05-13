@@ -8,10 +8,7 @@ import calculator.expression.number.*;
 import calculator.expression.operator.basic.*;
 import calculator.expression.operator.function.*;
 import calculator.expression.operator.function.FunctionAcos;
-import calculator.expression.operator.random.RandomInteger;
-import calculator.expression.operator.random.RandomIntegerSeed;
-import calculator.expression.operator.random.RandomRational;
-import calculator.expression.operator.random.RandomRationalSeed;
+import calculator.expression.operator.random.*;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -245,6 +242,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "rint" -> new RandomInteger(arg);
                 case "sqrt" -> new FunctionSqrt(Arrays.asList(new MyInteger(2), arg));
                 case "rrational", "rrat" -> new RandomRational(arg);
+                case "rreal" -> new RandomReal(arg);
                 default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 1");
             };
 

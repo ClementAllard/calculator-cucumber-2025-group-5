@@ -3,6 +3,7 @@ package calculator.expression.operator.random;
 import calculator.expression.number.MyInteger;
 import calculator.expression.number.MyNumber;
 import calculator.expression.number.MyRational;
+import calculator.expression.number.MyReal;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -32,5 +33,10 @@ public interface RandomGenerator {
             denominator = BigDecimal.ONE;
         }
         return new MyRational(numerator, denominator);
+    }
+
+    default MyReal randomReal(int ignoredMax, long seed) {
+        Random random = new Random(seed);
+        return new MyReal(BigDecimal.valueOf(random.nextDouble()));
     }
 }

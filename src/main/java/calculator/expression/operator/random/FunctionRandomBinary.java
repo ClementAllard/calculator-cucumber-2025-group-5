@@ -5,12 +5,16 @@ import calculator.expression.Expression;
 import calculator.expression.number.*;
 import calculator.expression.operator.BinaryOperation;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
-abstract class FunctionRandomBinary extends BinaryOperation {
+public abstract class FunctionRandomBinary extends BinaryOperation implements HasNumber {
     protected FunctionRandomBinary(List<Expression> elist, String symbol) throws IllegalConstruction {
         super(elist, symbol);
     }
+
+    BigDecimal number;
 
     protected abstract MyNumber randomNumber(int max, long seed);
 
@@ -92,5 +96,30 @@ abstract class FunctionRandomBinary extends BinaryOperation {
     @Override
     protected MyNumber op(MyComplex l, MyComplex r) {
         return randomNumber(l.getReal().intValue(), r.getReal().longValue());
+    }
+
+    public BigDecimal getRandValue() throws IllegalConstruction {
+        return getRandValue(this);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!super.equals(other)) return false;
+        return Objects.equals(this.number, ((FunctionRandomBinary) other).number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), number);
+    }
+
+    @Override
+    public BigDecimal getNumber() {
+        return number;
+    }
+
+    @Override
+    public void setNumber(BigDecimal number) {
+        this.number = number;
     }
 }

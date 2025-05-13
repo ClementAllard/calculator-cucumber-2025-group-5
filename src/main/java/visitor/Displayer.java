@@ -1,5 +1,6 @@
 package visitor;
 
+import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
 import calculator.expression.number.MyNumber;
@@ -7,6 +8,8 @@ import calculator.expression.operator.function.Function;
 import calculator.expression.operator.function.FunctionBinary;
 import calculator.expression.operator.Operation;
 import calculator.expression.operator.UnaryOperation;
+import calculator.expression.operator.random.FunctionRandomBinary;
+import calculator.expression.operator.random.FunctionRandomUnary;
 
 public class Displayer implements NotationVisitor {
 
@@ -48,8 +51,24 @@ public class Displayer implements NotationVisitor {
         int subset = !operation.getArgs().isEmpty() ? sep.length() : 0;
         String formula = args.substring(0, args.toString().length() - subset);
 
+        String functionFormat = "%s(%s)";
+
         if (operation instanceof Function || operation instanceof FunctionBinary) {
-            return String.format("%s(%s)", operation.getSymbol(), formula);
+            return String.format(functionFormat, operation.getSymbol(), formula);
+        } else if (operation instanceof FunctionRandomBinary functionRandomBinary){
+            // display the random number generated and not the function.
+            try{
+                return String.format("%s", functionRandomBinary.getRandValue());
+            } catch (IllegalConstruction e) {
+                return String.format(functionFormat, operation.getSymbol(), formula);
+            }
+        } else if (operation instanceof FunctionRandomUnary functionRandomUnary){
+            // display the random number generated and not the function.
+            try{
+                return String.format("%s", functionRandomUnary.getRandValue());
+            } catch (IllegalConstruction e) {
+                return String.format(functionFormat, operation.getSymbol(), formula);
+            }
         } else if(operation instanceof UnaryOperation){
             return String.format("%s %s", operation.getSymbol(), formula);
         }
