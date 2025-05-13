@@ -5,7 +5,6 @@ import calculator.expression.Expression;
 import calculator.expression.number.*;
 import calculator.expression.operator.BinaryOperation;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +13,7 @@ public abstract class FunctionRandomBinary extends BinaryOperation implements Ha
         super(elist, symbol);
     }
 
-    BigDecimal number;
+    MyNumber number;
 
     protected abstract MyNumber randomNumber(int max, long seed);
 
@@ -98,7 +97,7 @@ public abstract class FunctionRandomBinary extends BinaryOperation implements Ha
         return randomNumber(l.getReal().intValue(), r.getReal().longValue());
     }
 
-    public BigDecimal getRandValue() throws IllegalConstruction {
+    public MyNumber getRandValue() throws IllegalConstruction {
         return getRandValue(this);
     }
 
@@ -114,12 +113,12 @@ public abstract class FunctionRandomBinary extends BinaryOperation implements Ha
     }
 
     @Override
-    public BigDecimal getNumber() {
+    public MyNumber getNumber() {
         return number;
     }
 
     @Override
-    public void setNumber(BigDecimal number) {
+    public void setNumber(MyNumber number) {
         this.number = number;
     }
 }

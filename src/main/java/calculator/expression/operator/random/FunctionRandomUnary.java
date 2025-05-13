@@ -5,7 +5,6 @@ import calculator.expression.Expression;
 import calculator.expression.number.*;
 import calculator.expression.operator.UnaryOperation;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public abstract class FunctionRandomUnary extends UnaryOperation implements HasNumber {
@@ -13,7 +12,7 @@ public abstract class FunctionRandomUnary extends UnaryOperation implements HasN
         super(expression, symbol);
     }
 
-    BigDecimal number;
+    MyNumber number;
 
     protected abstract MyNumber randomNumber(int max, long seed);
 
@@ -37,7 +36,7 @@ public abstract class FunctionRandomUnary extends UnaryOperation implements HasN
         return randomNumber(l.getReal().intValue(), System.currentTimeMillis());
     }
 
-    public BigDecimal getRandValue() throws IllegalConstruction {
+    public MyNumber getRandValue() throws IllegalConstruction {
         return getRandValue(this);
     }
 
@@ -53,12 +52,12 @@ public abstract class FunctionRandomUnary extends UnaryOperation implements HasN
     }
 
     @Override
-    public BigDecimal getNumber() {
+    public MyNumber getNumber() {
         return number;
     }
 
     @Override
-    public void setNumber(BigDecimal number) {
+    public void setNumber(MyNumber number) {
         this.number = number;
     }
 }
