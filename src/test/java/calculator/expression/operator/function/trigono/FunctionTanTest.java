@@ -1,4 +1,4 @@
-package calculator.expression.operator.function;
+package calculator.expression.operator.function.trigono;
 
 import calculator.Calculator;
 import calculator.IllegalConstruction;
@@ -7,6 +7,7 @@ import calculator.expression.number.MyComplex;
 import calculator.expression.number.MyInteger;
 import calculator.expression.number.MyRational;
 import calculator.expression.number.MyReal;
+import calculator.expression.operator.function.FunctionTan;
 import jdk.jshell.spi.ExecutionControl;
 import org.junit.jupiter.api.Test;
 

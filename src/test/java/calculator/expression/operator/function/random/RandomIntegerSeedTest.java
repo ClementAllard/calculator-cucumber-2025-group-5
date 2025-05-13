@@ -1,4 +1,4 @@
-package calculator.expression.operator.function;
+package calculator.expression.operator.function.random;
 
 import calculator.Calculator;
 import calculator.expression.Expression;

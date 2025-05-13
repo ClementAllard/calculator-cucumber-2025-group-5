@@ -1,9 +1,10 @@
-package calculator.expression.operator.function;
+package calculator.expression.operator.function.hyperbolicTrigono;
 
 import calculator.Calculator;
 import calculator.expression.Expression;
 import calculator.expression.number.MyComplex;
 import calculator.expression.number.MyReal;
+import calculator.expression.operator.function.FunctionSinh;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
