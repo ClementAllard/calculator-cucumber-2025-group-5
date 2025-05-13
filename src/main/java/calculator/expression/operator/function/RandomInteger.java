@@ -17,11 +17,10 @@ public class RandomInteger extends Function {
     private MyNumber randomInt(int max, long seed) {
         Random random = new Random(seed);
         // Generates between a and b (inclusive)
-        try{
-            return new MyInteger(random.nextInt(max + 1));
-        } catch(Exception e){
+        if (max < 0) {
             throw new IllegalArgumentException(symbol + " require a positive value as argument.");
         }
+        return new MyInteger(random.nextInt(max + 1));
 
     }
 
