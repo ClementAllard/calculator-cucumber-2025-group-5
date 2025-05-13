@@ -239,10 +239,11 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "sinh" -> new FunctionSinh(arg);
                 case "cosh" -> new FunctionCosh(arg);
                 case "tanh" -> new FunctionTanh(arg);
-                case "rint" -> new RandomInteger(arg);
                 case "sqrt" -> new FunctionSqrt(Arrays.asList(new MyInteger(2), arg));
+                case "rinteger", "rint" -> new RandomInteger(arg);
                 case "rrational", "rrat" -> new RandomRational(arg);
                 case "rreal" -> new RandomReal(arg);
+                case "rcomplex", "rcom" -> new RandomComplex(arg);
                 default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 1");
             };
 
