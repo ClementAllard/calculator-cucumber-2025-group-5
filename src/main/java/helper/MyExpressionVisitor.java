@@ -296,8 +296,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
             constantKey = constantKey.substring(1, constantKey.length()-1);
             String valueString = Constant.readConstant(constantKey);
             if (valueString == null) {
-                String msg = String.format("The constant %s does not exists or the file constant.json could not be read.",
-                        constantKey);
+                String msg = String.format("The constant %s does not exists or the file %s could not be read.",
+                        constantKey, Constant.FILE_PATH);
                 throw new IllegalArgumentException(msg);
             }
             // remove all $ to avoid DOS (infinite loop)
