@@ -2,6 +2,7 @@ package helper;
 
 //Import Junit5 libraries for unit testing:
 import calculator.*;
+import calculator.expression.number.Constant;
 import calculator.expression.number.MyInteger;
 import calculator.expression.operator.basic.Divides;
 import calculator.expression.operator.basic.Minus;
@@ -683,6 +684,57 @@ class TestMyExpressionParser {
             assertEquals(c.eval(expr), c.eval(expected));
         } catch (Exception exception) {
             fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testRandomFunctions(){
+        try {
+            Expression expr = MyExpressionParser.parseExpression("rINTEGER(100, e)");
+            assertEquals("5", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rint(100, e)");
+            assertEquals("5", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rRATIONAL(100, e)");
+            assertEquals("5/37", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rrat(100, e)");
+            assertEquals("5/37", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rREAL(e)");
+            assertEquals("0.731146936", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rreal(e)");
+            assertEquals("0.731146936", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rCOMPLEX(e)");
+            assertEquals("0.7311469360199058 + 0.9014476240300544i", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rcom(e)");
+            assertEquals("0.7311469360199058 + 0.9014476240300544i", c.eval(expr));
+        } catch (Exception ex) {
+            fail(ex.getMessage());
+        }
+    }
+
+    @Test
+    void testConstants(){
+        try {
+            String constantKey = "test";
+            String constantValue = "sqrt(25)";
+            Constant.writeConstant(constantKey, constantValue);
+
+            Expression expression = MyExpressionParser.parseExpression("$test$");
+            assertEquals("5", c.eval(expression));
+
+            constantKey = "test";
+            constantValue = "sqrt($test$)";
+            Constant.writeConstant(constantKey, constantValue);
+
+            assertThrowsExactly(IllegalArgumentException.class, () -> MyExpressionParser.parseExpression("$test2$"));
+        } catch (Exception ex) {
+            fail(ex.getMessage());
         }
     }
 }
