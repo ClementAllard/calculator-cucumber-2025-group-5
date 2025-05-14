@@ -32,6 +32,9 @@ public final class Equivalence extends BinaryLogicOperation {
      */
     public Equivalence(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist, n);
+        if (elist.isEmpty()) {
+            throw new IllegalConstruction();
+        }
         symbol = "<=>";
     }
 

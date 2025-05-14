@@ -13,9 +13,9 @@ import java.util.List;
 public final class BitwiseOr extends BinaryLogicOperation {
 
     /**
-     * Class constructor specifying a number of Expressions to LogicalAnd
+     * Class constructor specifying a number of Expressions to apply BitwiseOr
      *
-     * @param elist the list of Expressions to LogicalAnd
+     * @param elist the list of Expressions to apply BitwiseOr
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #BitwiseOr(List<Expression>, Notation)
      */
@@ -24,28 +24,30 @@ public final class BitwiseOr extends BinaryLogicOperation {
     }
 
     /**
-     * Class constructor specifying a number of Expressions to LogicalAnd,
+     * Class constructor specifying a number of Expressions to apply BitwiseOr,
      * as well as the Notation used to represent the operation.
      *
-     * @param elist the list of Expressions to LogicalAnd
+     * @param elist the list of Expressions to apply BitwiseOr
      * @param n the Notation to be used to represent the operation
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #BitwiseOr(List<Expression>)
      */
     public BitwiseOr(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist, n);
+        if (elist.isEmpty()) {
+            throw new IllegalConstruction();
+        }
         symbol = "|";
     }
 
     /**
-     * The actual computation of the (binary) logical and of two boolean values
-     * @param l The first boolean
-     * @param r The second boolean
-     * @return True if both boolean are True, False otherwise
+     * @param l The first binary
+     * @param r The second binary
+     * @return The actual computation of the BitwiseOr of two binary values
      */
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        if (l.getBase() == 2) {
+        if (l.getBase() == 2 && r.getBase() == 2) {
             String binary1 = l.getBaseRepresentation();
             String binary2 = r.getBaseRepresentation();
             BigInteger b1 = new BigInteger(binary1, 2);

@@ -13,6 +13,9 @@ public final class BitwiseLeft extends UnaryLogicOperation {
 
     public BitwiseLeft(Expression expression) throws IllegalConstruction {
         super(expression, null);
+        if (expression == null) {
+            throw new IllegalConstruction();
+        }
         symbol = "<<";
         this.number = 1;
     }

@@ -11,6 +11,9 @@ public final class BitwiseNot extends UnaryLogicOperation {
 
     public BitwiseNot(Expression expression) throws IllegalConstruction {
         super(expression, null);
+        if (expression == null) {
+            throw new IllegalConstruction();
+        }
         symbol = "~";
     }
 

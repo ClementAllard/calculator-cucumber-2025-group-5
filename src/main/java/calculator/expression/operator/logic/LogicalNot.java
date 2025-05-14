@@ -11,6 +11,9 @@ public final class LogicalNot extends UnaryLogicOperation {
 
     public LogicalNot(Expression expression) throws IllegalConstruction {
         super(expression, null);
+        if (expression == null) {
+            throw new IllegalConstruction();
+        }
         symbol = "not";
     }
 

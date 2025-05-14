@@ -12,9 +12,9 @@ import java.util.List;
 public final class LogicalOr extends BinaryLogicOperation {
 
     /**
-     * Class constructor specifying a number of Expressions to LogicalOr
+     * Class constructor specifying a number of Expressions to apply LogicalOr
      *
-     * @param elist the list of Expressions to LogicalOr
+     * @param elist the list of Expressions to apply LogicalOr
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #LogicalOr(List<Expression>, Notation)
      */
@@ -23,16 +23,19 @@ public final class LogicalOr extends BinaryLogicOperation {
     }
 
     /**
-     * Class constructor specifying a number of Expressions to LogicalOr,
+     * Class constructor specifying a number of Expressions to apply LogicalOr,
      * as well as the Notation used to represent the operation.
      *
-     * @param elist the list of Expressions to LogicalOr
+     * @param elist the list of Expressions to apply LogicalOr
      * @param n the Notation to be used to represent the operation
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #LogicalOr(List<Expression>)
      */
     public LogicalOr(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist, n);
+        if (elist.isEmpty()) {
+            throw new IllegalConstruction();
+        }
         symbol = "or";
     }
 

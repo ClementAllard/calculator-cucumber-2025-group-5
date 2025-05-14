@@ -12,7 +12,7 @@ import java.util.List;
 public final class LogicalXor extends BinaryLogicOperation {
 
     /**
-     * Class constructor specifying a number of Expressions to LogicalXor
+     * Class constructor specifying a number of Expressions to apply LogicalXor
      *
      * @param elist the list of Expressions to LogicalXor
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
@@ -23,7 +23,7 @@ public final class LogicalXor extends BinaryLogicOperation {
     }
 
     /**
-     * Class constructor specifying a number of Expressions to LogicalOr,
+     * Class constructor specifying a number of Expressions to apply LogicalXor,
      * as well as the Notation used to represent the operation.
      *
      * @param elist the list of Expressions to LogicalXor
@@ -33,6 +33,9 @@ public final class LogicalXor extends BinaryLogicOperation {
      */
     public LogicalXor(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist, n);
+        if (elist.isEmpty()) {
+            throw new IllegalConstruction();
+        }
         symbol = "xor";
     }
 

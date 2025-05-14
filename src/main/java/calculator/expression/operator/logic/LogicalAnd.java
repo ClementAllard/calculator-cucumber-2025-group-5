@@ -33,6 +33,9 @@ public final class LogicalAnd extends BinaryLogicOperation {
      */
     public LogicalAnd(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist, n);
+        if (elist.isEmpty()) {
+            throw new IllegalConstruction();
+        }
         symbol = "and";
     }
 

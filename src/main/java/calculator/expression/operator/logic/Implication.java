@@ -12,9 +12,9 @@ import java.util.List;
 public final class Implication extends BinaryLogicOperation {
 
     /**
-     * Class constructor specifying a number of Expressions to Implies
+     * Class constructor specifying a number of Expressions to apply Implication
      *
-     * @param elist the list of Expressions to Implies
+     * @param elist the list of Expressions to apply Implication
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #Implication(List<Expression>, Notation)
      */
@@ -23,16 +23,19 @@ public final class Implication extends BinaryLogicOperation {
     }
 
     /**
-     * Class constructor specifying a number of Expressions to Implies,
+     * Class constructor specifying a number of Expressions to apply Implication,
      * as well as the Notation used to represent the operation.
      *
-     * @param elist the list of Expressions to Implies
+     * @param elist the list of Expressions to apply Implication
      * @param n the Notation to be used to represent the operation
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #Implication(List<Expression>)
      */
     public Implication(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist, n);
+        if (elist.isEmpty()) {
+            throw new IllegalConstruction();
+        }
         symbol = "=>";
     }
 
