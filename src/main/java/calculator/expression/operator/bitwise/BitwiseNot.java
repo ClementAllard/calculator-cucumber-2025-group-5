@@ -6,7 +6,6 @@ import calculator.expression.number.*;
 import calculator.expression.operator.UnaryLogicOperation;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 public final class BitwiseNot extends UnaryLogicOperation {
 
@@ -17,8 +16,11 @@ public final class BitwiseNot extends UnaryLogicOperation {
 
     @Override
     protected MyNumber op(MyInteger l) {
-        BigInteger value = l.getValue().toBigInteger();
-        value = value.not();
-        return new MyInteger(new BigDecimal(value), l.getBase());
+        if (l.getBase() == 2) {
+            String representation = l.getBaseRepresentation();
+            String max = "1".repeat(representation.length());
+            int notValue = Integer.parseInt(max) - Integer.parseInt(representation);
+            return new MyInteger(new BigDecimal(notValue), l.getBase());
+        } else throw new UnsupportedOperationException("Bitwise operations only support binary numbers");
     }
 }

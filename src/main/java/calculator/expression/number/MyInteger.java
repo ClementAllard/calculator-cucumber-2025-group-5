@@ -40,11 +40,12 @@ public class MyInteger extends MyNumber {
     }
 
     public MyInteger(BigDecimal value, int base) {
-        this.value = value.setScale(0, RoundingMode.FLOOR);
+        BigInteger integer = new BigInteger(String.valueOf(value), base);
+        this.value = new BigDecimal(integer).setScale(0, RoundingMode.FLOOR);
         this.base = base;
     }
 
-    public BigDecimal getValue() {
+    public BigDecimal getValue() { // return value in base 10
         return value;
     }
 
@@ -52,13 +53,9 @@ public class MyInteger extends MyNumber {
         return base;
     }
 
-    public BigDecimal getBigDecimalValue() {
-        if (base == 10) {
-            return value;
-        } else {
-            BigInteger integer = value.toBigInteger();
-            return new BigDecimal(integer).setScale(0, RoundingMode.FLOOR);
-        }
+    public String getBaseRepresentation() { // return value in the base given at creation
+        BigInteger integer = value.toBigIntegerExact();
+        return integer.toString(base);
     }
 
     @Override

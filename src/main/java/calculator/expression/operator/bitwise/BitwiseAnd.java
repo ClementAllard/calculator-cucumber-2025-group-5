@@ -7,6 +7,7 @@ import calculator.expression.number.*;
 import calculator.expression.operator.BinaryLogicOperation;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 public final class BitwiseAnd extends BinaryLogicOperation {
@@ -44,10 +45,13 @@ public final class BitwiseAnd extends BinaryLogicOperation {
      */
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        if (l.getValue().compareTo(BigDecimal.ZERO) != 0 && r.getValue().compareTo(BigDecimal.ZERO) != 0) { // If l != 0 and r != 0
-            return new MyInteger(1);
-        } else {
-            return new MyInteger(0);
-        }
+        if (l.getBase() == 2) {
+            String binary1 = l.getBaseRepresentation();
+            String binary2 = r.getBaseRepresentation();
+            BigInteger b1 = new BigInteger(binary1, 2);
+            BigInteger b2 = new BigInteger(binary2, 2);
+            BigInteger result = b1.and(b2);
+            return new MyInteger(new BigDecimal(result));
+        } else throw new UnsupportedOperationException("Bitwise operations only support binary numbers");
     }
 }
