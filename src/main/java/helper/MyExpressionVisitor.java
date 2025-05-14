@@ -276,7 +276,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "log" -> new FunctionLogBinary(args);
                 case "pow" -> new FunctionPow(args);
                 case "sqrt", "root" -> new FunctionSqrt(args);
-                case "rint" -> new RandomIntegerSeed(args);
+                case "rinteger" ,"rint" -> new RandomIntegerSeed(args);
                 case "rrational", "rrat" -> new RandomRationalSeed(args);
                 default -> throw new IllegalArgumentException("Unknown function " + funcName+ " of arity 2");
             };
