@@ -293,6 +293,18 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPercentage(ExpressionParser.PercentageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPercentage(ExpressionParser.PercentageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterScientificAtom(ExpressionParser.ScientificAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -353,13 +365,13 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPercentageAtom(ExpressionParser.PercentageAtomContext ctx) { }
+	@Override public void enterConstantAtom(ExpressionParser.ConstantAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPercentageAtom(ExpressionParser.PercentageAtomContext ctx) { }
+	@Override public void exitConstantAtom(ExpressionParser.ConstantAtomContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

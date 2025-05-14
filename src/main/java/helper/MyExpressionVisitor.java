@@ -171,13 +171,11 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     }
 
     @Override
-    public Expression visitPercentageAtom(ExpressionParser.PercentageAtomContext ctx) {
+    public Expression visitPercentage(ExpressionParser.PercentageContext ctx) {
         try{
-            return new MyRational(Integer.parseInt(ctx.getChild(0).getText()), 100);
-        } catch (NumberFormatException e) {
-            return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(
-                            Double.parseDouble(ctx.getChild(0).getText())),
-                    BigDecimal.valueOf(100)));
+            return new Divides(Arrays.asList(visit(ctx.getChild(0)), new MyInteger(100)), Notation.INFIX);
+        } catch (IllegalConstruction e) {
+            throw new RuntimeException(e); //NOSONAR
         }
     }
 
@@ -285,6 +283,31 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
         } catch (IllegalConstruction e) {
             throw new RuntimeException(e); // NOSONAR
+        }
+    }
+
+    @Override
+    public Expression visitConstantAtom(ExpressionParser.ConstantAtomContext ctx){
+        String constantKey = null;
+
+        try {
+            constantKey = ctx.getChild(0).getText();
+            // remove the first and last $
+            constantKey = constantKey.substring(1, constantKey.length()-1);
+            String valueString = Constant.readConstant(constantKey);
+            if (valueString == null) {
+                String msg = String.format("The constant %s does not exists or the file constant.json could not be read.",
+                        constantKey);
+                throw new IllegalArgumentException(msg);
+            }
+            // remove all $ to avoid DOS (infinite loop)
+            valueString = valueString.replace("$", "");
+            return Constant.parseExpression(valueString);
+        } catch (IllegalSyntax e) {
+            // This error only raise if constantKey is initialised.
+            String msg = String.format("The constant %s does not follow the grammar",
+                    constantKey);
+            throw new IllegalArgumentException(msg);
         }
     }
 }

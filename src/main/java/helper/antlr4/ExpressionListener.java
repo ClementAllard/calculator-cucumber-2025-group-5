@@ -270,6 +270,18 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitComplexAtom(ExpressionParser.ComplexAtomContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Percentage}
+	 * labeled alternative in {@link ExpressionParser#complex}.
+	 * @param ctx the parse tree
+	 */
+	void enterPercentage(ExpressionParser.PercentageContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Percentage}
+	 * labeled alternative in {@link ExpressionParser#complex}.
+	 * @param ctx the parse tree
+	 */
+	void exitPercentage(ExpressionParser.PercentageContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ScientificAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
@@ -330,15 +342,15 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitENumber(ExpressionParser.ENumberContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code PercentageAtom}
+	 * Enter a parse tree produced by the {@code ConstantAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void enterPercentageAtom(ExpressionParser.PercentageAtomContext ctx);
+	void enterConstantAtom(ExpressionParser.ConstantAtomContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code PercentageAtom}
+	 * Exit a parse tree produced by the {@code ConstantAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void exitPercentageAtom(ExpressionParser.PercentageAtomContext ctx);
+	void exitConstantAtom(ExpressionParser.ConstantAtomContext ctx);
 }
