@@ -3,6 +3,7 @@ package visitor;
 import calculator.expression.Expression;
 import calculator.expression.number.MyNumber;
 import calculator.expression.operator.Operation;
+import calculator.expression.operator.UnaryLogicOperation;
 import calculator.expression.operator.UnaryOperation;
 import jdk.jshell.spi.ExecutionControl;
 
@@ -51,7 +52,7 @@ public class Evaluator extends Visitor {
             evaluatedArgs.add(computedValue);
         }
 
-        if(o instanceof UnaryOperation){
+        if((o instanceof UnaryOperation) || (o instanceof UnaryLogicOperation)) {
             MyNumber temp = evaluatedArgs.getFirst();
             temp = o.op(temp);
             computedValue = temp;

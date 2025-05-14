@@ -5,7 +5,6 @@ import calculator.expression.Expression;
 import calculator.expression.number.*;
 
 import java.util.Collections;
-import java.util.Objects;
 
 public abstract class UnaryLogicOperation extends Operation {
 
@@ -15,7 +14,7 @@ public abstract class UnaryLogicOperation extends Operation {
     }
 
     public MyNumber op(MyNumber myNumber) throws UnsupportedOperationException {
-        if (Objects.requireNonNull(myNumber) instanceof MyInteger a) {
+        if (myNumber instanceof MyInteger a) {
             return op(a);
         }
         throw new UnsupportedOperationException("The operation '" + getSymbol() + "' on "
