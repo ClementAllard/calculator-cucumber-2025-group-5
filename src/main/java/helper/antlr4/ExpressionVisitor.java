@@ -91,11 +91,23 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInfixExpr(ExpressionParser.InfixExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ExpressionParser#infixExprBitwise}.
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio1}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInfixExprBitwise(ExpressionParser.InfixExprBitwiseContext ctx);
+	T visitInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio3}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link ExpressionParser#infixExprLogicPrio1}.
 	 * @param ctx the parse tree
@@ -190,12 +202,12 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IntergerAtom}
+	 * Visit a parse tree produced by the {@code IntegerAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIntergerAtom(ExpressionParser.IntergerAtomContext ctx);
+	T visitIntegerAtom(ExpressionParser.IntegerAtomContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code RealAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
@@ -232,24 +244,10 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBoolAtom(ExpressionParser.BoolAtomContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code BinaryAtom}
+	 * Visit a parse tree produced by the {@code BaseIntegerAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBinaryAtom(ExpressionParser.BinaryAtomContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code OctalAtom}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOctalAtom(ExpressionParser.OctalAtomContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code HexadecimalAtom}
-	 * labeled alternative in {@link ExpressionParser#number}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitHexadecimalAtom(ExpressionParser.HexadecimalAtomContext ctx);
+	T visitBaseIntegerAtom(ExpressionParser.BaseIntegerAtomContext ctx);
 }

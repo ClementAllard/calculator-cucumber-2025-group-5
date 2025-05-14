@@ -35,10 +35,19 @@ postfixfonction : FUNCTION postfixfonction ')'                                  
 
 // INFIX
 
-infixExpr : infixExprLogicPrio1
+infixExpr : infixExprBitwisePrio1
           ;
 
-infixExprBitwise : infixExprBitwise ('<<' | '>>' | '~' | '&' | '|' | '^^') infixExprLogicPrio1
+infixExprBitwisePrio1 : infixExprBitwisePrio1 ('&' | '^^' | '|') infixExprBitwisePrio2
+                 | infixExprBitwisePrio2
+                 ;
+
+infixExprBitwisePrio2 : ('~') infixExprBitwisePrio3
+                 | infixExprBitwisePrio3
+                 ;
+
+infixExprBitwisePrio3 : ('<<' | '>>') INTEGER infixExprLogicPrio1
+                 | ('<<' | '>>') infixExprLogicPrio1
                  | infixExprLogicPrio1
                  ;
 
@@ -80,15 +89,13 @@ complex : number ('+'|'-') number 'i'                                           
         ;
 
 number : (REAL | INTEGER) E (REAL | INTEGER)                                                     # ScientificAtom
-       | INTEGER                                                                                 # IntergerAtom
+       | INTEGER                                                                                 # IntegerAtom
        | REAL                                                                                    # RealAtom
        | PI                                                                                      # PiNumber
        | E                                                                                       # ENumber
        | (REAL | INTEGER) '%'                                                                    # PercentageAtom
        | BOOL                                                                                    # BoolAtom
-       | BINARY                                                                                  # BinaryAtom
-       | OCTAL                                                                                   # OctalAtom
-       | HEXADECIMAL                                                                             # HexadecimalAtom
+       | BASE_INTEGER                                                                            # BaseIntegerAtom
        ;
 
 REAL : [0-9]+ '.' [0-9]+;
@@ -97,8 +104,6 @@ FUNCTION: [a-zA-Z_][a-zA-Z0-9_]* '(';
 PI: ('pi' | 'PI');
 E : ('e' | 'E');
 BOOL: 'T' | 'F' | '0' | '1';
-BINARY: '0b' [01]+;
-OCTAL: '0o' [0-7]+;
-HEXADECIMAL: '0x' [0-9a-fA-F]+;
+BASE_INTEGER: ( [1-9] | '1'[0-9] | '2'[0-9] | '3'[0-6] ) 'b' [0-9a-zA-Z]+;
 
 WS: [ \t\r\n]+ -> skip;

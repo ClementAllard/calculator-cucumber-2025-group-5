@@ -161,13 +161,37 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInfixExprBitwise(ExpressionParser.InfixExprBitwiseContext ctx) { }
+	@Override public void enterInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInfixExprBitwise(ExpressionParser.InfixExprBitwiseContext ctx) { }
+	@Override public void exitInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -341,13 +365,13 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIntergerAtom(ExpressionParser.IntergerAtomContext ctx) { }
+	@Override public void enterIntegerAtom(ExpressionParser.IntegerAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIntergerAtom(ExpressionParser.IntergerAtomContext ctx) { }
+	@Override public void exitIntegerAtom(ExpressionParser.IntegerAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -413,37 +437,13 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBinaryAtom(ExpressionParser.BinaryAtomContext ctx) { }
+	@Override public void enterBaseIntegerAtom(ExpressionParser.BaseIntegerAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBinaryAtom(ExpressionParser.BinaryAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOctalAtom(ExpressionParser.OctalAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOctalAtom(ExpressionParser.OctalAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterHexadecimalAtom(ExpressionParser.HexadecimalAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitHexadecimalAtom(ExpressionParser.HexadecimalAtomContext ctx) { }
+	@Override public void exitBaseIntegerAtom(ExpressionParser.BaseIntegerAtomContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
