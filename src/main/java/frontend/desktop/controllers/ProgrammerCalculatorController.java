@@ -83,6 +83,8 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
                     case "OR" -> button.setOnAction(event -> handleSymbolButton("|"));
                     case "XOR" -> button.setOnAction(event -> handleSymbolButton("^^"));
                     case "NOT" -> button.setOnAction(event -> handleSymbolButton("~"));
+                    case "NAND" -> button.setOnAction(event -> handleSymbolButton("~&"));
+                    case "NOR" -> button.setOnAction(event -> handleSymbolButton("~|"));
                     default -> button.setOnAction(event -> handleSymbolButton(button.getText()));
                 }
             }
