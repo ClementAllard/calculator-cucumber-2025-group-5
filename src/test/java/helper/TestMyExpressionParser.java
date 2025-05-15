@@ -737,4 +737,30 @@ class TestMyExpressionParser {
             fail(ex.getMessage());
         }
     }
+
+    @Test
+    void testModuloFunction(){
+        try {
+            Expression expr = MyExpressionParser.parseExpression("mod(e, e)");
+            assertEquals("0", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("mod(5, 10+0i)");
+            assertEquals("5", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("mod(51.2, 10.0)");
+            assertEquals("1.2", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("mod(5+0i, 1.1)");
+            assertEquals("0.6", c.eval(expr));
+
+            final Expression error = MyExpressionParser.parseExpression("mod(5+1i, 1.1)");
+            assertThrows(IllegalArgumentException.class, () -> c.eval(error));
+
+            final Expression error2 = MyExpressionParser.parseExpression("mod(5+0i, 1+1i)");
+            assertThrows(IllegalArgumentException.class, () -> c.eval(error2));
+
+        } catch (Exception ex) {
+            fail(ex.getMessage());
+        }
+    }
 }
