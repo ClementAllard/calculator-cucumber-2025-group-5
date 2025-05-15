@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Pair;
 
+import java.util.Random;
+
 public class ScientificCalculatorController extends StandardCalculatorController {
     /**
      * This class is the controller for the scientific calculator.
@@ -26,13 +28,6 @@ public class ScientificCalculatorController extends StandardCalculatorController
 
     @FXML
     public GridPane thirdTab;
-
-    @FXML
-    public ChoiceBox<String> angleSetting;
-
-    private final ObservableList<String> items = FXCollections.observableArrayList("DEG", "RAD");
-
-    private boolean radianMode = false;
 
     @FXML
     public HBox convertBox;
@@ -53,13 +48,8 @@ public class ScientificCalculatorController extends StandardCalculatorController
     public Button realButton;
 
     @FXML
-    public Spinner<Integer> realSpinner;
-
-    @FXML
     public Button complexButton;
 
-    @FXML
-    public Spinner<Integer> complexSpinner;
 
     /**
      * This method pops the last number from the input label.
@@ -166,11 +156,10 @@ public class ScientificCalculatorController extends StandardCalculatorController
 
     /**
      * This method handles the generation of random real numbers.
-     * @param precision the precision for the random real generation.
      */
-    void handleRealGeneration(String precision) {
+    void handleRealGeneration() {
         String currentInput = inputLabel.getText();
-        String randReal = "rReal(" + precision + ")";
+        String randReal = "rReal(" + new Random().nextInt(1, 3000) + ")";
         if (currentInput.isEmpty()) {
             inputLabel.setText(randReal);
         } else {
@@ -180,11 +169,10 @@ public class ScientificCalculatorController extends StandardCalculatorController
 
     /**
      * This method handles the generation of random complex numbers.
-     * @param precision the precision for the random complex generation.
      */
-    void handleComplexGeneration(String precision) {
+    void handleComplexGeneration() {
         String currentInput = inputLabel.getText();
-        String randComplex = "rComplex(" + precision + ")";
+        String randComplex = "rComplex(" + new Random().nextInt(1, 3000) + ")";
         if (currentInput.isEmpty()) {
             inputLabel.setText(randComplex);
         } else {
@@ -276,21 +264,13 @@ public class ScientificCalculatorController extends StandardCalculatorController
      */
     private void initializeFourthTab() {
         handSpinner.setPromptText("Bound");
-        rationalSpinner.setPromptText("Bound");
-        realSpinner.setPromptText("Digits");
-        complexSpinner.setPromptText("Digits");
-        handSpinner.setPromptText("Bound");
         handSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         integerButton.setOnAction(event -> handleIntegerGeneration(handSpinner.getValue().toString()));
         rationalSpinner.setPromptText("Bound");
         rationalSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         rationalButton.setOnAction(event -> handleRationalGeneration(rationalSpinner.getValue().toString()));
-        realSpinner.setPromptText("Digits");
-        realSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
-        realButton.setOnAction(event -> handleRealGeneration(realSpinner.getValue().toString()));
-        complexSpinner.setPromptText("Digits");
-        complexSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
-        complexButton.setOnAction(event -> handleComplexGeneration(complexSpinner.getValue().toString()));
+        realButton.setOnAction(event -> handleRealGeneration());
+        complexButton.setOnAction(event -> handleComplexGeneration());
     }
 
     /**
@@ -323,9 +303,6 @@ public class ScientificCalculatorController extends StandardCalculatorController
      */
     @Override
     public void initialize() {
-        angleSetting.setItems(items);
-        angleSetting.setValue(items.getFirst());
-        angleSetting.setOnAction(_ -> setRadianMode(angleSetting.getValue().equals("RAD")));
         initializeLeftGridPane();
         initializeCenterGridPane();
         initializeRightGridPane();
@@ -334,21 +311,5 @@ public class ScientificCalculatorController extends StandardCalculatorController
         initializeThirdTab();
         initializeFourthTab();
         initializeConvertBox();
-    }
-
-    /**
-     * This method returns the current radian mode.
-     * @return true if the calculator is in radian mode, false otherwise.
-     */
-    public boolean isRadianMode() {
-        return radianMode;
-    }
-
-    /**
-     * This method sets the radian mode for the calculator.
-     * @param radianMode true to set the calculator to radian mode, false otherwise.
-     */
-    public void setRadianMode(boolean radianMode) {
-        this.radianMode = radianMode;
     }
 }

@@ -24,12 +24,6 @@ public class CalculatorSettingController extends Controller {
     @FXML
     public Label calculatorTypeLabel;
 
-    @FXML
-    public ChoiceBox<String> operationOrderSetting;
-
-    private final ObservableList<String> operationOrderTypes = FXCollections.observableArrayList("INFIX", "POSTFIX", "PREFIX");
-
-    public String operationOrder = "INFIX";
 
     /**
      * This method is called when the user selects a menu item from the calculator type menu button.
@@ -82,39 +76,12 @@ public class CalculatorSettingController extends Controller {
     }
 
     /**
-     * Initializes the operation order setting choice box with available options (INFIX, POSTFIX, PREFIX).
-     * Sets the default value to "INFIX" and adds an action listener to update the operation order.
-     */
-    private void initializeOperationOrderSetting() {
-        operationOrderSetting.setItems(operationOrderTypes);
-        operationOrderSetting.setValue(operationOrderTypes.getFirst());
-        operationOrderSetting.setOnAction(_ -> setOperationOrder(operationOrderSetting.getValue()));
-    }
-
-    /**
      * Initializes the calculator settings controller.
      * This method is called when the controller is loaded.
      */
     @Override
     public void initialize() {
         handleTypeSelection();
-        initializeOperationOrderSetting();
-    }
-
-    /**
-     * Gets the current operation order setting.
-     * @return the current operation order (INFIX, POSTFIX, PREFIX)
-     */
-    public String getOperationOrder() {
-        return operationOrder;
-    }
-
-    /**
-     * Sets the operation order setting.
-     * @param operationOrder the new operation order (INFIX, POSTFIX, PREFIX)
-     */
-    public void setOperationOrder(String operationOrder) {
-        this.operationOrder = operationOrder;
     }
 
     /**

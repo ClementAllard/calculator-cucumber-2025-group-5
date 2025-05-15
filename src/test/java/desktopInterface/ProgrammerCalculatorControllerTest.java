@@ -55,24 +55,6 @@ class ProgrammerCalculatorControllerTest {
     }
 
     /**
-     * Tests the shift setting of the programmer calculator.
-     */
-    @Test
-    void testHandleShiftSetting() {
-        programmerCalculatorController.shiftSetting.setValue("Arithmetic");
-        assertEquals("Arithmetic", programmerCalculatorController.shiftSetting.getValue());
-
-        programmerCalculatorController.shiftSetting.setValue("Logical");
-        assertEquals("Logical", programmerCalculatorController.shiftSetting.getValue());
-
-        programmerCalculatorController.shiftSetting.setValue("Rotate");
-        assertEquals("Rotate", programmerCalculatorController.shiftSetting.getValue());
-
-        programmerCalculatorController.shiftSetting.setValue("Rotate through carry");
-        assertEquals("Rotate through carry", programmerCalculatorController.shiftSetting.getValue());
-    }
-
-    /**
      * Tests the handling of the base change in the programmer calculator.
      * @see #programmerCalculatorController
      */

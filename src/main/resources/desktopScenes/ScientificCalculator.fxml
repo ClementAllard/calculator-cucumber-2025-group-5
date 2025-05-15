@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
@@ -470,7 +469,7 @@
                                     </HBox>
                                     <HBox>
                                        <children>
-                                          <Button fx:id="realButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="real">
+                                          <Button fx:id="realButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="207.0" text="real">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -478,15 +477,11 @@
                                                 <Tooltip text="Generates a real number between 0 and 1 with the decimal precision requested on the right" />
                                              </tooltip>
                                           </Button>
-                                          <Spinner fx:id="realSpinner" prefHeight="42.0" prefWidth="100.0">
-                                             <tooltip>
-                                                <Tooltip text="Decimal precision of the real number" />
-                                             </tooltip></Spinner>
                                        </children>
                                     </HBox>
                                     <HBox>
                                        <children>
-                                          <Button fx:id="complexButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="complex">
+                                          <Button fx:id="complexButton" mnemonicParsing="false" prefHeight="42.0" prefWidth="202.0" text="complex">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -494,10 +489,6 @@
                                                 <Tooltip text="Generates a complex number a+ i b where a and be are between 0 and 1 with the decimal precision requested on the right" />
                                              </tooltip>
                                           </Button>
-                                          <Spinner fx:id="complexSpinner" prefHeight="42.0" prefWidth="100.0">
-                                             <tooltip>
-                                                <Tooltip text="Decimal precision of the complex number" />
-                                             </tooltip></Spinner>
                                        </children>
                                     </HBox>
                                  </children>
@@ -530,7 +521,6 @@
             </HBox>
          </children>
       </VBox>
-      <ChoiceBox fx:id="angleSetting" layoutX="30.0" layoutY="14.0" prefHeight="40.0" prefWidth="100.0" />
     </children>
 
 </AnchorPane>
