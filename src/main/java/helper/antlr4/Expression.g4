@@ -51,7 +51,7 @@ infixExprBitwisePrio3 : ('<<' | '>>') INTEGER infixExprLogicPrio1
                  | infixExprLogicPrio1
                  ;
 
-infixExprLogicPrio1 : infixExprLogicPrio1 ('and' | 'xor' | 'or' | '=>' | '<=>') infixExprLogicPrio2
+infixExprLogicPrio1 : infixExprLogicPrio1 ('and' | 'nand' | 'norA' | 'xor' | 'or' | '=>' | '<=>') infixExprLogicPrio2
                | infixExprLogicPrio2
                ;
 
