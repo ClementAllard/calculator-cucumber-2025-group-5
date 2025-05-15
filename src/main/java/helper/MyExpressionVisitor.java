@@ -6,9 +6,11 @@ import calculator.expression.Expression;
 import calculator.expression.Notation;
 import calculator.expression.number.*;
 import calculator.expression.operator.basic.*;
+import calculator.expression.operator.bitwise.*;
 import calculator.expression.operator.function.*;
 import calculator.expression.operator.function.FunctionAcos;
 import calculator.expression.operator.random.*;
+import calculator.expression.operator.logic.*;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -68,6 +70,95 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     }
 
     // INFIX EXPRESSION
+
+    @Override
+    public Expression visitInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx) {
+        if(ctx.getChildCount() == 3) {
+            Expression left = visit(ctx.getChild(0));
+            String operator = ctx.getChild(1).getText();
+            Expression right = visit(ctx.getChild(2));
+            return getExpression(Arrays.asList(left,right), operator, Notation.INFIX);
+        } else {
+            return visitChildren(ctx);
+        }
+    }
+
+    @Override
+    public Expression visitInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx) {
+        if (ctx.getChildCount() == 2) {
+            try {
+                return new BitwiseNot(visit(ctx.getChild(1)));
+            } catch (IllegalConstruction e) {
+                throw new RuntimeException(e); // NOSONAR
+            }
+        } else {
+            return visitChildren(ctx);
+        }
+    }
+
+    @Override
+    public Expression visitInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx) {
+        switch (ctx.getChildCount()) {
+            case 2 -> {
+                String operator = ctx.getChild(0).getText();
+                if (operator.equals("<<")) {
+                    try {
+                        return new BitwiseLeft(visit(ctx.getChild(1)));
+                    } catch (IllegalConstruction e) {
+                        throw new RuntimeException(e); // NOSONAR
+                    }
+                } else { // Then operator is ">>"
+                    try {
+                        return new BitwiseRight(visit(ctx.getChild(1)));
+                    } catch (IllegalConstruction e) {
+                        throw new RuntimeException(e); // NOSONAR
+                    }
+                }
+            }
+            case 3 -> {
+                String operator = ctx.getChild(0).getText();
+                if (operator.equals("<<")) {
+                    try {
+                        return new BitwiseLeft(visit(ctx.getChild(2)), ctx.getChild(1).getText());
+                    } catch (IllegalConstruction e) {
+                        throw new RuntimeException(e); // NOSONAR
+                    }
+                } else {
+                    try {
+                        return new BitwiseRight(visit(ctx.getChild(2)), ctx.getChild(1).getText());
+                    } catch (IllegalConstruction e) {
+                        throw new RuntimeException(e); // NOSONAR
+                    }
+                }
+            }
+            default -> {
+                return visitChildren(ctx);
+            }
+        }
+    }
+
+    @Override
+    public Expression visitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx) {
+        if (ctx.getChildCount() == 1) {
+            return visitChildren(ctx);
+        } else {
+            Expression left = visit(ctx.getChild(0));
+            String operator = ctx.getChild(1).getText();
+            Expression right = visit(ctx.getChild(2));
+            return getExpression(Arrays.asList(left, right), operator, Notation.INFIX);
+        }
+    }
+
+    @Override
+    public Expression visitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx) {
+        if (ctx.getChildCount() == 2) {
+            try {
+                return new LogicalNot(visit(ctx.getChild(1)));
+            } catch (IllegalConstruction e) {
+                throw new RuntimeException(e); //NOSONAR
+            }
+        } else return visitChildren(ctx);
+    }
 
     @Override
     public Expression visitInfixExpressionWithParenthesis(ExpressionParser.InfixExpressionWithParenthesisContext ctx) {
@@ -141,6 +232,14 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "*" -> new Times(expressions, notation);
                 case "/" -> new Divides(expressions, notation);
                 case "^" -> new Power(expressions, notation);
+                case "&" -> new BitwiseAnd(expressions, notation);
+                case "^^" -> new BitwiseXor(expressions, notation);
+                case "|" -> new BitwiseOr(expressions, notation);
+                case "and" -> new LogicalAnd(expressions, notation);
+                case "xor" -> new LogicalXor(expressions, notation);
+                case "or" -> new LogicalOr(expressions, notation);
+                case "=>" -> new Implication(expressions, notation);
+                case "<=>" -> new Equivalence(expressions, notation);
                 default -> null;
             };
         }catch (IllegalConstruction e) {
@@ -151,7 +250,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     // ATOM
 
     @Override
-    public Expression visitIntergerAtom(ExpressionParser.IntergerAtomContext ctx) {
+    public Expression visitIntegerAtom(ExpressionParser.IntegerAtomContext ctx) {
         return new MyInteger(Integer.parseInt(ctx.getChild(0).getText()));
     }
 
@@ -177,6 +276,25 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         } catch (IllegalConstruction e) {
             throw new RuntimeException(e); //NOSONAR
         }
+    }
+
+    @Override
+    public Expression visitBoolAtom(ExpressionParser.BoolAtomContext ctx) {
+        String value = ctx.getText();
+        if (value.equals("T") || value.equals("1")) {
+            return new MyInteger(new BigDecimal(1));
+        } else {
+            return new MyInteger(new BigDecimal(0));
+        }
+    }
+
+    @Override
+    public Expression visitBaseIntegerAtom(ExpressionParser.BaseIntegerAtomContext ctx) {
+        String baseInteger = ctx.getText();
+        String[] parts = baseInteger.split("b", 2);
+        int base = Integer.parseInt(parts[0]);
+        String value = parts[1];
+        return new MyInteger(value, base);
     }
 
     @Override

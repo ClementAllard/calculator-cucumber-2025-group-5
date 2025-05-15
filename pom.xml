@@ -176,6 +176,7 @@
                 <configuration>
                     <excludes>
                         <exclude>**/helper/antlr4/**</exclude>
+                        <exclude>**/frontend/desktop/**</exclude>
                     </excludes>
                 </configuration>
             </plugin>

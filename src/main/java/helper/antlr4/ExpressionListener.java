@@ -144,6 +144,56 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitInfixExpr(ExpressionParser.InfixExprContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio1}.
+	 * @param ctx the parse tree
+	 */
+	void enterInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio1}.
+	 * @param ctx the parse tree
+	 */
+	void exitInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio2}.
+	 * @param ctx the parse tree
+	 */
+	void enterInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio2}.
+	 * @param ctx the parse tree
+	 */
+	void exitInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio3}.
+	 * @param ctx the parse tree
+	 */
+	void enterInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio3}.
+	 * @param ctx the parse tree
+	 */
+	void exitInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#infixExprLogicPrio1}.
+	 * @param ctx the parse tree
+	 */
+	void enterInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#infixExprLogicPrio1}.
+	 * @param ctx the parse tree
+	 */
+	void exitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link ExpressionParser#infixExprLogicPrio2}.
+	 * @param ctx the parse tree
+	 */
+	void enterInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExpressionParser#infixExprLogicPrio2}.
+	 * @param ctx the parse tree
+	 */
+	void exitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link ExpressionParser#infixExprPrio1}.
 	 * @param ctx the parse tree
 	 */
@@ -294,17 +344,17 @@ public interface ExpressionListener extends ParseTreeListener {
 	 */
 	void exitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code IntergerAtom}
+	 * Enter a parse tree produced by the {@code IntegerAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void enterIntergerAtom(ExpressionParser.IntergerAtomContext ctx);
+	void enterIntegerAtom(ExpressionParser.IntegerAtomContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code IntergerAtom}
+	 * Exit a parse tree produced by the {@code IntegerAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 */
-	void exitIntergerAtom(ExpressionParser.IntergerAtomContext ctx);
+	void exitIntegerAtom(ExpressionParser.IntegerAtomContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code RealAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
@@ -353,4 +403,28 @@ public interface ExpressionListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitConstantAtom(ExpressionParser.ConstantAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BoolAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolAtom(ExpressionParser.BoolAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BoolAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolAtom(ExpressionParser.BoolAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BaseIntegerAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterBaseIntegerAtom(ExpressionParser.BaseIntegerAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BaseIntegerAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitBaseIntegerAtom(ExpressionParser.BaseIntegerAtomContext ctx);
 }

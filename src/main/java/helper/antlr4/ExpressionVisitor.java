@@ -91,6 +91,36 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInfixExpr(ExpressionParser.InfixExprContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprBitwisePrio3}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprLogicPrio1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link ExpressionParser#infixExprLogicPrio2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link ExpressionParser#infixExprPrio1}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -179,12 +209,12 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitScientificAtom(ExpressionParser.ScientificAtomContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IntergerAtom}
+	 * Visit a parse tree produced by the {@code IntegerAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIntergerAtom(ExpressionParser.IntergerAtomContext ctx);
+	T visitIntegerAtom(ExpressionParser.IntegerAtomContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code RealAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
@@ -213,4 +243,18 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitConstantAtom(ExpressionParser.ConstantAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolAtom(ExpressionParser.BoolAtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BaseIntegerAtom}
+	 * labeled alternative in {@link ExpressionParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBaseIntegerAtom(ExpressionParser.BaseIntegerAtomContext ctx);
 }

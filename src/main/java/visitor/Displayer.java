@@ -4,6 +4,7 @@ import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
 import calculator.expression.number.MyNumber;
+import calculator.expression.operator.UnaryLogicOperation;
 import calculator.expression.operator.function.Function;
 import calculator.expression.operator.function.FunctionBinary;
 import calculator.expression.operator.Operation;
@@ -53,7 +54,7 @@ public class Displayer implements NotationVisitor {
 
         String functionFormat = "%s(%s)";
 
-        if (operation instanceof Function || operation instanceof FunctionBinary) {
+        if (operation instanceof Function || operation instanceof FunctionBinary || operation instanceof UnaryLogicOperation) {
             return String.format(functionFormat, operation.getSymbol(), formula);
         } else if (operation instanceof FunctionRandomBinary functionRandomBinary){
             // display the random number generated and not the function.

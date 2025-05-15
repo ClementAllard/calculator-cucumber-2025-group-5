@@ -86,4 +86,62 @@ class TestMyInteger {
             fail();
         }
     }
+
+    @Test
+    void testEqualsAndHashCode() {
+        MyInteger int1 = new MyInteger(10);
+        MyInteger int2 = new MyInteger("10");
+        MyInteger int3 = new MyInteger("A", 16); // base 16, A = 10
+        MyInteger int4 = new MyInteger(15);
+
+        assertEquals(int1, int2);
+        assertEquals(int1, int3);
+        assertNotEquals(int1, int4);
+
+        assertEquals(int1.hashCode(), int2.hashCode());
+        assertEquals(int1.hashCode(), int3.hashCode());
+    }
+
+    @Test
+    void testGetBaseRepresentation() {
+        MyInteger base10 = new MyInteger("15");
+        MyInteger base2 = new MyInteger("1111", 2);
+        MyInteger base16 = new MyInteger("F", 16);
+
+        assertEquals("15", base10.getBaseRepresentation());
+        assertEquals("1111", base2.getBaseRepresentation());
+        assertEquals("f", base16.getBaseRepresentation()); // lower-case output from BigInteger.toString
+    }
+
+    @Test
+    void testInvalidBaseThrows() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new MyInteger("1G", 16); // 'G' is invalid in base 16
+        });
+
+        String expectedMessage = "Caractère 'G' invalide pour la base 16";
+        assertTrue(exception.getMessage().contains(expectedMessage));
+    }
+
+    @Test
+    void testConstructors() {
+        MyInteger intFromInt = new MyInteger(7);
+        MyInteger intFromString = new MyInteger("7");
+        MyInteger intFromBigDecimal = new MyInteger(new BigDecimal("7.99"));
+        MyInteger intFromBase = new MyInteger("111", 2); // binary for 7
+
+        assertEquals("7", intFromInt.toString());
+        assertEquals("7", intFromString.toString());
+        assertEquals("7", intFromBigDecimal.toString());
+        assertEquals("7", intFromBase.toString());
+    }
+
+    @Test
+    void testGetBase() {
+        MyInteger defaultBase = new MyInteger(5);
+        MyInteger base2 = new MyInteger("101", 2);
+
+        assertEquals(10, defaultBase.getBase());
+        assertEquals(2, base2.getBase());
+    }
 }

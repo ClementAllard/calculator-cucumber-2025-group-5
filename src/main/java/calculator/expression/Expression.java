@@ -1,6 +1,5 @@
 package calculator.expression;
 
-import calculator.IllegalConstruction;
 import jdk.jshell.spi.ExecutionControl;
 import visitor.Visitor;
 
