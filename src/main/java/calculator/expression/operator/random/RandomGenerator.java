@@ -8,7 +8,7 @@ import java.util.Random;
 public interface RandomGenerator {
     String ERROR_MSG = "Random generator require a positive high bound.";
     default MyNumber randomInteger(int max, long seed) {
-        Random random = new Random(seed);
+        Random random = new Random(seed); //NOSONAR
         // Generates between a and b (inclusive)
         if (max < 0){
             throw new IllegalArgumentException(ERROR_MSG);
@@ -17,7 +17,7 @@ public interface RandomGenerator {
     }
 
     default MyRational randomRational(int max, long seed){
-        Random random = new Random(seed);
+        Random random = new Random(seed); //NOSONAR
         if (max < 0){
             throw new IllegalArgumentException(ERROR_MSG);
         }
@@ -32,13 +32,13 @@ public interface RandomGenerator {
     }
 
     default MyReal randomReal(int ignoredMax, long seed) {
-        Random random = new Random(seed);
+        Random random = new Random(seed); //NOSONAR
         // No need to check negative max, since it is ignored.
         return new MyReal(BigDecimal.valueOf(random.nextDouble()));
     }
 
     default MyComplex randomComplex(int ignoredMax, long seed) {
-        Random random = new Random(seed);
+        Random random = new Random(seed); //NOSONAR
         // No need to check negative max, since it is ignored.
         BigDecimal real = BigDecimal.valueOf(random.nextDouble());
         BigDecimal imaginary = BigDecimal.valueOf(random.nextDouble());

@@ -92,7 +92,7 @@ public class CalculatorMainController {
             currentView = name;
         } catch (IOException e) {
             // ignore the exception, nothing can be done about it
-            e.printStackTrace();
+            e.printStackTrace();     //NOSONAR
             return;
         }
     }
