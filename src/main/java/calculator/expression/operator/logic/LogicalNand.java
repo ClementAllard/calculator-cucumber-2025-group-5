@@ -36,7 +36,7 @@ public final class LogicalNand extends BinaryLogicOperation {
         if (elist.isEmpty()) {
             throw new IllegalConstruction();
         }
-        symbol = "nand";
+        symbol = "NAND";
     }
 
     /**

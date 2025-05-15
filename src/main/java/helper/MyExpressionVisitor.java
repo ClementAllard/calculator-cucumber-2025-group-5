@@ -143,7 +143,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
             return visitChildren(ctx);
         } else {
             Expression left = visit(ctx.getChild(0));
-            String operator = ctx.getChild(1).getText();
+            String operator = ctx.getChild(1).getText().toUpperCase();
             Expression right = visit(ctx.getChild(2));
             return getExpression(Arrays.asList(left, right), operator, Notation.INFIX);
         }
@@ -235,11 +235,11 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "&" -> new BitwiseAnd(expressions, notation);
                 case "^^" -> new BitwiseXor(expressions, notation);
                 case "|" -> new BitwiseOr(expressions, notation);
-                case "and" -> new LogicalAnd(expressions, notation);
-                case "nand" -> new LogicalNand(expressions, notation);
-                case "nor" -> new LogicalNor(expressions, notation);
-                case "xor" -> new LogicalXor(expressions, notation);
-                case "or" -> new LogicalOr(expressions, notation);
+                case "AND" -> new LogicalAnd(expressions, notation);
+                case "NAND" -> new LogicalNand(expressions, notation);
+                case "NOR" -> new LogicalNor(expressions, notation);
+                case "XOR" -> new LogicalXor(expressions, notation);
+                case "OR" -> new LogicalOr(expressions, notation);
                 case "=>" -> new Implication(expressions, notation);
                 case "<=>" -> new Equivalence(expressions, notation);
                 default -> null;

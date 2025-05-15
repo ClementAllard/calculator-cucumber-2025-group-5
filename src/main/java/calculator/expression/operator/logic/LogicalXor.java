@@ -36,7 +36,7 @@ public final class LogicalXor extends BinaryLogicOperation {
         if (elist.isEmpty()) {
             throw new IllegalConstruction();
         }
-        symbol = "xor";
+        symbol = "XOR";
     }
 
     /**

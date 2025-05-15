@@ -36,7 +36,7 @@ public final class LogicalOr extends BinaryLogicOperation {
         if (elist.isEmpty()) {
             throw new IllegalConstruction();
         }
-        symbol = "or";
+        symbol = "OR";
     }
 
     /**

@@ -36,7 +36,7 @@ public final class LogicalAnd extends BinaryLogicOperation {
         if (elist.isEmpty()) {
             throw new IllegalConstruction();
         }
-        symbol = "and";
+        symbol = "AND";
     }
 
     /**

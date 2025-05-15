@@ -14,7 +14,7 @@ public final class LogicalNot extends UnaryLogicOperation {
         if (expression == null) {
             throw new IllegalConstruction();
         }
-        symbol = "not";
+        symbol = "NOT";
     }
 
     @Override

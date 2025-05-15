@@ -36,7 +36,7 @@ public final class LogicalNor extends BinaryLogicOperation {
         if (elist.isEmpty()) {
             throw new IllegalConstruction();
         }
-        symbol = "nor";
+        symbol = "NOR";
     }
 
     /**
