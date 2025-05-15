@@ -7,7 +7,7 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.Objects;
 
-public class MyInteger extends MyNumber {
+public final class MyInteger extends MyNumber {
 
     private final BigDecimal value;
     private final int base;

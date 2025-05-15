@@ -5,7 +5,7 @@ import helper.antlr4.*;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public class MyExpressionParser {
+public final class MyExpressionParser {
 
     private MyExpressionParser() {}
 
