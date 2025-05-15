@@ -184,6 +184,7 @@ public class StandardCalculatorController extends Controller {
         rightGridPane.getChildren().forEach(node -> {
             if (node instanceof Button button) {
                 switch (button.getText()) {
+                    case "(", ")" -> button.setOnAction(event -> handleSymbolButton(button.getText()));
                     case "π" -> button.setOnAction(event -> handlePiButton());
                     case "x²" -> button.setOnAction(event -> handleExpButton("2"));
                     case "xʸ" -> button.setOnAction(event -> handleExpButton(""));
