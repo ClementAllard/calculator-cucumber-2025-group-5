@@ -178,6 +178,8 @@
                         <exclude>**/helper/antlr4/**</exclude>
                         <exclude>**/helper/IllegalSyntax</exclude>
                         <exclude>**/calculator/IllegalConstruction</exclude>
+                        <exclude>**/frontend/desktop/**</exclude>
+                        <exclude>**/desktopInterface/**</exclude>
                     </excludes>
                 </configuration>
             </plugin>
