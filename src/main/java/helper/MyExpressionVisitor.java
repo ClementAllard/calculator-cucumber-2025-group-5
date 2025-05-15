@@ -71,7 +71,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     // INFIX EXPRESSION
 
-    @Override public Expression visitInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx) {
+    @Override
+    public Expression visitInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx) {
         if(ctx.getChildCount() == 3) {
             Expression left = visit(ctx.getChild(0));
             String operator = ctx.getChild(1).getText();
@@ -82,7 +83,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         }
     }
 
-    @Override public Expression visitInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx) {
+    @Override
+    public Expression visitInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx) {
         if (ctx.getChildCount() == 2) {
             try {
                 return new BitwiseNot(visit(ctx.getChild(1)));
@@ -94,7 +96,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         }
     }
 
-    @Override public Expression visitInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx) {
+    @Override
+    public Expression visitInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx) {
         switch (ctx.getChildCount()) {
             case 2 -> {
                 String operator = ctx.getChild(0).getText();
@@ -134,7 +137,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         }
     }
 
-    @Override public Expression visitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx) {
+    @Override
+    public Expression visitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx) {
         if (ctx.getChildCount() == 1) {
             return visitChildren(ctx);
         } else {
@@ -145,7 +149,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         }
     }
 
-    @Override public Expression visitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx) {
+    @Override
+    public Expression visitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx) {
         if (ctx.getChildCount() == 2) {
             try {
                 return new LogicalNot(visit(ctx.getChild(1)));

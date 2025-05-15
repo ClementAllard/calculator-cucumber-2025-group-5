@@ -94,7 +94,7 @@ number : (REAL | INTEGER) E (REAL | INTEGER)                                    
        | REAL                                                                                    # RealAtom
        | PI                                                                                      # PiNumber
        | E                                                                                       # ENumber
-       | CONST                                                                                   # ConstantAtom                                                                   # PercentageAtom
+       | CONST                                                                                   # ConstantAtom
        | BOOL                                                                                    # BoolAtom
        | BASE_INTEGER                                                                            # BaseIntegerAtom
        ;
