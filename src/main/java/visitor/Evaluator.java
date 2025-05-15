@@ -8,6 +8,7 @@ import calculator.expression.operator.UnaryOperation;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /** Evaluation is a concrete visitor that serves to
  * compute and evaluate the results of arithmetic expressions.
@@ -17,7 +18,7 @@ public class Evaluator extends Visitor {
     /**
      * Default constructor of the class. Does not initialise anything.
      */
-    public Evaluator() {}
+    public Evaluator() {} // Keep it for clarity, uses Visitor design pattern to evaluate expressions
 
     /** The result of the evaluation will be stored in this private variable */
     private MyNumber computedValue;
@@ -45,27 +46,25 @@ public class Evaluator extends Visitor {
      * @param o The operation being visited
      */
     public void visit(Operation o) throws ExecutionControl.NotImplementedException, ArithmeticException {
-        ArrayList<MyNumber> evaluatedArgs = new ArrayList<>();
+        List<MyNumber> evaluatedArgs = new ArrayList<>();
         //first loop to recursively evaluate each subexpression
         for(Expression a:o.getArgs()) {
             a.accept(this);
             evaluatedArgs.add(computedValue);
         }
 
+        MyNumber temp = evaluatedArgs.getFirst();
         if((o instanceof UnaryOperation) || (o instanceof UnaryLogicOperation)) {
-            MyNumber temp = evaluatedArgs.getFirst();
             temp = o.op(temp);
-            computedValue = temp;
         }else{
             //second loop to accumulate all the evaluated subresults
-            MyNumber temp = evaluatedArgs.getFirst();
             int max = evaluatedArgs.size();
             for(int counter=1; counter<max; counter++) {
                 temp = o.op(temp,evaluatedArgs.get(counter));
             }
             // store the accumulated result
-            computedValue = temp;
         }
+        computedValue = temp;
     }
 
     public String getErrorMessage() {

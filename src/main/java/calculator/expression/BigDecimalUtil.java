@@ -3,7 +3,7 @@ package calculator.expression;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class BigDecimalUtil {
+public final class BigDecimalUtil {
 
     private BigDecimalUtil() {}
 

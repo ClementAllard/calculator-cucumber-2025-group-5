@@ -8,7 +8,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.Properties;
 
-public class Constant {
+public final class Constant {
     public static final Path FILE_PATH = Paths.get("constants.properties");
 
     private Constant() {}
