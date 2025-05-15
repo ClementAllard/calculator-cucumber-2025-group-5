@@ -104,7 +104,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         // Extract numbers from the current input
         for (int i = 0; i < currentInput.length(); i++) {
             char c = currentInput.charAt(i);
-            if (Character.isDigit(c) || String.valueOf(c).matches("[A-Fa-f]")) {
+            if (Character.isDigit(c) || (String.valueOf(c).matches("[A-Fa-f]") && currentInput.charAt(i + 1) != 'N')) {
                 number.append(c);
             } else {
                 if (!number.isEmpty()) {
@@ -140,7 +140,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         // Extract numbers from the current input
         for (int i = 0; i < currentInput.length(); i++) {
             char c = currentInput.charAt(i);
-            if (Character.isDigit(c) || String.valueOf(c).matches("[A-Fa-f]")) {
+            if (Character.isDigit(c) || (String.valueOf(c).matches("[A-Fa-f]") && currentInput.charAt(i + 1) != 'N')) {
                 number.append(c);
             } else {
                 if (!number.isEmpty()) {

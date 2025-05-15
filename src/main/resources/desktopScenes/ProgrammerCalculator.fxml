@@ -369,7 +369,7 @@
                                           <Font size="18.0" />
                                       </font>
                                  <tooltip>
-                                    <Tooltip text="&gt;&gt; number expression for a shift of n bits, &gt;&gt; expression is default for 1 " />
+                                    <Tooltip text="&gt;&gt; n expression for a shift of n bits, &gt;&gt; expression is default for 1 " />
                                  </tooltip>
                                   </Button>
                               <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="&lt;&lt;" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -377,7 +377,7 @@
                                     <Font size="18.0" />
                                  </font>
                                  <tooltip>
-                                    <Tooltip text="&lt;&lt; number expression for a shift of n bits, &lt;&lt; expression is default for 1 " />
+                                    <Tooltip text="&lt;&lt; n expression for a shift of n bits, &lt;&lt; expression is default for 1 " />
                                  </tooltip>
                               </Button>
                            </children>

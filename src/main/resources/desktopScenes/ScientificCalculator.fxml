@@ -108,6 +108,9 @@
                     <font>
                         <Font size="18.0" />
                     </font>
+                    <tooltip>
+                        <Tooltip text="Percentage operator" />
+                    </tooltip>
                 </Button>
             </children>
         </GridPane>
@@ -236,7 +239,7 @@
                   <Font size="18.0" />
                </font>
                <tooltip>
-                  <Tooltip text="Modulo operator" />
+                  <Tooltip text="Modulo operator x mod y" />
                </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="105.0" text="," GridPane.columnIndex="1" GridPane.rowIndex="4">
