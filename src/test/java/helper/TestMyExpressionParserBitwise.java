@@ -71,7 +71,7 @@ public class TestMyExpressionParserBitwise {
             Expression response = MyExpressionParser.parseExpression("2b01");
             assertEquals(c.eval(expression), c.eval(response));
 
-            Expression newExpression = MyExpressionParser.parseExpression(">> 1");
+            Expression newExpression = MyExpressionParser.parseExpression(">> 7");
             assertThrows(UnsupportedOperationException.class, () -> c.eval(newExpression));
         } catch (Exception ex) {
             fail(ex.getMessage());
@@ -85,7 +85,7 @@ public class TestMyExpressionParserBitwise {
             Expression response = MyExpressionParser.parseExpression("2b10");
             assertEquals(c.eval(expression), c.eval(response));
 
-            Expression newExpression = MyExpressionParser.parseExpression("<< 1");
+            Expression newExpression = MyExpressionParser.parseExpression("<< 7");
             assertThrows(UnsupportedOperationException.class, () -> c.eval(newExpression));
         } catch (Exception ex) {
             fail(ex.getMessage());
@@ -99,7 +99,7 @@ public class TestMyExpressionParserBitwise {
             Expression response = MyExpressionParser.parseExpression("2b0010");
             assertEquals(c.eval(expression), c.eval(response));
 
-            Expression newExpression = MyExpressionParser.parseExpression("~ 1");
+            Expression newExpression = MyExpressionParser.parseExpression("~ 7");
             assertThrows(UnsupportedOperationException.class, () -> c.eval(newExpression));
         } catch (Exception ex) {
             fail(ex.getMessage());

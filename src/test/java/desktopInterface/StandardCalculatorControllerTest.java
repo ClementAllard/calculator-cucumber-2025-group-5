@@ -122,11 +122,11 @@ class StandardCalculatorControllerTest {
     void testHandleExpButton() {
         standardCalculatorController.inputLabel.setText("5+");
         standardCalculatorController.handleExpButton("");
-        assertEquals("5+^", standardCalculatorController.inputLabel.getText());
+        assertEquals("5+ ^ ", standardCalculatorController.inputLabel.getText());
 
         standardCalculatorController.inputLabel.setText("5+");
         standardCalculatorController.handleExpButton("3");
-        assertEquals("5+^3", standardCalculatorController.inputLabel.getText());
+        assertEquals("5+ ^ 3", standardCalculatorController.inputLabel.getText());
     }
 
     /**

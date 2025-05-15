@@ -34,7 +34,7 @@ class TestBitwiseLeft {
 
     @Test
     void testUnsupportedBaseThrows() throws IllegalConstruction {
-        MyInteger expression = new MyInteger(new BigDecimal("1")); // Default base = 10
+        MyInteger expression = new MyInteger(new BigDecimal("7")); // Default base = 10
         BitwiseLeft bitwiseLeft = new BitwiseLeft(expression);
 
         assertThrows(UnsupportedOperationException.class, () -> bitwiseLeft.op(expression)); // Invalid base

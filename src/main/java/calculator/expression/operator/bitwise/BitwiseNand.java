@@ -47,13 +47,19 @@ public final class BitwiseNand extends BinaryLogicOperation {
      */
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        if (l.getBase() == 2 && r.getBase() == 2) {
-            String binary1 = l.getBaseRepresentation();
-            String binary2 = r.getBaseRepresentation();
-            BigInteger b1 = new BigInteger(binary1, 2);
-            BigInteger b2 = new BigInteger(binary2, 2);
+        int lbase = l.getBase();
+        int rbase = r.getBase();
+        String lvalue = l.getBaseRepresentation();
+        String rvalue = r.getBaseRepresentation();
+        BigInteger b1 = new BigInteger(lvalue, lbase);
+        BigInteger b2 = new BigInteger(rvalue, rbase);
+
+        boolean lValid = (lbase == 2) || b1.equals(BigInteger.ZERO) || b1.equals(BigInteger.ONE);
+        boolean rValid = (rbase == 2) || b2.equals(BigInteger.ZERO) || b2.equals(BigInteger.ONE);
+
+        if (lValid && rValid) {
             BigInteger andResult = b1.and(b2);
-            int bitLength = Math.max(binary1.length(), binary2.length());
+            int bitLength = Math.max(lvalue.length(), rvalue.length());
             BigInteger mask = BigInteger.ONE.shiftLeft(bitLength).subtract(BigInteger.ONE);
             BigInteger result = andResult.not().and(mask);
             return new MyInteger(new BigDecimal(result));

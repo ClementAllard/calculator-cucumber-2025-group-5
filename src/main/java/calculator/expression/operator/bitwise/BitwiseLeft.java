@@ -28,7 +28,7 @@ public final class BitwiseLeft extends UnaryLogicOperation {
 
     @Override
     protected MyNumber op(MyInteger l) {
-        if (l.getBase() == 2) {
+        if (l.getBase() == 2 || l.getValue().equals(BigDecimal.ZERO) || l.getValue().equals(BigDecimal.ONE)) {
             return new MyInteger(l.getValue().multiply(BigDecimal.valueOf(Math.pow(2, number))));
         } else throw new UnsupportedOperationException("Bitwise operations only support binary numbers");
     }

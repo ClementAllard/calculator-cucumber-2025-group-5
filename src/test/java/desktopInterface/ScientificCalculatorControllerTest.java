@@ -108,15 +108,15 @@ class ScientificCalculatorControllerTest {
     void testHandleXExpButton() {
         scientificCalculatorController.inputLabel.setText("5+3");
         scientificCalculatorController.handleXExpButton("10");
-        assertEquals("5+10^3", scientificCalculatorController.inputLabel.getText());
+        assertEquals("5+10 ^ 3", scientificCalculatorController.inputLabel.getText());
 
         scientificCalculatorController.inputLabel.setText("5+3");
         scientificCalculatorController.handleXExpButton("2");
-        assertEquals("5+2^3", scientificCalculatorController.inputLabel.getText());
+        assertEquals("5+2 ^ 3", scientificCalculatorController.inputLabel.getText());
 
         scientificCalculatorController.inputLabel.setText("5+3");
         scientificCalculatorController.handleXExpButton("e");
-        assertEquals("5+e^3", scientificCalculatorController.inputLabel.getText());
+        assertEquals("5+e ^ 3", scientificCalculatorController.inputLabel.getText());
     }
 
 }

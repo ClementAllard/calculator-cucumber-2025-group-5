@@ -19,7 +19,11 @@ public final class BitwiseNot extends UnaryLogicOperation {
 
     @Override
     protected MyNumber op(MyInteger l) {
-        if (l.getBase() == 2) {
+        if (l.getValue().equals(BigDecimal.ZERO)) {
+            return new MyInteger(1);
+        } else if (l.getValue().equals(BigDecimal.ONE)) {
+            return new MyInteger(0);
+        } else if (l.getBase() == 2) {
             String representation = l.getBaseRepresentation();
             String max = "1".repeat(representation.length());
             int notValue = Integer.parseInt(max) - Integer.parseInt(representation);
