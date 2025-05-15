@@ -115,6 +115,10 @@ public class StandardCalculatorController extends Controller {
      */
     public void handleEqualButton() {
         String currentInput = inputLabel.getText();
+        if (currentInput.isEmpty()) {
+            outputLabel.setText("");
+            return;
+        }
         try {
             Expression e = MyExpressionParser.parseExpression(currentInput);
             String result = calculator.eval(e);

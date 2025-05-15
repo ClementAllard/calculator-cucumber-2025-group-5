@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Pair;
@@ -140,7 +141,13 @@ public class ScientificCalculatorController extends StandardCalculatorController
      * @param upperBound the upper bound for the random integer generation.
      */
     void handleIntegerGeneration(String upperBound) {
-        // TODO : Implement integer generation logic
+        String currentInput = inputLabel.getText();
+        String randInt = "rInteger(" + upperBound + ")";
+        if (currentInput.isEmpty()) {
+            inputLabel.setText(randInt);
+        } else {
+            inputLabel.setText(currentInput + randInt);
+        }
     }
 
     /**
@@ -148,7 +155,13 @@ public class ScientificCalculatorController extends StandardCalculatorController
      * @param upperBound the upper bound for the random rational generation.
      */
     void handleRationalGeneration(String upperBound) {
-        // TODO : Implement rational generation logic
+        String currentInput = inputLabel.getText();
+        String randRational = "rRational(" + upperBound + ")";
+        if (currentInput.isEmpty()) {
+            inputLabel.setText(randRational);
+        } else {
+            inputLabel.setText(currentInput + randRational);
+        }
     }
 
     /**
@@ -156,7 +169,13 @@ public class ScientificCalculatorController extends StandardCalculatorController
      * @param precision the precision for the random real generation.
      */
     void handleRealGeneration(String precision) {
-        // TODO : Implement real generation logic
+        String currentInput = inputLabel.getText();
+        String randReal = "rReal(" + precision + ")";
+        if (currentInput.isEmpty()) {
+            inputLabel.setText(randReal);
+        } else {
+            inputLabel.setText(currentInput + randReal);
+        }
     }
 
     /**
@@ -164,7 +183,13 @@ public class ScientificCalculatorController extends StandardCalculatorController
      * @param precision the precision for the random complex generation.
      */
     void handleComplexGeneration(String precision) {
-        // TODO : Implement complex generation logic
+        String currentInput = inputLabel.getText();
+        String randComplex = "rComplex(" + precision + ")";
+        if (currentInput.isEmpty()) {
+            inputLabel.setText(randComplex);
+        } else {
+            inputLabel.setText(currentInput + randComplex);
+        }
     }
 
     /**
@@ -254,9 +279,17 @@ public class ScientificCalculatorController extends StandardCalculatorController
         rationalSpinner.setPromptText("Bound");
         realSpinner.setPromptText("Digits");
         complexSpinner.setPromptText("Digits");
+        handSpinner.setPromptText("Bound");
+        handSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         integerButton.setOnAction(event -> handleIntegerGeneration(handSpinner.getValue().toString()));
+        rationalSpinner.setPromptText("Bound");
+        rationalSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         rationalButton.setOnAction(event -> handleRationalGeneration(rationalSpinner.getValue().toString()));
+        realSpinner.setPromptText("Digits");
+        realSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         realButton.setOnAction(event -> handleRealGeneration(realSpinner.getValue().toString()));
+        complexSpinner.setPromptText("Digits");
+        complexSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         complexButton.setOnAction(event -> handleComplexGeneration(complexSpinner.getValue().toString()));
     }
 

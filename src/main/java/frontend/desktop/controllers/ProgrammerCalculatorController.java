@@ -182,6 +182,10 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
     @Override
     public void handleEqualButton() {
         String currentInput = addBaseToNumbers();
+        if (currentInput.isEmpty()) {
+            outputLabel.setText("");
+            return;
+        }
         try {
             Expression e = MyExpressionParser.parseExpression(currentInput);
             String result = calculator.eval(e);
@@ -190,6 +194,9 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
             outputLabel.setText("SYNTAX ERROR");
         } catch (ExecutionControl.NotImplementedException e) {
             outputLabel.setText("CALCULATOR ERROR");
+        }
+        catch (UnsupportedOperationException e) {
+            outputLabel.setText("Bitwise operations only support binary numbers");
         }
     }
 
