@@ -7,7 +7,6 @@ import jdk.jshell.spi.ExecutionControl;
 import visitor.Evaluator;
 
 import java.text.DecimalFormat;
-import java.util.stream.Stream;
 
 /**
  * This class represents the core logic of a Calculator.
