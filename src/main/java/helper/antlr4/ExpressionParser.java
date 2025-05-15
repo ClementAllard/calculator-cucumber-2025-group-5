@@ -19,8 +19,9 @@ public class ExpressionParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, REAL=19, INTEGER=20, FUNCTION=21, PI=22, E=23, NOT=24, AND=25, 
-		NAND=26, NOR=27, XOR=28, OR=29, BOOL=30, BASE_INTEGER=31, CONST=32, WS=33;
+		T__17=18, T__18=19, T__19=20, REAL=21, INTEGER=22, FUNCTION=23, PI=24, 
+		E=25, NOT=26, AND=27, NAND=28, NOR=29, XOR=30, OR=31, BOOL=32, BASE_INTEGER=33, 
+		CONST=34, WS=35;
 	public static final int
 		RULE_expr = 0, RULE_prefixExpr = 1, RULE_prefixNumber = 2, RULE_prefixfonction = 3, 
 		RULE_postfixExpr = 4, RULE_postfixNumber = 5, RULE_postfixfonction = 6, 
@@ -43,16 +44,17 @@ public class ExpressionParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'+'", "'-'", "'*'", "'/'", "'^'", "'('", "','", "')'", "'&'", 
-			"'^^'", "'|'", "'~'", "'<<'", "'>>'", "'=>'", "'<=>'", "'i'", "'%'"
+			"'~&'", "'~|'", "'^^'", "'|'", "'~'", "'<<'", "'>>'", "'=>'", "'<=>'", 
+			"'i'", "'%'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, "REAL", "INTEGER", "FUNCTION", 
-			"PI", "E", "NOT", "AND", "NAND", "NOR", "XOR", "OR", "BOOL", "BASE_INTEGER", 
-			"CONST", "WS"
+			null, null, null, null, null, null, null, null, null, "REAL", "INTEGER", 
+			"FUNCTION", "PI", "E", "NOT", "AND", "NAND", "NOR", "XOR", "OR", "BOOL", 
+			"BASE_INTEGER", "CONST", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -910,7 +912,7 @@ public class ExpressionParser extends Parser {
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 					setState(115);
 					_la = _input.LA(1);
-					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 3584L) != 0)) ) {
+					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 15872L) != 0)) ) {
 					_errHandler.recoverInline(this);
 					}
 					else {
@@ -971,12 +973,12 @@ public class ExpressionParser extends Parser {
 			setState(125);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__11:
+			case T__13:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
 				setState(122);
-				match(T__11);
+				match(T__13);
 				}
 				setState(123);
 				infixExprBitwisePrio3();
@@ -985,8 +987,8 @@ public class ExpressionParser extends Parser {
 			case T__0:
 			case T__1:
 			case T__5:
-			case T__12:
-			case T__13:
+			case T__14:
+			case T__15:
 			case REAL:
 			case INTEGER:
 			case FUNCTION:
@@ -1055,7 +1057,7 @@ public class ExpressionParser extends Parser {
 				{
 				setState(127);
 				_la = _input.LA(1);
-				if ( !(_la==T__12 || _la==T__13) ) {
+				if ( !(_la==T__14 || _la==T__15) ) {
 				_errHandler.recoverInline(this);
 				}
 				else {
@@ -1074,7 +1076,7 @@ public class ExpressionParser extends Parser {
 				{
 				setState(130);
 				_la = _input.LA(1);
-				if ( !(_la==T__12 || _la==T__13) ) {
+				if ( !(_la==T__14 || _la==T__15) ) {
 				_errHandler.recoverInline(this);
 				}
 				else {
@@ -1174,7 +1176,7 @@ public class ExpressionParser extends Parser {
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 					setState(139);
 					_la = _input.LA(1);
-					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 1040285696L) != 0)) ) {
+					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4161142784L) != 0)) ) {
 					_errHandler.recoverInline(this);
 					}
 					else {
@@ -1943,7 +1945,7 @@ public class ExpressionParser extends Parser {
 				setState(213);
 				number();
 				setState(214);
-				match(T__16);
+				match(T__18);
 				}
 				break;
 			case 2:
@@ -1953,7 +1955,7 @@ public class ExpressionParser extends Parser {
 				setState(216);
 				number();
 				setState(217);
-				match(T__17);
+				match(T__19);
 				}
 				break;
 			}
@@ -2291,7 +2293,7 @@ public class ExpressionParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001!\u00ea\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001#\u00ea\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
@@ -2329,9 +2331,9 @@ public class ExpressionParser extends Parser {
 		"\u0001\u0013\u0001\u0013\u0001\u0013\u0003\u0013\u00e8\b\u0013\u0001\u0013"+
 		"\u0000\u0005\u0010\u0016\u001a\u001c\u001e\u0014\u0000\u0002\u0004\u0006"+
 		"\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \"$&\u0000"+
-		"\u0007\u0001\u0000\u0001\u0005\u0001\u0000\t\u000b\u0001\u0000\r\u000e"+
-		"\u0002\u0000\u000f\u0010\u0019\u001d\u0001\u0000\u0001\u0002\u0001\u0000"+
-		"\u0003\u0004\u0001\u0000\u0013\u0014\u00f8\u0000+\u0001\u0000\u0000\u0000"+
+		"\u0007\u0001\u0000\u0001\u0005\u0001\u0000\t\r\u0001\u0000\u000f\u0010"+
+		"\u0002\u0000\u0011\u0012\u001b\u001f\u0001\u0000\u0001\u0002\u0001\u0000"+
+		"\u0003\u0004\u0001\u0000\u0015\u0016\u00f8\u0000+\u0001\u0000\u0000\u0000"+
 		"\u0002;\u0001\u0000\u0000\u0000\u0004@\u0001\u0000\u0000\u0000\u0006L"+
 		"\u0001\u0000\u0000\u0000\bZ\u0001\u0000\u0000\u0000\n_\u0001\u0000\u0000"+
 		"\u0000\fk\u0001\u0000\u0000\u0000\u000em\u0001\u0000\u0000\u0000\u0010"+
@@ -2352,8 +2354,8 @@ public class ExpressionParser extends Parser {
 		"\u0000\u0000<\u0003\u0001\u0000\u0000\u0000=A\u0003\u0006\u0003\u0000"+
 		">A\u0003$\u0012\u0000?A\u0003&\u0013\u0000@=\u0001\u0000\u0000\u0000@"+
 		">\u0001\u0000\u0000\u0000@?\u0001\u0000\u0000\u0000A\u0005\u0001\u0000"+
-		"\u0000\u0000BC\u0005\u0015\u0000\u0000CD\u0003\u0002\u0001\u0000DE\u0005"+
-		"\b\u0000\u0000EM\u0001\u0000\u0000\u0000FG\u0005\u0015\u0000\u0000GH\u0003"+
+		"\u0000\u0000BC\u0005\u0017\u0000\u0000CD\u0003\u0002\u0001\u0000DE\u0005"+
+		"\b\u0000\u0000EM\u0001\u0000\u0000\u0000FG\u0005\u0017\u0000\u0000GH\u0003"+
 		"\u0002\u0001\u0000HI\u0005\u0007\u0000\u0000IJ\u0003\u0002\u0001\u0000"+
 		"JK\u0005\b\u0000\u0000KM\u0001\u0000\u0000\u0000LB\u0001\u0000\u0000\u0000"+
 		"LF\u0001\u0000\u0000\u0000M\u0007\u0001\u0000\u0000\u0000NO\u0005\u0006"+
@@ -2365,8 +2367,8 @@ public class ExpressionParser extends Parser {
 		"[\t\u0001\u0000\u0000\u0000\\`\u0003\u0006\u0003\u0000]`\u0003$\u0012"+
 		"\u0000^`\u0003&\u0013\u0000_\\\u0001\u0000\u0000\u0000_]\u0001\u0000\u0000"+
 		"\u0000_^\u0001\u0000\u0000\u0000`\u000b\u0001\u0000\u0000\u0000ab\u0005"+
-		"\u0015\u0000\u0000bc\u0003\f\u0006\u0000cd\u0005\b\u0000\u0000dl\u0001"+
-		"\u0000\u0000\u0000ef\u0005\u0015\u0000\u0000fg\u0003\f\u0006\u0000gh\u0005"+
+		"\u0017\u0000\u0000bc\u0003\f\u0006\u0000cd\u0005\b\u0000\u0000dl\u0001"+
+		"\u0000\u0000\u0000ef\u0005\u0017\u0000\u0000fg\u0003\f\u0006\u0000gh\u0005"+
 		"\u0007\u0000\u0000hi\u0003\f\u0006\u0000ij\u0005\b\u0000\u0000jl\u0001"+
 		"\u0000\u0000\u0000ka\u0001\u0000\u0000\u0000ke\u0001\u0000\u0000\u0000"+
 		"l\r\u0001\u0000\u0000\u0000mn\u0003\u0010\b\u0000n\u000f\u0001\u0000\u0000"+
@@ -2374,10 +2376,10 @@ public class ExpressionParser extends Parser {
 		"\u0000\u0000rs\n\u0002\u0000\u0000st\u0007\u0001\u0000\u0000tv\u0003\u0012"+
 		"\t\u0000ur\u0001\u0000\u0000\u0000vy\u0001\u0000\u0000\u0000wu\u0001\u0000"+
 		"\u0000\u0000wx\u0001\u0000\u0000\u0000x\u0011\u0001\u0000\u0000\u0000"+
-		"yw\u0001\u0000\u0000\u0000z{\u0005\f\u0000\u0000{~\u0003\u0014\n\u0000"+
+		"yw\u0001\u0000\u0000\u0000z{\u0005\u000e\u0000\u0000{~\u0003\u0014\n\u0000"+
 		"|~\u0003\u0014\n\u0000}z\u0001\u0000\u0000\u0000}|\u0001\u0000\u0000\u0000"+
 		"~\u0013\u0001\u0000\u0000\u0000\u007f\u0080\u0007\u0002\u0000\u0000\u0080"+
-		"\u0081\u0005\u0014\u0000\u0000\u0081\u0086\u0003\u0016\u000b\u0000\u0082"+
+		"\u0081\u0005\u0016\u0000\u0000\u0081\u0086\u0003\u0016\u000b\u0000\u0082"+
 		"\u0083\u0007\u0002\u0000\u0000\u0083\u0086\u0003\u0016\u000b\u0000\u0084"+
 		"\u0086\u0003\u0016\u000b\u0000\u0085\u007f\u0001\u0000\u0000\u0000\u0085"+
 		"\u0082\u0001\u0000\u0000\u0000\u0085\u0084\u0001\u0000\u0000\u0000\u0086"+
@@ -2387,7 +2389,7 @@ public class ExpressionParser extends Parser {
 		"\u0003\u0018\f\u0000\u008d\u008a\u0001\u0000\u0000\u0000\u008e\u0091\u0001"+
 		"\u0000\u0000\u0000\u008f\u008d\u0001\u0000\u0000\u0000\u008f\u0090\u0001"+
 		"\u0000\u0000\u0000\u0090\u0017\u0001\u0000\u0000\u0000\u0091\u008f\u0001"+
-		"\u0000\u0000\u0000\u0092\u0093\u0005\u0018\u0000\u0000\u0093\u0096\u0003"+
+		"\u0000\u0000\u0000\u0092\u0093\u0005\u001a\u0000\u0000\u0093\u0096\u0003"+
 		"\u001a\r\u0000\u0094\u0096\u0003\u001a\r\u0000\u0095\u0092\u0001\u0000"+
 		"\u0000\u0000\u0095\u0094\u0001\u0000\u0000\u0000\u0096\u0019\u0001\u0000"+
 		"\u0000\u0000\u0097\u0098\u0006\r\uffff\uffff\u0000\u0098\u0099\u0003\u001c"+
@@ -2417,29 +2419,29 @@ public class ExpressionParser extends Parser {
 		"\u0012\u0000\u00c4\u00c6\u0003&\u0013\u0000\u00c5\u00bc\u0001\u0000\u0000"+
 		"\u0000\u00c5\u00be\u0001\u0000\u0000\u0000\u00c5\u00c2\u0001\u0000\u0000"+
 		"\u0000\u00c5\u00c3\u0001\u0000\u0000\u0000\u00c5\u00c4\u0001\u0000\u0000"+
-		"\u0000\u00c6!\u0001\u0000\u0000\u0000\u00c7\u00c8\u0005\u0015\u0000\u0000"+
+		"\u0000\u00c6!\u0001\u0000\u0000\u0000\u00c7\u00c8\u0005\u0017\u0000\u0000"+
 		"\u00c8\u00c9\u0003\u000e\u0007\u0000\u00c9\u00ca\u0005\b\u0000\u0000\u00ca"+
-		"\u00d2\u0001\u0000\u0000\u0000\u00cb\u00cc\u0005\u0015\u0000\u0000\u00cc"+
+		"\u00d2\u0001\u0000\u0000\u0000\u00cb\u00cc\u0005\u0017\u0000\u0000\u00cc"+
 		"\u00cd\u0003\u000e\u0007\u0000\u00cd\u00ce\u0005\u0007\u0000\u0000\u00ce"+
 		"\u00cf\u0003\u000e\u0007\u0000\u00cf\u00d0\u0005\b\u0000\u0000\u00d0\u00d2"+
 		"\u0001\u0000\u0000\u0000\u00d1\u00c7\u0001\u0000\u0000\u0000\u00d1\u00cb"+
 		"\u0001\u0000\u0000\u0000\u00d2#\u0001\u0000\u0000\u0000\u00d3\u00d4\u0003"+
 		"&\u0013\u0000\u00d4\u00d5\u0007\u0004\u0000\u0000\u00d5\u00d6\u0003&\u0013"+
-		"\u0000\u00d6\u00d7\u0005\u0011\u0000\u0000\u00d7\u00dc\u0001\u0000\u0000"+
-		"\u0000\u00d8\u00d9\u0003&\u0013\u0000\u00d9\u00da\u0005\u0012\u0000\u0000"+
+		"\u0000\u00d6\u00d7\u0005\u0013\u0000\u0000\u00d7\u00dc\u0001\u0000\u0000"+
+		"\u0000\u00d8\u00d9\u0003&\u0013\u0000\u00d9\u00da\u0005\u0014\u0000\u0000"+
 		"\u00da\u00dc\u0001\u0000\u0000\u0000\u00db\u00d3\u0001\u0000\u0000\u0000"+
 		"\u00db\u00d8\u0001\u0000\u0000\u0000\u00dc%\u0001\u0000\u0000\u0000\u00dd"+
-		"\u00de\u0007\u0006\u0000\u0000\u00de\u00df\u0005\u0017\u0000\u0000\u00df"+
-		"\u00e8\u0007\u0006\u0000\u0000\u00e0\u00e8\u0005\u0014\u0000\u0000\u00e1"+
-		"\u00e8\u0005\u0013\u0000\u0000\u00e2\u00e8\u0005\u0016\u0000\u0000\u00e3"+
-		"\u00e8\u0005\u0017\u0000\u0000\u00e4\u00e8\u0005 \u0000\u0000\u00e5\u00e8"+
-		"\u0005\u001e\u0000\u0000\u00e6\u00e8\u0005\u001f\u0000\u0000\u00e7\u00dd"+
-		"\u0001\u0000\u0000\u0000\u00e7\u00e0\u0001\u0000\u0000\u0000\u00e7\u00e1"+
-		"\u0001\u0000\u0000\u0000\u00e7\u00e2\u0001\u0000\u0000\u0000\u00e7\u00e3"+
-		"\u0001\u0000\u0000\u0000\u00e7\u00e4\u0001\u0000\u0000\u0000\u00e7\u00e5"+
-		"\u0001\u0000\u0000\u0000\u00e7\u00e6\u0001\u0000\u0000\u0000\u00e8\'\u0001"+
-		"\u0000\u0000\u0000\u0016+6;@LTZ_kw}\u0085\u008f\u0095\u009f\u00a7\u00ae"+
-		"\u00b9\u00c5\u00d1\u00db\u00e7";
+		"\u00de\u0007\u0006\u0000\u0000\u00de\u00df\u0005\u0019\u0000\u0000\u00df"+
+		"\u00e8\u0007\u0006\u0000\u0000\u00e0\u00e8\u0005\u0016\u0000\u0000\u00e1"+
+		"\u00e8\u0005\u0015\u0000\u0000\u00e2\u00e8\u0005\u0018\u0000\u0000\u00e3"+
+		"\u00e8\u0005\u0019\u0000\u0000\u00e4\u00e8\u0005\"\u0000\u0000\u00e5\u00e8"+
+		"\u0005 \u0000\u0000\u00e6\u00e8\u0005!\u0000\u0000\u00e7\u00dd\u0001\u0000"+
+		"\u0000\u0000\u00e7\u00e0\u0001\u0000\u0000\u0000\u00e7\u00e1\u0001\u0000"+
+		"\u0000\u0000\u00e7\u00e2\u0001\u0000\u0000\u0000\u00e7\u00e3\u0001\u0000"+
+		"\u0000\u0000\u00e7\u00e4\u0001\u0000\u0000\u0000\u00e7\u00e5\u0001\u0000"+
+		"\u0000\u0000\u00e7\u00e6\u0001\u0000\u0000\u0000\u00e8\'\u0001\u0000\u0000"+
+		"\u0000\u0016+6;@LTZ_kw}\u0085\u008f\u0095\u009f\u00a7\u00ae\u00b9\u00c5"+
+		"\u00d1\u00db\u00e7";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
