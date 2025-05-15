@@ -199,6 +199,8 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         }
         catch (UnsupportedOperationException e) {
             outputLabel.setText("Bitwise operations only support binary numbers");
+        } catch (IllegalArgumentException e) {
+            outputLabel.setText(e.toString());
         }
     }
 

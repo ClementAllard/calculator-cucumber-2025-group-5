@@ -129,6 +129,8 @@ public class StandardCalculatorController extends Controller {
             outputLabel.setText("SYNTAX ERROR");
         } catch (ExecutionControl.NotImplementedException e) {
             outputLabel.setText("CALCULATOR ERROR");
+        } catch (IllegalArgumentException e) {
+            outputLabel.setText(e.toString());
         }
     }
 
