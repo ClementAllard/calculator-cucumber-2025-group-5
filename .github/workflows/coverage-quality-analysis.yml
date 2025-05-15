@@ -35,7 +35,7 @@ jobs:
           cache: maven
 
       - name: Run Tests with JaCoCo
-        run: mvn clean verify
+        run: xvfb-run mvn clean verify
 
       - name: Upload JaCoCo Coverage Report
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -46,4 +46,4 @@ jobs:
       - name: SonarQube Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn sonar:sonar -Dsonar.projectKey=ClementAllard_calculator-cucumber-2025-group-5 -Dsonar.organization=calculator-cucumber-group-5
+        run: xvfb-run mvn sonar:sonar -Dsonar.projectKey=ClementAllard_calculator-cucumber-2025-group-5 -Dsonar.organization=calculator-cucumber-group-5
