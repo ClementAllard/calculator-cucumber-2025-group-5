@@ -10,9 +10,6 @@ import java.util.List;
 public class FunctionSqrt extends FunctionBinary {
     static final String COMPLEX_BASE_ERROR = "The complex-th root of a number is undefined";
     static final String COMPLEX_NUMBER_ERROR = "The root of a complex number is undefined";
-    public FunctionSqrt(List<Expression> elist, String functionName) throws IllegalConstruction {
-        super(elist, functionName);
-    }
 
     public FunctionSqrt(List<Expression> elist) throws IllegalConstruction {
         super(elist, "root");

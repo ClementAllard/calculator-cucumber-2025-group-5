@@ -165,6 +165,13 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComplexAtom(ExpressionParser.ComplexAtomContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Percentage}
+	 * labeled alternative in {@link ExpressionParser#complex}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPercentage(ExpressionParser.PercentageContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ScientificAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
@@ -200,10 +207,10 @@ public interface ExpressionVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitENumber(ExpressionParser.ENumberContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code PercentageAtom}
+	 * Visit a parse tree produced by the {@code ConstantAtom}
 	 * labeled alternative in {@link ExpressionParser#number}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPercentageAtom(ExpressionParser.PercentageAtomContext ctx);
+	T visitConstantAtom(ExpressionParser.ConstantAtomContext ctx);
 }

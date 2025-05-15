@@ -65,6 +65,7 @@ infixfunction : FUNCTION infixExpr ')'                                          
 // ATOM
 
 complex : number ('+'|'-') number 'i'                                                            # ComplexAtom
+        | number '%'                                                                             # Percentage
         ;
 
 number : (REAL | INTEGER) E (REAL | INTEGER)                                                     # ScientificAtom
@@ -72,7 +73,7 @@ number : (REAL | INTEGER) E (REAL | INTEGER)                                    
        | REAL                                                                                    # RealAtom
        | PI                                                                                      # PiNumber
        | E                                                                                       # ENumber
-       | (REAL | INTEGER) '%'                                                                    # PercentageAtom
+       | CONST                                                                                   # ConstantAtom
        ;
 
 REAL : [0-9]+ '.' [0-9]+;
@@ -80,5 +81,6 @@ INTEGER: [0-9]+;
 FUNCTION: [a-zA-Z_][a-zA-Z0-9_]* '(';
 PI: ('pi' | 'PI');
 E : ('e' | 'E');
+CONST : '$' [a-zA-Z_][a-zA-Z0-9_]* '$';
 
 WS: [ \t\r\n]+ -> skip;
