@@ -34,8 +34,8 @@ public final class MyComplex extends MyNumber {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
         MyComplex myComplex = (MyComplex) o;
         return real.equals(myComplex.getReal()) && imaginary.equals(myComplex.getImaginary());
     }

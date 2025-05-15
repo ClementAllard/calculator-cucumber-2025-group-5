@@ -65,8 +65,8 @@ public class MyInteger extends MyNumber {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
         MyInteger myInteger = (MyInteger) o;
         return value.equals(myInteger.value);
     }

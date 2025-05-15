@@ -18,7 +18,7 @@ public abstract class MyNumber implements Expression
     /**
      * Constructor method
      */
-    protected  /*constructor*/ MyNumber() {}
+    protected  /*constructor*/ MyNumber() {} // Empty constructor because MyNumber is abstract, important for heritage
 
     /**
      * accept method to implement the visitor design pattern to traverse arithmetic expressions.
