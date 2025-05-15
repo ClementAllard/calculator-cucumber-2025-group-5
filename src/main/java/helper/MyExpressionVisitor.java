@@ -98,42 +98,29 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     @Override
     public Expression visitInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx) {
-        switch (ctx.getChildCount()) {
-            case 2 -> {
-                String operator = ctx.getChild(0).getText();
-                if ("<<".equals(operator)) {
-                    try {
-                        return new BitwiseLeft(visit(ctx.getChild(1)));
-                    } catch (IllegalConstruction e) {
-                        throw new RuntimeException(e); // NOSONAR
-                    }
-                } else { // Then operator is ">>"
-                    try {
-                        return new BitwiseRight(visit(ctx.getChild(1)));
-                    } catch (IllegalConstruction e) {
-                        throw new RuntimeException(e); // NOSONAR
-                    }
+        int childCount = ctx.getChildCount();
+        String operator = ctx.getChild(0).getText();
+        try {
+            switch (childCount) {
+                case 2 -> {
+                    Expression expression = visit(ctx.getChild(1));
+                    return "<<".equals(operator)
+                            ? new BitwiseLeft(expression)
+                            : new BitwiseRight(expression);
+                }
+                case 3 -> {
+                    String number = ctx.getChild(1).getText();
+                    Expression expression = visit(ctx.getChild(2));
+                    return "<<".equals(operator)
+                            ? new BitwiseLeft(expression, number)
+                            : new BitwiseRight(expression, number);
+                }
+                default -> {
+                    return visitChildren(ctx);
                 }
             }
-            case 3 -> {
-                String operator = ctx.getChild(0).getText();
-                if ("<<".equals(operator)) {
-                    try {
-                        return new BitwiseLeft(visit(ctx.getChild(2)), ctx.getChild(1).getText());
-                    } catch (IllegalConstruction e) {
-                        throw new RuntimeException(e); // NOSONAR
-                    }
-                } else {
-                    try {
-                        return new BitwiseRight(visit(ctx.getChild(2)), ctx.getChild(1).getText());
-                    } catch (IllegalConstruction e) {
-                        throw new RuntimeException(e); // NOSONAR
-                    }
-                }
-            }
-            default -> {
-                return visitChildren(ctx);
-            }
+        } catch (IllegalConstruction e) {
+            throw new RuntimeException(e); // NOSONAR
         }
     }
 
