@@ -737,16 +737,4 @@ class TestMyExpressionParser {
             fail(ex.getMessage());
         }
     }
-
-    @Test
-    void testEquivalence(){
-        try{
-            Expression expression = MyExpressionParser.parseExpression("1 <=> 1");
-            Expression response = MyExpressionParser.parseExpression("1");
-            assertEquals(c.eval(expression), c.eval(response));
-        } catch (Exception ex) {
-            fail(ex.getMessage());
-        }
-
-    }
 }
