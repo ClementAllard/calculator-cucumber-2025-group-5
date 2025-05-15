@@ -87,4 +87,26 @@ class TestMyComplex {
             fail();
         }
     }
+
+    @Test
+    void testEquality() {
+        MyComplex myComplex1 = new MyComplex(new BigDecimal(1),new BigDecimal(2));
+        MyComplex myComplex2 = new MyComplex(new BigDecimal(1),new BigDecimal(2));
+        MyComplex myComplex3 = new MyComplex(new BigDecimal(2),new BigDecimal(2));
+
+        assertEquals(myComplex1, myComplex1);
+        assertEquals(myComplex1, myComplex2);
+        assertNotEquals(myComplex1, myComplex3);
+    }
+
+    @Test
+    void testHashCode() {
+        MyComplex myComplex1 = new MyComplex(new BigDecimal(1),new BigDecimal(2));
+        MyComplex myComplex2 = new MyComplex(new BigDecimal(1),new BigDecimal(2));
+        MyComplex myComplex3 = new MyComplex(new BigDecimal(2),new BigDecimal(2));
+
+        assertEquals(myComplex1, myComplex1);
+        assertEquals(myComplex1, myComplex2);
+        assertNotEquals(myComplex1, myComplex3);
+    }
 }

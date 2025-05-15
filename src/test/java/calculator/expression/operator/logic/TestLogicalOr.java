@@ -39,7 +39,7 @@ class TestLogicalOr {
     @Test
     void testSymbol() throws IllegalConstruction {
         LogicalOr or = new LogicalOr(Arrays.asList(one, one));
-        assertEquals("or", or.getSymbol());
+        assertEquals("OR", or.getSymbol());
     }
 
     @Test

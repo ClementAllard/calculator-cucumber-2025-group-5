@@ -144,4 +144,26 @@ class TestMyInteger {
         assertEquals(10, defaultBase.getBase());
         assertEquals(2, base2.getBase());
     }
+
+    @Test
+    void testEquality() {
+        MyInteger myInteger1 = new MyInteger(1);
+        MyInteger myInteger2 = new MyInteger(1);
+        MyInteger myInteger3 = new MyInteger(2);
+
+        assertEquals(myInteger1, myInteger1);
+        assertEquals(myInteger1, myInteger2);
+        assertNotEquals(myInteger1, myInteger3);
+    }
+
+    @Test
+    void testHashCode() {
+        MyInteger myInteger1 = new MyInteger(1);
+        MyInteger myInteger2 = new MyInteger(1);
+        MyInteger myInteger3 = new MyInteger(2);
+
+        assertEquals(myInteger1, myInteger1);
+        assertEquals(myInteger1, myInteger2);
+        assertNotEquals(myInteger1, myInteger3);
+    }
 }

@@ -74,6 +74,7 @@ public class CLI {
 		 System.out.println("help, give command help"); //NOSONAR
 		 System.out.println("scale, allows change of the precision"); //NOSONAR
 		 System.out.println("rounding, allows change of the rounding"); //NOSONAR
+		 System.out.println("fraction, change the display of the fraction type to a real"); //NOSONAR
 	 }
 
 	 private static void printEvaluate(Expression e){
@@ -87,7 +88,7 @@ public class CLI {
 
 	 private static void scaleCommand(Scanner scanner){
 		 System.out.println("Current scale expression: " + BigDecimalUtil.getScale()); //NOSONAR
-		 System.out.print("New chosen scale : "); //NOSONAR
+		 System.out.print("New chosen scale : \n"); //NOSONAR
 		 try{
 			 String expression = scanner.nextLine().trim();
 
@@ -103,8 +104,8 @@ public class CLI {
 
 	 private static void roundingCommand(Scanner scanner){
 		 System.out.println("Current rounding expression: " + BigDecimalUtil.getRounding()); //NOSONAR
-		 System.out.println("0 : UP\n1 : DOWN\n2 : CEILING\n3 : FLOOR\n4 : HALF_UP\n5 HALF_DOWN\n6 : HALF_EVEN\n7 : UNNECESSARY"); //NOSONAR
-		 System.out.print("New chosen rounding : "); //NOSONAR
+		 System.out.println("0 : UP\n1 : DOWN\n2 : CEILING\n3 : FLOOR\n4 : HALF_UP\n5 : HALF_DOWN\n6 : HALF_EVEN\n7 : UNNECESSARY"); //NOSONAR
+		 System.out.print("New chosen rounding : \n"); //NOSONAR
 		 try{
 			 String expression = scanner.nextLine().trim();
 
@@ -112,7 +113,7 @@ public class CLI {
 
 			 int mode = Integer.parseInt(expression);
 			 if(mode < 0 || mode > 7){
-				 System.out.println("Invalid rounding"); //NOSONAR
+				 System.out.println("Invalid rounding mode"); //NOSONAR
 			 }else{
 				 BigDecimalUtil.setRoundingMode(mode);
 				 System.out.println("New current rounding expression: " + BigDecimalUtil.getRounding()); //NOSONAR

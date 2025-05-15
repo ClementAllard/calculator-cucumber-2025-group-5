@@ -41,7 +41,7 @@ class TestLogicalXor {
     @Test
     void testSymbol() throws IllegalConstruction {
         LogicalXor xor = new LogicalXor(Arrays.asList(one, one));
-        assertEquals("xor", xor.getSymbol());
+        assertEquals("XOR", xor.getSymbol());
     }
 
     @Test

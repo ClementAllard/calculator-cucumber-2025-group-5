@@ -41,7 +41,7 @@ class TestLogicalAnd {
     @Test
     void testSymbol() throws IllegalConstruction {
         LogicalAnd and = new LogicalAnd(Arrays.asList(one, one));
-        assertEquals("and", and.getSymbol());
+        assertEquals("AND", and.getSymbol());
     }
 
     @Test
