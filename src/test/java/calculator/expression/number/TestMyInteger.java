@@ -119,7 +119,7 @@ class TestMyInteger {
             new MyInteger("1G", 16); // 'G' is invalid in base 16
         });
 
-        String expectedMessage = "Caractère 'G' invalide pour la base 16";
+        String expectedMessage = "Character 'G' is invalid for the base 16";
         assertTrue(exception.getMessage().contains(expectedMessage));
     }
 
