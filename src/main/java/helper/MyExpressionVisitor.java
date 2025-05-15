@@ -8,6 +8,8 @@ import calculator.expression.number.*;
 import calculator.expression.operator.basic.*;
 import calculator.expression.operator.bitwise.*;
 import calculator.expression.operator.function.*;
+import calculator.expression.operator.function.FunctionAcos;
+import calculator.expression.operator.random.*;
 import calculator.expression.operator.logic.*;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
@@ -263,13 +265,11 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     }
 
     @Override
-    public Expression visitPercentageAtom(ExpressionParser.PercentageAtomContext ctx) {
+    public Expression visitPercentage(ExpressionParser.PercentageContext ctx) {
         try{
-            return new MyRational(Integer.parseInt(ctx.getChild(0).getText()), 100);
-        } catch (NumberFormatException e) {
-            return new MyReal(BigDecimalUtil.divide(BigDecimal.valueOf(
-                            Double.parseDouble(ctx.getChild(0).getText())),
-                    BigDecimal.valueOf(100)));
+            return new Divides(Arrays.asList(visit(ctx.getChild(0)), new MyInteger(100)), Notation.INFIX);
+        } catch (IllegalConstruction e) {
+            throw new RuntimeException(e); //NOSONAR
         }
     }
 
@@ -335,13 +335,27 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         Expression arg = visit(tree.getChild(1));
 
         try {
-            return switch (functionName) {
+            return switch (functionName.toLowerCase()) {
                 case "rad" -> new FunctionRad(arg);
-                case "degree" -> new FunctionDegree(arg);
+                case "degree", "deg" -> new FunctionDegree(arg);
                 case "inv" -> new FunctionInverse(arg);
                 case "log" -> new FunctionLog(arg);
                 case "ln" -> new FunctionLn(arg);
-                default -> throw new IllegalArgumentException("Unknow function " + functionName+ " of arity 1");
+                case "sin" -> new FunctionSin(arg);
+                case "cos" -> new FunctionCos(arg);
+                case "tan" -> new FunctionTan(arg);
+                case "asin" -> new FunctionAsin(arg);
+                case "acos" -> new FunctionAcos(arg);
+                case "atan" -> new FunctionAtan(arg);
+                case "sinh" -> new FunctionSinh(arg);
+                case "cosh" -> new FunctionCosh(arg);
+                case "tanh" -> new FunctionTanh(arg);
+                case "sqrt" -> new FunctionSqrt(Arrays.asList(new MyInteger(2), arg));
+                case "rinteger", "rint" -> new RandomInteger(arg);
+                case "rrational", "rrat" -> new RandomRational(arg);
+                case "rreal" -> new RandomReal(arg);
+                case "rcomplex", "rcom" -> new RandomComplex(arg);
+                default -> throw new IllegalArgumentException("Unknown function " + functionName+ " of arity 1");
             };
 
         } catch (IllegalConstruction e) {
@@ -371,15 +385,42 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         List<Expression> args = Arrays.asList(visit(tree.getChild(1)),visit(tree.getChild(3)));
 
         try {
-            return switch (funcName) {
+            return switch (funcName.toLowerCase()) {
                 case "log" -> new FunctionLogBinary(args);
                 case "pow" -> new FunctionPow(args);
-                case "sqrt", "root" -> new FunctionSqrt(args, funcName);
+                case "sqrt", "root" -> new FunctionSqrt(args);
+                case "rinteger" ,"rint" -> new RandomIntegerSeed(args);
+                case "rrational", "rrat" -> new RandomRationalSeed(args);
                 default -> throw new IllegalArgumentException("Unknown function " + funcName+ " of arity 2");
             };
 
         } catch (IllegalConstruction e) {
             throw new RuntimeException(e); // NOSONAR
+        }
+    }
+
+    @Override
+    public Expression visitConstantAtom(ExpressionParser.ConstantAtomContext ctx){
+        String constantKey = null;
+
+        try {
+            constantKey = ctx.getChild(0).getText();
+            // remove the first and last $
+            constantKey = constantKey.substring(1, constantKey.length()-1);
+            String valueString = Constant.readConstant(constantKey);
+            if (valueString == null) {
+                String msg = String.format("The constant %s does not exists or the file %s could not be read.",
+                        constantKey, Constant.FILE_PATH);
+                throw new IllegalArgumentException(msg);
+            }
+            // remove all $ to avoid DOS (infinite loop)
+            valueString = valueString.replace("$", "");
+            return Constant.parseExpression(valueString);
+        } catch (IllegalSyntax e) {
+            // This error only raise if constantKey is initialised.
+            String msg = String.format("The constant %s does not follow the grammar",
+                    constantKey);
+            throw new IllegalArgumentException(msg);
         }
     }
 }

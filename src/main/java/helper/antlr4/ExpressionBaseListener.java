@@ -161,66 +161,6 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInfixExprBitwisePrio1(ExpressionParser.InfixExprBitwisePrio1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInfixExprBitwisePrio2(ExpressionParser.InfixExprBitwisePrio2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInfixExprBitwisePrio3(ExpressionParser.InfixExprBitwisePrio3Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInfixExprLogicPrio1(ExpressionParser.InfixExprLogicPrio1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInfixExprLogicPrio2(ExpressionParser.InfixExprLogicPrio2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterInfixExprPrio1(ExpressionParser.InfixExprPrio1Context ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -365,13 +305,13 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIntegerAtom(ExpressionParser.IntegerAtomContext ctx) { }
+	@Override public void enterIntergerAtom(ExpressionParser.IntergerAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIntegerAtom(ExpressionParser.IntegerAtomContext ctx) { }
+	@Override public void exitIntergerAtom(ExpressionParser.IntergerAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -420,30 +360,6 @@ public class ExpressionBaseListener implements ExpressionListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPercentageAtom(ExpressionParser.PercentageAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBoolAtom(ExpressionParser.BoolAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBoolAtom(ExpressionParser.BoolAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBaseIntegerAtom(ExpressionParser.BaseIntegerAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBaseIntegerAtom(ExpressionParser.BaseIntegerAtomContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

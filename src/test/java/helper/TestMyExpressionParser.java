@@ -2,6 +2,7 @@ package helper;
 
 //Import Junit5 libraries for unit testing:
 import calculator.*;
+import calculator.expression.number.Constant;
 import calculator.expression.number.MyInteger;
 import calculator.expression.operator.basic.Divides;
 import calculator.expression.operator.basic.Minus;
@@ -525,6 +526,215 @@ class TestMyExpressionParser {
             assertEquals(c.eval(expression), c.eval(response));
         } catch (Exception _) {
             fail();
+        }
+    }
+
+    @Test
+    void testFunctionSin(){
+        try {
+            // special cases
+            Expression expression = MyExpressionParser.parseExpression("sin(pi/2)");
+            Expression response = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            expression = MyExpressionParser.parseExpression("sin(3*pi/2)");
+            response = MyExpressionParser.parseExpression("-1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            expression = MyExpressionParser.parseExpression("sin(pi)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            expression = MyExpressionParser.parseExpression("sin(2*pi)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+        } catch (Exception _) {
+            fail();
+        }
+    }
+
+    @Test
+    void testFunctionCos() {
+        try {
+            // cos(0) = 1
+            Expression expression = MyExpressionParser.parseExpression("cos(0)");
+            Expression response = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // cos(pi) = -1
+            expression = MyExpressionParser.parseExpression("cos(pi)");
+            response = MyExpressionParser.parseExpression("-1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // cos(pi/2) = 0
+            expression = MyExpressionParser.parseExpression("cos(pi/2)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // cos(2*pi) = 1
+            expression = MyExpressionParser.parseExpression("cos(2*pi)");
+            response = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+        } catch (Exception _) {
+            fail();
+        }
+    }
+
+    @Test
+    void testFunctionTan() {
+        try {
+            // tan(0) = 0
+            Expression expression = MyExpressionParser.parseExpression("tan(0)");
+            Expression response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // tan(pi/4) = 1
+            expression = MyExpressionParser.parseExpression("tan(pi/4)");
+            response = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // tan(pi) = 0
+            expression = MyExpressionParser.parseExpression("tan(pi)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+            // tan(2*pi) = 0
+            expression = MyExpressionParser.parseExpression("tan(2*pi)");
+            response = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(response));
+
+        } catch (Exception _) {
+            fail();
+        }
+    }
+
+    @Test
+    void testFunctionAsinParser() {
+        try {
+            Expression expression = MyExpressionParser.parseExpression("asin(0)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(expected));
+
+            expression = MyExpressionParser.parseExpression("asin(1)");
+            expected = MyExpressionParser.parseExpression(String.valueOf(Math.PI / 2));
+            assertEquals(c.eval(expression), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testFunctionAcosParser() {
+        try {
+            Expression expression = MyExpressionParser.parseExpression("acos(1)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(expected));
+
+            expression = MyExpressionParser.parseExpression("acos(0)");
+            expected = MyExpressionParser.parseExpression(String.valueOf(Math.PI / 2));
+            assertEquals(c.eval(expression), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testFunctionAtanParser() {
+        try {
+            Expression expression = MyExpressionParser.parseExpression("atan(0)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expression), c.eval(expected));
+
+            expression = MyExpressionParser.parseExpression("atan(1)");
+            expected = MyExpressionParser.parseExpression(String.valueOf(Math.PI / 4));
+            assertEquals(c.eval(expression), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testFunctionSinhParser() {
+        try {
+            Expression expr = MyExpressionParser.parseExpression("sinh(0)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expr), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testFunctionCoshParser() {
+        try {
+            Expression expr = MyExpressionParser.parseExpression("cosh(0)");
+            Expression expected = MyExpressionParser.parseExpression("1");
+            assertEquals(c.eval(expr), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testFunctionTanhParser() {
+        try {
+            Expression expr = MyExpressionParser.parseExpression("tanh(0)");
+            Expression expected = MyExpressionParser.parseExpression("0");
+            assertEquals(c.eval(expr), c.eval(expected));
+        } catch (Exception exception) {
+            fail(exception.getMessage());
+        }
+    }
+
+    @Test
+    void testRandomFunctions(){
+        try {
+            Expression expr = MyExpressionParser.parseExpression("rINTEGER(100, e)");
+            assertEquals("5", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rint(100, e)");
+            assertEquals("5", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rRATIONAL(100, e)");
+            assertEquals("5/37", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rrat(100, e)");
+            assertEquals("5/37", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rREAL(e)");
+            assertEquals("0.731146936", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rreal(e)");
+            assertEquals("0.731146936", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rCOMPLEX(e)");
+            assertEquals("0.7311469360199058 + 0.9014476240300544i", c.eval(expr));
+
+            expr = MyExpressionParser.parseExpression("rcom(e)");
+            assertEquals("0.7311469360199058 + 0.9014476240300544i", c.eval(expr));
+        } catch (Exception ex) {
+            fail(ex.getMessage());
+        }
+    }
+
+    @Test
+    void testConstants(){
+        try {
+            String constantKey = "test";
+            String constantValue = "sqrt(25)";
+            Constant.writeConstant(constantKey, constantValue);
+
+            Expression expression = MyExpressionParser.parseExpression("$test$");
+            assertEquals("5", c.eval(expression));
+
+            constantKey = "test";
+            constantValue = "sqrt($test$)";
+            Constant.writeConstant(constantKey, constantValue);
+
+            assertThrowsExactly(IllegalArgumentException.class, () -> MyExpressionParser.parseExpression("$test2$"));
+        } catch (Exception ex) {
+            fail(ex.getMessage());
         }
     }
 }

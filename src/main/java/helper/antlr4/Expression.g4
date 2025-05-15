@@ -24,7 +24,7 @@ postfixExpr : '(' postfixExpr (',' postfixExpr)+ ')' ('+' | '-' | '*' | '/' | '^
             | postfixNumber                                                                     # PostfixSimpleNumber
             ;
 
-postfixNumber : postfixfonction
+postfixNumber : prefixfonction
               | complex
               | number
               ;
@@ -35,7 +35,7 @@ postfixfonction : FUNCTION postfixfonction ')'                                  
 
 // INFIX
 
-infixExpr : infixExprBitwisePrio1
+infixExpr : infixExprPrio1
           ;
 
 infixExprBitwisePrio1 : infixExprBitwisePrio1 ('&' | '^^' | '|') infixExprBitwisePrio2
@@ -86,6 +86,7 @@ infixfunction : FUNCTION infixExpr ')'                                          
 // ATOM
 
 complex : number ('+'|'-') number 'i'                                                            # ComplexAtom
+        | number '%'                                                                             # Percentage
         ;
 
 number : (REAL | INTEGER) E (REAL | INTEGER)                                                     # ScientificAtom
@@ -93,7 +94,7 @@ number : (REAL | INTEGER) E (REAL | INTEGER)                                    
        | REAL                                                                                    # RealAtom
        | PI                                                                                      # PiNumber
        | E                                                                                       # ENumber
-       | (REAL | INTEGER) '%'                                                                    # PercentageAtom
+       | CONST                                                                                   # ConstantAtom                                                                   # PercentageAtom
        | BOOL                                                                                    # BoolAtom
        | BASE_INTEGER                                                                            # BaseIntegerAtom
        ;
@@ -105,5 +106,6 @@ PI: ('pi' | 'PI');
 E : ('e' | 'E');
 BOOL: 'T' | 'F' | '0' | '1';
 BASE_INTEGER: ( [2-9] | '1'[0-9] | '2'[0-9] | '3'[0-6] ) 'b' [0-9a-zA-Z]+;
+CONST : '$' [a-zA-Z_][a-zA-Z0-9_]* '$';
 
 WS: [ \t\r\n]+ -> skip;
