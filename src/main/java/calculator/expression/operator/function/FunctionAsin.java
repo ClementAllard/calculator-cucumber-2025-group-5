@@ -15,7 +15,12 @@ public class FunctionAsin extends Function {
 
     @Override
     MyNumber op(BigDecimal l) {
-        return new MyReal(BigDecimal.valueOf(Math.asin(l.doubleValue())));
+        if (l.compareTo(BigDecimal.ONE) <= 0 && l.compareTo(BigDecimal.ONE.negate()) >= 0) {
+            return new MyReal(BigDecimal.valueOf(Math.asin(l.doubleValue())));
+        } else {
+            throw new IllegalArgumentException("Domain of "+symbol+" is [-1, 1]");
+        }
+
     }
 
     /**
