@@ -1,9 +1,6 @@
-package cucumberSteps.calculator.expression.number;
+package calculator.expression.number;
 
-import calculator.IllegalConstruction;
 import calculator.expression.Expression;
-import calculator.expression.number.MyComplex;
-import calculator.expression.number.MyNumber;
 import calculator.expression.operator.basic.*;
 import calculator.expression.operator.Operation;
 import helper.IllegalSyntax;
@@ -11,7 +8,6 @@ import helper.MyExpressionParser;
 import io.cucumber.java.en.*;
 import jdk.jshell.spi.ExecutionControl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

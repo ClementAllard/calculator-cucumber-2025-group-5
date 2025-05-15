@@ -1,8 +1,7 @@
-package cucumberSteps.calculator.expression.number;
+package calculator.expression.number;
 
 import calculator.Calculator;
 import calculator.expression.Expression;
-import calculator.expression.number.Constant;
 import io.cucumber.java.en.*;
 import jdk.jshell.spi.ExecutionControl;
 

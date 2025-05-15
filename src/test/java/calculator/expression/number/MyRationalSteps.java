@@ -1,9 +1,6 @@
-package cucumberSteps.calculator.expression.number;
+package calculator.expression.number;
 
 import calculator.expression.Expression;
-import calculator.expression.number.MyInteger;
-import calculator.expression.number.MyNumber;
-import calculator.expression.number.MyRational;
 import calculator.expression.operator.Operation;
 import calculator.expression.operator.basic.Divides;
 import calculator.expression.operator.basic.Minus;

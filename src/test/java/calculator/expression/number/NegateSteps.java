@@ -1,10 +1,9 @@
-package cucumberSteps.calculator.expression.number;
+package calculator.expression.number;
 
 import calculator.Calculator;
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.operator.basic.Negate;
-import calculator.expression.number.*;
 import io.cucumber.java.en.*;
 import org.junit.jupiter.api.Assertions;
 
