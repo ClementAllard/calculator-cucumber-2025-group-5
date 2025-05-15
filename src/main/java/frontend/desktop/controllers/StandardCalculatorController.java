@@ -36,7 +36,7 @@ public class StandardCalculatorController extends Controller {
 
     static final Calculator calculator = new Calculator();
 
-    static final String helptext = "Inputs are displayed in the bar above. The calculator will try to solve that expression when the \"=\" button is pressed.";
+    static final String HELP_TEXT = "Inputs are displayed in the bar above. The calculator will try to solve that expression when the \"=\" button is pressed.";
 
     /**
      * This method handles the default button clicks for the calculator.
@@ -169,7 +169,7 @@ public class StandardCalculatorController extends Controller {
                     case "+" -> button.setOnAction(event -> handleSymbolButton(" + "));
                     case "−" -> button.setOnAction(event -> handleSymbolButton(" - "));
                     case "=" -> button.setOnAction(event -> handleEqualButton());
-                    case "Help" -> button.setOnAction(event -> outputLabel.setText(helptext));
+                    case "Help" -> button.setOnAction(event -> outputLabel.setText(HELP_TEXT));
                     default -> button.setOnAction(event -> handleSymbolButton(""));
                 }
             }
