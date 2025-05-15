@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -155,11 +157,17 @@
                     <font>
                         <Font size="18.0" />
                     </font>
+                    <tooltip>
+                        <Tooltip text="Removes last character" />
+                    </tooltip>
                 </Button>
                 <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="Reset" GridPane.columnIndex="1">
                     <font>
                         <Font size="18.0" />
                     </font>
+                    <tooltip>
+                        <Tooltip text="Clears input and output" />
+                    </tooltip>
                 </Button>
                 <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="×" GridPane.rowIndex="1">
                     <font>
@@ -188,7 +196,7 @@
                 </Button>
                 <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="Help" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <tooltip>
-                        <Tooltip text="Empty Tooltip" />
+                        <Tooltip maxWidth="350" text="Inputs are displayed in the bar above. The calculator will try to solve that expression when the &quot;=&quot; button is pressed." wrapText="true" />
                     </tooltip>
                     <font>
                         <Font size="18.0" />
@@ -196,83 +204,189 @@
                 </Button>
             </children>
         </GridPane>
-        <GridPane fx:id="rightGridPane" layoutX="660.0" layoutY="250.0" prefHeight="260.0" prefWidth="200.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-            </rowConstraints>
-            <children>
-                <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="(">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-                <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text=")" GridPane.columnIndex="1">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-                <Button layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-                <Button layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="OR" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-                <Button layoutX="10.0" layoutY="140.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="AND" GridPane.rowIndex="2">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-                <Button layoutX="10.0" layoutY="140.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="NOT" GridPane.rowIndex="3">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-                <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="XOR" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Button>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="&lt;&lt;" GridPane.rowIndex="1">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="NOR" GridPane.rowIndex="4">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button layoutX="10.0" layoutY="218.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="NAND" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button layoutX="10.0" layoutY="184.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="⇒" GridPane.rowIndex="5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button layoutX="10.0" layoutY="227.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="⇔" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            </children>
-        </GridPane>
-      <ChoiceBox fx:id="baseSetting" layoutX="40.0" layoutY="14.0" prefHeight="25.0" prefWidth="100.0" />
-      <ChoiceBox fx:id="shiftSetting" layoutX="40.0" layoutY="55.0" prefHeight="25.0" prefWidth="100.0" />
+      <ChoiceBox fx:id="baseSetting" layoutX="40.0" layoutY="14.0" prefHeight="25.0" prefWidth="100.0">
+         <tooltip>
+            <Tooltip text="Base of the result" />
+         </tooltip></ChoiceBox>
+      <TabPane layoutX="658.0" layoutY="250.0" prefHeight="260.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Logic">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                          <GridPane fx:id="rightGridPane" prefHeight="231.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <columnConstraints>
+                                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              </rowConstraints>
+                              <children>
+                                  <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="(">
+                                      <font>
+                                          <Font size="18.0" />
+                                      </font>
+                                  </Button>
+                                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text=")" GridPane.columnIndex="1">
+                                      <font>
+                                          <Font size="18.0" />
+                                      </font>
+                                  </Button>
+                                  <Button layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="OR" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                      <font>
+                                          <Font size="18.0" />
+                                      </font>
+                                 <tooltip>
+                                    <Tooltip text="x OR y" />
+                                 </tooltip>
+                                  </Button>
+                                  <Button layoutX="10.0" layoutY="140.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="AND" GridPane.rowIndex="2">
+                                      <font>
+                                          <Font size="18.0" />
+                                      </font>
+                                 <tooltip>
+                                    <Tooltip text="x AND y" />
+                                 </tooltip>
+                                  </Button>
+                                  <Button layoutX="10.0" layoutY="140.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="NOT" GridPane.rowIndex="3">
+                                      <font>
+                                          <Font size="18.0" />
+                                      </font>
+                                 <tooltip>
+                                    <Tooltip text="NOT x" />
+                                 </tooltip>
+                                  </Button>
+                                  <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="XOR" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                      <font>
+                                          <Font size="18.0" />
+                                      </font>
+                                 <tooltip>
+                                    <Tooltip text="x XOR y" />
+                                 </tooltip>
+                                  </Button>
+                              <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="NOR" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="x NOR y" />
+                                 </tooltip>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="218.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="NAND" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="x NAND y" />
+                                 </tooltip>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="⇔" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Logical equivalence" />
+                                 </tooltip>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="⇒" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="Logical implication" />
+                                 </tooltip>
+                              </Button>
+                              </children>
+                          </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Bitwise">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane fx:id="rightGridPane2" prefHeight="231.0" prefWidth="200.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="(">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text=")" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="OR" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="140.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="AND" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="140.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="NOT" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="XOR" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="NOR" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="218.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="NAND" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                                  <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="&gt;&gt;" GridPane.rowIndex="1">
+                                      <font>
+                                          <Font size="18.0" />
+                                      </font>
+                                 <tooltip>
+                                    <Tooltip text="&gt;&gt; number expression for a shift of n bits, &gt;&gt; expression is default for 1 " />
+                                 </tooltip>
+                                  </Button>
+                              <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="&lt;&lt;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <tooltip>
+                                    <Tooltip text="&lt;&lt; number expression for a shift of n bits, &lt;&lt; expression is default for 1 " />
+                                 </tooltip>
+                              </Button>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
     </children>
 </AnchorPane>

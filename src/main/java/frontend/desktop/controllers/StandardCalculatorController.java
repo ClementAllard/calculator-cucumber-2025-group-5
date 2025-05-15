@@ -34,7 +34,7 @@ public class StandardCalculatorController extends Controller {
     @FXML
     public GridPane centerGridPane;
 
-    private static final Calculator calculator = new Calculator();
+    static final Calculator calculator = new Calculator();
 
     /**
      * This method handles the default button clicks for the calculator.

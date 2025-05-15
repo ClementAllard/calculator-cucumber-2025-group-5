@@ -103,6 +103,9 @@
                <font>
                   <Font size="24.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Function argument separator" />
+               </tooltip>
             </Button>
          </children>
       </GridPane>
@@ -122,11 +125,17 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Removes last character" />
+               </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="Reset" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Clears input and output" />
+               </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="×" GridPane.rowIndex="1">
                <font>
@@ -155,7 +164,7 @@
             </Button>
             <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="Help" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <tooltip>
-                  <Tooltip text="Empty Tooltip" />
+                  <Tooltip maxWidth="350" text="Inputs are displayed in the bar above. The calculator will try to solve that expression when the &quot;=&quot; button is pressed." wrapText="true" />
                </tooltip>
                <font>
                   <Font size="18.0" />
@@ -189,6 +198,9 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Percent" />
+               </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="π" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
@@ -209,11 +221,17 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="SQRT(y, x)" />
+               </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="xʸ" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="x^y" />
+               </tooltip>
             </Button>
          </children>
       </GridPane>

@@ -64,8 +64,9 @@ public class CalculatorMainController {
             calculatorSettingController = loader.getController();
             calculatorSettingController.setCalculatorMainController(this);
             calculatorSettingController.initialize();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException _) {
+            // ignore the exception, nothing can be done about it
+            return;
         }
     }
 
@@ -90,7 +91,9 @@ public class CalculatorMainController {
             controllers.put(name, controller);
             currentView = name;
         } catch (IOException e) {
+            // ignore the exception, nothing can be done about it
             e.printStackTrace();
+            return;
         }
     }
 

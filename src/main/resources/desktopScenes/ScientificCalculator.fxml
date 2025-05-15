@@ -128,11 +128,17 @@
                     <font>
                         <Font size="18.0" />
                     </font>
+                    <tooltip>
+                        <Tooltip text="Removes last character" />
+                    </tooltip>
                 </Button>
                 <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="Reset" GridPane.columnIndex="1">
                     <font>
                         <Font size="18.0" />
                     </font>
+                    <tooltip>
+                        <Tooltip text="Clears input and output" />
+                    </tooltip>
                 </Button>
                 <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="×" GridPane.rowIndex="1">
                     <font>
@@ -161,7 +167,7 @@
                 </Button>
                 <Button layoutX="10.0" layoutY="204.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="Help" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <tooltip>
-                        <Tooltip text="Empty Tooltip" />
+                        <Tooltip maxWidth="350" text="Inputs are displayed in the bar above. The calculator will try to solve that expression when the &quot;=&quot; button is pressed." wrapText="true" />
                     </tooltip>
                     <font>
                         <Font size="18.0" />
@@ -201,6 +207,9 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Inverses the last number" />
+               </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="e" GridPane.rowIndex="1">
                <font>
@@ -211,26 +220,41 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Logarithm: log(x) or log(base, x)" />
+               </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="140.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="105.0" text="ln" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Neperian logarithm: equivalent to log(e,x)" />
+               </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="205.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="105.0" text="mod" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Modulo operator" />
+               </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="105.0" text="," GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Function argument separator" />
+               </tooltip>
             </Button>
             <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="105.0" text="log2" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
+               <tooltip>
+                  <Tooltip text="Base 2 logarithm shortcut" />
+               </tooltip>
             </Button>
             </children>
         </GridPane>
@@ -282,6 +306,9 @@
                                        <font>
                                           <Font size="18.0" />
                                        </font>
+                                       <tooltip>
+                                          <Tooltip text="Sets the last number as exponent of 10" />
+                                       </tooltip>
                                     </Button>
                                  </children>
                               </GridPane>
@@ -333,6 +360,9 @@
                                        <font>
                                           <Font size="18.0" />
                                        </font>
+                                       <tooltip>
+                                          <Tooltip text="Sets the last number as exponent of 2" />
+                                       </tooltip>
                                     </Button>
                                  </children>
                               </GridPane>
@@ -374,16 +404,25 @@
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
+                                       <tooltip>
+                                          <Tooltip text="x^y" />
+                                       </tooltip>
                                         </Button>
                                         <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="ʸ√x" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
+                                       <tooltip>
+                                          <Tooltip text="SQRT(y, x)" />
+                                       </tooltip>
                                         </Button>
                                     <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="122.0" text="e ˣ" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
+                                       <tooltip>
+                                          <Tooltip text="Sets the last number as exponent of Euler's number" />
+                                       </tooltip>
                                     </Button>
                                  </children>
                               </GridPane>
@@ -403,8 +442,14 @@
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
+                                             <tooltip>
+                                                <Tooltip text="Generates an integer between 0 and the number to the right" />
+                                             </tooltip>
                                           </Button>
-                                          <Spinner fx:id="handSpinner" editable="true" prefHeight="42.0" prefWidth="100.0" />
+                                          <Spinner fx:id="handSpinner" editable="true" prefHeight="42.0" prefWidth="100.0">
+                                             <tooltip>
+                                                <Tooltip text="Upper bound of the integer generation" />
+                                             </tooltip></Spinner>
                                        </children>
                                     </HBox>
                                     <HBox>
@@ -413,8 +458,14 @@
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
+                                             <tooltip>
+                                                <Tooltip text="Generates a rational number a/b where a and be are between 0 and the number to the right" />
+                                             </tooltip>
                                           </Button>
-                                          <Spinner fx:id="rationalSpinner" prefHeight="42.0" prefWidth="100.0" />
+                                          <Spinner fx:id="rationalSpinner" prefHeight="42.0" prefWidth="100.0">
+                                             <tooltip>
+                                                <Tooltip text="Upper bound of the rational number generation" />
+                                             </tooltip></Spinner>
                                        </children>
                                     </HBox>
                                     <HBox>
@@ -423,8 +474,14 @@
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
+                                             <tooltip>
+                                                <Tooltip text="Generates a real number between 0 and 1 with the decimal precision requested on the right" />
+                                             </tooltip>
                                           </Button>
-                                          <Spinner fx:id="realSpinner" prefHeight="42.0" prefWidth="100.0" />
+                                          <Spinner fx:id="realSpinner" prefHeight="42.0" prefWidth="100.0">
+                                             <tooltip>
+                                                <Tooltip text="Decimal precision of the real number" />
+                                             </tooltip></Spinner>
                                        </children>
                                     </HBox>
                                     <HBox>
@@ -433,8 +490,14 @@
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
+                                             <tooltip>
+                                                <Tooltip text="Generates a complex number a+ i b where a and be are between 0 and 1 with the decimal precision requested on the right" />
+                                             </tooltip>
                                           </Button>
-                                          <Spinner fx:id="complexSpinner" prefHeight="42.0" prefWidth="100.0" />
+                                          <Spinner fx:id="complexSpinner" prefHeight="42.0" prefWidth="100.0">
+                                             <tooltip>
+                                                <Tooltip text="Decimal precision of the complex number" />
+                                             </tooltip></Spinner>
                                        </children>
                                     </HBox>
                                  </children>
@@ -451,11 +514,17 @@
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip text="Converts the last number to radians if there is one, opens a radian operator otherwise" />
+                     </tooltip>
                   </Button>
                   <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="100.0" text="to deg">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <tooltip>
+                        <Tooltip text="Converts the last number to degrees if there is one, opens a radian operator otherwise" />
+                     </tooltip>
                   </Button>
                </children>
             </HBox>

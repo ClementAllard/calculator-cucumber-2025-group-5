@@ -1,11 +1,16 @@
 package frontend.desktop.controllers;
 
+import calculator.expression.Expression;
+import helper.IllegalSyntax;
+import helper.MyExpressionParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
 
@@ -25,11 +30,10 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
     private String prevBase = "DEC";
     private String currBase = "DEC";
 
-    private String shiftType;
-
-    private final ObservableList<String> shiftTypes = FXCollections.observableArrayList("Arithmetic", "Logical", "Rotate", "Rotate through carry");
     private final ObservableList<String> baseTypes = FXCollections.observableArrayList("BIN", "OCT", "DEC", "HEX");
 
+    @FXML
+    public GridPane rightGridPane2;
 
     /**
      * This method pops the last number from the input label.
@@ -50,22 +54,41 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
     }
 
     /**
-     * This method initializes the left grid pane with buttons and their actions.
+     * This method initializes the right grid pane with buttons and their actions.
      */
     private void initializeRightGridPane() {
         // Initialize the right grid pane with buttons and their actions
         rightGridPane.getChildren().forEach(node -> {
             if (node instanceof Button button) {
                 switch (button.getText()) {
-                    case "<<" -> button.setOnAction(event -> handleSymbolButton("Lsh"));
-                    case ">>" -> button.setOnAction(event -> handleSymbolButton("Rsh"));
-                    case "⇒" -> button.setOnAction(event -> handleSymbolButton("Imp"));
-                    case "⇔" -> button.setOnAction(event -> handleSymbolButton("Iff"));
+                    case "⇒" -> button.setOnAction(event -> handleSymbolButton("=>"));
+                    case "⇔" -> button.setOnAction(event -> handleSymbolButton("<=>"));
                     default -> button.setOnAction(event -> handleSymbolButton(button.getText()));
                 }
             }
         });
     }
+
+    /**
+     * This method initializes the right grid pane (tab 2) with buttons and their actions.
+     */
+    private void initializeRightGridPane2() {
+        // Initialize the right grid pane with buttons and their actions
+        rightGridPane2.getChildren().forEach(node -> {
+            if (node instanceof Button button) {
+                switch (button.getText()) {
+                    case "<<" -> button.setOnAction(event -> handleSymbolButton("<<"));
+                    case ">>" -> button.setOnAction(event -> handleSymbolButton(">>"));
+                    case "AND" -> button.setOnAction(event -> handleSymbolButton("&"));
+                    case "OR" -> button.setOnAction(event -> handleSymbolButton("|"));
+                    case "XOR" -> button.setOnAction(event -> handleSymbolButton("^^"));
+                    case "NOT" -> button.setOnAction(event -> handleSymbolButton("~"));
+                    default -> button.setOnAction(event -> handleSymbolButton(button.getText()));
+                }
+            }
+        });
+    }
+
 
     /**
      * This method changes the numbers in the calculator to the specified base.
@@ -108,6 +131,66 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         }
 
         inputLabel.setText(currentInput);
+    }
+
+    private String addBaseToNumbers() {
+        String currentInput = inputLabel.getText();
+        ArrayList<String> numbers = new ArrayList<>();
+        StringBuilder number = new StringBuilder();
+        // Extract numbers from the current input
+        for (int i = 0; i < currentInput.length(); i++) {
+            char c = currentInput.charAt(i);
+            if (Character.isDigit(c) || String.valueOf(c).matches("[A-Fa-f]")) {
+                number.append(c);
+            } else {
+                if (!number.isEmpty()) {
+                    numbers.add(number.toString());
+                    number.setLength(0);
+                }
+            }
+        }
+        if (!number.isEmpty()) {
+            numbers.add(number.toString());
+        }
+
+        // set the base indicator based on the current base
+        String baseIndicator = "";
+        switch (currBase) {
+            case "BIN" -> baseIndicator = "2b";
+            case "OCT" -> baseIndicator = "8b";
+            case "DEC" -> baseIndicator = "";
+            case "HEX" -> baseIndicator = "16b";
+            default -> {
+                // Handle invalid base
+                outputLabel.setText("INVALID BASE");
+                return currentInput;
+            }
+        }
+        // add the base indicator to the numbers in the current input
+        for (String num : numbers) {
+            try {
+                String newValue = baseIndicator + num;
+                currentInput = currentInput.replace(num, newValue);
+            } catch (NumberFormatException _) {
+                // Handle an invalid number format
+                outputLabel.setText("INVALID NUMBER");
+            }
+        }
+        return currentInput;
+    }
+
+    @Override
+    public void handleEqualButton() {
+        String currentInput = addBaseToNumbers();
+        try {
+            Expression e = MyExpressionParser.parseExpression(currentInput);
+            String result = calculator.eval(e);
+            outputLabel.setText(String.valueOf(result));
+        } catch (IllegalSyntax _) {
+            outputLabel.setText("SYNTAX ERROR");
+        } catch (ExecutionControl.NotImplementedException e) {
+            outputLabel.setText("CALCULATOR ERROR");
+        }
     }
 
     /**
@@ -199,33 +282,12 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
             }
         });
         handleBaseChange();
-        // Initialize the shift setting choice box
-        shiftSetting.setItems(shiftTypes);
-        shiftSetting.setValue(shiftTypes.getFirst());
-        setShiftType(shiftSetting.getValue());
-        shiftSetting.setOnAction(_ -> setShiftType(shiftSetting.getValue()));
 
         initializeLeftGridPane();
         initializeCenterGridPane();
         initializeRightGridPane();
+        initializeRightGridPane2();
 
-    }
-
-    /**
-     * This method returns the shift type as a string ("Arithmetic", "Logical", "Rotate", "Rotate through carry").
-     * @return The shift type as a String
-     */
-    public String getShiftType() {
-        return shiftType;
-    }
-
-    /**
-     * This method sets the shift type to the specified value.
-     * THe inputs are not verified because the choices are limited to the choice box.
-     * @param shiftType The shift type to set ("Arithmetic", "Logical", "Rotate", "Rotate through carry")
-     */
-    public void setShiftType(String shiftType) {
-        this.shiftType = shiftType;
     }
 
     /**
