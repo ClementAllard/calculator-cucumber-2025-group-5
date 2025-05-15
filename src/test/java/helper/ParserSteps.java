@@ -1,7 +1,6 @@
 package helper;
 
 import calculator.Calculator;
-import calculator.IllegalConstruction;
 import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import io.cucumber.java.Before;

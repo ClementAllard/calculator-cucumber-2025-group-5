@@ -1,7 +1,5 @@
 package frontend.desktop.controllers;
 
-import calculator.expression.Notation;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

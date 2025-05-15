@@ -1,12 +1,13 @@
 package calculator.expression.operator.bitwise;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
 import calculator.IllegalConstruction;
 import calculator.expression.number.MyInteger;
 import java.math.BigDecimal;
+import org.junit.jupiter.api.Test;
 
-public class TestBitwiseLeft {
+import static org.junit.jupiter.api.Assertions.*;
+
+class TestBitwiseLeft {
 
     @Test
     void testNullExpressionThrows() {

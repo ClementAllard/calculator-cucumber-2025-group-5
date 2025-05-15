@@ -4,7 +4,6 @@ import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.number.MyInteger;
 import calculator.expression.number.MyNumber;
-import calculator.expression.number.MyRational;
 import calculator.expression.number.MyReal;
 import calculator.expression.operator.Operation;
 import jdk.jshell.spi.ExecutionControl;

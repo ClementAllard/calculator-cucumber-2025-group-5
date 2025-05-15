@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(ApplicationExtension.class)
-public class ProgrammerCalculatorControllerTest {
+class ProgrammerCalculatorControllerTest {
 
     private AnchorPane calculator;
     private ProgrammerCalculatorController programmerCalculatorController;
