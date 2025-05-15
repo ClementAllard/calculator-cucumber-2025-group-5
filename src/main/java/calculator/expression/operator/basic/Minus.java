@@ -99,12 +99,12 @@ public final class Minus extends BinaryOperation {
 
     @Override
     protected MyNumber op(MyReal l, MyInteger r) {
-        return op(r, l);
+        return new MyReal(l.getValue().subtract(r.getValue()));
     }
 
     @Override
     protected MyNumber op(MyReal l, MyRational r) {
-        return op(r, l);
+        return new MyReal(l.getValue().subtract(r.getReal()));
     }
 
     @Override

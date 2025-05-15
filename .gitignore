@@ -5,4 +5,4 @@
 *.DS_Store
 .idea/*
 target/*
-constants.properties
+*.constants.properties
