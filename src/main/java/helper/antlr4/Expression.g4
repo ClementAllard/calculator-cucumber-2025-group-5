@@ -38,7 +38,7 @@ postfixfonction : FUNCTION postfixfonction ')'                                  
 infixExpr : infixExprBitwisePrio1
           ;
 
-infixExprBitwisePrio1 : infixExprBitwisePrio1 ('&' | '^^' | '|') infixExprBitwisePrio2
+infixExprBitwisePrio1 : infixExprBitwisePrio1 ('&' | '~&' | '~|' | '^^' | '|') infixExprBitwisePrio2
                  | infixExprBitwisePrio2
                  ;
 

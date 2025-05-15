@@ -233,6 +233,8 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "/" -> new Divides(expressions, notation);
                 case "^" -> new Power(expressions, notation);
                 case "&" -> new BitwiseAnd(expressions, notation);
+                case "~&" -> new BitwiseNand(expressions, notation);
+                case "~|" -> new BitwiseNor(expressions, notation);
                 case "^^" -> new BitwiseXor(expressions, notation);
                 case "|" -> new BitwiseOr(expressions, notation);
                 case "AND" -> new LogicalAnd(expressions, notation);
