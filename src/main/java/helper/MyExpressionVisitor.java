@@ -400,6 +400,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "sqrt", "root" -> new FunctionSqrt(args);
                 case "rinteger" ,"rint" -> new RandomIntegerSeed(args);
                 case "rrational", "rrat" -> new RandomRationalSeed(args);
+                case "mod" -> new FunctionModulo(args);
                 default -> throw new IllegalArgumentException("Unknown function " + funcName+ " of arity 2");
             };
 
