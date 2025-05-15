@@ -87,4 +87,26 @@ class TestMyRational {
             fail();
         }
     }
+
+    @Test
+    void testEquality() {
+        MyRational myRational1 = new MyRational(1,2);
+        MyRational myRational2 = new MyRational(1,2);
+        MyRational myRational3 = new MyRational(5,2);
+
+        assertEquals(myRational1, myRational1);
+        assertEquals(myRational1, myRational2);
+        assertNotEquals(myRational1, myRational3);
+    }
+
+    @Test
+    void testHashCode() {
+        MyRational myRational1 = new MyRational(1,2);
+        MyRational myRational2 = new MyRational(1,2);
+        MyRational myRational3 = new MyRational(5,2);
+
+        assertEquals(myRational1, myRational1);
+        assertEquals(myRational1, myRational2);
+        assertNotEquals(myRational1, myRational3);
+    }
 }

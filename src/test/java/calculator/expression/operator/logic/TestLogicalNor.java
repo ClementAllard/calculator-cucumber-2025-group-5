@@ -39,7 +39,7 @@ class TestLogicalNor {
     @Test
     void testSymbol() throws IllegalConstruction {
         LogicalNor nor = new LogicalNor(Arrays.asList(zero, zero));
-        assertEquals("nor", nor.getSymbol());
+        assertEquals("NOR", nor.getSymbol());
     }
 
     @Test

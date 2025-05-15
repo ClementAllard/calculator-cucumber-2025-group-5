@@ -55,7 +55,7 @@ class TestLogicalNot {
     void testSymbol() throws IllegalConstruction {
         Expression operand = new MyInteger(1);
         Operation not = new LogicalNot(operand);
-        assertEquals("not", not.getSymbol());
+        assertEquals("NOT", not.getSymbol());
     }
 
     @Test

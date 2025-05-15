@@ -41,7 +41,7 @@ class TestLogicalNand {
     @Test
     void testSymbol() throws IllegalConstruction {
         LogicalNand nand = new LogicalNand(Arrays.asList(one, one));
-        assertEquals("nand", nand.getSymbol());
+        assertEquals("NAND", nand.getSymbol());
     }
 
     @Test

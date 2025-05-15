@@ -87,4 +87,26 @@ class TestMyReal {
             fail();
         }
     }
+
+    @Test
+    void testEquality() {
+        MyReal myReal1 = new MyReal(new BigDecimal(1));
+        MyReal myReal2 = new MyReal(new BigDecimal(1));
+        MyReal myReal3 = new MyReal(new BigDecimal(6));
+
+        assertEquals(myReal1, myReal1);
+        assertEquals(myReal1, myReal2);
+        assertNotEquals(myReal1, myReal3);
+    }
+
+    @Test
+    void testHashCode() {
+        MyReal myReal1 = new MyReal(new BigDecimal(1));
+        MyReal myReal2 = new MyReal(new BigDecimal(1));
+        MyReal myReal3 = new MyReal(new BigDecimal(6));
+
+        assertEquals(myReal1, myReal1);
+        assertEquals(myReal1, myReal2);
+        assertNotEquals(myReal1, myReal3);
+    }
 }
