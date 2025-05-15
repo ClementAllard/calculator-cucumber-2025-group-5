@@ -102,10 +102,10 @@ public class StandardCalculatorController extends Controller {
     public void handleExpButton(String second) {
         String currentInput = inputLabel.getText();
         if (!second.isEmpty()) {
-            inputLabel.setText(currentInput + "^" + second);
+            inputLabel.setText(currentInput + " ^ " + second);
 
         } else {
-            inputLabel.setText(currentInput + "^");
+            inputLabel.setText(currentInput + " ^ ");
         }
     }
 
@@ -162,10 +162,10 @@ public class StandardCalculatorController extends Controller {
                 switch (button.getText()) {
                     case "DEL" -> button.setOnAction(event -> handleDeleteButton());
                     case "Reset" -> button.setOnAction(event -> handleClearButton());
-                    case "×" -> button.setOnAction(event -> handleSymbolButton("*"));
-                    case "÷" -> button.setOnAction(event -> handleSymbolButton("/"));
-                    case "+" -> button.setOnAction(event -> handleSymbolButton("+"));
-                    case "−" -> button.setOnAction(event -> handleSymbolButton("-"));
+                    case "×" -> button.setOnAction(event -> handleSymbolButton(" * "));
+                    case "÷" -> button.setOnAction(event -> handleSymbolButton(" / "));
+                    case "+" -> button.setOnAction(event -> handleSymbolButton(" + "));
+                    case "−" -> button.setOnAction(event -> handleSymbolButton(" - "));
                     case "=" -> button.setOnAction(event -> handleEqualButton());
                     case "Help" -> button.setOnAction(event -> outputLabel.setText(helptext));
                     default -> button.setOnAction(event -> handleSymbolButton(""));

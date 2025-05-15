@@ -61,9 +61,9 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         rightGridPane.getChildren().forEach(node -> {
             if (node instanceof Button button) {
                 switch (button.getText()) {
-                    case "⇒" -> button.setOnAction(event -> handleSymbolButton("=>"));
-                    case "⇔" -> button.setOnAction(event -> handleSymbolButton("<=>"));
-                    default -> button.setOnAction(event -> handleSymbolButton(button.getText()));
+                    case "⇒" -> button.setOnAction(event -> handleSymbolButton(" => "));
+                    case "⇔" -> button.setOnAction(event -> handleSymbolButton(" <=> "));
+                    default -> button.setOnAction(event -> handleSymbolButton(" " + button.getText() + " "));
                 }
             }
         });
@@ -77,14 +77,14 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         rightGridPane2.getChildren().forEach(node -> {
             if (node instanceof Button button) {
                 switch (button.getText()) {
-                    case "<<" -> button.setOnAction(event -> handleSymbolButton("<<"));
-                    case ">>" -> button.setOnAction(event -> handleSymbolButton(">>"));
-                    case "AND" -> button.setOnAction(event -> handleSymbolButton("&"));
-                    case "OR" -> button.setOnAction(event -> handleSymbolButton("|"));
-                    case "XOR" -> button.setOnAction(event -> handleSymbolButton("^^"));
-                    case "NOT" -> button.setOnAction(event -> handleSymbolButton("~"));
-                    case "NAND" -> button.setOnAction(event -> handleSymbolButton("~&"));
-                    case "NOR" -> button.setOnAction(event -> handleSymbolButton("~|"));
+                    case "<<" -> button.setOnAction(event -> handleSymbolButton(" << "));
+                    case ">>" -> button.setOnAction(event -> handleSymbolButton(" >> "));
+                    case "AND" -> button.setOnAction(event -> handleSymbolButton(" & "));
+                    case "OR" -> button.setOnAction(event -> handleSymbolButton(" | "));
+                    case "XOR" -> button.setOnAction(event -> handleSymbolButton(" ^^ "));
+                    case "NOT" -> button.setOnAction(event -> handleSymbolButton(" ~ "));
+                    case "NAND" -> button.setOnAction(event -> handleSymbolButton(" ~& "));
+                    case "NOR" -> button.setOnAction(event -> handleSymbolButton(" ~| "));
                     default -> button.setOnAction(event -> handleSymbolButton(button.getText()));
                 }
             }
@@ -106,7 +106,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         // Extract numbers from the current input
         for (int i = 0; i < currentInput.length(); i++) {
             char c = currentInput.charAt(i);
-            if (Character.isDigit(c) || (String.valueOf(c).matches("[A-Fa-f]") && currentInput.charAt(i + 1) != 'N')) {
+            if (Character.isDigit(c) || (String.valueOf(c).matches("[A-Fa-f]") && currentInput.charAt(i + 1) != 'N' && currentInput.charAt(i - 1) != 'N')) {
                 number.append(c);
             } else {
                 if (!number.isEmpty()) {
@@ -142,7 +142,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         // Extract numbers from the current input
         for (int i = 0; i < currentInput.length(); i++) {
             char c = currentInput.charAt(i);
-            if (Character.isDigit(c) || (String.valueOf(c).matches("[A-Fa-f]") && currentInput.charAt(i + 1) != 'N')) {
+            if (Character.isDigit(c) || (String.valueOf(c).matches("[A-Fa-f]") && currentInput.charAt(i + 1) != 'N' && currentInput.charAt(i - 1) != 'N')) {
                 number.append(c);
             } else {
                 if (!number.isEmpty()) {
