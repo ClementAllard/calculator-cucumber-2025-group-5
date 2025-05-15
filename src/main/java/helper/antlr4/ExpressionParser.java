@@ -801,8 +801,8 @@ public class ExpressionParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class InfixExprContext extends ParserRuleContext {
-		public InfixExprPrio1Context infixExprPrio1() {
-			return getRuleContext(InfixExprPrio1Context.class,0);
+		public InfixExprBitwisePrio1Context infixExprBitwisePrio1() {
+			return getRuleContext(InfixExprBitwisePrio1Context.class,0);
 		}
 		public InfixExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -830,7 +830,7 @@ public class ExpressionParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(109);
-			infixExprPrio1(0);
+			infixExprBitwisePrio1(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -2360,7 +2360,7 @@ public class ExpressionParser extends Parser {
 		"\u0000ef\u0005\u0019\u0000\u0000fg\u0003\f\u0006\u0000gh\u0005\u0007\u0000"+
 		"\u0000hi\u0003\f\u0006\u0000ij\u0005\b\u0000\u0000jl\u0001\u0000\u0000"+
 		"\u0000ka\u0001\u0000\u0000\u0000ke\u0001\u0000\u0000\u0000l\r\u0001\u0000"+
-		"\u0000\u0000mn\u0003\u001a\r\u0000n\u000f\u0001\u0000\u0000\u0000op\u0006"+
+		"\u0000\u0000mn\u0003\u0010\b\u0000n\u000f\u0001\u0000\u0000\u0000op\u0006"+
 		"\b\uffff\uffff\u0000pq\u0003\u0012\t\u0000qw\u0001\u0000\u0000\u0000r"+
 		"s\n\u0002\u0000\u0000st\u0007\u0001\u0000\u0000tv\u0003\u0012\t\u0000"+
 		"ur\u0001\u0000\u0000\u0000vy\u0001\u0000\u0000\u0000wu\u0001\u0000\u0000"+

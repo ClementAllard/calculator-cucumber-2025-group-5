@@ -35,7 +35,7 @@ postfixfonction : FUNCTION postfixfonction ')'                                  
 
 // INFIX
 
-infixExpr : infixExprPrio1
+infixExpr : infixExprBitwisePrio1
           ;
 
 infixExprBitwisePrio1 : infixExprBitwisePrio1 ('&' | '^^' | '|') infixExprBitwisePrio2
