@@ -159,7 +159,7 @@ public class ScientificCalculatorController extends StandardCalculatorController
      */
     void handleRealGeneration() {
         String currentInput = inputLabel.getText();
-        String randReal = "rReal(" + new Random().nextInt(1, 3000) + ")";
+        String randReal = "rReal(" + new Random().nextInt(1, 3000) + ")";     //NOSONAR
         if (currentInput.isEmpty()) {
             inputLabel.setText(randReal);
         } else {
@@ -172,7 +172,7 @@ public class ScientificCalculatorController extends StandardCalculatorController
      */
     void handleComplexGeneration() {
         String currentInput = inputLabel.getText();
-        String randComplex = "rComplex(" + new Random().nextInt(1, 3000) + ")";
+        String randComplex = "rComplex(" + new Random().nextInt(1, 3000) + ")";     //NOSONAR
         if (currentInput.isEmpty()) {
             inputLabel.setText(randComplex);
         } else {
