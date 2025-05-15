@@ -340,9 +340,9 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "sin" -> new FunctionSin(arg);
                 case "cos" -> new FunctionCos(arg);
                 case "tan" -> new FunctionTan(arg);
-                case "asin" -> new FunctionAsin(arg);
-                case "acos" -> new FunctionAcos(arg);
-                case "atan" -> new FunctionAtan(arg);
+                case "arcsin","asin" -> new FunctionAsin(arg);
+                case "arccos","acos" -> new FunctionAcos(arg);
+                case "arctan","atan" -> new FunctionAtan(arg);
                 case "sinh" -> new FunctionSinh(arg);
                 case "cosh" -> new FunctionCosh(arg);
                 case "tanh" -> new FunctionTanh(arg);
