@@ -13,6 +13,7 @@ public abstract class UnaryLogicOperation extends Operation {
         this.symbol = symbol;
     }
 
+    @Override
     public MyNumber op(MyNumber myNumber) throws UnsupportedOperationException {
         if (myNumber instanceof MyInteger a) {
             return op(a);
