@@ -9,48 +9,48 @@ import calculator.expression.operator.BinaryLogicOperation;
 import java.math.BigDecimal;
 import java.util.List;
 
-public final class LogicalOr extends BinaryLogicOperation {
+public final class LogicalNand extends BinaryLogicOperation {
 
     /**
-     * Class constructor specifying a number of Expressions to apply LogicalOr
+     * Class constructor specifying a number of Expressions to LogicalAnd
      *
-     * @param elist the list of Expressions to apply LogicalOr
+     * @param elist the list of Expressions to LogicalAnd
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
-     * @see #LogicalOr(List<Expression>, Notation)
+     * @see #LogicalNand(List<Expression>, Notation)
      */
-    public /*constructor*/ LogicalOr(List<Expression> elist) throws IllegalConstruction {
+    public /*constructor*/ LogicalNand(List<Expression> elist) throws IllegalConstruction {
         this(elist, null);
     }
 
     /**
-     * Class constructor specifying a number of Expressions to apply LogicalOr,
+     * Class constructor specifying a number of Expressions to LogicalAnd,
      * as well as the Notation used to represent the operation.
      *
-     * @param elist the list of Expressions to apply LogicalOr
+     * @param elist the list of Expressions to LogicalAnd
      * @param n the Notation to be used to represent the operation
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
-     * @see #LogicalOr(List<Expression>)
+     * @see #LogicalNand(List<Expression>)
      */
-    public LogicalOr(List<Expression> elist, Notation n) throws IllegalConstruction {
+    public LogicalNand(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist, n);
         if (elist.isEmpty()) {
             throw new IllegalConstruction();
         }
-        symbol = "OR";
+        symbol = "NAND";
     }
 
     /**
-     * The actual computation of the (binary) logical or of two boolean values
+     * The actual computation of the (binary) logical and of two boolean values
      * @param l The first boolean
      * @param r The second boolean
-     * @return True if at least one boolean is True, False is both are false
+     * @return True if both boolean are True, False otherwise
      */
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
-        if (l.getValue().compareTo(BigDecimal.ZERO) != 0 || r.getValue().compareTo(BigDecimal.ZERO) != 0) { // If l != 0 or r != 0
-            return new MyInteger(1);
-        } else {
+        if (l.getValue().compareTo(BigDecimal.ZERO) != 0 && r.getValue().compareTo(BigDecimal.ZERO) != 0) { // If l != 0 and r != 0
             return new MyInteger(0);
+        } else {
+            return new MyInteger(1);
         }
     }
 }

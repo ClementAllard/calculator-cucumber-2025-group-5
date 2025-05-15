@@ -1,10 +1,8 @@
 package calculator.expression.operator.function;
 
 import calculator.IllegalConstruction;
-import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import calculator.expression.number.*;
-import calculator.expression.operator.BinaryOperation;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,10 +17,10 @@ public class FunctionLogBinary extends FunctionBinary {
         super(elist, "log");
     }
 
-    private MyNumber op(BigDecimal base, BigDecimal number) {
-        if (base.equals(BigDecimal.ONE)) throw new IllegalArgumentException(BASE_ERROR);
-        if (base.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);
-        if (number.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);
+    protected MyNumber op(BigDecimal base, BigDecimal number) {
+        if (base.equals(BigDecimal.ONE)) {throw new IllegalArgumentException(BASE_ERROR);}
+        if (base.compareTo(BigDecimal.ZERO) <= 0) {throw new IllegalArgumentException(NEGATIVE_BASE_ERROR);}
+        if (number.compareTo(BigDecimal.ZERO) <= 0) {throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR);}
         return new MyReal(BigDecimal.valueOf(Math.log(number.doubleValue()) / Math.log(base.doubleValue())));
     }
 

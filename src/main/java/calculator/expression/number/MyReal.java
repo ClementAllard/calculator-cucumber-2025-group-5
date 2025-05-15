@@ -1,7 +1,6 @@
 package calculator.expression.number;
 
 import calculator.expression.BigDecimalUtil;
-import calculator.expression.Expression;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -25,8 +24,8 @@ public final class MyReal extends MyNumber{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
         MyReal myReal = (MyReal) o;
         return real.equals(myReal.getValue());
     }

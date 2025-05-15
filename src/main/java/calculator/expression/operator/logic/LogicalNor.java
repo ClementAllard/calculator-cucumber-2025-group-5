@@ -9,16 +9,16 @@ import calculator.expression.operator.BinaryLogicOperation;
 import java.math.BigDecimal;
 import java.util.List;
 
-public final class LogicalOr extends BinaryLogicOperation {
+public final class LogicalNor extends BinaryLogicOperation {
 
     /**
      * Class constructor specifying a number of Expressions to apply LogicalOr
      *
      * @param elist the list of Expressions to apply LogicalOr
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
-     * @see #LogicalOr(List<Expression>, Notation)
+     * @see #LogicalNor(List<Expression>, Notation)
      */
-    public /*constructor*/ LogicalOr(List<Expression> elist) throws IllegalConstruction {
+    public /*constructor*/ LogicalNor(List<Expression> elist) throws IllegalConstruction {
         this(elist, null);
     }
 
@@ -29,14 +29,14 @@ public final class LogicalOr extends BinaryLogicOperation {
      * @param elist the list of Expressions to apply LogicalOr
      * @param n the Notation to be used to represent the operation
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
-     * @see #LogicalOr(List<Expression>)
+     * @see #LogicalNor(List<Expression>)
      */
-    public LogicalOr(List<Expression> elist, Notation n) throws IllegalConstruction {
+    public LogicalNor(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist, n);
         if (elist.isEmpty()) {
             throw new IllegalConstruction();
         }
-        symbol = "OR";
+        symbol = "NOR";
     }
 
     /**
@@ -48,9 +48,9 @@ public final class LogicalOr extends BinaryLogicOperation {
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
         if (l.getValue().compareTo(BigDecimal.ZERO) != 0 || r.getValue().compareTo(BigDecimal.ZERO) != 0) { // If l != 0 or r != 0
-            return new MyInteger(1);
-        } else {
             return new MyInteger(0);
+        } else {
+            return new MyInteger(1);
         }
     }
 }

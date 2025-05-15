@@ -35,7 +35,7 @@ postfixfonction : FUNCTION postfixfonction ')'                                  
 
 // INFIX
 
-infixExpr : infixExprPrio1
+infixExpr : infixExprBitwisePrio1
           ;
 
 infixExprBitwisePrio1 : infixExprBitwisePrio1 ('&' | '^^' | '|') infixExprBitwisePrio2
@@ -51,11 +51,11 @@ infixExprBitwisePrio3 : ('<<' | '>>') INTEGER infixExprLogicPrio1
                  | infixExprLogicPrio1
                  ;
 
-infixExprLogicPrio1 : infixExprLogicPrio1 ('and' | 'xor' | 'or' | '=>' | '<=>') infixExprLogicPrio2
+infixExprLogicPrio1 : infixExprLogicPrio1 (AND | NAND | NOR | XOR | OR | '=>' | '<=>') infixExprLogicPrio2
                | infixExprLogicPrio2
                ;
 
-infixExprLogicPrio2 : 'not' infixExprPrio1
+infixExprLogicPrio2 : NOT infixExprPrio1
                | infixExprPrio1
                ;
 
@@ -104,7 +104,13 @@ INTEGER: [0-9]+;
 FUNCTION: [a-zA-Z_][a-zA-Z0-9_]* '(';
 PI: ('pi' | 'PI');
 E : ('e' | 'E');
-BOOL: 'T' | 'F' | '0' | '1';
+NOT: ('not' | 'NOT');
+AND: ('and' | 'AND');
+NAND: ('nand' | 'NAND');
+NOR: ('nor' | 'NOR');
+XOR: ('xor' | 'XOR');
+OR: ('or' | 'OR');
+BOOL: 't' | 'f' | 'T' | 'F' | '0' | '1';
 BASE_INTEGER: ( [2-9] | '1'[0-9] | '2'[0-9] | '3'[0-6] ) 'b' [0-9a-zA-Z]+;
 CONST : '$' [a-zA-Z_][a-zA-Z0-9_]* '$';
 

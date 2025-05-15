@@ -101,7 +101,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         switch (ctx.getChildCount()) {
             case 2 -> {
                 String operator = ctx.getChild(0).getText();
-                if (operator.equals("<<")) {
+                if ("<<".equals(operator)) {
                     try {
                         return new BitwiseLeft(visit(ctx.getChild(1)));
                     } catch (IllegalConstruction e) {
@@ -117,7 +117,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
             }
             case 3 -> {
                 String operator = ctx.getChild(0).getText();
-                if (operator.equals("<<")) {
+                if ("<<".equals(operator)) {
                     try {
                         return new BitwiseLeft(visit(ctx.getChild(2)), ctx.getChild(1).getText());
                     } catch (IllegalConstruction e) {
@@ -143,7 +143,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
             return visitChildren(ctx);
         } else {
             Expression left = visit(ctx.getChild(0));
-            String operator = ctx.getChild(1).getText();
+            String operator = ctx.getChild(1).getText().toUpperCase();
             Expression right = visit(ctx.getChild(2));
             return getExpression(Arrays.asList(left, right), operator, Notation.INFIX);
         }
@@ -167,7 +167,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
     @Override
     public Expression visitInfixExpressionSigned(ExpressionParser.InfixExpressionSignedContext ctx) {
-        if(ctx.getChild(0).getText().equals("-")) {
+        if("-".equals(ctx.getChild(0).getText())) {
             try {
                 return new Negate(visit(ctx.getChild(1)));
             } catch (IllegalConstruction e) {
@@ -235,9 +235,11 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
                 case "&" -> new BitwiseAnd(expressions, notation);
                 case "^^" -> new BitwiseXor(expressions, notation);
                 case "|" -> new BitwiseOr(expressions, notation);
-                case "and" -> new LogicalAnd(expressions, notation);
-                case "xor" -> new LogicalXor(expressions, notation);
-                case "or" -> new LogicalOr(expressions, notation);
+                case "AND" -> new LogicalAnd(expressions, notation);
+                case "NAND" -> new LogicalNand(expressions, notation);
+                case "NOR" -> new LogicalNor(expressions, notation);
+                case "XOR" -> new LogicalXor(expressions, notation);
+                case "OR" -> new LogicalOr(expressions, notation);
                 case "=>" -> new Implication(expressions, notation);
                 case "<=>" -> new Equivalence(expressions, notation);
                 default -> null;
@@ -281,7 +283,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     @Override
     public Expression visitBoolAtom(ExpressionParser.BoolAtomContext ctx) {
         String value = ctx.getText();
-        if (value.equals("T") || value.equals("1")) {
+        if ("T".equals(value) || "1".equals(value)) {
             return new MyInteger(new BigDecimal(1));
         } else {
             return new MyInteger(new BigDecimal(0));
@@ -311,7 +313,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         BigDecimal real = new BigDecimal(ctx.getChild(0).getText());
         BigDecimal imaginary = new BigDecimal(ctx.getChild(2).getText());
 
-        if(ctx.getChild(1).getText().equals("-")) {
+        if("-".equals(ctx.getChild(1).getText())) {
             imaginary = imaginary.negate();
         }
 
