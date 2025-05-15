@@ -31,7 +31,7 @@ public final class MyInteger extends MyNumber {
         for (char c : value.toCharArray()) {
             if (Character.digit(c, base) == -1) {
                 throw new IllegalArgumentException(
-                        "Caractère '" + c + "' invalide pour la base " + base);
+                        "Character '" + c + "' is invalid for the base " + base);
             }
         }
         BigInteger integer = new BigInteger(value, base);
