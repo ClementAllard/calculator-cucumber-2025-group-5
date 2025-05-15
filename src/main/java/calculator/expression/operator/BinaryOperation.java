@@ -22,25 +22,25 @@ public abstract class BinaryOperation extends Operation {
     @Override
     public MyNumber op(MyNumber l, MyNumber r) throws ExecutionControl.NotImplementedException {
         if (l instanceof MyInteger a) {
-            if (r instanceof MyInteger b) return op(a,b);
-            if (r instanceof MyRational b) return op(a,b);
-            if (r instanceof MyReal b) return op(a,b);
-            if (r instanceof MyComplex b) return op(a,b);
+            if (r instanceof MyInteger b) {return op(a,b);}
+            if (r instanceof MyRational b) {return op(a,b);}
+            if (r instanceof MyReal b) {return op(a,b);}
+            if (r instanceof MyComplex b) {return op(a,b);}
         } else if (l instanceof MyRational a) {
-            if (r instanceof MyInteger b) return op(a,b);
-            if (r instanceof MyRational b) return op(a,b);
-            if (r instanceof MyReal b) return op(a,b);
-            if (r instanceof MyComplex b) return op(a,b);
+            if (r instanceof MyInteger b) {return op(a,b);}
+            if (r instanceof MyRational b) {return op(a,b);}
+            if (r instanceof MyReal b) {return op(a,b);}
+            if (r instanceof MyComplex b) {return op(a,b);}
         } else if (l instanceof MyReal a) {
-            if (r instanceof MyInteger b) return op(a,b);
-            if (r instanceof MyRational b) return op(a,b);
-            if (r instanceof MyReal b) return op(a,b);
-            if (r instanceof MyComplex b) return op(a,b);
+            if (r instanceof MyInteger b) {return op(a,b);}
+            if (r instanceof MyRational b) {return op(a,b);}
+            if (r instanceof MyReal b) {return op(a,b);}
+            if (r instanceof MyComplex b) {return op(a,b);}
         } else if (l instanceof MyComplex a) {
-            if (r instanceof MyInteger b) return op(a,b);
-            if (r instanceof MyRational b) return op(a,b);
-            if (r instanceof MyReal b) return op(a,b);
-            if (r instanceof MyComplex b) return op(a,b);
+            if (r instanceof MyInteger b) {return op(a,b);}
+            if (r instanceof MyRational b) {return op(a,b);}
+            if (r instanceof MyReal b) {return op(a,b);}
+            if (r instanceof MyComplex b) {return op(a,b);}
         }
 
         throw new ExecutionControl.NotImplementedException("The operation '" + getSymbol() + "' between "

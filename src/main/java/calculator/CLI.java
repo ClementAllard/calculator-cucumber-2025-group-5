@@ -41,6 +41,7 @@ public class CLI {
 					printHelpDetails();
 					break;
 				case "exit":
+					scanner.close();
 					return;
 				case "fraction":
 					calculator.invShowFraction();
@@ -90,7 +91,7 @@ public class CLI {
 		 try{
 			 String expression = scanner.nextLine().trim();
 
-			 if(expression.equals("exit")){ return; }
+			 if("exit".equals(expression)){ return; }
 
 			 int scale = Integer.parseInt(expression);
 			 BigDecimalUtil.setScale(scale);
@@ -107,7 +108,7 @@ public class CLI {
 		 try{
 			 String expression = scanner.nextLine().trim();
 
-			 if(expression.equals("exit")){ return; }
+			 if("exit".equals(expression)){ return; }
 
 			 int mode = Integer.parseInt(expression);
 			 if(mode < 0 || mode > 7){

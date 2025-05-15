@@ -25,8 +25,8 @@ public final class MyReal extends MyNumber{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
         MyReal myReal = (MyReal) o;
         return real.equals(myReal.getValue());
     }
