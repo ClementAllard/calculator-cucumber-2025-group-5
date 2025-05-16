@@ -191,6 +191,7 @@
                 <configuration>
                     <!--needed to prevent module problem-->
                     <detectJavaApiLink>false</detectJavaApiLink>
+                    <outputDirectory>${project.basedir}target/site/apidocs</outputDirectory>
                 </configuration>
                 <executions>
                     <!-- Exports JavaDocs to regular HTML files -->
