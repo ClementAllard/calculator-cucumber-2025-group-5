@@ -55,8 +55,8 @@ class TestMyReal {
     @Test
     void TestMinusMyRational() {
         try{
-            assertEquals("1.5",minus.op(myReal,myInteger).toString());
-            assertEquals("-1",minus.op(myReal,myRational).toString());
+            assertEquals("-1.5",minus.op(myReal,myInteger).toString());
+            assertEquals("1",minus.op(myReal,myRational).toString());
             assertEquals("0",minus.op(myReal,myReal).toString());
             assertEquals("-1 - 4i",minus.op(myReal,myComplex).toString());
         }catch (ExecutionControl.NotImplementedException e) {
