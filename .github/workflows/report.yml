@@ -53,13 +53,13 @@ jobs:
         run: mvn javadoc:javadoc
 
       - name: Run Code Coverage
-        run: mvn test jacoco:report
+        run: xvfb-run mvn test jacoco:report
 
       - name: Run Quality Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-        run: mvn sonar:sonar -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} -Dsonar.organization=calculator-cucumber-group-5
+        run: xvfb-run mvn sonar:sonar -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} -Dsonar.organization=calculator-cucumber-group-5
 
       - name: Package Report
         run: |
