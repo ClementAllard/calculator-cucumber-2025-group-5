@@ -81,3 +81,7 @@ jobs:
     uses: ./.github/workflows/coverage-quality-analysis.yml
     needs: build_test
     secrets: inherit
+
+    permissions:
+      checks: write
+      contents: write
