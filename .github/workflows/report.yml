@@ -62,6 +62,8 @@ jobs:
         run: xvfb-run mvn sonar:sonar -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} -Dsonar.organization=calculator-cucumber-group-5
 
       - name: Package Report
+        env:
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
         run: |
           mkdir -p reports/quality
           cp -r target/surefire-reports reports/surefire-reports
