@@ -103,7 +103,7 @@ public abstract class FunctionRandomBinary extends BinaryOperation implements Ha
 
     @Override
     public boolean equals(Object other) {
-        if (!super.equals(other)) return false;
+        if (!super.equals(other)) {return false;}
         return Objects.equals(this.number, ((FunctionRandomBinary) other).number);
     }
 

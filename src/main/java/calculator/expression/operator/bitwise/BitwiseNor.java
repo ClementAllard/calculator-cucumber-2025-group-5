@@ -66,6 +66,6 @@ public final class BitwiseNor extends BinaryLogicOperation {
 
             BigInteger result = orResult.not().and(mask);
             return new MyInteger(new BigDecimal(result));
-        } else throw new UnsupportedOperationException("Bitwise operations only support binary numbers");
+        } else {throw new UnsupportedOperationException("Bitwise operations only support binary numbers");}
     }
 }

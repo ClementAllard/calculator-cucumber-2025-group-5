@@ -64,6 +64,6 @@ public final class BitwiseNand extends BinaryLogicOperation {
             BigInteger mask = BigInteger.ONE.shiftLeft(bitLength).subtract(BigInteger.ONE);
             BigInteger result = andResult.not().and(mask);
             return new MyInteger(new BigDecimal(result));
-        } else throw new UnsupportedOperationException("Bitwise operations only support binary numbers");
+        } else {throw new UnsupportedOperationException("Bitwise operations only support binary numbers");}
     }
 }

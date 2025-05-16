@@ -4,13 +4,15 @@ import calculator.IllegalConstruction;
 import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
-import calculator.expression.number.*;
+import calculator.expression.number.Constant;
+import calculator.expression.number.MyComplex;
+import calculator.expression.number.MyInteger;
+import calculator.expression.number.MyReal;
 import calculator.expression.operator.basic.*;
 import calculator.expression.operator.bitwise.*;
 import calculator.expression.operator.function.*;
-import calculator.expression.operator.function.FunctionAcos;
-import calculator.expression.operator.random.*;
 import calculator.expression.operator.logic.*;
+import calculator.expression.operator.random.*;
 import helper.antlr4.ExpressionBaseVisitor;
 import helper.antlr4.ExpressionParser;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -19,6 +21,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
 
@@ -144,7 +147,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
             } catch (IllegalConstruction e) {
                 throw new RuntimeException(e); //NOSONAR
             }
-        } else return visitChildren(ctx);
+        } else {return visitChildren(ctx);}
     }
 
     @Override
@@ -273,9 +276,9 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
     public Expression visitBoolAtom(ExpressionParser.BoolAtomContext ctx) {
         String value = ctx.getText();
         if ("T".equals(value) || "1".equals(value)) {
-            return new MyInteger(new BigDecimal(1));
+            return new MyInteger(BigDecimal.ONE);
         } else {
-            return new MyInteger(new BigDecimal(0));
+            return new MyInteger(BigDecimal.ZERO);
         }
     }
 
@@ -331,7 +334,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         Expression arg = visit(tree.getChild(1));
 
         try {
-            return switch (functionName.toLowerCase()) {
+            return switch (functionName.toLowerCase(Locale.ROOT)) {
                 case "rad" -> new FunctionRad(arg);
                 case "degree", "deg" -> new FunctionDegree(arg);
                 case "inv" -> new FunctionInverse(arg);
@@ -381,7 +384,7 @@ public class MyExpressionVisitor extends ExpressionBaseVisitor<Expression> {
         List<Expression> args = Arrays.asList(visit(tree.getChild(1)),visit(tree.getChild(3)));
 
         try {
-            return switch (funcName.toLowerCase()) {
+            return switch (funcName.toLowerCase(Locale.ROOT)) {
                 case "log" -> new FunctionLogBinary(args);
                 case "pow" -> new FunctionPow(args);
                 case "sqrt", "root" -> new FunctionSqrt(args);

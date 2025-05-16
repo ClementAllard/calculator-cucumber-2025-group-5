@@ -45,7 +45,7 @@ public final class Constant {
      */
     private static Properties loadAllConstants() {
         Properties props = new Properties();
-        if (!Files.exists(FILE_PATH)) return props;
+        if (!Files.exists(FILE_PATH)) {return props;}
         try (Reader reader = Files.newBufferedReader(FILE_PATH)) {
             props.load(reader);
         } catch (IOException e) {

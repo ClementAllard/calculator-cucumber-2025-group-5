@@ -1,10 +1,7 @@
 package frontend.desktop.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.GridPane;
@@ -94,18 +91,18 @@ public class ScientificCalculatorController extends StandardCalculatorController
         String currentInput = result.getKey();
         String lastNumber = result.getValue();
         if (!lastNumber.isEmpty()) {
-            if (conversionType.equals("to rad")) {
+            if ("to rad".equals(conversionType)) {
                 inputLabel.setText(currentInput + "rad(" + lastNumber + ")");
             }
-            else if (conversionType.equals("to deg")) {
+            else if ("to deg".equals(conversionType)) {
                 inputLabel.setText(currentInput + "deg(" + lastNumber + ")");
             }
         }
         else {
-            if (conversionType.equals("to rad")) {
+            if ("to rad".equals(conversionType)) {
                 inputLabel.setText(currentInput + "rad(");
             }
-            else if (conversionType.equals("to deg")) {
+            else if ("to deg".equals(conversionType)) {
                 inputLabel.setText(currentInput + "deg(");
             }
         }

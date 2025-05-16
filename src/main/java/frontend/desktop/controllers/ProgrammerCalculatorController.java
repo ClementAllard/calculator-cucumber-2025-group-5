@@ -13,6 +13,7 @@ import javafx.util.Pair;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -105,7 +106,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
     public void changeNumbersToBase() {
         // Change the numbers in the calculator to the specified base
         String currentInput = inputLabel.getText();
-        ArrayList<String> numbers = new ArrayList<>();
+        List<String> numbers = new ArrayList<>();
         StringBuilder number = new StringBuilder();
         // Extract numbers from the current input
         for (int i = 0; i < currentInput.length(); i++) {
@@ -281,7 +282,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
             case "HEX" -> regex = "[0-9A-Fa-f%]";
             default -> regex = "";
         }
-        if (regex.isEmpty()) outputLabel.setText(BASE_ERROR);
+        if (regex.isEmpty()) {outputLabel.setText(BASE_ERROR);}
         else {
             final String finalRegex = regex;
             leftGridPane.getChildren().forEach(node -> {

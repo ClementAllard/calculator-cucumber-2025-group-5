@@ -29,6 +29,6 @@ public final class BitwiseNot extends UnaryLogicOperation {
             String max = "1".repeat(representation.length());
             int notValue = Integer.parseInt(max) - Integer.parseInt(representation);
             return new MyInteger(new BigDecimal(notValue), l.getBase());
-        } else throw new UnsupportedOperationException("Bitwise operations only support binary numbers");
+        } else {throw new UnsupportedOperationException("Bitwise operations only support binary numbers");}
     }
 }

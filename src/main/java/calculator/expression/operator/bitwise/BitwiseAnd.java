@@ -61,6 +61,6 @@ public final class BitwiseAnd extends BinaryLogicOperation {
         if (lValid && rValid) {
             BigInteger result = b1.and(b2);
             return new MyInteger(new BigDecimal(result));
-        } else throw new UnsupportedOperationException("Bitwise operations only support binary numbers");
+        } else {throw new UnsupportedOperationException("Bitwise operations only support binary numbers");}
     }
 }

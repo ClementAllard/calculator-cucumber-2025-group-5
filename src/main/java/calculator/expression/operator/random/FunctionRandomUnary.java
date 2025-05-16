@@ -42,7 +42,7 @@ public abstract class FunctionRandomUnary extends UnaryOperation implements HasN
 
     @Override
     public boolean equals(Object other) {
-        if (!super.equals(other)) return false;
+        if (!super.equals(other)) {return false;}
         return Objects.equals(this.number, ((FunctionRandomUnary) other).number);
     }
 
