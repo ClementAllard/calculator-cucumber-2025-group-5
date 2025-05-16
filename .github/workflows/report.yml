@@ -65,7 +65,7 @@ jobs:
         run: |
           mkdir -p reports/quality
           cp -r target/surefire-reports reports/surefire-reports
-          cp -r target/site/apidocs reports/javadoc
+          cp -r target/reports/apidocs reports/javadoc
           cp -r target/site/jacoco reports/coverage
           cp -r target/site/sonar reports/quality
           zip -r report.zip reports
