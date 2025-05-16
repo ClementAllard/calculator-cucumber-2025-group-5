@@ -10,7 +10,7 @@ import java.util.Collections;
 public abstract class UnaryOperation extends Operation {
 
     protected UnaryOperation(Expression expression,String symbol) throws IllegalConstruction {
-        super(Collections.singletonList(expression));
+        super(expression == null ? null : Collections.singletonList(expression));
         this.symbol = symbol;
     }
 

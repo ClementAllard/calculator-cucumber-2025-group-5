@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PowerTest {
+class TestPower {
 
     Calculator calculator = new Calculator();
 
