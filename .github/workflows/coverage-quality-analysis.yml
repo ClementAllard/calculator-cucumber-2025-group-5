@@ -1,9 +1,7 @@
 name: Code quality & coverage analysis
+
 on:
-  workflow_run:
-    workflows: ["Java CI with Maven"]
-    types:
-      - completed # Runs after the worflow Java CI with Maven regardless of success or fail.
+  workflow_call:
 
 permissions:
   checks: write
@@ -12,7 +10,6 @@ permissions:
 jobs:
   coverage_and_quality:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }} # Runs only on Java CI with Maven success
 
     steps:
       - name: Harden the runner (Audit all outbound calls)
@@ -23,8 +20,6 @@ jobs:
       - name: Checkout repository with full history
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          repository: ${{ github.event.workflow_run.head_repository.full_name }}
-          ref: ${{ github.event.workflow_run.head_branch }} # Pulls the commit associated with the triggering workflow
           fetch-depth: 0  # Fetch the entire history
 
       - name: Set up JDK 23
@@ -46,4 +41,5 @@ jobs:
       - name: SonarQube Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: xvfb-run mvn sonar:sonar -Dsonar.projectKey=ClementAllard_calculator-cucumber-2025-group-5 -Dsonar.organization=calculator-cucumber-group-5
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+        run: xvfb-run mvn sonar:sonar -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} -Dsonar.organization=calculator-cucumber-group-5

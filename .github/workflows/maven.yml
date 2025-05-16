@@ -76,3 +76,8 @@ jobs:
         default_author: github_actions
         message: 'commit badge'
         add: '*.svg'
+
+  analysis:
+    uses: ./.github/workflows/coverage-quality-analysis.yml
+    needs: build_test
+    secrets: inherit
