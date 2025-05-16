@@ -67,7 +67,7 @@ jobs:
           cp -r target/surefire-reports reports/surefire-reports
           cp -r target/reports/apidocs reports/javadoc
           cp -r target/site/jacoco reports/coverage
-          cp -r target/site/sonar reports/quality
+          echo "SonarCloud Report: https://sonarcloud.io/project/overview?id=${{ env.SONAR_PROJECT_KEY }}" > reports/quality/sonar-summary.txt
           zip -r report.zip reports
 
       - name: Attach Report to Release
