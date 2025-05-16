@@ -2,7 +2,9 @@ package calculator.expression.operator;
 
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
-import calculator.expression.number.*;
+import calculator.expression.number.MyInteger;
+import calculator.expression.number.MyNumber;
+
 
 import java.util.Collections;
 

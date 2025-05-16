@@ -3,7 +3,9 @@ package calculator.expression.operator.function;
 import calculator.IllegalConstruction;
 import calculator.expression.BigDecimalUtil;
 import calculator.expression.Expression;
-import calculator.expression.number.*;
+import calculator.expression.number.MyComplex;
+import calculator.expression.number.MyNumber;
+import calculator.expression.number.MyReal;
 
 import java.math.BigDecimal;
 

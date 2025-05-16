@@ -3,7 +3,8 @@ package calculator.expression.operator.bitwise;
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
-import calculator.expression.number.*;
+import calculator.expression.number.MyInteger;
+import calculator.expression.number.MyNumber;
 import calculator.expression.operator.BinaryLogicOperation;
 
 import java.math.BigDecimal;
@@ -13,9 +14,9 @@ import java.util.List;
 public final class BitwiseNand extends BinaryLogicOperation {
 
     /**
-     * Class constructor specifying a number of Expressions to apply BitwiseAnd
+     * Class constructor specifying a number of Expressions to apply BitwiseNand
      *
-     * @param elist the list of Expressions to apply BitwiseAnd
+     * @param elist the list of Expressions to apply BitwiseNand
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #BitwiseNand(List<Expression>, Notation)
      */
@@ -24,10 +25,10 @@ public final class BitwiseNand extends BinaryLogicOperation {
     }
 
     /**
-     * Class constructor specifying a number of Expressions to apply BitwiseAnd,
+     * Class constructor specifying a number of Expressions to apply BitwiseNand,
      * as well as the Notation used to represent the operation.
      *
-     * @param elist the list of Expressions to apply BitwiseAnd
+     * @param elist the list of Expressions to apply BitwiseNand
      * @param n the Notation to be used to represent the operation
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #BitwiseNand(List<Expression>)
@@ -43,7 +44,7 @@ public final class BitwiseNand extends BinaryLogicOperation {
     /**
      * @param l The first binary
      * @param r The second binary
-     * @return The actual computation of the BitwiseAnd of two binary values
+     * @return The actual computation of the BitwiseNand of two binary values
      */
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {

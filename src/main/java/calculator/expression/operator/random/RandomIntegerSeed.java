@@ -2,7 +2,7 @@ package calculator.expression.operator.random;
 
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
-import calculator.expression.number.*;
+import calculator.expression.number.MyNumber;
 
 import java.util.List;
 

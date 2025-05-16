@@ -3,7 +3,8 @@ package calculator.expression.operator.bitwise;
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
-import calculator.expression.number.*;
+import calculator.expression.number.MyInteger;
+import calculator.expression.number.MyNumber;
 import calculator.expression.operator.BinaryLogicOperation;
 
 import java.math.BigDecimal;

@@ -3,7 +3,8 @@ package calculator.expression.operator.logic;
 import calculator.IllegalConstruction;
 import calculator.expression.Expression;
 import calculator.expression.Notation;
-import calculator.expression.number.*;
+import calculator.expression.number.MyInteger;
+import calculator.expression.number.MyNumber;
 import calculator.expression.operator.BinaryLogicOperation;
 
 import java.math.BigDecimal;
@@ -12,9 +13,9 @@ import java.util.List;
 public final class LogicalNor extends BinaryLogicOperation {
 
     /**
-     * Class constructor specifying a number of Expressions to apply LogicalOr
+     * Class constructor specifying a number of Expressions to apply LogicalNor
      *
-     * @param elist the list of Expressions to apply LogicalOr
+     * @param elist the list of Expressions to apply LogicalNor
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #LogicalNor(List<Expression>, Notation)
      */
@@ -23,10 +24,10 @@ public final class LogicalNor extends BinaryLogicOperation {
     }
 
     /**
-     * Class constructor specifying a number of Expressions to apply LogicalOr,
+     * Class constructor specifying a number of Expressions to apply LogicalNor,
      * as well as the Notation used to represent the operation.
      *
-     * @param elist the list of Expressions to apply LogicalOr
+     * @param elist the list of Expressions to apply LogicalNor
      * @param n the Notation to be used to represent the operation
      * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #LogicalNor(List<Expression>)
@@ -40,10 +41,10 @@ public final class LogicalNor extends BinaryLogicOperation {
     }
 
     /**
-     * The actual computation of the (binary) logical or of two boolean values
+     * The actual computation of the (binary) logical nor of two boolean values
      * @param l The first boolean
      * @param r The second boolean
-     * @return True if at least one boolean is True, False is both are false
+     * @return False if at least one boolean is True, True is both are false
      */
     @Override
     protected MyNumber op(MyInteger l, MyInteger r) {
