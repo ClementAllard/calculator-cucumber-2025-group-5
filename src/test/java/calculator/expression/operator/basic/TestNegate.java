@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NegateTest {
+class TestNegate {
     Calculator calculator = new Calculator();
 
     MyInteger myInteger = new MyInteger(9);
