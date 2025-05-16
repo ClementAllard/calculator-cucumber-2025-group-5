@@ -84,4 +84,4 @@ jobs:
 
     permissions:
       checks: write
-      contents: write
+      contents: read
