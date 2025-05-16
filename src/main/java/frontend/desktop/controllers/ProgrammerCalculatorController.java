@@ -13,6 +13,8 @@ import javafx.util.Pair;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ProgrammerCalculatorController extends StandardCalculatorController {
     /**
@@ -20,6 +22,8 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
      * It extends the StandardCalculatorController class and adds functionality for programmer mode.
      * It handles the user interface and the logic for the programmer calculator.
      */
+
+    private static final String BASE_ERROR = "INVALID BASE";
 
     @FXML
     public ChoiceBox<String> baseSetting;
@@ -106,7 +110,7 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         // Extract numbers from the current input
         for (int i = 0; i < currentInput.length(); i++) {
             char c = currentInput.charAt(i);
-            if (Character.isDigit(c) || (String.valueOf(c).matches("[A-Fa-f]") && currentInput.charAt(i + 1) != 'N' && currentInput.charAt(i - 1) != 'N')) {
+            if (Character.isDigit(c)) {
                 number.append(c);
             } else {
                 if (!number.isEmpty()) {
@@ -135,50 +139,88 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
         inputLabel.setText(currentInput);
     }
 
-    private String addBaseToNumbers() {
-        String currentInput = inputLabel.getText();
-        ArrayList<String> numbers = new ArrayList<>();
-        StringBuilder number = new StringBuilder();
-        // Extract numbers from the current input
-        for (int i = 0; i < currentInput.length(); i++) {
-            char c = currentInput.charAt(i);
-            if (Character.isDigit(c) || (String.valueOf(c).matches("[A-Fa-f]") && currentInput.charAt(i + 1) != 'N' && currentInput.charAt(i - 1) != 'N')) {
-                number.append(c);
-            } else {
-                if (!number.isEmpty()) {
-                    numbers.add(number.toString());
-                    number.setLength(0);
-                }
-            }
-        }
-        if (!number.isEmpty()) {
-            numbers.add(number.toString());
+    /**
+     * From a given string with numbers and letter, add the base in front of numbers and leave the operator as
+     * they are. Use pattern matching to detected '_operator' (_ is a space otherwise for base 32 we have AND can be a number)
+     * from the list of operators:
+     * {"AND", "OR", "NOT", "XOR", "NOR", "NAND"};
+     * @param input the string to parse to change the base.
+     * @param base the base as integer.
+     * @return the new string with (hopefully) numbers with the base in front and operators untouched.
+     */
+    private String formatNumbersWithBase(String input, int base) {
+        if (base == 10){
+            return inputLabel.getText();
         }
 
-        // set the base indicator based on the current base
-        String baseIndicator = "";
+        String baseStr;
         switch (currBase) {
-            case "BIN" -> baseIndicator = "2b";
-            case "OCT" -> baseIndicator = "8b";
-            case "DEC" -> baseIndicator = "";
-            case "HEX" -> baseIndicator = "16b";
+            case "BIN" -> baseStr = "2b";
+            case "OCT" -> baseStr = "8b";
+            case "DEC" -> baseStr = "";
+            case "HEX" -> baseStr = "16b";
             default -> {
                 // Handle invalid base
-                outputLabel.setText("INVALID BASE");
+                outputLabel.setText(BASE_ERROR);
+                return inputLabel.getText();
+            }
+        }
+        // Check the base is between 2 and 32.
+        if (base < 2 || base > 32) {
+            throw new IllegalArgumentException("Base must be between 2 and 32.");
+        }
+
+        // List of operators to not translate into number.
+        String[] operators = {"AND", "OR", "NOT", "XOR", "NOR", "NAND"};
+
+        // Regex to match operators.
+        // To remove the space before the operator matching, remove \\b from "\\b(".
+        String operatorRegex = "\\b(" + String.join("|", operators) + ")";
+
+        // Regex to match everything else.
+        String numberRegex = "[a-zA-Z0-9]+";
+
+        // Compile patterns.
+        Pattern operatorPattern = Pattern.compile(operatorRegex, Pattern.CASE_INSENSITIVE);
+        Pattern numberPattern = Pattern.compile(numberRegex);
+
+        // Initialize the matcher/parser and the buffer.
+        Matcher matcher = numberPattern.matcher(input);
+        StringBuilder result = new StringBuilder();
+
+        // for each pattern we match.
+        while (matcher.find()) {
+            String word = matcher.group();
+
+            // Check for operator
+            Matcher opMatcher = operatorPattern.matcher(word);
+            if (opMatcher.find()) {
+                matcher.appendReplacement(result, word); // leave operator
+            } else {
+                matcher.appendReplacement(result, baseStr + word); // add base in front of number
+            }
+        }
+
+        matcher.appendTail(result);
+
+        return result.toString();
+    }
+
+    private String addBaseToNumbers() {
+        String currentInput = inputLabel.getText();
+        int baseInt;
+        switch (currBase) {
+            case "BIN" -> baseInt = 2;
+            case "OCT" -> baseInt = 8;
+            case "DEC" -> baseInt = 10;
+            case "HEX" -> baseInt = 16;
+            default -> {
+                // Handle invalid base
+                outputLabel.setText(BASE_ERROR);
                 return currentInput;
             }
         }
-        // add the base indicator to the numbers in the current input
-        for (String num : numbers) {
-            try {
-                String newValue = baseIndicator + num;
-                currentInput = currentInput.replace(num, newValue);
-            } catch (NumberFormatException _) {
-                // Handle an invalid number format
-                outputLabel.setText("INVALID NUMBER");
-            }
-        }
-        return currentInput;
+        return formatNumbersWithBase(inputLabel.getText(), baseInt);
     }
 
     @Override
@@ -231,42 +273,22 @@ public class ProgrammerCalculatorController extends StandardCalculatorController
      */
     public void handleBaseChange() {
         // Handle the base change logic here
-        switch (currBase) {
-            case "BIN" -> {
-                // Update the calculator to binary mode
-                leftGridPane.getChildren().forEach(node -> {
-                    if (node instanceof Button button) {
-                        button.setDisable(!button.getText().matches("[01%]"));
-                    }
-                });
-            }
-            case "OCT" -> {
-                // Update the calculator to octal mode
-                leftGridPane.getChildren().forEach(node -> {
-                    if (node instanceof Button button) {
-                        button.setDisable(!button.getText().matches("[0-7%]"));
-                    }
-                });
-            }
-            case "DEC" -> {
-                // Update the calculator to decimal mode
-                leftGridPane.getChildren().forEach(node -> {
-                    if (node instanceof Button button) {
-                        button.setDisable(!button.getText().matches("[\\d%]"));
-                    }
-                });
-            }
-            case "HEX" -> {
-                // Update the calculator to hexadecimal mode
-                leftGridPane.getChildren().forEach(node -> {
-                    if (node instanceof Button button) {
-                        button.setDisable(!button.getText().matches("[0-9A-Fa-f%]"));
-                    }
-                });
-            }
-            default -> {
-                // Handle invalid base
-                outputLabel.setText("INVALID BASE");}
+        String regex;
+        switch (currBase){
+            case "BIN" -> regex = "[01%]";
+            case "OCT" -> regex = "[0-7%]";
+            case "DEC" -> regex = "[\\d%]";
+            case "HEX" -> regex = "[0-9A-Fa-f%]";
+            default -> regex = "";
+        }
+        if (regex.isEmpty()) outputLabel.setText(BASE_ERROR);
+        else {
+            final String finalRegex = regex;
+            leftGridPane.getChildren().forEach(node -> {
+                if (node instanceof Button button) {
+                    button.setDisable(!button.getText().matches(finalRegex));
+                }
+            });
         }
         changeNumbersToBase();
     }
