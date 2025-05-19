@@ -90,7 +90,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>24.0.1</version>
+            <version>25-ea+17</version>
         </dependency>
         <dependency>
             <groupId>org.testfx</groupId>
